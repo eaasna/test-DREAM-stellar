@@ -3,7 +3,8 @@ import  pandas  as pd
 import os
 
 configfile: "config.yaml"
-bins = pd.read_csv(config["bins"])
+with open(config["bins"]) as f:
+    bins = f.read().splitlines()
 
 rule make_all:
 	input:
