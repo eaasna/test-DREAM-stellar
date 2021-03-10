@@ -1,7 +1,7 @@
 # stellar query sequences have to be in fasta format
 rule convert_fastq:
 	input:
-		"../data/1024/reads_e10_150/all_10.fastq"
+		"../data/1024/reads_e10_150/all.fastq"
 	output:
 		"../data/1024/reads/all.fasta"
 	shell:
@@ -13,6 +13,9 @@ rule stellar:
 		reference = "../data/1024/bins/{bin}.fasta"
 	output:
 		"stellar/{bin}.gff"
+	conda:
+		"/envs/stellar.yaml"
+	threads: 8
 	params: 
 		e = config["e"],
 	shell:
