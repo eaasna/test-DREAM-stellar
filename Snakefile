@@ -8,10 +8,12 @@ with open(config["bins"]) as f:
 
 rule make_all:
 	input:
-		expand("stellar/{bin}.gff", bin = bins)
+		expand("stellar/{bin}.gff", bin = bins),
+		"raptor/index.raptor"
 	shell:
 		"""
 		echo 'Done'
 		"""
 
 include: "rules/stellar.smk"
+include: "rules/raptor.smk"

@@ -14,7 +14,7 @@ rule stellar:
 	output:
 		"stellar/{bin}.gff"
 	conda:
-		"/envs/stellar.yaml"
+		"../envs/stellar.yaml"
 	threads: 8
 	params: 
 		e = config["e"],
