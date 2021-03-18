@@ -17,7 +17,7 @@ rule stellar:
 		"../envs/stellar.yaml"
 	threads: 8
 	params: 
-		e = config["e"],
+		e = config["error_rate"],
 	shell:
 		"stellar -e {params.e} {input.reference} {input.reads} -o {output}"
 

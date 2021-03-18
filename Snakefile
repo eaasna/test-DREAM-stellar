@@ -9,7 +9,7 @@ with open(config["bins"]) as f:
 rule make_all:
 	input:
 		expand("stellar/{bin}.gff", bin = bins),
-		"raptor/index.raptor"
+		expand("raptor/{bin}.output", bin = bins)
 	shell:
 		"""
 		echo 'Done'
