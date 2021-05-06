@@ -5,7 +5,6 @@ rule raptor_build:
 		"raptor/index.raptor"
 	conda:
 		"../envs/raptor.yaml"
-	threads: 8
 	params: 
 		k = config["k"],
 		win = config["win"],
@@ -21,7 +20,6 @@ rule raptor_search:
 		"raptor/{bin}.output"
 	conda:
 		"../envs/raptor.yaml"
-	threads: 8
 	params:
 		k = config["k"],
 		win = config["win"],
