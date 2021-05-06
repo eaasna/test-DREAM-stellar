@@ -6,3 +6,6 @@ Data has been simulated using this tool https://github.com/eseiler/raptor_data_s
 
 To run the snakemake workflow:
 `snakemake --use-conda --cores {e.g 8}`
+
+But the `lambda` aligner isn't available through conda! 
+https://github.com/seqan/lambda/wiki/Packages
