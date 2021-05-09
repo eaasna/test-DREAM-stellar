@@ -1,28 +1,16 @@
 rule raptor_build:
 	input:
-		expand("../data/1024/bins/{bin}.fasta", bin = bins)
+		"../data/64/all_bin_paths.txt"
 	output:
-		"raptor/index.raptor"
-	conda:
-		"../envs/raptor.yaml"
-	params: 
-		k = config["k"],
-		win = config["win"],
-		size = config["size"]
+		"../data/64/index_{k}_80m.raptor"
 	shell:
-		"raptor build --kmer {params.k} --window {params.win} --size {params.size} --output {output} {input}"
+		"./../raptor_clone/build/bin/raptor build --kmer {wildcards.k} --window {wildcards.k} --size 80m --output {output} {input}"
 
 rule raptor_search:
 	input:
-		index = "raptor/index.raptor",
-		reads = "../data/1024/reads_e10_150/{bin}.fastq"
+		index = "../data/64/index_{k}_80m.raptor",
+		reads = "../data/64/reads_e{rer}_150/bin_33.fastq"
 	output:
-		"raptor/{bin}.output"
-	conda:
-		"../envs/raptor.yaml"
-	params:
-		k = config["k"],
-		win = config["win"],
-		e = config["nr_errors"]
+		"../data/64/output_e{rer}/bin_33_k{k}_p{p}_o{o}_e{e}.output"
 	shell:
-		"raptor search --kmer {params.k} --window {params.win} --error {params.e} --index {input.index} --query {input.reads} --output {output}"	
+		"./../raptor_clone/build/bin/raptor search --kmer {wildcards.k} --window {wildcards.k} --error {wildcards.e} --pattern {wildcards.p} --overlap {wildcards.o} --index {input.index} --query {input.reads} --output {output}"	

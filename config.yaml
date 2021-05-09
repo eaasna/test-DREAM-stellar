@@ -1,13 +1,14 @@
 # stellar parameters i.e defining a local match to be at least 50bp with a maximum of 2 errors
-error_rate: 0.013
-min_length: 75
+error_rate: 0.02
+min_length: 50
 
 # raptor parameters
-# nr_errors=4 correspons to a local match defined as length >=75bp with <=2 errors
-nr_errors: 4
-k: 15
-win: 15
-size: 8m
+# nr_errors=3 correspons to a local match defined as length >=60bp with <=3 errors
+nr_errors: 1
+k: 19
+p: 60
+o: 0
+size: 80m
 
 # list of bin names
-bins: ../data/1024/bin_names
+bins: ../data/64/sample_bins
