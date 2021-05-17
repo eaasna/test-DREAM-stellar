@@ -8,9 +8,8 @@ with open(config["bins"]) as f:
 
 
 # definition of local match for STELLAR
-#lengths = [30, 50, 70]
-#errors = [0, 1, 2]
-
+length = [30, 50, 70]
+errors = [0]
 
 # what error rate the reads were sampled with
 read_error_rate = [3, 5, 7, 10]
@@ -23,17 +22,17 @@ if pattern_length == 50:
 if pattern_length == 30:
 	overlap = [0, 10, 25]
 
-errors = 0 # [0, 1, 2]
+#errors = 0 # [0, 1, 2]
 kmer_length = [19, 23] # depends on kmer lemma
-
 size = ["80m"]
+
 
 rule make_all:
 	input:
-		expand("../data/64/output_e{rer}/bin_33_k{k}_p{p}_o{o}_e{e}.output", rer = read_error_rate, k = kmer_length, p = pattern_length, o = overlap, e = errors)
-#		expand("../data/64/output_e{rer}/stellar/{bin}_{l}p_{e}e_sed.gff", bin = bins, rer = read_error_rate, l = lengths, e = errors)
+		# expand("../data/64/output_e{rer}/bin_33_k{k}_p{p}_o{o}_e{e}.output", rer = read_error_rate, k = kmer_length, p = pattern_length, o = overlap, e = errors)
+		expand("../data/64/output_e{rer}/stellar/{bin}_{l}p_{e}e_sed.gff", bin = bins, rer = read_error_rate, l = length, e = errors)
 	shell:
 		"echo 'Done'"
 
-#include: "rules/stellar.smk"
-include: "rules/raptor.smk"
+include: "rules/stellar.smk"
+#include: "rules/raptor.smk"

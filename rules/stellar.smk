@@ -14,12 +14,11 @@ rule stellar:
 	output:
 		"../data/64/output_e{rer}/stellar/{bin}_{l}p_{e}e.gff"
 	params:
-		er = 2 / 70
+		er = 0.001
 	conda:
 		"../envs/stellar.yaml"
 	shell:
 		"stellar -e {params.er} -l {wildcards.l} {input.reference} {input.reads} -o {output}"
-		#"stellar -l {wildcards.l} {input.reference} {input.reads} -o {output}"
 
 rule remove_metadata:
 	input:
