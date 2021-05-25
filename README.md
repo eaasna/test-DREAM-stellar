@@ -1,6 +1,6 @@
-# metagenome-read-mapping
+# Testing sliding window
 
-The goal of this repository is to compare different metagenomics read mapping approaches.
+Test runs for the sliding window filter: https://github.com/eaasna/raptor-clone
 
 Data has been simulated using this tool https://github.com/eseiler/raptor_data_simulation
 
