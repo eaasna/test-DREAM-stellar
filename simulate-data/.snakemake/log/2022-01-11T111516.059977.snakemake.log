@@ -1,0 +1,17 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	make_all
+	1
+
+[Tue Jan 11 11:15:16 2022]
+rule make_all:
+    jobid: 0
+
+[Tue Jan 11 11:15:16 2022]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /home/evelin/metagenomics/sliding-window-testset/simulate-data/.snakemake/log/2022-01-11T111516.059977.snakemake.log

@@ -1,6 +1,11 @@
+TODO:
+1. Simulate data for metagenomics, regular read mapping and pairwise genome matching
+2. Search with DREAM-Stellar and also Stellar
+3. Gather precision, accuracy, time and memory
+
 # Testing sliding window
 
-Test runs for the sliding window filter: https://github.com/eaasna/raptor-clone
+Test runs for the sliding window filter: https://github.com/eaasna/sliding-window
 
 Data has been simulated using this tool https://github.com/eseiler/raptor_data_simulation
 

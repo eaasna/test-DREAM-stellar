@@ -1,0 +1,3 @@
+NameError in line 34 of /home/evelin/metagenomics/sliding-window-testset/data-simulation/Snakefile:
+name 'wf' is not defined
+  File "/home/evelin/metagenomics/sliding-window-testset/data-simulation/Snakefile", line 34, in <module>

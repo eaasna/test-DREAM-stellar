@@ -34,5 +34,5 @@ rule make_all:
 	shell:
 		"echo 'Done'"
 
-#include: "rules/stellar.smk"
-include: "rules/raptor.smk"
+include: "rules/prefilter.smk"
+include: "rules/stellar.smk"

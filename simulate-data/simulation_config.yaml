@@ -1,0 +1,39 @@
+# location of raptor binaries
+raptor_bin_dir: "/home/evelin/metagenomics/raptor_data_simulation/build/bin"
+# location of simulated data
+data_out_dir: "/home/evelin/metagenomics/sliding-window-testset/data/metagenome/"
+
+#-----------------------------
+# Parameters of simulated data.
+#
+# Note: if you want to rerun the same workflow with NEW data you have to change at least one of the following parameters:
+#  * number of bins
+#  * read error rate
+#  * read length
+#
+#-----------------------------
+
+ref_size: 102400        # size of reference in bytes? 4*2^20 = 4MiB
+number_of_bins: 8
+errors_per_read: 5       # number of errors comparing reads to reference
+read_length: 150 
+read_count: 1024        # size of query (count)
+
+#-----------------------------
+# Mason variator parameters.
+#
+# These have been highered to ensure a higher variability between the haplotypes in each bin;
+# otherwise each read maps to all haplotypes in a bin with the same edit distance.
+#-----------------------------
+
+haplotype_count: 4
+snp_rate: 0.01
+small_indel_rate: 0.001
+
+
+#-----------------------------
+# Boolean variable to divide similar haplotypes between different bins;
+# otherwise each read only matches one bin.
+#-----------------------------
+mix_bins: 1
+
