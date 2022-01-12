@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
 set -e
 
-BINARY_DIR=${1}
-OUT_DIR=${2}
-LENGTH=${3} 	# 4*2^20 =  64MiB
+# TODO: this script is part of Enrico's raptor data simulation
+# the raptor data simulation should be a supproject of this repo?
+BINARY_DIR="/home/evelin/metagenomics/raptor_data_simulation/build/bin"
+OUT_DIR="simulated_data"
+LENGTH=102400 	# 4*2^20 =  64MiB
 SEED=42 # was 20181406 before, but was hardcoded to 42 in seqan
-BIN_NUMBER=${4}
-ERRORS=${5}
-READ_LENGTHS=${6}
-READ_COUNT=${7}
-HAPLOTYPE_COUNT=${8}
-SNP_RATE=${9}
-INDEL_RATE=${10}
+BIN_NUMBER=8
+ERRORS=5
+READ_LENGTHS=150
+READ_COUNT=1024
+HAPLOTYPE_COUNT=4
+SNP_RATE=0.01
+INDEL_RATE=0.001
 
 output_dir=$OUT_DIR/$BIN_NUMBER
 bin_dir=$output_dir/bins
