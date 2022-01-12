@@ -1,6 +1,6 @@
 #!/bin/bash
 
-p="../data/metagenome/${1}/bins"
+p="data/${1}/bins"
 echo "${p}"
 cd $p
 

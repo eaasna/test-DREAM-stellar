@@ -1,7 +1,7 @@
 # location of raptor binaries
 raptor_bin_dir: "/home/evelin/metagenomics/raptor_data_simulation/build/bin"
 # location of simulated data
-data_out_dir: "/home/evelin/metagenomics/sliding-window-testset/data/metagenome/"
+data_out_dir: "data"
 
 #-----------------------------
 # Parameters of simulated data.

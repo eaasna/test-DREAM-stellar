@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-p="../data/metagenome/${1}/reads_e${2}_${3}"
+p="data/${1}/reads_e${2}_${3}"
 echo "${p}"
 cd $p
 

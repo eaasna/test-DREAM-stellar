@@ -1,2 +1,3 @@
-data/*
+metagenome/data/*
+read-mapping/*.fasta
 *.snakemake/*
