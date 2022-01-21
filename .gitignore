@@ -1,3 +1,4 @@
 metagenome/*data/*
 read-mapping/*.fasta
+read-mapping/*/*.fastq
 metagenome/*.snakemake/*
