@@ -1,3 +1,6 @@
 [submodule "raptor_data_simulation"]
 	path = raptor_data_simulation
 	url = https://github.com/eseiler/raptor_data_simulation.git
+[submodule "seqan3"]
+	path = seqan3
+	url = https://github.com/seqan/seqan3.git
