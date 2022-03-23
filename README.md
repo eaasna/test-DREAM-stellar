@@ -10,15 +10,15 @@ make -j2 install
 # Local prefilter example
 Create partially overlapping segments from the reference sequence.
 ```
-sliding_window split dmel.fasta --reference-output reference-metadata.txt --segment-output reference-segments.txt --overlap 151 --bins 1024
+valik split dmel.fasta --reference-output reference-metadata.txt --segment-output reference-segments.txt --overlap 151 --bins 1024
 ```
 Build an IBF so that each segment corresponds to a bin.
 ```
-sliding_window build dmel.fasta --output index.ibf --size 8m --from-segments --seg-path reference-segments.txt --ref-meta reference-metadata.txt
+valik build dmel.fasta --output index.ibf --size 8m --from-segments --seg-path reference-segments.txt --ref-meta reference-metadata.txt
 ```
 Search the simulated reads in the IBF.
 ```
-sliding_window search --threads 8 --index index.ibf --query reads_e2_150/dmel.fastq --output search.out --error 1 --pattern 50 --overlap 5
+valik search --threads 8 --index index.ibf --query reads_e2_150/dmel.fastq --output search.out --error 1 --pattern 50 --overlap 5
 ```
 
 # Data sources
@@ -27,4 +27,4 @@ sliding_window search --threads 8 --index index.ibf --query reads_e2_150/dmel.fa
 
 # Testing DREAM-Stellar
 
-Test runs for the sliding window filter: https://github.com/eaasna/sliding-window
+Test runs for the sliding window filter: https://github.com/eaasna/valik
