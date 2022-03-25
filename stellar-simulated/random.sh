@@ -1,11 +1,9 @@
 #!/bin/bash
 
-# LOCAL MATCH FILES WITH ONE ERROR RATE
-sed -n '2~4p' reads_e0_50/ref.fastq > matches.txt
-sed -n '2~4p' reads_e0_100/ref.fastq >> matches.txt
-sed -n '2~4p' reads_e0_150/ref.fastq >> matches.txt
-sed -n '2~4p' reads_e0_200/ref.fastq >> matches.txt
+# local matches with one error rate
+sed -n '2~4p' local_matches.fastq >> matches.txt
 
+# convert multi line fasta to one line fasta
 awk '/^>/ {printf("\n%s\n",$0);next; } { printf("%s",$0);}  END {printf("\n");}' < query.fasta > one_line.fasta 
 
 sequence=$(<one_line.fasta)
@@ -16,7 +14,7 @@ while IFS= read -r line;
 do
     rand=$(perl -e 'print int(rand(1048576))');
     pos=$((rand+bias))
-    echo -e "$line\t$pos" >> ground_truth_0e.txt
+    echo -e "$line\t$pos" >> ground_truth.txt
     sequence="${sequence:0:pos}${line}${sequence:pos}"
     size=${#line} 
     bias=$((bias+size))
