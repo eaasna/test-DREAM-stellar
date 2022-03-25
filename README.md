@@ -1,4 +1,6 @@
 # Getting started
+
+Clone testing repository:
 ```
 git clone --recurse-submodules https://github.com/eaasna/DREAM-stellar-benchmark.git
 cd DREAM-stellar-benchmark
@@ -7,6 +9,16 @@ cd build
 cmake ..
 make -j2 install
 ```
+Build data simulation library:
+```
+cd ../lib/raptor_data_simulation
+mkdir build && cd build
+cmake ../
+make
+```
+Build valik prefilter:
+https://github.com/eaasna/valik
+
 # Local prefilter example
 Create partially overlapping segments from the reference sequence.
 ```
@@ -21,10 +33,6 @@ Search the simulated reads in the IBF.
 valik search --threads 8 --index index.ibf --query reads_e2_150/dmel.fastq --output search.out --error 1 --pattern 50 --overlap 5
 ```
 
-# Data sources
+# Real data
 1. Simulated metagenomic data and a dataset from the bovine gut (https://omics.informatics.indiana.edu/mg/RAPSearch2/)
 2. D. melanogaster reference genome and simulated reads
-
-# Testing DREAM-Stellar
-
-Test runs for the sliding window filter: https://github.com/eaasna/valik
