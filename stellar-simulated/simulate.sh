@@ -31,8 +31,8 @@ do
             ref.fasta &> /dev/null
 
 	# Create unique IDs
-	awk '{if( (NR-1)%4 ) print; else printf("@e%s_%s_%d\n",$e,$l,cnt++)}' l=$match_length e=$errors $match_dir/ref.fastq >> local_matches.fastq
-    done
+	awk -v e=$errors l=$match_length'{if( (NR-1)%4 ) print; else printf("@e" e "-l" l "-" "%d\n",cnt++)}' $match_dir/ref.fastq >> local_matches.fastq
+	done
 done
 
 rm -r matches_e*
