@@ -31,7 +31,7 @@ do
             ref.fasta &> /dev/null
 
 	# Create unique IDs
-	awk -v e=$errors l=$match_length'{if( (NR-1)%4 ) print; else printf("@e" e "-l" l "-" "%d\n",cnt++)}' $match_dir/ref.fastq >> local_matches.fastq
+	awk -v l=$match_length '{if( (NR-1)%4 ) print; else printf("@l" l "-" "%d\n",cnt++)}' $match_dir/ref.fastq >> local_matches_"${error_rate//.}".fastq
 	done
 done
 
@@ -39,4 +39,8 @@ rm -r matches_e*
 
 # Simulating 1Mb of query sequence
 $BINARY_DIR/mason_genome -l 1048576 -o query.fasta -s $SEED &> /dev/null
+
+# convert multi line fasta to one line fasta
+awk '/^>/ {printf("\n%s\n",$0);next; } { printf("%s",$0);}  END {printf("\n");}' < query.fasta > one_line.fasta
+sed -i '1d' one_line.fasta
 
