@@ -18,5 +18,5 @@ rule stellar:
         conda:
                 "../envs/stellar.yaml"
         shell:
-                "stellar {input.ref} {input.query} -e {params.e} -l {min_len} -a dna -o {output}"
+                "stellar {input.ref} {input.query} -e {params.e} -l {min_len} --numMatches 600 --sortThresh 601 -a dna -o {output}"
 

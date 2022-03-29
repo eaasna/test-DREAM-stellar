@@ -1,6 +1,7 @@
 *.fasta
 *.fastq
 *.gff
-*.tsv
+*.txt
+ground_truth/*
 .snakemake/*
 .ipynb_checkpoints/*
