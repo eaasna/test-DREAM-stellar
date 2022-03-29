@@ -6,10 +6,12 @@ min_len = config["min_len"]
 rule make_all:
 	input:
 		expand("stellar/{er}.gff", er=error_rates),
-		expand("ground_truth/{er}.tsv", er=error_rates)
+		expand("ground_truth/{er}.tsv", er=error_rates),
+		"benchmarks/stellar_avg.tsv"
 	shell:
 		"echo 'Done'"
 
 include: "rules/simulate.smk"
 include: "rules/stellar.smk"
+include: "rules/evaluate.smk"
 
