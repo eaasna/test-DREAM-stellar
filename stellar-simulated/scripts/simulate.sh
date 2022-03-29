@@ -4,7 +4,7 @@ set -e
 BINARY_DIR="../lib/raptor_data_simulation/build/bin"
 LENGTH=1048576 	# 2^20 = 1Mb
 SEED=42 # was 20181406 before, but was hardcoded to 42 in seqan
-ERROR_RATES="0 0.025 0.05 0.075 0.10"
+ERROR_RATES="0 0.025 0.05 0.075 0.1"
 MATCH_LENGTHS="50 100 150 200"
 MATCH_COUNT=125
 
@@ -31,16 +31,16 @@ do
             ref.fasta &> /dev/null
 
 	# Create unique IDs
-	awk -v l=$match_length '{if( (NR-1)%4 ) print; else printf("@l" l "-" "%d\n",cnt++)}' $match_dir/ref.fastq >> local_matches_"${error_rate//.}".fastq
+	awk -v l=$match_length '{if( (NR-1)%4 ) print; else printf("@l" l "-" "%d\n",cnt++)}' $match_dir/ref.fastq >> local_matches/"${error_rate//.}".fastq
 	done
 done
 
 rm -r matches_e*
 
 # Simulating 1Mb of query sequence
-$BINARY_DIR/mason_genome -l 1048576 -o query.fasta -s $SEED &> /dev/null
+$BINARY_DIR/mason_genome -l 1048576 -o query/query.fasta -s $SEED &> /dev/null
 
 # convert multi line fasta to one line fasta
-awk '/^>/ {printf("\n%s\n",$0);next; } { printf("%s",$0);}  END {printf("\n");}' < query.fasta > one_line.fasta
-sed -i '1d' one_line.fasta
+awk '/^>/ {printf("\n%s\n",$0);next; } { printf("%s",$0);}  END {printf("\n");}' < query/query.fasta > query/one_line.fasta
+sed -i '1d' query/one_line.fasta
 
