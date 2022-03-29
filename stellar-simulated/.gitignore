@@ -2,3 +2,5 @@
 *.fastq
 *.gff
 *.tsv
+.snakemake/*
+.ipynb_checkpoints/*
