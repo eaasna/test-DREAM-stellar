@@ -45,16 +45,16 @@ position_list = []
 length_list = []
 
 # Insert local matches into query at random positions
-insertion_length = 0
 query_with_insertions = original_query[0:local_matches[0].description]
-
+insertion_length = 0
 for i in range(0, len(local_matches)):
     match = local_matches[i]
     
     # Gather ground truth
     id_list.append(match.name)
+    
     insertion_position = match.description + insertion_length
-    position_list.append(insertion_position)
+    position_list.append(insertion_position)    # position in the query
     length_list.append(len(match.seq))
     
     prefix = query_with_insertions[0:insertion_position]
@@ -65,7 +65,7 @@ for i in range(0, len(local_matches)):
     else:
         # Edge case: insert last local match
         postfix = original_query[local_matches[-1].description:]
-        
+    
     insertion_length += len(match.seq)
     query_with_insertions = prefix + insertion + postfix 
 
