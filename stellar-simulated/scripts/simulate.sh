@@ -38,6 +38,7 @@ done
 rm -r matches_e*
 
 # Simulating 1Mb of query sequence
+SEED=12
 $BINARY_DIR/mason_genome -l 1048576 -o query/query.fasta -s $SEED &> /dev/null
 
 # convert multi line fasta to one line fasta
