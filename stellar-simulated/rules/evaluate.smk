@@ -6,6 +6,7 @@ rule benchmark_average:
 	script:
 		"../scripts/run_time_average.py"
 
+min_overlap = config["min_overlap"]
 rule stellar_accuracy:
 	input:
 		stellar = "stellar/{er}.gff",

@@ -1,1 +1,7 @@
+# stellar parameters
 min_len: 50
+num_matches: 700
+sort_threshold: 701
+
+# evaluation parameters
+min_overlap: 40

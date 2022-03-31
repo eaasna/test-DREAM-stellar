@@ -5,6 +5,9 @@ def get_float_er(wildcards):
                 return f'{a:.5f}' # supress scientific notation 
         return float(wildcards.er[:1] + '.' + wildcards.er[1:])
 
+num = config["num_matches"]
+tresh = config["sort_threshold"]
+
 rule stellar:
         input:
                 ref = "ref.fasta",
@@ -18,5 +21,5 @@ rule stellar:
         conda:
                 "../envs/stellar.yaml"
         shell:
-                "stellar {input.ref} {input.query} -e {params.e} -l {min_len} --numMatches 600 --sortThresh 601 -a dna -o {output}"
+                "stellar {input.ref} {input.query} -e {params.e} -l {min_len} --numMatches {num} --sortThresh {tresh} -a dna -o {output}"
 
