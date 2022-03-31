@@ -1,26 +1,17 @@
-rule benchmark_average:
-	input:
-		expand("benchmarks/stellar_{er}.txt", er=error_rates)
-	output:
-		avg = "benchmarks/stellar_avg.tsv"
-	script:
-		"../scripts/run_time_average.py"
-
 min_overlap = config["min_overlap"]
 rule stellar_accuracy:
 	input:
-		stellar = "stellar/{er}.gff",
-		truth = "ground_truth/{er}.tsv"
+		stellar = "stellar/{rep}_{er}.gff",
+		truth = "ground_truth/{rep}_{er}.tsv"
 	output:
-		"evaluation/{er}.tsv"
+		"evaluation/{rep}_{er}.tsv"
 	script:
 		"../scripts/evaluate_stellar_search.py"
 
 rule table1:
 	input:
-                benchmark = "benchmarks/stellar_avg.tsv",
-                evaluation = expand("evaluation/{er}.tsv", er=error_rates)
-
+                benchmark = expand("benchmarks/stellar_{rep}_{er}.txt", rep=repetitions, er=error_rates),
+                evaluation = expand("evaluation/{rep}_{er}.tsv", rep=repetitions, er=error_rates)
 	output:
 		"table1.tsv"
 	script:
