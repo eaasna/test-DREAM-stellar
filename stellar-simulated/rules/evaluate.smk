@@ -11,7 +11,17 @@ rule stellar_accuracy:
 		stellar = "stellar/{er}.gff",
 		truth = "ground_truth/{er}.tsv"
 	output:
-		"evaluation/{er}.txt"
+		"evaluation/{er}.tsv"
 	script:
 		"../scripts/evaluate_stellar_search.py"
+
+rule table1:
+	input:
+                benchmark = "benchmarks/stellar_avg.tsv",
+                evaluation = expand("evaluation/{er}.tsv", er=error_rates)
+
+	output:
+		"table1.tsv"
+	script:
+		"../scripts/make_stellar_table1.py"
 

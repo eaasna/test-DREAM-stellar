@@ -1,3 +1,0 @@
-Total matches: 500
-Matches found by Stellar: 500
-Accuracy: 1.0

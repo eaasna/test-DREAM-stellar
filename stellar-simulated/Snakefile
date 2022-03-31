@@ -5,8 +5,7 @@ min_len = config["min_len"]
 
 rule make_all:
 	input:
-		"benchmarks/stellar_avg.tsv",
-		expand("evaluation/{er}.txt", er=error_rates)
+		"table1.tsv"
 	shell:
 		"echo 'Done'"
 

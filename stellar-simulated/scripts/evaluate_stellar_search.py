@@ -8,7 +8,7 @@ stellar_out_file = snakemake.input.stellar
 truth_file = snakemake.input.truth
 
 # ------- OUTPUT ------- 
-#evaluation_file = "../evaluation/" + er + ".txt"
+#evaluation_file = "../evaluation/" + er + ".tsv"
 evaluation_file = snakemake.output[0]
 
 # ------- preprocess stellar output ------- 
@@ -39,24 +39,22 @@ truth_df.rename(columns = {'position':'QBEGIN'}, inplace = True)
 
 
 # ------- evaluate results -------
+total_match_count = len(truth_df["id"]) 
 true_match_count = 0
 overlap_list = []
-
-for t_ind in range(len(truth_df["id"])):
+min_overlap = 40
+for t_ind in range(total_match_count):
     truth_range = range(truth_df.iloc[t_ind]['QBEGIN'],truth_df.iloc[t_ind]['QEND'])
     for s_ind in range(len(sorted_stellar['DNAME'])):
         stellar_range = range(sorted_stellar.iloc[s_ind]['QBEGIN'],sorted_stellar.iloc[s_ind]['QEND'])
         
         # find overlap between two ranges
         overlap_range = range(max(truth_range[0], stellar_range[0]), min(truth_range[-1], stellar_range[-1])+1)
-        if (len(overlap_range) >= 40):
+        if (len(overlap_range) >= min_overlap):
             true_match_count += 1
-            overlap_list.append(len(overlap_range))
+            overlap_list.append(len(overlap_range)) # TODO: might want to check the overlap lengths
 
-total_match_count = len(truth_df["id"]) 
-with open(evaluation_file, 'w') as f:
-    f.write('Total matches: ' + str(total_match_count) + '\n')
-    f.write('Matches found by Stellar: ' + str(true_match_count) + '\n')
-    f.write('Accuracy: ' + str(min(true_match_count/total_match_count, 1.0)))
-            
-f.close()
+missed = 1.0 - min(true_match_count/total_match_count, 1.0)
+data = [[total_match_count, true_match_count, missed]]
+out_df = pd.DataFrame(data, columns = ["total_match_count", "true_match_count", "missed"])
+out_df.to_csv(evaluation_file, sep='\t')
