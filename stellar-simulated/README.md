@@ -14,6 +14,7 @@ Reproducing Table 1
 3. Simulate 1MB of query sequence (`query/query.fastq`)
 4. Insert the local matches (of a certain error rate) into `query.fastq` at random positions and create ground truth files.
 5. Search the `ref.fastq` for local matches for the query with a minimum length of 50bp and the corresponding error rate.
-6. Evaluate stellar output against ground truth. 
+6. Compare Stellar output against the ground truth: if stellar match overlaps the ground truth by 40bp then it is considered correct.
+7. Gather run-time for Stellar mapping. 
 
-Repeat this process 5 times and take the average run-time.
+Repeat this process 5 times and gather the average run-time and accuracy in `table1.tsv`.
