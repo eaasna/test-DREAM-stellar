@@ -10,14 +10,14 @@ tresh = config["sort_threshold"]
 
 rule stellar:
         input:
-                ref = "ref.fasta",
-                query = "query/with_insertions_{er}.fasta"
+                ref = "ref_{rep}.fasta",
+                query = "query/with_insertions_{rep}_{er}.fasta"
         output: 
-                "stellar/{er}.gff"
+                "stellar/{rep}_{er}.gff"
         params:
                 e = get_float_er
         benchmark:
-                repeat("benchmarks/stellar_{er}.txt", 5)
+                "benchmarks/stellar_{rep}_{er}.txt"
         conda:
                 "../envs/stellar.yaml"
         shell:

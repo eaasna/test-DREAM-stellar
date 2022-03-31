@@ -1,14 +1,14 @@
 import pandas as pd
 
 # ------- INPUT ------- 
-# stellar_out_file = "../stellar/" + er + ".gff"
+# stellar_out_file = "../stellar/" + rep + "_" + er + ".gff"
 stellar_out_file = snakemake.input.stellar
 
-#truth_file = "../ground_truth/" + er + ".tsv"
+#truth_file = "../ground_truth/" + rep + "_" + er + ".tsv"
 truth_file = snakemake.input.truth
 
 # ------- OUTPUT ------- 
-#evaluation_file = "../evaluation/" + er + ".tsv"
+#evaluation_file = "../evaluation/" + rep + "_" + er + ".tsv"
 evaluation_file = snakemake.output[0]
 
 # ------- preprocess stellar output ------- 
@@ -43,9 +43,10 @@ total_match_count = len(truth_df["id"])
 true_match_count = 0
 overlap_list = []
 min_overlap = snakemake.config["min_overlap"]
+
 for t_ind in range(total_match_count):
     truth_range = range(truth_df.iloc[t_ind]['QBEGIN'],truth_df.iloc[t_ind]['QEND'])
-    for s_ind in range(len(sorted_stellar['DNAME'])):
+    for s_ind in range(len(sorted_stellar['DNAME'])): 
         stellar_range = range(sorted_stellar.iloc[s_ind]['QBEGIN'],sorted_stellar.iloc[s_ind]['QEND'])
         
         # find overlap between two ranges
@@ -53,6 +54,7 @@ for t_ind in range(total_match_count):
         if (len(overlap_range) >= min_overlap):
             true_match_count += 1
             overlap_list.append(len(overlap_range)) # TODO: might want to check the overlap lengths
+            break # move on to next local match once current one is verified to be true
 
 missed = 1.0 - min(true_match_count/total_match_count, 1.0)
 data = [[total_match_count, true_match_count, missed]]

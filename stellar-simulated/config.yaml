@@ -1,3 +1,6 @@
+# simulation parameters
+er_rates: ["0", "0025", "005", "0075", "01"] # manually change in simulate.sh
+
 # stellar parameters
 min_len: 50
 num_matches: 700

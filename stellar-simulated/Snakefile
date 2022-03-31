@@ -1,6 +1,7 @@
 configfile: "config.yaml"
 
-error_rates = ["0", "0025", "005", "0075", "01"]
+repetitions = list(range(5))
+error_rates = config["er_rates"]
 min_len = config["min_len"]
 
 rule make_all:
