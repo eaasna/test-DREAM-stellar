@@ -2,8 +2,10 @@
 
 Prerequisites:
 - active conda environment with snakemake installation
+- built raptor_data_simulation binaries in lib directory
 
 The data simulation, stellar search and search evaluation are run in a snakemake workflow with:
+
 `snakemake --use-conda --cores {nr e.g 8}`
 
 Reproducing Table 1
