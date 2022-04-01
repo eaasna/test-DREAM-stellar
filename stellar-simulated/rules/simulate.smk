@@ -6,9 +6,9 @@ def get_seed(wildcards):
 	
 rule simulate:
 	output:
-		ref = "ref_{rep}.fasta",
-		query = "query/one_line_{rep}.fasta",
-		matches = expand("local_matches/{{rep}}_{er}.fastq", er=error_rates)
+		ref = "ref_rep{rep}.fasta",
+		query = "query/one_line_rep{rep}.fasta",
+		matches = expand("local_matches/rep{{rep}}_e{er}.fastq", er=error_rates)
 	params:
 		ref_seed = get_seed,
 		query_seed = get_seed
@@ -17,12 +17,12 @@ rule simulate:
 
 rule insert_matches:
 	input:
-		ref = "ref_{rep}.fasta",
-		query = "query/one_line_{rep}.fasta",
-		matches = "local_matches/{rep}_{er}.fastq"
+		ref = "ref_rep{rep}.fasta",
+		query = "query/one_line_rep{rep}.fasta",
+		matches = "local_matches/rep{rep}_e{er}.fastq"
 	output:
-		query = "query/with_insertions_{rep}_{er}.fasta",
-		ground_truth = "ground_truth/{rep}_{er}.tsv"
+		query = "query/with_insertions_rep{rep}_e{er}.fasta",
+		ground_truth = "ground_truth/rep{rep}_e{er}.tsv"
 	params:
 		seed = get_seed
 	script:
