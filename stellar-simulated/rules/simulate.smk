@@ -16,13 +16,15 @@ rule simulate:
 		"./scripts/simulate.sh {wildcards.rep} {params.ref_seed} {params.query_seed}"
 
 rule insert_matches:
-        input:
-                ref = "ref_{rep}.fasta",
-                query = "query/one_line_{rep}.fasta",
-                matches = "local_matches/{rep}_{er}.fastq"
-        output:
-                query = "query/with_insertions_{rep}_{er}.fasta",
-                ground_truth = "ground_truth/{rep}_{er}.tsv"
-        script:
-                "../scripts/insert_local_matches.py"
+	input:
+		ref = "ref_{rep}.fasta",
+		query = "query/one_line_{rep}.fasta",
+		matches = "local_matches/{rep}_{er}.fastq"
+	output:
+		query = "query/with_insertions_{rep}_{er}.fasta",
+		ground_truth = "ground_truth/{rep}_{er}.tsv"
+	params:
+		seed = get_seed
+	script:
+		"../scripts/insert_local_matches.py"
 

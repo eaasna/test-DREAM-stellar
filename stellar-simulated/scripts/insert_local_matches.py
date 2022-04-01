@@ -27,7 +27,7 @@ assert (len(query) == 1),"Query contains more than one sequence, pick which one 
 
 # Sort random positions
 query_len = len(query[0].seq)
-random.seed(42)
+random.seed(snakemake.params.seed)
 ran_ind_list = random.sample(range(query_len), len(local_matches))
 ran_ind_list.sort()
 # Shuffle local matches so that they would appear in the query in a random order
