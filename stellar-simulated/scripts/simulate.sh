@@ -20,8 +20,8 @@ do
     for error_rate in $ERROR_RATES
     do
 	float_errors=$(echo $match_length*$error_rate | bc)
-        errors=$(echo "($float_errors+0.5)/1" | bc)
-        #echo "Sampling $MATCH_COUNT local matches of length $match_length with $errors errors"
+        errors=$(echo "($float_errors)/1" | bc)
+        echo "Sampling $MATCH_COUNT local matches of length $match_length with $errors errors and an error rate of $error_rate"
         match_dir=matches_rep$REP\_e$errors\_$match_length
         mkdir -p $match_dir
         $BINARY_DIR/generate_reads \

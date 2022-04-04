@@ -7,4 +7,4 @@ num_matches: 700
 sort_threshold: 701
 
 # evaluation parameters
-min_overlap: 30
+min_overlap: 40
