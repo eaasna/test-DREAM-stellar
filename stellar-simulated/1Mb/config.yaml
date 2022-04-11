@@ -1,4 +1,12 @@
+workdir: "1Mb/"
+
 # simulation parameters
+reference_length: 1048576
+query_length: 1048576
+
+                    # 1048576 / 2000 = 524 matches per query file
+match_count: 131    # 524 / 4 = 131 matches of each length
+
 er_rates: ["0", "0025", "005", "0075", "01"] # manually change in simulate.sh
 
 # stellar parameters
@@ -7,4 +15,5 @@ num_matches: 700
 sort_threshold: 701
 
 # evaluation parameters
+repeat: 1
 min_overlap: 40

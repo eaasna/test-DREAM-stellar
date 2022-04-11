@@ -1,0 +1,19 @@
+workdir: "100kb/"
+
+# simulation parameters
+reference_length: 102400 # should ref_len always == query_len?
+query_length: 102400 
+
+                         # 102400 / 2000 = 50 matches per query file
+match_count: 13          # 50 / 4 = 13 matches of each length
+
+er_rates: ["0", "0025", "005", "0075", "01"] # manually change in simulate.sh
+
+# stellar parameters
+min_len: 50
+num_matches: 600
+sort_threshold: 601
+
+# evaluation parameters
+repeat: 10
+min_overlap: 40

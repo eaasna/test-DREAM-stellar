@@ -1,8 +1,9 @@
-configfile: "config.yaml"
-
-repetitions = list(range(5))
+n = config["repeat"]
+repetitions = list(range(n))
 error_rates = config["er_rates"]
 min_len = config["min_len"]
+
+workdir: config['workdir']
 
 rule make_all:
 	input:

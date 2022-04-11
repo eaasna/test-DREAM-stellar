@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 set -e
 
-BINARY_DIR="../lib/raptor_data_simulation/build/bin"
+BINARY_DIR="../../lib/raptor_data_simulation/build/bin"
 REP=$1 # gives a unique name to each output file
-REF_LENGTH=1048576 	# 2^20 = 1Mb
-QUERY_LENGTH=1048576 	# 2^20 = 1Mb
-REF_SEED=$2
-QUERY_SEED=$3
+REF_LENGTH=$2 	# 2^20 = 1Mb
+QUERY_LENGTH=$3 	# 2^20 = 1Mb
+REF_SEED=$4
+QUERY_SEED=$5
 ERROR_RATES="0 0.025 0.05 0.075 0.1"
 MATCH_LENGTHS="50 100 150 200"
-MATCH_COUNT=125
+MATCH_COUNT=$6
 
 echo "Simulating reference of length $REF_LENGTH with seed $REF_SEED"
 $BINARY_DIR/mason_genome -l $REF_LENGTH -o ref_rep$REP.fasta -s $REF_SEED &> /dev/null

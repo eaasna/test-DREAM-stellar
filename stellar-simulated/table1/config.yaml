@@ -1,0 +1,16 @@
+workdir: "table1/"
+
+# simulation parameters
+reference_length: 1048576
+query_length: 1048576
+match_count: 125
+er_rates: ["0", "0025", "005", "0075", "01"] # manually change in simulate.sh
+
+# stellar parameters
+min_len: 50
+num_matches: 700
+sort_threshold: 701
+
+# evaluation parameters
+repeat: 5
+min_overlap: 40

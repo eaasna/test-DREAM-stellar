@@ -1,5 +1,9 @@
 import pandas as pd
 
+
+# ------- INPUT --------
+n = snakemake.config["repeat"]
+
 # ------- OUTPUT ------- 
 table = snakemake.output[0]
 
@@ -13,7 +17,7 @@ def get_float_er(er):
         return float(er[:1] + '.' + er[1:])
     
 dfs = []
-for rep in range(5):
+for rep in range(n):
     time_list = []
     missed_list = []
     for er in error_rate_list:
