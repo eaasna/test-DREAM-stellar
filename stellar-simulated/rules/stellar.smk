@@ -21,5 +21,4 @@ rule stellar:
         conda:
                 "../envs/stellar.yaml"
         shell:
-                "stellar {input.ref} {input.query} --forward -e {params.e} -l {min_len} --numMatches {num} --sortThresh {tresh} -a dna -o {output}"
-
+                "stellar --verbose {input.ref} {input.query} --forward -e {params.e} -l {min_len} --numMatches {num} --sortThresh {tresh} -a dna -o {output}"
