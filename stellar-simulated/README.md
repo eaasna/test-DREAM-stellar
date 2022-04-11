@@ -8,6 +8,8 @@ The data simulation, stellar search and search evaluation are run in a snakemake
 
 `snakemake --use-conda --cores {nr e.g 8}`
 
+add `--forceall` to rerun all workflow steps even if intermediate results exist. 
+
 Reproducing Table 1
 1. Simulate `ref.fastq`
 2. Sample 500 local matches of length 50, 100, 150, 200bp with error rates 0%, 2.5%, 5%, 7.5% or 10%. There are read_length * error_rate many edit operations done to each read. There is a low likelihood that the same nucleotide is edited multiple times which will result in an edit distance that is less than the error rate.
