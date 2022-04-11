@@ -33,7 +33,8 @@ do
             ref_rep$REP.fasta &> /dev/null
 
 	# Create unique IDs
-	awk -v l=$match_length '{if( (NR-1)%4 ) print; else printf("@l" l "-" "%d\n",cnt++)}' $match_dir/ref_rep$REP.fastq >> local_matches/rep${REP}\_e"${error_rate//.}".fastq
+	# awk -v l=$match_length '{if( (NR-1)%4 ) print; else printf("@l" l "-" "%d\n",cnt++)}' $match_dir/ref_rep$REP.fastq >> local_matches/rep${REP}\_e"${error_rate//.}".fastq
+	awk -v l=$match_length '{gsub(/^@/, "@l" l "-"); print }' $match_dir/ref_rep$REP.fastq >> local_matches/rep${REP}\_e"${error_rate//.}".fastq
 	done
 done
 
@@ -45,4 +46,3 @@ $BINARY_DIR/mason_genome -l $QUERY_LENGTH -o query/query_rep$REP.fasta -s $QUERY
 # convert multi line fasta to one line fasta
 awk '/^>/ {printf("\n%s\n",$0);next; } { printf("%s",$0);}  END {printf("\n");}' < query/query_rep$REP.fasta > query/one_line_rep$REP.fasta
 sed -i '1d' query/one_line_rep$REP.fasta
-
