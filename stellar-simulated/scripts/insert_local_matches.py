@@ -35,17 +35,20 @@ random.shuffle(local_matches)
 
 # Assign random location to each local match
 for i in range(len(local_matches)):
-    local_matches[i].description = ran_ind_list[i]
     
+    local_matches[i].random_location = ran_ind_list[i]
 
 original_query = query[0].seq
 
 id_list = []
 position_list = []
 length_list = []
+reference_position_list = []
+reference_length_list = []
+errors_list = []
 
 # Insert local matches into query at random positions
-query_with_insertions = original_query[0:local_matches[0].description]
+query_with_insertions = original_query[0:local_matches[0].random_location]
 insertion_length = 0
 for i in range(0, len(local_matches)):
     match = local_matches[i]
@@ -53,7 +56,14 @@ for i in range(0, len(local_matches)):
     # Gather ground truth
     id_list.append(match.name)
     
-    insertion_position = match.description + insertion_length
+    # converts "l50-3 start_position=935090,length=50,errors=0,reference_id='1',reference_file='ref_0.fasta'"
+    # into {'start_position': '935090', 'length': '50', 'errors': '0', reference_id="'reference_id'", reference_file="'ref_0.fasta'"}
+    meta_info = dict((key.strip(), value.strip()) for key, value in (element.split('=') for element in match.description.split(" ", 2)[1].split(',')))
+    reference_position_list.append(int(meta_info['start_position']))
+    reference_length_list.append(int(meta_info['length']))
+    errors_list.append(int(meta_info['errors']))
+
+    insertion_position = match.random_location + insertion_length
     position_list.append(insertion_position)    # position in the query
     length_list.append(len(match.seq))
     
@@ -61,7 +71,7 @@ for i in range(0, len(local_matches)):
     insertion = match.seq
     
     if (i < (len(local_matches) - 1)):
-        postfix = original_query[match.description:local_matches[i+1].description]
+        postfix = original_query[match.random_location:local_matches[i+1].random_location]
     else:
         # Edge case: insert last local match
         postfix = original_query[local_matches[-1].description:]
@@ -81,8 +91,10 @@ f.close()
 # Create ground truth file
 ground_truth = {'id':id_list,
                 'position':position_list,
-                'length':length_list}
- 
+                'length':length_list,
+                'reference_position': reference_position_list,
+                'reference_length': reference_length_list,
+                'errors': errors_list}
 ground_truth_df = pd.DataFrame(ground_truth)
 ground_truth_df.to_csv(ground_truth_file, index=False, sep='\t')
 ground_truth_df.head()
