@@ -12,6 +12,10 @@ cmake ../
 make
 ```
 You might need to copy the `mason_genome` binary into the `raptor_data_simulation/build/bin` directory. 
+```
+cd ../
+cp build/src/mason2/src/mason2-build/bin/mason_genome build/bin/mason_genome
+```
 
 Build valik prefilter:
 https://github.com/eaasna/valik
