@@ -2,20 +2,21 @@
 
 Clone testing repository:
 ```
-git clone --recurse-submodules https://github.com/eaasna/DREAM-stellar-benchmark.git
-cd DREAM-stellar-benchmark
-mkdir build
-cd build
-cmake ..
-make -j2 install
+git clone --recurse-submodules git@github.com:eaasna/DREAM-stellar-benchmark.git
 ```
 Build data simulation library:
 ```
-cd ../lib/raptor_data_simulation
+cd DREAM-stellar-benchmark/lib/raptor_data_simulation
 mkdir build && cd build
 cmake ../
 make
 ```
+You might need to copy the `mason_genome` binary into the `raptor_data_simulation/build/bin` directory. 
+```
+cd ../
+cp build/src/mason2/src/mason2-build/bin/mason_genome build/bin/mason_genome
+```
+
 Build valik prefilter:
 https://github.com/eaasna/valik
 
