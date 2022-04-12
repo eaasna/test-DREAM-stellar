@@ -42,7 +42,7 @@ truth_df.rename(columns = {'position':'QBEGIN'}, inplace = True)
 total_match_count = len(truth_df["id"]) 
 true_match_count = 0
 overlap_list = []
-min_overlap = snakemake.config["min_overlap"]
+min_overlap = snakemake.params.min_overlap
 
 for t_ind in range(total_match_count):
     truth_range = range(truth_df.iloc[t_ind]['QBEGIN'],truth_df.iloc[t_ind]['QEND'])

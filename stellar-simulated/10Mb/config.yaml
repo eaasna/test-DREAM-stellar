@@ -1,0 +1,13 @@
+workdir: "10Mb/"
+
+# simulation parameters
+reference_length: 10485760 # should ref_len always == query_len?
+query_length: 10485760
+match_count: 5240 # (10485760 / 2000) = 5240 matches per query file
+
+# stellar parameters
+num_matches: 7000
+sort_threshold: 7001
+
+# evaluation parameters
+repeat: 1

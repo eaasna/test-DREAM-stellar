@@ -2,6 +2,7 @@
 *.fastq
 *.gff
 *.txt
-ground_truth/*
-.snakemake/*
-.ipynb_checkpoints/*
+*/ground_truth/*
+*/evaluation/*
+*/.snakemake/*
+*/.ipynb_checkpoints/*
