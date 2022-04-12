@@ -32,5 +32,5 @@ for rep in range(n):
     
 # find mean of each time and missed cell over all repetitions
 rep_mean = pd.concat(dfs).groupby(level=0).mean()
-rep_mean = rep_mean.round(2)
+rep_mean = rep_mean.round(3)
 rep_mean.to_csv(table, sep='\t')
