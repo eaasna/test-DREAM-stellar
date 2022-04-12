@@ -74,7 +74,7 @@ for i in range(0, len(local_matches)):
         postfix = original_query[match.random_location:local_matches[i+1].random_location]
     else:
         # Edge case: insert last local match
-        postfix = original_query[local_matches[-1].description:]
+        postfix = original_query[local_matches[-1].random_location:]
     
     insertion_length += len(match.seq)
     query_with_insertions = prefix + insertion + postfix 

@@ -3,7 +3,7 @@ def get_float_er(wildcards):
                 # minimum allowed error rate should be 1e-7
                 a = 1e-5          # but 1e-7 and 1e-6 lead to invalid pointer error
                 return f'{a:.5f}' # supress scientific notation 
-        return float(wildcards.er[:1] + '.' + wildcards.er[1:])
+        return float(wildcards.er)
 
 num = config["num_matches"]
 tresh = config["sort_threshold"]

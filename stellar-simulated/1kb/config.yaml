@@ -3,14 +3,11 @@ workdir: "1kb/"
 # simulation parameters
 reference_length: 1024 # should ref_len always == query_len?
 query_length: 1024 
-match_count: 1          # (1024 / 2000) < 1 match per query file
-er_rates: ["0", "0025", "005", "0075", "01"] # manually change in simulate.sh
+match_count: 1 # (1024 / 2000) < 1 match per query file
 
 # stellar parameters
-min_len: 50
 num_matches: 100
 sort_threshold: 101
 
 # evaluation parameters
-repeat: 50
-min_overlap: 40
+repeat: 2

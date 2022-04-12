@@ -1,3 +1,3 @@
 [submodule "lib/raptor_data_simulation"]
 	path = lib/raptor_data_simulation
-	url = https://github.com/eaasna/raptor_data_simulation.git
+	url = git@github.com:eaasna/raptor_data_simulation.git

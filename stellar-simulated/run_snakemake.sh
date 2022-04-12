@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -x
 
-# generate table1.tsv
+# Stellar Table 1
 snakemake --use-conda --cores 8 --configfile table1/config.yaml
 
-# generate table2.tsv
+# Stellar Table 2
 snakemake --use-conda --cores 8 --configfile 1kb/config.yaml
 snakemake --use-conda --cores 8 --configfile 10kb/config.yaml
 snakemake --use-conda --cores 8 --configfile 100kb/config.yaml
