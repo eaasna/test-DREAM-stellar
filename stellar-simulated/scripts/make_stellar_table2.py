@@ -20,7 +20,8 @@ for size in ref_sizes:
     time_deviations.append(round(np.std(time_array), 3))
     missed.append(np.mean(table["missed (%)"]))
     
-data = {'time_mean (sec)': avg_times,
+data = {'ref_size': ref_sizes,
+        'time_mean (sec)': avg_times,
         'time_std_dev': time_deviations,
         'missed (%)': missed}
  
