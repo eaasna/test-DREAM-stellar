@@ -1,0 +1,25 @@
+n = config["repeat"]
+repetitions = list(range(n))
+ref_len = config["reference_length"]
+matches = config["match_count"]
+
+workdir: config["workdir"]
+
+error_rates = [0, 0.025, 0.05, 0.075, 0.1]
+
+# read lengths for simulation
+min_len = 150
+max_len = 150
+
+# minimum stellar and ground truth overlap
+min_overlap = 40
+
+rule make_all:
+	input:
+		expand("search/rep{rep}_e{er}.out", rep = repetitions, er = error_rates)
+	shell:
+		"echo 'Done'"
+
+include: "rules/simulate.smk"
+include: "rules/valik.smk"
+

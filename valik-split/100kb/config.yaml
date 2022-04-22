@@ -1,0 +1,19 @@
+workdir: "100kb/"
+
+# simulation parameters
+reference_length: 102400
+match_count: 20 # per query file and error rate
+
+# valik parameters
+ibf_bins: 64
+ibf_size: "2M"
+window: 15
+kmer_length: 13
+
+minLen: 50
+pattern_overlap: 49
+thresh_tau: 0.75
+thresh_pmax: 0.75
+
+# evaluation parameters
+repeat: 1
