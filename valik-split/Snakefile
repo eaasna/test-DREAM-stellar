@@ -39,8 +39,7 @@ repetitions = list(range(n))
 
 rule make_all:
 	input:
-		expand("rep{rep}/dream_stellar/seg{bin}_e{er}.gff", rep = repetitions, bin = bin_list, er = error_rates),
-		expand("rep{rep}/stellar/e{er}.gff", rep = repetitions, er = error_rates)
+		"table1.tsv"
 	shell:
 		"echo 'Done'"
 
@@ -48,4 +47,5 @@ include: "rules/simulate.smk"
 include: "rules/valik.smk"
 include: "rules/dream_stellar.smk"
 include: "rules/stellar.smk"
+include: "rules/evaluate.smk"
 
