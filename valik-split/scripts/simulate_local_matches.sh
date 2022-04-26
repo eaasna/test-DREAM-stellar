@@ -19,7 +19,7 @@ $BINARY_DIR/generate_local_matches \
 	--min-match-length $MIN_LEN \
 	--max-match-length $MAX_LEN \
 	--verbose-ids \
-	ref_rep$REP.fasta &> /dev/null
+	rep$REP/ref.fasta &> /dev/null
 
-mv $match_dir/ref_rep$REP.fastq queries/rep$REP\_e$ERROR_RATE.fastq
+mv $match_dir/ref.fastq rep$REP/queries/e$ERROR_RATE.fastq
 rm -r $match_dir

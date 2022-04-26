@@ -5,7 +5,7 @@ def get_seed(wildcards):
 
 rule simulate_reference:
 	output:
-		ref = "ref_rep{rep}.fasta"
+		ref = "rep{rep}/ref.fasta"
 	params:
 		ref_seed = get_seed,
 	shell:      
@@ -13,9 +13,9 @@ rule simulate_reference:
 
 rule simulate_matches:
 	input:
-		ref = "ref_rep{rep}.fasta"
+		ref = "rep{rep}/ref.fasta"
 	output:
-		matches = "queries/rep{rep}_e{er}.fastq"
+		matches = "rep{rep}/queries/e{er}.fastq"
 	shell:      
 		"../scripts/simulate_local_matches.sh {wildcards.rep} {wildcards.er} {matches} {min_len} {max_len}"
 

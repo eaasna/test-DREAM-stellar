@@ -1,25 +1,51 @@
-n = config["repeat"]
-repetitions = list(range(n))
-ref_len = config["reference_length"]
-matches = config["match_count"]
-
 workdir: config["workdir"]
 
-error_rates = [0, 0.025, 0.05, 0.075, 0.1]
-
-# read lengths for simulation
+#-------- Simulation parameters --------
+ref_len = config["reference_length"]
+matches = config["match_count"]
 min_len = 150
 max_len = 150
 
-# minimum stellar and ground truth overlap
-min_overlap = 40
+#-------- Shared search parameters --------
+error_rates = [0, 0.025, 0.05, 0.075, 0.1]
+bins = config["ibf_bins"]
+bin_list = list(range(bins))
+pattern = config["minLen"]
+
+#-------- Valik parameters --------
+w = config["window"]
+k = config["kmer_length"]
+size = config["ibf_size"]
+overlap = config["pattern_overlap"]
+tau = config["thresh_tau"]
+pmax = config["thresh_pmax"]
+
+#-------- Stellar parameters --------
+num = config["num_matches"]
+thresh = config["sort_threshold"]
+
+# stellar does not allow 0 error rate
+def get_error_rate(wildcards):
+        if (wildcards.er=="0"):
+                # minimum allowed error rate should be 1e-7
+                a = 1e-5          # but 1e-7 and 1e-6 lead to invalid pointer error
+                return f'{a:.5f}' # supress scientific notation 
+        return float(wildcards.er)
+
+
+#-------- Evalutaion parameters --------
+n = config["repeat"]
+repetitions = list(range(n))
 
 rule make_all:
 	input:
-		expand("search/rep{rep}_e{er}.out", rep = repetitions, er = error_rates)
+		expand("rep{rep}/dream_stellar/seg{bin}_e{er}.gff", rep = repetitions, bin = bin_list, er = error_rates),
+		expand("rep{rep}/stellar/e{er}.gff", rep = repetitions, er = error_rates)
 	shell:
 		"echo 'Done'"
 
 include: "rules/simulate.smk"
 include: "rules/valik.smk"
+include: "rules/dream_stellar.smk"
+include: "rules/stellar.smk"
 
