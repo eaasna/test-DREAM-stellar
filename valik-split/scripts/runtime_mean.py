@@ -8,9 +8,24 @@ outfile = snakemake.output[0]
 import os
 import pandas as pd
 
+# gather benchmarks for steps that are shared between all error rates
+def gather_benchmarks(tool, rep, prefixes):
+    dir_path = "benchmarks/rep" + str(rep) + "/" + tool
+    total_runtimes = []
+    prefix_tuple = tuple(prefixes)
+    with os.scandir(dir_path) as it:
+        for entry in it:
+            if (entry.name.endswith(prefix_tuple)) and entry.is_file():
+                #print(entry.name)
+                benchmark = pd.read_csv(entry.path, sep="\t")
+                rep_runtime = benchmark["s"].iloc[0]
+                continue
+    it.close()
+    return rep_runtime
 
-def gather_rep_benchmarks(method, rep, prefixes):
-    dir_path = "benchmarks/rep" + str(rep) + "/" + method
+# steps that are repeated for each error rate
+def gather_er_benchmarks(tool, rep, prefixes):
+    dir_path = "benchmarks/rep" + str(rep) + "/" + tool
     total_runtimes = []
     prefix_tuple = tuple(prefixes)
     # summation of run-times from a single repetition
@@ -18,33 +33,47 @@ def gather_rep_benchmarks(method, rep, prefixes):
         rep_er_runtimes = []
         with os.scandir(dir_path) as it:
             for entry in it:
-                if (entry.name.endswith("e" + str(er) + ".txt") or entry.name.endswith(prefix_tuple)) and entry.is_file():
+                if (entry.name.endswith(prefix_tuple) or entry.name.endswith("e" + str(er) + ".txt")) and entry.is_file():
+                    #print(entry.name)
                     benchmark = pd.read_csv(entry.path, sep="\t")
                     rep_er_runtimes.append(benchmark["s"].iloc[0])
         it.close()
         total_runtimes.append(sum(rep_er_runtimes))
     return total_runtimes
 
-valik_tuple = ("valik", ["split_ref.txt", "build.txt"])
-dream_stellar_tuple = ("dream_stellar", ["files.txt"])
-stellar_tuple = ("stellar", [])
+valik_split_tuple = ("valik", ["split_ref.txt"], "valik-split")
+valik_build_tuple = ("valik", ["build.txt"], "valik-build")
 
-tuple_list = [valik_tuple, dream_stellar_tuple, stellar_tuple]
+shared_tuple_list = [valik_split_tuple, valik_build_tuple]
+
+valik_search_tuple = ("valik", [], "valik-search")
+distributed_stellar_tuple = ("dream_stellar", ["files.txt"], "distributed-stellar")
+stellar_tuple = ("stellar", [], "stellar")
+
+with_errors_tuple_list = [valik_search_tuple, distributed_stellar_tuple, stellar_tuple]
 
 data = {'error_rate' : error_rates}
 df = pd.DataFrame(data)
 
-for method in tuple_list:
+for method in shared_tuple_list:
     for rep in list(range(n)):
-        runtimes = gather_rep_benchmarks(method[0], rep, method[1])
-        df["rep" + str(rep)] = runtimes
-
+        runtime = gather_benchmarks(method[0], rep, method[1])
+        df["rep" + str(rep)] = runtime
+    
     col = df.loc[: , "rep0":"rep" + str(n - 1)]
-    df[method[0]] = col.mean(axis=1).round(2)
+    df[method[2]] = col.mean(axis=1).round(2)
     df = df[df.columns.drop(list(df.filter(regex='rep')))]
 
-df["total_dream_stellar"] = df["valik"] + df["dream_stellar"]
-df["total_dream_stellar"] = df["total_dream_stellar"].round(2)
+for method in with_errors_tuple_list:
+    for rep in list(range(n)):
+        runtimes = gather_er_benchmarks(method[0], rep, method[1])
+        df["rep" + str(rep)] = runtimes
+    
+    col = df.loc[: , "rep0":"rep" + str(n - 1)]
+    df[method[2]] = col.mean(axis=1).round(2)
+    df = df[df.columns.drop(list(df.filter(regex='rep')))]
 
+    
+df["DREAM-Stellar"] = df["valik-split"] + df["valik-build"] + df["valik-search"] + df["distributed-stellar"]
+df["DREAM-Stellar"] = df["DREAM-Stellar"].round(2)
 df.to_csv(outfile, sep='\t')
-

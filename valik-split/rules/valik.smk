@@ -24,6 +24,7 @@ rule valik_build:
 		seg_meta = "rep{rep}/split/seg.txt"
 	output: 
 		"rep{rep}/valik.index"
+	threads: 8
 	benchmark:
 		"benchmarks/rep{rep}/valik/build.txt"
 	shell:
@@ -41,5 +42,5 @@ rule valik_search:
 	benchmark:
 		"benchmarks/rep{rep}/valik/search_e{er}.txt"
 	shell:
-		"valik search --index {input.ibf} --query {input.query} --error {params.e} --pattern {pattern} --overlap {overlap} --output {output} --tau {tau} --p_max {pmax}"
+		"valik search --index {input.ibf} --query {input.query} --error {params.e} --pattern {pattern} --overlap {overlap} --threads {threads} --output {output} --tau {tau} --p_max {pmax}"
 		
