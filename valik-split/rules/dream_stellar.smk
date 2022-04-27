@@ -1,14 +1,3 @@
-rule create_seg_files:
-	input:
-		ref = "rep{rep}/ref.fasta",
-		seg_meta = "rep{rep}/split/seg.txt"
-	output:
-		expand("rep{{rep}}/split/seg{bin}.fasta", bin = bin_list)
-	benchmark:
-		"benchmarks/rep{rep}/dream_stellar/create_seg_files.txt"
-	script:
-		"../scripts/create_seg_files.py"
-
 rule distribute_search:
 	input:
 		queries = "rep{rep}/queries/e{er}.fastq",

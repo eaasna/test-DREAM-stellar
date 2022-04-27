@@ -13,19 +13,25 @@ rep = snakemake.wildcards.rep
 
 #------------ OUTPUT ------------
 outfile_prefix = "rep" + str(rep) + "/split/seg"
+meta_outfile = snakemake.output.meta
 
 # read segment metadata
 segments = pd.read_csv(seg_file, header=None, sep='\t')
 segments.columns = ["bin_id", "ref_id", "start", "length"]
 reference_segments = list(SeqIO.parse(ref_file, "fasta"))
 
-# assuming a single reference sequence
-for index, row in segments.iterrows():
-    bin_id = row["bin_id"]
-    ref_id = row["ref_id"]
-    start = row["start"]
-    length = row["length"]
-    with open(outfile_prefix + str(bin_id) + ".fasta", 'w') as f:
-        f.write('>' + str(bin_id) + '\t' + "ref=" + str(ref_id) + ",start=" + str(start) + ",length=" + str(length) + '\n')
-        f.write(str(reference_segments[0].seq[start:start+length]))
-    f.close()
+with open(meta_outfile, 'w') as m:
+    # assuming a single reference sequence
+    for index, row in segments.iterrows():
+        bin_id = row["bin_id"]
+        ref_id = row["ref_id"]
+        start = row["start"]
+        length = row["length"]
+        fasta_out = outfile_prefix + str(bin_id) + ".fasta"
+        m.write(fasta_out + '\n')
+        with open(fasta_out, 'w') as f:
+            f.write('>' + str(bin_id) + '\t' + "ref=" + str(ref_id) + ",start=" + str(start) + ",length=" + str(length) + '\n')
+            f.write(str(reference_segments[0].seq[start:start+length]))
+        f.close()
+m.close()
+

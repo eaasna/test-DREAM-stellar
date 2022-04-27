@@ -41,18 +41,18 @@ def gather_er_benchmarks(tool, rep, prefixes):
         total_runtimes.append(sum(rep_er_runtimes))
     return total_runtimes
 
-valik_split_tuple = ("valik", ["split_ref.txt"], "valik-split")
-valik_build_tuple = ("valik", ["build.txt"], "valik-build")
+valik_split_tuple = ("valik", ["split_ref.txt"], "Valik-split")
+valik_build_tuple = ("valik", ["build.txt"], "Valik-build")
 
 shared_tuple_list = [valik_split_tuple, valik_build_tuple]
 
-valik_search_tuple = ("valik", [], "valik-search")
-distributed_stellar_tuple = ("dream_stellar", ["files.txt"], "distributed-stellar")
-stellar_tuple = ("stellar", [], "stellar")
+valik_search_tuple = ("valik", [], "Valik-search")
+distributed_stellar_tuple = ("dream_stellar", ["files.txt"], "Distributed-Stellar")
+stellar_tuple = ("stellar", [], "Stellar")
 
 with_errors_tuple_list = [valik_search_tuple, distributed_stellar_tuple, stellar_tuple]
 
-data = {'error_rate' : error_rates}
+data = {'Error-rate' : error_rates}
 df = pd.DataFrame(data)
 
 for method in shared_tuple_list:
@@ -74,6 +74,11 @@ for method in with_errors_tuple_list:
     df = df[df.columns.drop(list(df.filter(regex='rep')))]
 
     
-df["DREAM-Stellar"] = df["valik-split"] + df["valik-build"] + df["valik-search"] + df["distributed-stellar"]
+df["DREAM-Stellar"] = df["Valik-split"] + df["Valik-build"] + df["Valik-search"] + df["Distributed-Stellar"]
 df["DREAM-Stellar"] = df["DREAM-Stellar"].round(2)
+
+# reorder columns
+cols = df.columns.tolist()
+cols = cols[:-2] + [cols[-1]] + [cols[-2]]
+df = df[cols]
 df.to_csv(outfile, sep='\t')

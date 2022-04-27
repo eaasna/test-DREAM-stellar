@@ -17,22 +17,36 @@ rule valik_split_ref:
 	shell:
 		"valik split {input} --reference-output {output.ref_meta} --segment-output {output.seg_meta} --overlap {max_len} --bins {bins}"
 
-rule valik_build:
+# assuming a single reference sequence
+rule create_seg_files:
+        input:
+                ref = "rep{rep}/ref.fasta",
+                seg_meta = "rep{rep}/split/seg.txt"
+        output:
+                fasta = expand("rep{{rep}}/split/seg{bin}.fasta", bin = bin_list),
+		meta = "rep{rep}/split/bin_paths.txt"
+        benchmark:
+                "benchmarks/rep{rep}/dream_stellar/create_seg_files.txt"
+        script:
+                "../scripts/create_seg_files.py"
+
+rule valik_build_parallel:
 	input:
-		ref = "rep{rep}/ref.fasta",
-		ref_meta = "rep{rep}/split/ref.txt",
-		seg_meta = "rep{rep}/split/seg.txt"
+                fasta = expand("rep{{rep}}/split/seg{bin}.fasta", bin = bin_list),
+		meta = "rep{rep}/split/bin_paths.txt"
 	output: 
-		"rep{rep}/valik.index"
+		ibf = "rep{rep}/valik_parallel.index"
 	threads: 8
+	params:
+		lim = bins - 1
 	benchmark:
 		"benchmarks/rep{rep}/valik/build.txt"
 	shell:
-		"valik build --from-segments {input.ref} --threads {threads} --window {w} --kmer {k} --output {output} --size {size} --seg-path {input.seg_meta} --ref-meta {input.ref_meta}"
+		"valik build {input.meta} --threads {threads} --window {w} --kmer {k} --output {output.ibf} --size {size}"
 
 rule valik_search:
 	input:
-		ibf = "rep{rep}/valik.index",
+		ibf = "rep{rep}/valik_parallel.index",
 		query = "rep{rep}/queries/e{er}.fastq"
 	output:
 		"rep{rep}/search/e{er}.out"
