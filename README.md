@@ -17,8 +17,11 @@ cd ../
 cp build/src/mason2/src/mason2-build/bin/mason_genome build/bin/mason_genome
 ```
 
-Build valik prefilter:
+Build valik prefilter and add binaries to $PATH:
 https://github.com/eaasna/valik
+
+Other requirements:
+* Biopython https://biopython.org/wiki/Packages
 
 # Local prefilter example
 Create partially overlapping segments from the reference sequence.
