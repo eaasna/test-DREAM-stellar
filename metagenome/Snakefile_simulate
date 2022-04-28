@@ -1,0 +1,24 @@
+workdir: config["workdir"]
+
+#-------- Simulation parameters --------
+ref_len = config["reference_length"]
+matches = config["match_count"]
+min_len = 150
+max_len = 150
+
+#-------- Shared search parameters --------
+#error_rates = [0, 0.025, 0.05, 0.075, 0.1]
+error_rates = [0, 0.025, 0.05, 0.075]
+
+#-------- Evalutaion parameters --------
+n = config["repeat"]
+repetitions = list(range(n))
+
+rule make_all:
+	input:
+		expand("rep{rep}/queries/e{er}.fastq", rep = repetitions, er = error_rates)
+	shell:
+		"echo 'Done'"
+
+include: "rules/simulate.smk"
+

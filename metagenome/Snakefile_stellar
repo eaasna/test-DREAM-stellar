@@ -1,0 +1,32 @@
+workdir: config["workdir"]
+
+#-------- Shared search parameters --------
+#error_rates = [0, 0.025, 0.05, 0.075, 0.1]
+error_rates = [0, 0.025, 0.05, 0.075]
+pattern = config["minLen"]
+
+#-------- Stellar parameters --------
+num = config["num_matches"]
+thresh = config["sort_threshold"]
+
+# stellar does not allow 0 error rate
+def get_error_rate(wildcards):
+        if (wildcards.er=="0"):
+                # minimum allowed error rate should be 1e-7
+                a = 1e-5          # but 1e-7 and 1e-6 lead to invalid pointer error
+                return f'{a:.5f}' # supress scientific notation 
+        return float(wildcards.er)
+
+
+#-------- Evalutaion parameters --------
+n = config["repeat"]
+repetitions = list(range(n))
+
+rule make_all:
+	input:
+		expand("rep{rep}/stellar/e{er}.gff", rep = repetitions, er = error_rates)
+	shell:
+		"echo 'Done'"
+
+include: "rules/stellar.smk"
+
