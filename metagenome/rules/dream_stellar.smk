@@ -3,7 +3,7 @@ rule distribute_search:
 		queries = "rep{rep}/queries/e{er}.fastq",
 		search_out = "rep{rep}/search/e{er}.out"
 	output:
-		temp(expand("/dev/shm/rep{{rep}}/queries/seg{bin}_e{{er}}.fasta", bin = bin_list))
+		temp(expand("/dev/shm/rep{{rep}}/queries/bin_{bin}_e{{er}}.fasta", bin = bin_list))
 	params:
 		out_prefix = "/dev/shm/rep{rep}/queries/"
 	benchmark:
@@ -13,14 +13,14 @@ rule distribute_search:
 
 rule dream_stellar_search:
 	input:
-		ref_seg = "/dev/shm/rep{rep}/split/seg{bin}.fasta",
-		query = "/dev/shm/rep{rep}/queries/seg{bin}_e{er}.fasta"
+		ref_seg = "rep{rep}/bins/bin_{bin}.fasta",
+		query = "/dev/shm/rep{rep}/queries/bin_{bin}_e{er}.fasta"
 	output:
-		"rep{rep}/dream_stellar/seg{bin}_e{er}.gff"
+		"rep{rep}/dream_stellar/bin_{bin}_e{er}.gff"
 	params:
 		e = get_error_rate
 	benchmark:
-		"benchmarks/rep{rep}/dream_stellar/seg{bin}_e{er}.txt"
+		"benchmarks/rep{rep}/dream_stellar/bin_{bin}_e{er}.txt"
 	shell:
 		"""
 		if [ -s {input.query} ]; then

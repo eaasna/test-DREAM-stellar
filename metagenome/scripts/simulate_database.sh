@@ -47,3 +47,4 @@ do
    rm $i.fai
 done
 
+seq -f "$rep_dir/bins/bin_%0${#BIN_NUMBER}g.fasta" 0 1 $((BIN_NUMBER-1)) > bin_paths.txt

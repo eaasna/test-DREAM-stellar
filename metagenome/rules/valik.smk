@@ -5,39 +5,13 @@ def get_error_count(wildcards):
 	e = int(math.floor(float(wildcards.er) * pattern))
 	return e
 
-rule valik_split_ref:
+rule valik_build:
 	input:
-		"rep{rep}/ref.fasta"
+		fasta = expand("rep{{rep}}/bins/bin_{bin}.fasta", bin = bin_list),
+		meta = "rep{rep}/bin_paths.txt"
 	output: 
-		ref_meta = "rep{rep}/split/ref.txt",
-		seg_meta = "rep{rep}/split/seg.txt"
-	benchmark:
-		"benchmarks/rep{rep}/valik/split_ref.txt"
-	shell:
-		"valik split {input} --reference-output {output.ref_meta} --segment-output {output.seg_meta} --overlap {max_len} --bins {bins}"
-
-# assuming a single reference sequence
-rule create_seg_files:
-	input:
-		ref = "rep{rep}/ref.fasta",
-		seg_meta = "rep{rep}/split/seg.txt"
-	output:
-		fasta = temp(expand("/dev/shm/rep{{rep}}/split/seg{bin}.fasta", bin = bin_list)),
-		meta = "rep{rep}/split/bin_paths.txt"
-	params:
-		out_prefix = "/dev/shm/rep{rep}/split/seg"
-	benchmark:
-		"benchmarks/rep{rep}/dream_stellar/create_seg_files.txt"
-	script:
-		"../scripts/create_seg_files.py"
-
-rule valik_build_parallel:
-	input:
-		fasta = expand("/dev/shm/rep{{rep}}/split/seg{bin}.fasta", bin = bin_list),
-		meta = "rep{rep}/split/bin_paths.txt"
-	output: 
-		ibf = "rep{rep}/valik_parallel.index"
-	threads: 8
+		ibf = "rep{rep}/valik.index"
+	threads: 16
 	benchmark:
 		"benchmarks/rep{rep}/valik/build.txt"
 	shell:
@@ -45,11 +19,11 @@ rule valik_build_parallel:
 
 rule valik_search:
 	input:
-		ibf = "rep{rep}/valik_parallel.index",
+		ibf = "rep{rep}/valik.index",
 		query = "rep{rep}/queries/e{er}.fastq"
 	output:
 		"rep{rep}/search/e{er}.out"
-	threads: 8
+	threads: 16
 	params:
 		e = get_error_count
 	benchmark:
