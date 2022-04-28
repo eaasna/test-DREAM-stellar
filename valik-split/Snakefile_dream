@@ -1,9 +1,6 @@
 workdir: config["workdir"]
 
-#-------- Simulation parameters --------
-ref_len = config["reference_length"]
-matches = config["match_count"]
-min_len = 150
+#-------- Shared search parameters --------
 max_len = 150
 
 #-------- Shared search parameters --------
@@ -40,13 +37,10 @@ repetitions = list(range(n))
 
 rule make_all:
 	input:
-		"table1.tsv"
+		expand("rep{rep}/dream_stellar/seg{bin}_e{er}.gff", rep = repetitions, bin = bin_list, er = error_rates)
 	shell:
 		"echo 'Done'"
 
-include: "rules/simulate.smk"
 include: "rules/valik.smk"
 include: "rules/dream_stellar.smk"
-include: "rules/stellar.smk"
-include: "rules/evaluate.smk"
 

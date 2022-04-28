@@ -12,7 +12,7 @@ seg_file = snakemake.input.seg_meta
 rep = snakemake.wildcards.rep
 
 #------------ OUTPUT ------------
-outfile_prefix = "rep" + str(rep) + "/split/seg"
+outfile_prefix = snakemake.params.out_prefix
 meta_outfile = snakemake.output.meta
 
 # read segment metadata

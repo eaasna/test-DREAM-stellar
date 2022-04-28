@@ -1,25 +1,9 @@
 workdir: config["workdir"]
 
-#-------- Simulation parameters --------
-ref_len = config["reference_length"]
-matches = config["match_count"]
-min_len = 150
-max_len = 150
-
 #-------- Shared search parameters --------
 #error_rates = [0, 0.025, 0.05, 0.075, 0.1]
 error_rates = [0, 0.025, 0.05, 0.075]
-bins = config["ibf_bins"]
-bin_list = list(range(bins))
 pattern = config["minLen"]
-
-#-------- Valik parameters --------
-w = config["window"]
-k = config["kmer_length"]
-size = config["ibf_size"]
-overlap = config["pattern_overlap"]
-tau = config["thresh_tau"]
-pmax = config["thresh_pmax"]
 
 #-------- Stellar parameters --------
 num = config["num_matches"]
@@ -40,13 +24,9 @@ repetitions = list(range(n))
 
 rule make_all:
 	input:
-		"table1.tsv"
+		expand("rep{rep}/stellar/e{er}.gff", rep = repetitions, er = error_rates)
 	shell:
 		"echo 'Done'"
 
-include: "rules/simulate.smk"
-include: "rules/valik.smk"
-include: "rules/dream_stellar.smk"
 include: "rules/stellar.smk"
-include: "rules/evaluate.smk"
 

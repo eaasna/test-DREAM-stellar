@@ -1,16 +1,15 @@
 import math
 def get_error_count(wildcards):
-        if (wildcards.er == "0"):
-                e = 0
-        e = int(math.floor(float(wildcards.er) * pattern))
-	print(e)
+	if (wildcards.er == "0"):
+		e = 0
+	e = int(math.floor(float(wildcards.er) * pattern))
 	return e
 
 rule valik_split_ref:
-        input:
-                "rep{rep}/ref.fasta"
-        output: 
-                ref_meta = "rep{rep}/split/ref.txt",
+	input:
+		"rep{rep}/ref.fasta"
+	output: 
+		ref_meta = "rep{rep}/split/ref.txt",
 		seg_meta = "rep{rep}/split/seg.txt"
 	benchmark:
 		"benchmarks/rep{rep}/valik/split_ref.txt"
@@ -19,26 +18,26 @@ rule valik_split_ref:
 
 # assuming a single reference sequence
 rule create_seg_files:
-        input:
-                ref = "rep{rep}/ref.fasta",
-                seg_meta = "rep{rep}/split/seg.txt"
-        output:
-                fasta = expand("rep{{rep}}/split/seg{bin}.fasta", bin = bin_list),
+	input:
+		ref = "rep{rep}/ref.fasta",
+		seg_meta = "rep{rep}/split/seg.txt"
+	output:
+		fasta = temp(expand("/dev/shm/rep{{rep}}/split/seg{bin}.fasta", bin = bin_list)),
 		meta = "rep{rep}/split/bin_paths.txt"
-        benchmark:
-                "benchmarks/rep{rep}/dream_stellar/create_seg_files.txt"
-        script:
-                "../scripts/create_seg_files.py"
+	params:
+		out_prefix = "/dev/shm/rep{rep}/split/seg"
+	benchmark:
+		"benchmarks/rep{rep}/dream_stellar/create_seg_files.txt"
+	script:
+		"../scripts/create_seg_files.py"
 
 rule valik_build_parallel:
 	input:
-                fasta = expand("rep{{rep}}/split/seg{bin}.fasta", bin = bin_list),
+		fasta = expand("/dev/shm/rep{{rep}}/split/seg{bin}.fasta", bin = bin_list),
 		meta = "rep{rep}/split/bin_paths.txt"
 	output: 
 		ibf = "rep{rep}/valik_parallel.index"
 	threads: 8
-	params:
-		lim = bins - 1
 	benchmark:
 		"benchmarks/rep{rep}/valik/build.txt"
 	shell:
