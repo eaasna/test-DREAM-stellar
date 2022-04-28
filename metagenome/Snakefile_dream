@@ -8,6 +8,8 @@ max_len = 150
 error_rates = [0, 0.025, 0.05, 0.075]
 bins = config["ibf_bins"]
 bin_list = list(range(bins))
+bin_list = [str(bin).zfill(len(str(bins))) for bin in bin_list]
+
 pattern = config["minLen"]
 
 #-------- Valik parameters --------

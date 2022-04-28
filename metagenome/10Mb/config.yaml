@@ -2,7 +2,9 @@ workdir: "10Mb/"
 
 #--------- Simulation parameters --------
 reference_length: 10485760
-match_count: 5240 # per query file and error rate
+match_count: 5120 # per query file and error rate
+haplotypes: 4
+match_length: 150
 
 #-------- Shared search parameters --------
 ibf_bins: 64

@@ -3,19 +3,25 @@ import random
 def get_seed(wildcards):
         return random.randint(0, 1e6)
 
-rule simulate_reference:
-	output:
-		ref = "rep{rep}/ref.fasta"
-	params:
-		ref_seed = get_seed,
-	shell:      
-		"../scripts/simulate_reference.sh {wildcards.rep} {ref_len} {params.ref_seed}"
+def get_error_count(wildcards):
+	error_count = round(int(match_len) * float(wildcards.er))
+        return error_count
 
-rule simulate_matches:
+rule simulate_database:
+	output:
+		ref = expand("rep{{rep}}/bins/bin_{bin}.fasta", bin = bin_list)
+	params:
+		ref_seed = get_seed
+	shell:      
+		"../scripts/simulate_database.sh {wildcards.rep} {ref_len} {params.ref_seed} {bins} {ht}"
+
+rule simulate_reads:
 	input:
-		ref = "rep{rep}/ref.fasta"
+		ref = expand("rep{{rep}}/bins/bin_{bin}.fasta", bin = bin_list)
 	output:
 		matches = "rep{rep}/queries/e{er}.fastq"
+	params: 
+		errors = get_error_count
 	shell:      
-		"../scripts/simulate_local_matches.sh {wildcards.rep} {wildcards.er} {matches} {min_len} {max_len}"
+		"../scripts/simulate_reads.sh {wildcards.rep} {bins} {ht} {params.errors} {wildcards.er} {match_len} {matches}"
 
