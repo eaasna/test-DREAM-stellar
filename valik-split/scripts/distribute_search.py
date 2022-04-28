@@ -13,7 +13,8 @@ rep = snakemake.wildcards.rep
 er = snakemake.wildcards.er
 
 #------------ OUTPUT ------------ 
-output_prefix = "rep" + str(rep) + "/queries/"
+#output_prefix = "rep" + str(rep) + "/queries/"
+output_prefix = snakemake.params.out_prefix
 
 # tidy match files
 matches = pd.read_csv(search_file, sep='\t', header=None)

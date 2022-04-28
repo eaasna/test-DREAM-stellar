@@ -1,38 +1,51 @@
 import math
 def get_error_count(wildcards):
-        if (wildcards.er == "0"):
-                e = 0
-        e = int(math.floor(float(wildcards.er) * pattern))
-	print(e)
+	if (wildcards.er == "0"):
+		e = 0
+	e = int(math.floor(float(wildcards.er) * pattern))
 	return e
 
 rule valik_split_ref:
-        input:
-                "rep{rep}/ref.fasta"
-        output: 
-                ref_meta = "rep{rep}/split/ref.txt",
+	input:
+		"rep{rep}/ref.fasta"
+	output: 
+		ref_meta = "rep{rep}/split/ref.txt",
 		seg_meta = "rep{rep}/split/seg.txt"
 	benchmark:
 		"benchmarks/rep{rep}/valik/split_ref.txt"
 	shell:
 		"valik split {input} --reference-output {output.ref_meta} --segment-output {output.seg_meta} --overlap {max_len} --bins {bins}"
 
-rule valik_build:
+# assuming a single reference sequence
+rule create_seg_files:
 	input:
 		ref = "rep{rep}/ref.fasta",
-		ref_meta = "rep{rep}/split/ref.txt",
 		seg_meta = "rep{rep}/split/seg.txt"
+	output:
+		fasta = temp(expand("/dev/shm/rep{{rep}}/split/seg{bin}.fasta", bin = bin_list)),
+		meta = "rep{rep}/split/bin_paths.txt"
+	params:
+		out_prefix = "/dev/shm/rep{rep}/split/seg"
+	benchmark:
+		"benchmarks/rep{rep}/dream_stellar/create_seg_files.txt"
+	script:
+		"../scripts/create_seg_files.py"
+
+rule valik_build_parallel:
+	input:
+		fasta = expand("/dev/shm/rep{{rep}}/split/seg{bin}.fasta", bin = bin_list),
+		meta = "rep{rep}/split/bin_paths.txt"
 	output: 
-		"rep{rep}/valik.index"
+		ibf = "rep{rep}/valik_parallel.index"
 	threads: 8
 	benchmark:
 		"benchmarks/rep{rep}/valik/build.txt"
 	shell:
-		"valik build --from-segments {input.ref} --threads {threads} --window {w} --kmer {k} --output {output} --size {size} --seg-path {input.seg_meta} --ref-meta {input.ref_meta}"
+		"valik build {input.meta} --threads {threads} --window {w} --kmer {k} --output {output.ibf} --size {size}"
 
 rule valik_search:
 	input:
-		ibf = "rep{rep}/valik.index",
+		ibf = "rep{rep}/valik_parallel.index",
 		query = "rep{rep}/queries/e{er}.fastq"
 	output:
 		"rep{rep}/search/e{er}.out"

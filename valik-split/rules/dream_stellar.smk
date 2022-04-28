@@ -1,20 +1,11 @@
-rule create_seg_files:
-	input:
-		ref = "rep{rep}/ref.fasta",
-		seg_meta = "rep{rep}/split/seg.txt"
-	output:
-		expand("rep{{rep}}/split/seg{bin}.fasta", bin = bin_list)
-	benchmark:
-		"benchmarks/rep{rep}/dream_stellar/create_seg_files.txt"
-	script:
-		"../scripts/create_seg_files.py"
-
 rule distribute_search:
 	input:
 		queries = "rep{rep}/queries/e{er}.fastq",
 		search_out = "rep{rep}/search/e{er}.out"
 	output:
-		expand("rep{{rep}}/queries/seg{bin}_e{{er}}.fasta", bin = bin_list)
+		temp(expand("/dev/shm/rep{{rep}}/queries/seg{bin}_e{{er}}.fasta", bin = bin_list))
+	params:
+		out_prefix = "/dev/shm/rep{rep}/queries/"
 	benchmark:
 		"benchmarks/rep{rep}/dream_stellar/distribute_search_e{er}.txt"
 	script:
@@ -22,13 +13,12 @@ rule distribute_search:
 
 rule dream_stellar_search:
 	input:
-		ref_seg = "rep{rep}/split/seg{bin}.fasta",
-		query = "rep{rep}/queries/seg{bin}_e{er}.fasta"
+		ref_seg = "/dev/shm/rep{rep}/split/seg{bin}.fasta",
+		query = "/dev/shm/rep{rep}/queries/seg{bin}_e{er}.fasta"
 	output:
 		"rep{rep}/dream_stellar/seg{bin}_e{er}.gff"
 	params:
-		e = get_error_rate,
-		dummy_list = "benchmarks/rep{rep}/dream_stellar/dummy.txt"
+		e = get_error_rate
 	benchmark:
 		"benchmarks/rep{rep}/dream_stellar/seg{bin}_e{er}.txt"
 	shell:
