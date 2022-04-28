@@ -1,6 +1,6 @@
-	error_rate	valik	dream_stellar	stellar	total_dream_stellar
-0	0.0	0.74	11.94	0.26	12.68
-1	0.025	0.73	11.8	0.2	12.53
-2	0.05	0.74	12.04	0.24	12.78
-3	0.075	0.82	11.7	0.31	12.52
-4	0.1	6.11	13.87	0.33	19.98
+	Error-rate	Valik-split	Valik-build	Valik-search	Distributed-Stellar	DREAM-Stellar	Stellar
+0	0.0	0.05	0.13	0.08	42.89	43.15	0.52
+1	0.025	0.05	0.13	0.15	42.5	42.83	0.52
+2	0.05	0.05	0.13	0.09	47.74	48.01	0.54
+3	0.075	0.05	0.13	0.09	49.97	50.24	0.52
+4	0.1	0.05	0.13	0.0	1.12	1.3	0.0
