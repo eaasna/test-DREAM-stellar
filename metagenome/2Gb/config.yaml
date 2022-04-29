@@ -13,14 +13,10 @@ minLen: 80
 #-------- Valik parameters --------
 window: 15
 kmer_length: 13
-ibf_size: "2G"
+ibf_size: "1G"
 pattern_overlap: 10
 thresh_tau: 0.75
-thresh_pmax: 0.75
-
-#-------- Stellar parameters --------
-num_matches: 8000
-sort_threshold: 8001
+thresh_pmax: 0.5
 
 #-------- Evaluation parameters --------
 repeat: 1

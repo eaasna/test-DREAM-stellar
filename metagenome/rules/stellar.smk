@@ -19,9 +19,7 @@ rule stellar_search:
 	conda:
 		"../envs/stellar.yaml"
 	benchmark:
-		"benchmarks/rep{rep}/stellar/bin{bin}_e{er}.txt"
+		"benchmarks/rep{rep}/stellar/bin_{bin}_e{er}.txt"
 	shell:
-		"""
-		stellar --verbose {input.ref} {input.query} -e {params.e} -l {pattern} --numMatches {num} --sortThresh {thresh} -a dna -o {output}
-		"""
+		"stellar --verbose {input.ref} {input.query} -e {params.e} -l {pattern} -a dna -o {output}"
 	

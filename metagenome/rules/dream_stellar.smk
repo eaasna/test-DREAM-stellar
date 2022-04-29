@@ -7,7 +7,7 @@ rule distribute_search:
 	params:
 		out_prefix = "/dev/shm/rep{rep}/queries/"
 	benchmark:
-		"benchmarks/rep{rep}/dream_stellar/distribute_search_e{er}.txt"
+		"benchmarks/rep{rep}/distribute/e{er}.txt"
 	script:
 		"../scripts/distribute_search.py"
 
@@ -19,15 +19,10 @@ rule dream_stellar_search:
 		"rep{rep}/dream_stellar/bin_{bin}_e{er}.gff"
 	params:
 		e = get_error_rate
+	conda:
+		"../envs/stellar.yaml"
 	benchmark:
 		"benchmarks/rep{rep}/dream_stellar/bin_{bin}_e{er}.txt"
 	shell:
-		"""
-		if [ -s {input.query} ]; then
-		        # Search queries for current bin
-			stellar --verbose {input.ref_seg} {input.query} --forward -e {params.e} -l {pattern} --numMatches {num} --sortThresh {thresh} -a dna -o {output}
-		else
-			touch {output} # create dummy output
-		fi
-		"""
+		"stellar --verbose {input.ref_seg} {input.query} --forward -e {params.e} -l {pattern} -a dna -o {output}"
 	
