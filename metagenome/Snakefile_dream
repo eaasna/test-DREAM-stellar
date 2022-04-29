@@ -1,7 +1,6 @@
 workdir: config["workdir"]
 
 #-------- Shared search parameters --------
-error_rates = [0.05]
 bins = config["ibf_bins"]
 bin_list = list(range(bins))
 bin_list = [str(bin).zfill(len(str(bins))) for bin in bin_list]
@@ -15,10 +14,6 @@ size = config["ibf_size"]
 overlap = config["pattern_overlap"]
 tau = config["thresh_tau"]
 pmax = config["thresh_pmax"]
-
-#-------- Stellar parameters --------
-num = config["num_matches"]
-thresh = config["sort_threshold"]
 
 # stellar does not allow 0 error rate
 def get_error_rate(wildcards):
@@ -35,7 +30,7 @@ repetitions = list(range(n))
 
 rule make_all:
 	input:
-		expand("rep{rep}/dream_stellar/bin_{bin}_e{er}.gff", rep = repetitions, bin = bin_list, er = error_rates)
+		expand("rep{rep}/dream_stellar/bin_{bin}_e{er}.gff", rep = repetitions, bin = bin_list, er = config["error_rate"])
 	shell:
 		"echo 'Done'"
 

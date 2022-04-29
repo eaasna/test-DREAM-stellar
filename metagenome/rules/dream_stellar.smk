@@ -19,8 +19,6 @@ rule dream_stellar_search:
 		"rep{rep}/dream_stellar/bin_{bin}_e{er}.gff"
 	params:
 		e = get_error_rate
-	conda:
-		"../envs/stellar.yaml"
 	benchmark:
 		"benchmarks/rep{rep}/dream_stellar/bin_{bin}_e{er}.txt"
 	shell:

@@ -5,6 +5,7 @@ reference_length: 10485760
 match_count: 5120 # per query file and error rate
 haplotypes: 4
 match_length: 150
+error_rate: 0
 
 #-------- Shared search parameters --------
 ibf_bins: 64

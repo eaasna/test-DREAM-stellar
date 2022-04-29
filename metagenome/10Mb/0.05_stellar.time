@@ -1,0 +1,1 @@
+10.61	103132	0	snakemake --cores 16 --snakefile Snakefile_stellar --configfile 10Mb/config.yaml --config error_rate=0.05
