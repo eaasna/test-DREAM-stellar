@@ -10,7 +10,7 @@ rule valik_build:
 		fasta = expand("rep{{rep}}/bins/bin_{bin}.fasta", bin = bin_list),
 		meta = "rep{rep}/bin_paths.txt"
 	output: 
-		ibf = "rep{rep}/valik.index"
+		ibf = temp("/dev/shm/rep{rep}/valik.index")
 	threads: 16
 	benchmark:
 		"benchmarks/rep{rep}/valik/build.txt"
@@ -19,7 +19,7 @@ rule valik_build:
 
 rule valik_search:
 	input:
-		ibf = "rep{rep}/valik.index",
+		ibf = "/dev/shm/rep{rep}/valik.index",
 		query = "rep{rep}/queries/e{er}.fastq"
 	output:
 		"rep{rep}/search/e{er}.out"

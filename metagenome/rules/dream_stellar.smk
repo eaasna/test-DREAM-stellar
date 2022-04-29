@@ -7,7 +7,7 @@ rule distribute_search:
 	params:
 		out_prefix = "/dev/shm/rep{rep}/queries/"
 	benchmark:
-		"benchmarks/rep{rep}/dream_stellar/distribute_search_e{er}.txt"
+		"benchmarks/rep{rep}/distribute/e{er}.txt"
 	script:
 		"../scripts/distribute_search.py"
 

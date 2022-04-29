@@ -9,17 +9,13 @@ bin_list = [str(bin).zfill(len(str(bins))) for bin in bin_list]
 match_len = config["match_length"]
 matches = config["match_count"]
 
-#-------- Shared search parameters --------
-#error_rates = [0, 0.025, 0.05, 0.075, 0.1]
-error_rates = [0.05]
-
 #-------- Evalutaion parameters --------
 n = config["repeat"]
 repetitions = list(range(n))
 
 rule make_all:
 	input:
-		expand("rep{rep}/queries/e{er}.fastq", rep = repetitions, er = error_rates)
+		expand("rep{rep}/queries/e{er}.fastq", rep = repetitions, er = config["error_rate"])
 	shell:
 		"echo 'Done'"
 

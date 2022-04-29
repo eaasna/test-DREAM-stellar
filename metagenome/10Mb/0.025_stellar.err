@@ -1,0 +1,801 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 16
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job counts:
+	count	jobs
+	1	convert_to_fasta
+	1	make_all
+	64	stellar_search
+	66
+
+[Fri Apr 29 18:33:15 2022]
+rule convert_to_fasta:
+    input: rep0/queries/e0.025.fastq
+    output: rep0/queries/e0.025.fasta
+    jobid: 65
+    benchmark: benchmarks/rep0/stellar/convert_fasta_e0.025.txt
+    wildcards: rep=0, er=0.025
+
+[Fri Apr 29 18:33:15 2022]
+Finished job 65.
+1 of 66 steps (2%) done
+
+[Fri Apr 29 18:33:15 2022]
+rule stellar_search:
+    input: rep0/bins/bin_17.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_17_e0.025.gff
+    jobid: 18
+    benchmark: benchmarks/rep0/stellar/bin_17_e0.025.txt
+    wildcards: rep=0, bin=17, er=0.025
+
+
+[Fri Apr 29 18:33:15 2022]
+rule stellar_search:
+    input: rep0/bins/bin_39.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_39_e0.025.gff
+    jobid: 40
+    benchmark: benchmarks/rep0/stellar/bin_39_e0.025.txt
+    wildcards: rep=0, bin=39, er=0.025
+
+
+[Fri Apr 29 18:33:15 2022]
+rule stellar_search:
+    input: rep0/bins/bin_48.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_48_e0.025.gff
+    jobid: 49
+    benchmark: benchmarks/rep0/stellar/bin_48_e0.025.txt
+    wildcards: rep=0, bin=48, er=0.025
+
+
+[Fri Apr 29 18:33:15 2022]
+rule stellar_search:
+    input: rep0/bins/bin_18.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_18_e0.025.gff
+    jobid: 19
+    benchmark: benchmarks/rep0/stellar/bin_18_e0.025.txt
+    wildcards: rep=0, bin=18, er=0.025
+
+
+[Fri Apr 29 18:33:15 2022]
+rule stellar_search:
+    input: rep0/bins/bin_44.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_44_e0.025.gff
+    jobid: 45
+    benchmark: benchmarks/rep0/stellar/bin_44_e0.025.txt
+    wildcards: rep=0, bin=44, er=0.025
+
+
+[Fri Apr 29 18:33:15 2022]
+rule stellar_search:
+    input: rep0/bins/bin_52.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_52_e0.025.gff
+    jobid: 53
+    benchmark: benchmarks/rep0/stellar/bin_52_e0.025.txt
+    wildcards: rep=0, bin=52, er=0.025
+
+
+[Fri Apr 29 18:33:15 2022]
+rule stellar_search:
+    input: rep0/bins/bin_34.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_34_e0.025.gff
+    jobid: 35
+    benchmark: benchmarks/rep0/stellar/bin_34_e0.025.txt
+    wildcards: rep=0, bin=34, er=0.025
+
+
+[Fri Apr 29 18:33:15 2022]
+rule stellar_search:
+    input: rep0/bins/bin_54.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_54_e0.025.gff
+    jobid: 55
+    benchmark: benchmarks/rep0/stellar/bin_54_e0.025.txt
+    wildcards: rep=0, bin=54, er=0.025
+
+
+[Fri Apr 29 18:33:15 2022]
+rule stellar_search:
+    input: rep0/bins/bin_31.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_31_e0.025.gff
+    jobid: 32
+    benchmark: benchmarks/rep0/stellar/bin_31_e0.025.txt
+    wildcards: rep=0, bin=31, er=0.025
+
+
+[Fri Apr 29 18:33:15 2022]
+rule stellar_search:
+    input: rep0/bins/bin_40.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_40_e0.025.gff
+    jobid: 41
+    benchmark: benchmarks/rep0/stellar/bin_40_e0.025.txt
+    wildcards: rep=0, bin=40, er=0.025
+
+
+[Fri Apr 29 18:33:15 2022]
+rule stellar_search:
+    input: rep0/bins/bin_57.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_57_e0.025.gff
+    jobid: 58
+    benchmark: benchmarks/rep0/stellar/bin_57_e0.025.txt
+    wildcards: rep=0, bin=57, er=0.025
+
+
+[Fri Apr 29 18:33:16 2022]
+rule stellar_search:
+    input: rep0/bins/bin_28.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_28_e0.025.gff
+    jobid: 29
+    benchmark: benchmarks/rep0/stellar/bin_28_e0.025.txt
+    wildcards: rep=0, bin=28, er=0.025
+
+
+[Fri Apr 29 18:33:16 2022]
+rule stellar_search:
+    input: rep0/bins/bin_15.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_15_e0.025.gff
+    jobid: 16
+    benchmark: benchmarks/rep0/stellar/bin_15_e0.025.txt
+    wildcards: rep=0, bin=15, er=0.025
+
+
+[Fri Apr 29 18:33:16 2022]
+rule stellar_search:
+    input: rep0/bins/bin_62.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_62_e0.025.gff
+    jobid: 63
+    benchmark: benchmarks/rep0/stellar/bin_62_e0.025.txt
+    wildcards: rep=0, bin=62, er=0.025
+
+
+[Fri Apr 29 18:33:16 2022]
+rule stellar_search:
+    input: rep0/bins/bin_63.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_63_e0.025.gff
+    jobid: 64
+    benchmark: benchmarks/rep0/stellar/bin_63_e0.025.txt
+    wildcards: rep=0, bin=63, er=0.025
+
+.
+[Fri Apr 29 18:33:16 2022]
+rule stellar_search:
+    input: rep0/bins/bin_61.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_61_e0.025.gff
+    jobid: 62
+    benchmark: benchmarks/rep0/stellar/bin_61_e0.025.txt
+    wildcards: rep=0, bin=61, er=0.025
+
+........................................................[Fri Apr 29 18:33:17 2022]
+.Finished job 53.
+.2 of 66 steps (3%) done
+
+[Fri Apr 29 18:33:17 2022]
+rule stellar_search:
+    input: rep0/bins/bin_36.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_36_e0.025.gff
+    jobid: 37
+    benchmark: benchmarks/rep0/stellar/bin_36_e0.025.txt
+    wildcards: rep=0, bin=36, er=0.025
+
+............[Fri Apr 29 18:33:17 2022]
+Finished job 49.
+3 of 66 steps (5%) done
+
+[Fri Apr 29 18:33:17 2022]
+rule stellar_search:
+    input: rep0/bins/bin_49.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_49_e0.025.gff
+    jobid: 50
+    benchmark: benchmarks/rep0/stellar/bin_49_e0.025.txt
+    wildcards: rep=0, bin=49, er=0.025
+
+........[Fri Apr 29 18:33:17 2022]
+Finished job 40.
+4 of 66 steps (6%) done
+
+[Fri Apr 29 18:33:17 2022]
+rule stellar_search:
+    input: rep0/bins/bin_32.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_32_e0.025.gff
+    jobid: 33
+    benchmark: benchmarks/rep0/stellar/bin_32_e0.025.txt
+    wildcards: rep=0, bin=32, er=0.025
+
+...............[Fri Apr 29 18:33:17 2022]
+Finished job 18.
+5 of 66 steps (8%) done
+
+[Fri Apr 29 18:33:17 2022]
+rule stellar_search:
+    input: rep0/bins/bin_23.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_23_e0.025.gff
+    jobid: 24
+    benchmark: benchmarks/rep0/stellar/bin_23_e0.025.txt
+    wildcards: rep=0, bin=23, er=0.025
+
+.....[Fri Apr 29 18:33:17 2022]
+Finished job 19.
+6 of 66 steps (9%) done
+[Fri Apr 29 18:33:17 2022]
+Finished job 35.
+7 of 66 steps (11%) done
+
+[Fri Apr 29 18:33:17 2022]
+rule stellar_search:
+    input: rep0/bins/bin_41.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_41_e0.025.gff
+    jobid: 42
+    benchmark: benchmarks/rep0/stellar/bin_41_e0.025.txt
+    wildcards: rep=0, bin=41, er=0.025
+
+
+..[Fri Apr 29 18:33:17 2022]
+..rule stellar_search:
+    input: rep0/bins/bin_51.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_51_e0.025.gff
+    jobid: 52
+    benchmark: benchmarks/rep0/stellar/bin_51_e0.025.txt
+    wildcards: rep=0, bin=51, er=0.025
+
+......[Fri Apr 29 18:33:17 2022]
+Finished job 58.
+8 of 66 steps (12%) done
+
+[Fri Apr 29 18:33:17 2022]
+rule stellar_search:
+    input: rep0/bins/bin_53.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_53_e0.025.gff
+    jobid: 54
+    benchmark: benchmarks/rep0/stellar/bin_53_e0.025.txt
+    wildcards: rep=0, bin=53, er=0.025
+
+.......[Fri Apr 29 18:33:17 2022]
+Finished job 41.
+.9 of 66 steps (14%) done
+
+[Fri Apr 29 18:33:17 2022]
+rule stellar_search:
+    input: rep0/bins/bin_07.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_07_e0.025.gff
+    jobid: 8
+    benchmark: benchmarks/rep0/stellar/bin_07_e0.025.txt
+    wildcards: rep=0, bin=07, er=0.025
+
+..[Fri Apr 29 18:33:17 2022]
+Finished job 55.
+10 of 66 steps (15%) done
+
+[Fri Apr 29 18:33:17 2022]
+rule stellar_search:
+    input: rep0/bins/bin_26.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_26_e0.025.gff
+    jobid: 27
+    benchmark: benchmarks/rep0/stellar/bin_26_e0.025.txt
+    wildcards: rep=0, bin=26, er=0.025
+
+.[Fri Apr 29 18:33:17 2022]
+Finished job 32.
+11 of 66 steps (17%) done
+
+.[Fri Apr 29 18:33:17 2022]
+rule stellar_search:
+    input: rep0/bins/bin_46.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_46_e0.025.gff
+    jobid: 47
+    benchmark: benchmarks/rep0/stellar/bin_46_e0.025.txt
+    wildcards: rep=0, bin=46, er=0.025
+
+....[Fri Apr 29 18:33:17 2022]
+Finished job 45.
+12 of 66 steps (18%) done
+.
+[Fri Apr 29 18:33:17 2022]
+rule stellar_search:
+    input: rep0/bins/bin_25.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_25_e0.025.gff
+    jobid: 26
+    benchmark: benchmarks/rep0/stellar/bin_25_e0.025.txt
+    wildcards: rep=0, bin=25, er=0.025
+
+[Fri Apr 29 18:33:17 2022]
+Finished job 64.
+13 of 66 steps (20%) done
+.[Fri Apr 29 18:33:17 2022]
+Finished job 62.
+14 of 66 steps (21%) done
+
+[Fri Apr 29 18:33:17 2022]
+rule stellar_search:
+    input: rep0/bins/bin_55.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_55_e0.025.gff
+    jobid: 56
+    benchmark: benchmarks/rep0/stellar/bin_55_e0.025.txt
+    wildcards: rep=0, bin=55, er=0.025
+.
+.
+[Fri Apr 29 18:33:17 2022]
+rule stellar_search:
+    input: rep0/bins/bin_16.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_16_e0.025.gff
+    jobid: 17
+    benchmark: benchmarks/rep0/stellar/bin_16_e0.025.txt
+    wildcards: rep=0, bin=16, er=0.025
+
+....[Fri Apr 29 18:33:18 2022]
+Finished job 29.
+15 of 66 steps (23%) done
+[Fri Apr 29 18:33:18 2022]
+Finished job 63.
+16 of 66 steps (24%) done
+.
+[Fri Apr 29 18:33:18 2022]
+rule stellar_search:
+    input: rep0/bins/bin_29.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_29_e0.025.gff
+    jobid: 30
+    benchmark: benchmarks/rep0/stellar/bin_29_e0.025.txt
+    wildcards: rep=0, bin=29, er=0.025
+
+
+[Fri Apr 29 18:33:18 2022]
+rule stellar_search:
+    input: rep0/bins/bin_22.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_22_e0.025.gff
+    jobid: 23
+    benchmark: benchmarks/rep0/stellar/bin_22_e0.025.txt
+    wildcards: rep=0, bin=22, er=0.025
+
+.....[Fri Apr 29 18:33:18 2022]
+Finished job 16.
+17 of 66 steps (26%) done
+
+[Fri Apr 29 18:33:18 2022]
+rule stellar_search:
+    input: rep0/bins/bin_35.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_35_e0.025.gff
+    jobid: 36
+    benchmark: benchmarks/rep0/stellar/bin_35_e0.025.txt
+    wildcards: rep=0, bin=35, er=0.025
+
+..................................[Fri Apr 29 18:33:18 2022]
+Finished job 50.
+18 of 66 steps (27%) done
+.
+[Fri Apr 29 18:33:18 2022]
+rule stellar_search:
+    input: rep0/bins/bin_42.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_42_e0.025.gff
+    jobid: 43
+    benchmark: benchmarks/rep0/stellar/bin_42_e0.025.txt
+    wildcards: rep=0, bin=42, er=0.025
+
+......................[Fri Apr 29 18:33:18 2022]
+Finished job 24.
+19 of 66 steps (29%) done
+.
+[Fri Apr 29 18:33:18 2022]
+rule stellar_search:
+    input: rep0/bins/bin_10.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_10_e0.025.gff
+    jobid: 11
+    benchmark: benchmarks/rep0/stellar/bin_10_e0.025.txt
+    wildcards: rep=0, bin=10, er=0.025
+
+......[Fri Apr 29 18:33:19 2022]
+Finished job 33.
+20 of 66 steps (30%) done
+
+[Fri Apr 29 18:33:19 2022]
+rule stellar_search:
+    input: rep0/bins/bin_09.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_09_e0.025.gff
+    jobid: 10
+    benchmark: benchmarks/rep0/stellar/bin_09_e0.025.txt
+    wildcards: rep=0, bin=09, er=0.025
+
+[Fri Apr 29 18:33:19 2022]
+Finished job 54.
+21 of 66 steps (32%) done
+
+[Fri Apr 29 18:33:19 2022]
+.rule stellar_search:
+    input: rep0/bins/bin_38.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_38_e0.025.gff
+    jobid: 39
+    benchmark: benchmarks/rep0/stellar/bin_38_e0.025.txt
+    wildcards: rep=0, bin=38, er=0.025
+
+...............[Fri Apr 29 18:33:19 2022]
+Finished job 37.
+22 of 66 steps (33%) done
+
+[Fri Apr 29 18:33:19 2022]
+rule stellar_search:
+    input: rep0/bins/bin_19.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_19_e0.025.gff
+    jobid: 20
+    benchmark: benchmarks/rep0/stellar/bin_19_e0.025.txt
+    wildcards: rep=0, bin=19, er=0.025
+
+..............[Fri Apr 29 18:33:19 2022]
+Finished job 42.
+23 of 66 steps (35%) done
+
+[Fri Apr 29 18:33:19 2022]
+rule stellar_search:
+    input: rep0/bins/bin_59.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_59_e0.025.gff
+    jobid: 60
+    benchmark: benchmarks/rep0/stellar/bin_59_e0.025.txt
+    wildcards: rep=0, bin=59, er=0.025
+
+....[Fri Apr 29 18:33:19 2022]
+Finished job 27.
+24 of 66 steps (36%) done
+
+[Fri Apr 29 18:33:19 2022]
+rule stellar_search:
+    input: rep0/bins/bin_27.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_27_e0.025.gff
+    jobid: 28
+    benchmark: benchmarks/rep0/stellar/bin_27_e0.025.txt
+    wildcards: rep=0, bin=27, er=0.025
+
+.[Fri Apr 29 18:33:19 2022]
+Finished job 26.
+.25 of 66 steps (38%) done
+..[Fri Apr 29 18:33:19 2022]
+Finished job 56.
+26 of 66 steps (39%) done
+[Fri Apr 29 18:33:19 2022]
+Finished job 52.
+27 of 66 steps (41%) done
+
+[Fri Apr 29 18:33:19 2022]
+rule stellar_search:
+    input: rep0/bins/bin_50.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_50_e0.025.gff
+    jobid: 51
+    benchmark: benchmarks/rep0/stellar/bin_50_e0.025.txt
+    wildcards: rep=0, bin=50, er=0.025
+
+
+[Fri Apr 29 18:33:19 2022]
+.rule stellar_search:
+    input: rep0/bins/bin_13.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_13_e0.025.gff
+    jobid: 14
+    benchmark: benchmarks/rep0/stellar/bin_13_e0.025.txt
+    wildcards: rep=0, bin=13, er=0.025
+
+
+[Fri Apr 29 18:33:19 2022]
+rule stellar_search:
+    input: rep0/bins/bin_45.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_45_e0.025.gff
+    jobid: 46
+    benchmark: benchmarks/rep0/stellar/bin_45_e0.025.txt
+    wildcards: rep=0, bin=45, er=0.025
+
+..........[Fri Apr 29 18:33:19 2022]
+Finished job 17.
+28 of 66 steps (42%) done
+
+[Fri Apr 29 18:33:19 2022]
+rule stellar_search:
+    input: rep0/bins/bin_30.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_30_e0.025.gff
+    jobid: 31
+    benchmark: benchmarks/rep0/stellar/bin_30_e0.025.txt
+    wildcards: rep=0, bin=30, er=0.025
+
+....[Fri Apr 29 18:33:19 2022]
+Finished job 36.
+29 of 66 steps (44%) done
+...[Fri Apr 29 18:33:19 2022]
+Finished job 8.
+30 of 66 steps (45%) done
+
+[Fri Apr 29 18:33:19 2022]
+.rule stellar_search:
+    input: rep0/bins/bin_60.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_60_e0.025.gff
+    jobid: 61
+    benchmark: benchmarks/rep0/stellar/bin_60_e0.025.txt
+    wildcards: rep=0, bin=60, er=0.025
+
+..
+.[Fri Apr 29 18:33:19 2022]
+rule stellar_search:
+    input: rep0/bins/bin_11.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_11_e0.025.gff
+    jobid: 12
+    benchmark: benchmarks/rep0/stellar/bin_11_e0.025.txt
+    wildcards: rep=0, bin=11, er=0.025
+
+..[Fri Apr 29 18:33:19 2022]
+Finished job 23.
+31 of 66 steps (47%) done
+.
+[Fri Apr 29 18:33:19 2022]
+rule stellar_search:
+    input: rep0/bins/bin_33.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_33_e0.025.gff
+    jobid: 34
+    benchmark: benchmarks/rep0/stellar/bin_33_e0.025.txt
+    wildcards: rep=0, bin=33, er=0.025
+
+.[Fri Apr 29 18:33:19 2022]
+Finished job 47.
+32 of 66 steps (48%) done
+..[Fri Apr 29 18:33:19 2022]
+Finished job 30.
+33 of 66 steps (50%) done
+
+[Fri Apr 29 18:33:19 2022]
+rule stellar_search:
+    input: rep0/bins/bin_47.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_47_e0.025.gff
+    jobid: 48
+    benchmark: benchmarks/rep0/stellar/bin_47_e0.025.txt
+    wildcards: rep=0, bin=47, er=0.025
+
+
+[Fri Apr 29 18:33:19 2022]
+rule stellar_search:
+    input: rep0/bins/bin_21.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_21_e0.025.gff
+    jobid: 22
+    benchmark: benchmarks/rep0/stellar/bin_21_e0.025.txt
+    wildcards: rep=0, bin=21, er=0.025
+
+.........................[Fri Apr 29 18:33:20 2022]
+Finished job 43.
+34 of 66 steps (52%) done
+
+[Fri Apr 29 18:33:20 2022]
+rule stellar_search:
+    input: rep0/bins/bin_14.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_14_e0.025.gff
+    jobid: 15
+    benchmark: benchmarks/rep0/stellar/bin_14_e0.025.txt
+    wildcards: rep=0, bin=14, er=0.025
+
+........[Fri Apr 29 18:33:20 2022]
+Finished job 11.
+35 of 66 steps (53%) done
+
+[Fri Apr 29 18:33:20 2022]
+rule stellar_search:
+    input: rep0/bins/bin_43.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_43_e0.025.gff
+    jobid: 44
+    benchmark: benchmarks/rep0/stellar/bin_43_e0.025.txt
+    wildcards: rep=0, bin=43, er=0.025
+
+...............[Fri Apr 29 18:33:20 2022]
+Finished job 20.
+36 of 66 steps (55%) done
+
+[Fri Apr 29 18:33:20 2022]
+rule stellar_search:
+    input: rep0/bins/bin_56.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_56_e0.025.gff
+    jobid: 57
+    benchmark: benchmarks/rep0/stellar/bin_56_e0.025.txt
+    wildcards: rep=0, bin=56, er=0.025
+
+................[Fri Apr 29 18:33:20 2022]
+Finished job 10.
+37 of 66 steps (56%) done
+.
+[Fri Apr 29 18:33:20 2022]
+rule stellar_search:
+    input: rep0/bins/bin_08.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_08_e0.025.gff
+    jobid: 9
+    benchmark: benchmarks/rep0/stellar/bin_08_e0.025.txt
+    wildcards: rep=0, bin=08, er=0.025
+
+...........[Fri Apr 29 18:33:20 2022]
+Finished job 39.
+.38 of 66 steps (58%) done
+
+[Fri Apr 29 18:33:20 2022]
+rule stellar_search:
+    input: rep0/bins/bin_58.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_58_e0.025.gff
+    jobid: 59
+    benchmark: benchmarks/rep0/stellar/bin_58_e0.025.txt
+    wildcards: rep=0, bin=58, er=0.025
+
+..[Fri Apr 29 18:33:21 2022]
+Finished job 14.
+39 of 66 steps (59%) done
+..
+[Fri Apr 29 18:33:21 2022]
+rule stellar_search:
+    input: rep0/bins/bin_12.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_12_e0.025.gff
+    jobid: 13
+    benchmark: benchmarks/rep0/stellar/bin_12_e0.025.txt
+    wildcards: rep=0, bin=12, er=0.025
+
+....................[Fri Apr 29 18:33:21 2022]
+Finished job 60.
+40 of 66 steps (61%) done
+
+[Fri Apr 29 18:33:21 2022]
+rule stellar_search:
+    input: rep0/bins/bin_20.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_20_e0.025.gff
+    jobid: 21
+    benchmark: benchmarks/rep0/stellar/bin_20_e0.025.txt
+    wildcards: rep=0, bin=20, er=0.025
+
+...[Fri Apr 29 18:33:21 2022]
+Finished job 28.
+41 of 66 steps (62%) done
+
+[Fri Apr 29 18:33:21 2022]
+rule stellar_search:
+    input: rep0/bins/bin_24.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_24_e0.025.gff
+    jobid: 25
+    benchmark: benchmarks/rep0/stellar/bin_24_e0.025.txt
+    wildcards: rep=0, bin=24, er=0.025
+
+......[Fri Apr 29 18:33:21 2022]
+Finished job 34.
+42 of 66 steps (64%) done
+
+[Fri Apr 29 18:33:21 2022]
+rule stellar_search:
+    input: rep0/bins/bin_37.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_37_e0.025.gff
+    jobid: 38
+    benchmark: benchmarks/rep0/stellar/bin_37_e0.025.txt
+    wildcards: rep=0, bin=37, er=0.025
+
+.[Fri Apr 29 18:33:21 2022]
+Finished job 46.
+43 of 66 steps (65%) done
+
+[Fri Apr 29 18:33:21 2022]
+rule stellar_search:
+    input: rep0/bins/bin_06.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_06_e0.025.gff
+    jobid: 7
+    benchmark: benchmarks/rep0/stellar/bin_06_e0.025.txt
+    wildcards: rep=0, bin=06, er=0.025
+
+...[Fri Apr 29 18:33:21 2022]
+Finished job 31.
+44 of 66 steps (67%) done
+
+[Fri Apr 29 18:33:21 2022]
+rule stellar_search:
+    input: rep0/bins/bin_05.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_05_e0.025.gff
+    jobid: 6
+    benchmark: benchmarks/rep0/stellar/bin_05_e0.025.txt
+    wildcards: rep=0, bin=05, er=0.025
+
+.[Fri Apr 29 18:33:21 2022]
+Finished job 51.
+45 of 66 steps (68%) done
+
+[Fri Apr 29 18:33:21 2022]
+rule stellar_search:
+    input: rep0/bins/bin_04.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_04_e0.025.gff
+    jobid: 5
+    benchmark: benchmarks/rep0/stellar/bin_04_e0.025.txt
+    wildcards: rep=0, bin=04, er=0.025
+
+......[Fri Apr 29 18:33:21 2022]
+Finished job 61.
+46 of 66 steps (70%) done
+
+[Fri Apr 29 18:33:21 2022]
+rule stellar_search:
+    input: rep0/bins/bin_01.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_01_e0.025.gff
+    jobid: 2
+    benchmark: benchmarks/rep0/stellar/bin_01_e0.025.txt
+    wildcards: rep=0, bin=01, er=0.025
+
+.......[Fri Apr 29 18:33:21 2022]
+Finished job 22.
+47 of 66 steps (71%) done
+
+[Fri Apr 29 18:33:21 2022]
+rule stellar_search:
+    input: rep0/bins/bin_02.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_02_e0.025.gff
+    jobid: 3
+    benchmark: benchmarks/rep0/stellar/bin_02_e0.025.txt
+    wildcards: rep=0, bin=02, er=0.025
+
+...[Fri Apr 29 18:33:21 2022]
+Finished job 48.
+48 of 66 steps (73%) done
+
+[Fri Apr 29 18:33:21 2022]
+.rule stellar_search:
+    input: rep0/bins/bin_03.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_03_e0.025.gff
+    jobid: 4
+    benchmark: benchmarks/rep0/stellar/bin_03_e0.025.txt
+    wildcards: rep=0, bin=03, er=0.025
+
+[Fri Apr 29 18:33:21 2022]
+Finished job 12.
+49 of 66 steps (74%) done
+..
+[Fri Apr 29 18:33:21 2022]
+rule stellar_search:
+    input: rep0/bins/bin_00.fasta, rep0/queries/e0.025.fasta
+    output: rep0/stellar/bin_00_e0.025.gff
+    jobid: 1
+    benchmark: benchmarks/rep0/stellar/bin_00_e0.025.txt
+    wildcards: rep=0, bin=00, er=0.025
+
+...........[Fri Apr 29 18:33:22 2022]
+Finished job 44.
+50 of 66 steps (76%) done
+.......[Fri Apr 29 18:33:22 2022]
+Finished job 15.
+51 of 66 steps (77%) done
+.........................[Fri Apr 29 18:33:22 2022]
+Finished job 13.
+52 of 66 steps (79%) done
+....................[Fri Apr 29 18:33:22 2022]
+Finished job 9.
+53 of 66 steps (80%) done
+..[Fri Apr 29 18:33:22 2022]
+Finished job 57.
+54 of 66 steps (82%) done
+.....[Fri Apr 29 18:33:22 2022]
+Finished job 59.
+55 of 66 steps (83%) done
+.................[Fri Apr 29 18:33:22 2022]
+Finished job 38.
+56 of 66 steps (85%) done
+.......[Fri Apr 29 18:33:22 2022]
+Finished job 21.
+57 of 66 steps (86%) done
+[Fri Apr 29 18:33:22 2022]
+Finished job 2.
+58 of 66 steps (88%) done
+.....[Fri Apr 29 18:33:22 2022]
+Finished job 5.
+59 of 66 steps (89%) done
+...[Fri Apr 29 18:33:22 2022]
+Finished job 25.
+60 of 66 steps (91%) done
+....[Fri Apr 29 18:33:22 2022]
+Finished job 7.
+61 of 66 steps (92%) done
+.[Fri Apr 29 18:33:22 2022]
+Finished job 6.
+62 of 66 steps (94%) done
+.[Fri Apr 29 18:33:22 2022]
+Finished job 3.
+63 of 66 steps (95%) done
+[Fri Apr 29 18:33:22 2022]
+Finished job 1.
+64 of 66 steps (97%) done
+.[Fri Apr 29 18:33:22 2022]
+Finished job 4.
+65 of 66 steps (98%) done
+
+[Fri Apr 29 18:33:22 2022]
+rule make_all:
+    input: rep0/stellar/bin_00_e0.025.gff, rep0/stellar/bin_01_e0.025.gff, rep0/stellar/bin_02_e0.025.gff, rep0/stellar/bin_03_e0.025.gff, rep0/stellar/bin_04_e0.025.gff, rep0/stellar/bin_05_e0.025.gff, rep0/stellar/bin_06_e0.025.gff, rep0/stellar/bin_07_e0.025.gff, rep0/stellar/bin_08_e0.025.gff, rep0/stellar/bin_09_e0.025.gff, rep0/stellar/bin_10_e0.025.gff, rep0/stellar/bin_11_e0.025.gff, rep0/stellar/bin_12_e0.025.gff, rep0/stellar/bin_13_e0.025.gff, rep0/stellar/bin_14_e0.025.gff, rep0/stellar/bin_15_e0.025.gff, rep0/stellar/bin_16_e0.025.gff, rep0/stellar/bin_17_e0.025.gff, rep0/stellar/bin_18_e0.025.gff, rep0/stellar/bin_19_e0.025.gff, rep0/stellar/bin_20_e0.025.gff, rep0/stellar/bin_21_e0.025.gff, rep0/stellar/bin_22_e0.025.gff, rep0/stellar/bin_23_e0.025.gff, rep0/stellar/bin_24_e0.025.gff, rep0/stellar/bin_25_e0.025.gff, rep0/stellar/bin_26_e0.025.gff, rep0/stellar/bin_27_e0.025.gff, rep0/stellar/bin_28_e0.025.gff, rep0/stellar/bin_29_e0.025.gff, rep0/stellar/bin_30_e0.025.gff, rep0/stellar/bin_31_e0.025.gff, rep0/stellar/bin_32_e0.025.gff, rep0/stellar/bin_33_e0.025.gff, rep0/stellar/bin_34_e0.025.gff, rep0/stellar/bin_35_e0.025.gff, rep0/stellar/bin_36_e0.025.gff, rep0/stellar/bin_37_e0.025.gff, rep0/stellar/bin_38_e0.025.gff, rep0/stellar/bin_39_e0.025.gff, rep0/stellar/bin_40_e0.025.gff, rep0/stellar/bin_41_e0.025.gff, rep0/stellar/bin_42_e0.025.gff, rep0/stellar/bin_43_e0.025.gff, rep0/stellar/bin_44_e0.025.gff, rep0/stellar/bin_45_e0.025.gff, rep0/stellar/bin_46_e0.025.gff, rep0/stellar/bin_47_e0.025.gff, rep0/stellar/bin_48_e0.025.gff, rep0/stellar/bin_49_e0.025.gff, rep0/stellar/bin_50_e0.025.gff, rep0/stellar/bin_51_e0.025.gff, rep0/stellar/bin_52_e0.025.gff, rep0/stellar/bin_53_e0.025.gff, rep0/stellar/bin_54_e0.025.gff, rep0/stellar/bin_55_e0.025.gff, rep0/stellar/bin_56_e0.025.gff, rep0/stellar/bin_57_e0.025.gff, rep0/stellar/bin_58_e0.025.gff, rep0/stellar/bin_59_e0.025.gff, rep0/stellar/bin_60_e0.025.gff, rep0/stellar/bin_61_e0.025.gff, rep0/stellar/bin_62_e0.025.gff, rep0/stellar/bin_63_e0.025.gff
+    jobid: 0
+
+[Fri Apr 29 18:33:22 2022]
+Finished job 0.
+66 of 66 steps (100%) done
+Complete log: /home/evelin/metagenomics/test-dream-stellar/metagenome/.snakemake/log/2022-04-29T183315.825997.snakemake.log

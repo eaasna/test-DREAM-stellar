@@ -21,5 +21,5 @@ rule stellar_search:
 	benchmark:
 		"benchmarks/rep{rep}/stellar/bin_{bin}_e{er}.txt"
 	shell:
-		"stellar --verbose {input.ref} {input.query} --forward -e {params.e} -l {pattern} --numMatches {num} --sortThresh {thresh} -a dna -o {output}"
+		"stellar --verbose {input.ref} {input.query} -e {params.e} -l {pattern} -a dna -o {output}"
 	
