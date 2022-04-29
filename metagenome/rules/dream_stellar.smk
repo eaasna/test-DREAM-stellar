@@ -22,12 +22,5 @@ rule dream_stellar_search:
 	benchmark:
 		"benchmarks/rep{rep}/dream_stellar/bin_{bin}_e{er}.txt"
 	shell:
-		"""
-		if [ -s {input.query} ]; then
-		        # Search queries for current bin
-			stellar --verbose {input.ref_seg} {input.query} --forward -e {params.e} -l {pattern} --numMatches {num} --sortThresh {thresh} -a dna -o {output}
-		else
-			touch {output} # create dummy output
-		fi
-		"""
+		"stellar --verbose {input.ref_seg} {input.query} --forward -e {params.e} -l {pattern} -a dna -o {output}"
 	
