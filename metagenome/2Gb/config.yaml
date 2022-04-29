@@ -1,0 +1,26 @@
+workdir: "2Gb/"
+
+#--------- Simulation parameters --------
+reference_length: 2000000000
+match_count: 8192000 # per error rate
+haplotypes: 8
+match_length: 150
+
+#-------- Shared search parameters --------
+ibf_bins: 1024
+minLen: 80
+
+#-------- Valik parameters --------
+window: 15
+kmer_length: 13
+ibf_size: "2G"
+pattern_overlap: 10
+thresh_tau: 0.75
+thresh_pmax: 0.75
+
+#-------- Stellar parameters --------
+num_matches: 8000
+sort_threshold: 8001
+
+#-------- Evaluation parameters --------
+repeat: 1
