@@ -2,6 +2,10 @@ import numpy as np
 import pandas as pd
 from Bio import SeqIO
 
+import subprocess
+ulim_out = subprocess.run('ulimit -n 2048', shell=True)
+print(ulim_out)
+
 #------------ INPUT ------------ 
 rep = snakemake.wildcards.rep
 er = snakemake.wildcards.er
