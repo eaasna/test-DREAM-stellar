@@ -2,6 +2,12 @@ import numpy as np
 import pandas as pd
 from Bio import SeqIO
 
+import subprocess
+command = 'ulimit -n 2048'
+process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
+output, error = process.communicate()
+print("Set ulimit exit code: {}\n".format(error))
+
 #------------ INPUT ------------ 
 rep = snakemake.wildcards.rep
 er = snakemake.wildcards.er
