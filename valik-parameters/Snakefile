@@ -31,8 +31,8 @@ def get_error_rate(wildcards):
 
 rule make_all:
 	input:
-		expand("{size}/search/e{er}.out", size = ibf_sizes, er = error_rate),
-		expand("evaluation/bin_{bin}_e{er}.gff", bin = bin_list, er = error_rate)
+		expand("{size}/e{er}_o{o}.out", size = ibf_sizes, er = error_rate, o=overlap),
+		expand("ground_truth/bin_{bin}_e{er}.gff", bin = bin_list, er = error_rate)
 	shell:
 		"echo 'Done'"
 

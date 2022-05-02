@@ -15,6 +15,7 @@ rule stellar:
 		temp("stellar/bin_{bin}_e{er}.gff")
 	params:
 		e = get_error_rate
+	threads: 4
 	conda:
 		"../envs/stellar.yaml"
 	shell:
@@ -24,7 +25,7 @@ rule remove_metadata:
 	input:
 		"stellar/bin_{bin}_e{er}.gff"
 	output:
-		"evaluation/bin_{bin}_e{er}.gff"
+		"ground_truth/bin_{bin}_e{er}.gff"
 	shell:
 		"sed 's/;.*//' {input} > {output}"
 		

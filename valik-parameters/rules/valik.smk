@@ -20,10 +20,10 @@ rule valik_search:
 		ibf = "{size}/valik.index",
 		query = "queries/e{er}.fastq"
 	output:
-		"{size}/search/e{er}.out"
+		"{size}/e{er}_o{o}.out"
 	threads: 16
 	params:
 		e = get_error_count
 	shell:
-		"valik search --index {input.ibf} --query {input.query} --error {params.e} --pattern {pattern} --overlap {overlap} --threads {threads} --output {output}"	
+		"valik search --index {input.ibf} --query {input.query} --error {params.e} --pattern {pattern} --overlap {wildcards.o} --threads {threads} --output {output}"	
 
