@@ -1,0 +1,43 @@
+workdir: config["workdir"]
+
+#-------- Simulation parameters --------
+ref_len = config["reference_length"]
+ht = config["haplotypes"]
+bins = config["ibf_bins"]
+bin_list = list(range(bins))
+bin_list = [str(bin).zfill(len(str(bins))) for bin in bin_list]
+match_len = config["match_length"]
+matches = config["match_count"]
+
+#-------- Parameter to test --------
+ibf_sizes = config["size_list"]
+
+#-------- Shared search parameters --------
+error_rate = config["er_rate"]
+pattern = config["minLen"]
+
+#-------- Valik parameters --------
+w = config["window"]
+k = config["kmer_length"]
+overlap = config["pattern_overlap"]
+
+# stellar does not allow 0 error rate
+def get_error_rate(wildcards):
+        if (wildcards.er=="0"):
+                # minimum allowed error rate should be 1e-7
+                a = 1e-5          # but 1e-7 and 1e-6 lead to invalid pointer error
+                return f'{a:.5f}' # supress scientific notation 
+        return float(wildcards.er)
+
+rule make_all:
+	input:
+		expand("{size}/search/e{er}.out", size = ibf_sizes, er = error_rate),
+		expand("evaluation/bin_{bin}_e{er}.gff", bin = bin_list, er = error_rate)
+	shell:
+		"echo 'Done'"
+
+include: "rules/simulate.smk"
+include: "rules/valik.smk"
+include: "rules/stellar.smk"
+include: "rules/evaluate.smk"
+
