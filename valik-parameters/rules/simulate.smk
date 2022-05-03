@@ -1,12 +1,3 @@
-import random
-# simulation needs unique seeds otherwise the same sequence is simulated
-def get_seed(wildcards):
-        return random.randint(0, 1e6)
-
-def get_error_count(wildcards):
-	error_count = round(int(match_len) * float(wildcards.er))
-        return error_count
-
 rule simulate_database:
 	output:
 		ref = expand("bins/bin_{bin}.fasta", bin = bin_list),
@@ -22,6 +13,6 @@ rule simulate_reads:
 	output:
 		matches = "queries/e{er}.fastq"
 	params: 
-		errors = get_error_count
+		errors = get_simulation_error_count
 	shell:      
 		"../scripts/simulate_reads.sh {bins} {ht} {params.errors} {wildcards.er} {match_len} {matches}"

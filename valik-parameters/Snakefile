@@ -8,31 +8,45 @@ bin_list = list(range(bins))
 bin_list = [str(bin).zfill(len(str(bins))) for bin in bin_list]
 match_len = config["match_length"]
 matches = config["match_count"]
+error_rate = config["sim_er_rate"]
+
+import random
+# simulation needs unique seeds otherwise the same sequence is simulated
+def get_seed(wildcards):
+        return random.randint(0, 1e6)
+
+def get_simulation_error_count(wildcards):
+        error_count = round(int(match_len) * float(wildcards.er))
+        return error_count
 
 #-------- Parameter to test --------
 ibf_sizes = config["size_list"]
 
-#-------- Shared search parameters --------
-error_rate = config["er_rate"]
+#-------- Search parameters --------
 pattern = config["minLen"]
-
-#-------- Valik parameters --------
 w = config["window"]
 k = config["kmer_length"]
 overlap = config["pattern_overlap"]
 
+# search with lesser error rate than the reads were simulated with
+def get_search_error_count(wildcards):
+        if (float(wildcards.er) <= 0.025):
+                return 0
+        e = int(round((float(wildcards.er) - 0.025) * pattern))
+        return e
+
+def get_search_error_rate(wildcards):
 # stellar does not allow 0 error rate
-def get_error_rate(wildcards):
-        if (wildcards.er=="0"):
+        if (float(wildcards.er) <= 0.025):
                 # minimum allowed error rate should be 1e-7
                 a = 1e-5          # but 1e-7 and 1e-6 lead to invalid pointer error
                 return f'{a:.5f}' # supress scientific notation 
-        return float(wildcards.er)
+        return (float(wildcards.er) - 0.025)
 
 rule make_all:
 	input:
 		expand("{size}/e{er}_o{o}.out", size = ibf_sizes, er = error_rate, o=overlap),
-		expand("ground_truth/bin_{bin}_e{er}.gff", bin = bin_list, er = error_rate)
+		expand("matches/bin_{bin}_e{er}.txt", bin = bin_list, er = error_rate)
 	shell:
 		"echo 'Done'"
 

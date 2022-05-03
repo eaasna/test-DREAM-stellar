@@ -1,10 +1,3 @@
-import math
-def get_error_count(wildcards):
-	if (wildcards.er == "0"):
-		e = 0
-	e = int(math.floor(float(wildcards.er) * pattern))
-	return e
-
 rule valik_build:
 	input:
 		fasta = expand("bins/bin_{bin}.fasta", bin = bin_list),
@@ -23,7 +16,7 @@ rule valik_search:
 		"{size}/e{er}_o{o}.out"
 	threads: 16
 	params:
-		e = get_error_count
+		e = get_search_error_count
 	shell:
 		"valik search --index {input.ibf} --query {input.query} --error {params.e} --pattern {pattern} --overlap {wildcards.o} --threads {threads} --output {output}"	
 

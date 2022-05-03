@@ -5,15 +5,15 @@ size_list: ["1M", "5M", "10M", "15M", "20M", "25M", "30M", "35M", "40M", "45M", 
 # reference size is 83M
 
 #--------- Simulation parameters --------
-reference_length: 10000000
+reference_length: 80000000
 match_count: 512000 # per query file and error rate
-haplotypes: 8
+haplotypes: 1
 match_length: 150
+sim_er_rate: 0.05
 
 #-------- Shared search parameters --------
 ibf_bins: 64
-er_rate: 0.05
-minLen: 80
+minLen: 50
 
 #-------- Valik parameters --------
 window: 15
