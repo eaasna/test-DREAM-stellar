@@ -3,25 +3,28 @@ import pandas as pd
 from Bio import SeqIO
 
 import subprocess
-ulim_out = subprocess.run('ulimit -n 4096', shell=True)
+ulim_out = subprocess.run('ulimit -n 2048', shell=True)
 print(ulim_out)
 
 #------------ INPUT ------------ 
-rep = snakemake.wildcards.rep
-er = snakemake.wildcards.er
+#rep = snakemake.wildcards.rep
+#er = snakemake.wildcards.er
+rep = 0
+er = 0.05
 
-# query_file = "../10Mb/rep" + str(rep) + "/queries/e" + str(er) + ".fastq"
-# search_file = "../10Mb/rep" + str(rep) + "/search/e" + str(er) + ".out"
-query_file = snakemake.input.queries
-search_file = snakemake.input.search_out
+query_file = "../2Gb/rep" + str(rep) + "/queries/e" + str(er) + ".fastq"
+search_file = "../2Gb/rep" + str(rep) + "/search/e" + str(er) + ".out"
+# query_file = snakemake.input.queries
+# search_file = snakemake.input.search_out
 
-bins = snakemake.config["ibf_bins"]
+#bins = snakemake.config["ibf_bins"]
+bins = 1024
 bin_int_list = list(range(bins))
 bin_str_list = [str(b).zfill(len(str(bins))) for b in bin_int_list]
 
 #------------ OUTPUT ------------
-# output_prefix = "../10Mb/rep" + str(rep) + "/queries/"
-output_prefix = snakemake.params.out_prefix
+output_prefix = "../2Gb/rep" + str(rep) + "/queries/"
+#output_prefix = snakemake.params.out_prefix
 
 # tidy match files
 matches = pd.read_csv(search_file, sep='\t', header=None)

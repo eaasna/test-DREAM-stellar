@@ -10,6 +10,9 @@ match_length: 150
 ibf_bins: 1024
 minLen: 80
 
+  # total size of reference bins: 16GB
+  # TODO: increase (w, k) parameters to reduce spurious matches
+
 #-------- Valik parameters --------
 window: 15
 kmer_length: 13
