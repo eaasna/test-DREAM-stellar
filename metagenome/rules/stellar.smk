@@ -16,6 +16,7 @@ rule stellar_search:
 		"rep{rep}/stellar/bin_{bin}_e{er}.gff"
 	params:
 		e = get_error_rate
+	threads: 4
 	conda:
 		"../envs/stellar.yaml"
 	benchmark:
