@@ -11,7 +11,7 @@ match_length: 150
 sim_er_rate: 0.05
 
 #-------- Shared search parameters --------
-size_list: ["35M"] # reference size is 83M
+size_list: ["10M"] # reference size is 83M
 ibf_bins: 64
 minLen: 50
 
