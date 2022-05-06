@@ -1,7 +1,7 @@
 workdir: "out/"
 
 #--------- Parameter to test --------
-pattern_overlap: [0, 10, 20, 30, 40, 49]
+pattern_overlap: [0, 10, 20, 30, 40, 45, 46, 47, 48, 49]
 
 #--------- Simulation parameters --------
 reference_length: 10000000
