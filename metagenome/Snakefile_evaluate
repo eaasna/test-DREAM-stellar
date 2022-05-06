@@ -6,10 +6,6 @@ bin_list = list(range(bins))
 bin_list = [str(bin).zfill(len(str(bins))) for bin in bin_list]
 pattern = config["minLen"]
 
-#-------- Evalutaion parameters --------
-n = config["repeat"]
-repetitions = list(range(n))
-
 rule make_all:
 	input:
 		"table1.tsv"

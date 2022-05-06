@@ -3,17 +3,15 @@ set -e
 
 BINARY_DIR="./../../../lib/raptor_data_simulation/build/bin"
 
-REP=$1
-
 # reference parameters
-LENGTH=$2
-SEED=$3
-BIN_NUMBER=$4
-HAPLOTYPE_COUNT=$5
+LENGTH=$1
+SEED=$2
+BIN_NUMBER=$3
+HAPLOTYPE_COUNT=$4
 
-rep_dir="rep${REP}"
-mkdir -p $rep_dir
-cd $rep_dir
+work_dir="${BIN_NUMBER}"
+mkdir -p $work_dir
+cd $work_dir
 
 bin_dir=bins
 info_dir=info
@@ -30,7 +28,7 @@ $BINARY_DIR/mason_genome -l $LENGTH -o $bin_dir/ref.fasta -s $SEED
 # Evenly distribute it over bins
 echo "Splitting genome into bins"
 $BINARY_DIR/split_sequence --input $bin_dir/ref.fasta --length $bin_length --parts $BIN_NUMBER
-# We do not need the reference anymore
+# We need the complete reference for Stellar input
 rm $bin_dir/ref.fasta
 # Rename the bins to .fa
 for i in $bin_dir/*.fasta; do mv $i $bin_dir/$(basename $i .fasta).fa; done
@@ -47,4 +45,7 @@ do
    rm $i.fai
 done
 
-seq -f "$rep_dir/bins/bin_%0${#BIN_NUMBER}g.fasta" 0 1 $((BIN_NUMBER-1)) > bin_paths.txt
+cat $bin_dir/*.fasta > ref.fasta
+
+seq -f "$work_dir/bins/bin_%0${#BIN_NUMBER}g.fasta" 0 1 $((BIN_NUMBER-1)) > bin_paths.txt
+

@@ -6,22 +6,39 @@ bin_list = list(range(bins))
 bin_list = [str(bin).zfill(len(str(bins))) for bin in bin_list]
 pattern = config["minLen"]
 
+#--------\ Shared functions --------
+import random
+import math
+
+# simulation needs unique seeds otherwise the same sequence is simulated
+def get_seed(wildcards):
+        return random.randint(0, 1e6)
+
+# simulate reads with [0, 0.03, 0.05, 0.1] error rates
+def get_simulation_error_count(wildcards):
+        error_count = round(int(match_len) * float(wildcards.er))
+        return error_count
+
+# search with no more than 0.025 error rate because of k-mer lemma limitations
+def get_search_error_count(wildcards):
+        if (float(wildcards.er) <= 0.025):
+                return 0
+        e = int(round(0.025 * pattern))
+        return e
+
+def get_search_error_rate(wildcards):
 # stellar does not allow 0 error rate
-def get_error_rate(wildcards):
-        if (wildcards.er=="0"):
+        if (float(wildcards.er) <= 0.025):
                 # minimum allowed error rate should be 1e-7
                 a = 1e-5          # but 1e-7 and 1e-6 lead to invalid pointer error
                 return f'{a:.5f}' # supress scientific notation 
-        return float(wildcards.er)
+        return 0.025
 
-
-#-------- Evalutaion parameters --------
-n = config["repeat"]
-repetitions = list(range(n))
+#-------- Shared functions \--------
 
 rule make_all:
 	input:
-		expand("rep{rep}/stellar/bin_{bin}_e{er}.gff", rep = repetitions, bin = bin_list, er = config["error_rate"])
+		expand("{b}/stellar/e{er}.gff", b = bins, er = config["error_rate"])
 	shell:
 		"echo 'Done'"
 
