@@ -1,4 +1,4 @@
-workdir: "2Gb/"
+workdir: "16GB/"
 
 #--------- Simulation parameters --------
 reference_length: 2000000000

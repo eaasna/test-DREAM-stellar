@@ -1,6 +1,2 @@
-5.47	76376	0	snakemake --cores 16 --snakefile Snakefile_stellar --configfile 10Mb//config.yaml
-5.60	77640	0	snakemake --cores 16 --snakefile Snakefile_stellar --configfile 10Mb/config.yaml
-5.06	76852	0	snakemake --cores 16 --snakefile Snakefile_stellar --configfile 10Mb//config.yaml
-4.82	77276	0	snakemake --cores 16 --snakefile Snakefile_stellar --configfile 10Mb/config.yaml
-5.00	76964	0	snakemake --cores 16 --snakefile Snakefile_stellar --configfile 10Mb/config.yaml
-4.93	77096	0	snakemake --cores 16 --snakefile Snakefile_stellar --configfile 10Mb/config.yaml
+3.67	116136	0	snakemake --cores 16 --snakefile Snakefile_stellar --configfile 10Mb//config.yaml --config error_rate=0.05 ibf_bins=64 --
+3.61	117032	0	snakemake --cores 16 --snakefile Snakefile_stellar --configfile 10Mb//config.yaml --config error_rate=0.05 ibf_bins=128 --

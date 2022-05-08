@@ -25,7 +25,7 @@ rule dream_stellar_search:
 		"""
 		if [ -s {input.query} ]; then
 		        # Search queries for current bin
-			stellar {input.ref_seg} {input.query} --forward -e {params.e} -l {pattern} --numMatches {num} --sortThresh {thresh} -a dna -o {output}
+			stellar --verbose {input.ref_seg} {input.query} --forward -e {params.e} -l {pattern} --numMatches {num} --sortThresh {thresh} -a dna -o {output}
 		else
 			touch {output} # create dummy output
 		fi

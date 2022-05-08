@@ -1,2 +1,1 @@
-Command exited with non-zero status 1
-22124.69	13371364	1	snakemake --cores 16 --snakefile Snakefile_dream --configfile 100Mb/config.yaml
+25.53	81440	0	snakemake --cores 16 --snakefile Snakefile_dream --configfile 100Mb/config.yaml --config error_rate=0.05

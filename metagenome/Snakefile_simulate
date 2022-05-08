@@ -4,14 +4,12 @@ workdir: config["workdir"]
 ref_len = config["reference_length"]
 ht = config["haplotypes"]
 bins = config["ibf_bins"]
-bin_list = list(range(bins))
+bin_list = list(range(int(bins)))
 bin_list = [str(bin).zfill(len(str(bins))) for bin in bin_list]
+
 match_len = config["match_length"]
 matches = config["match_count"]
-
-#-------- Evalutaion parameters --------
-n = config["repeat"]
-repetitions = list(range(n))
+er_rate = config["error_rate"]
 
 #--------\ Shared functions --------
 import random
@@ -45,7 +43,7 @@ def get_search_error_rate(wildcards):
 
 rule make_all:
 	input:
-		expand("{b}/queries/e{er}.fastq", b = bins, er = config["error_rate"])
+		expand("{b}/queries/e{er}.fastq", b = bins, er = er_rate)
 	shell:
 		"echo 'Done'"
 

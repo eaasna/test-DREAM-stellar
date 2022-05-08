@@ -2,7 +2,8 @@ workdir: config["workdir"]
 
 #-------- Shared search parameters --------
 bins = config["ibf_bins"]
-bin_list = list(range(bins))
+er_rate = config["error_rate"]
+bin_list = list(range(int(bins)))
 bin_list = [str(bin).zfill(len(str(bins))) for bin in bin_list]
 pattern = config["minLen"]
 
@@ -38,7 +39,7 @@ def get_search_error_rate(wildcards):
 
 rule make_all:
 	input:
-		expand("{b}/stellar/e{er}.gff", b = bins, er = config["error_rate"])
+		expand("{b}/stellar/e{er}.gff", b = bins, er = er_rate)
 	shell:
 		"echo 'Done'"
 
