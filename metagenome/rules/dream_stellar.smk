@@ -1,7 +1,7 @@
 rule dream_stellar_search:
 	input:
 		ref_seg = "{b}/bins/bin_{bin}.fasta",
-		query = "{b}/queries/bin_{bin}_e{er}.fasta"
+		query = "/dev/shm/{b}/queries/bin_{bin}_e{er}.fasta"
 	output:
 		"{b}/dream_stellar/bin_{bin}_e{er}.gff"
 	params:

@@ -19,7 +19,7 @@ rule valik_search:
 		bin_queries = "{b}/e{er}_bin_query_paths.txt"
 	output:
 		read_bins = "{b}/search/e{er}.out",
-		bin_reads = temp(expand("{{b}}/queries/bin_{bin}_e{{er}}.fasta", bin = bin_list))
+		bin_reads = temp(expand("/dev/shm/{{b}}/queries/bin_{bin}_e{{er}}.fasta", bin = bin_list))
 	threads: 16
 	params:
 		e = get_search_error_count

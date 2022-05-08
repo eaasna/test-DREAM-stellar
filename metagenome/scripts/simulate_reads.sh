@@ -34,4 +34,4 @@ mv $read_dir\_$ERRORS/all $read_dir/e$ERROR_RATE.fastq
 # for i in $(seq 0 9); do cat $read_dir/all.fastq >> $read_dir/all_10.fastq; done
 rm -r $read_dir\_$ERRORS
 
-seq -f "$output_dir/queries/bin_%0${#BIN_NUMBER}g_e${ERROR_RATE}.fasta" 0 1 $((BIN_NUMBER-1)) > $output_dir/e$ERROR_RATE\_bin_query_paths.txt
+seq -f "/dev/shm/$output_dir/queries/bin_%0${#BIN_NUMBER}g_e${ERROR_RATE}.fasta" 0 1 $((BIN_NUMBER-1)) > $output_dir/e$ERROR_RATE\_bin_query_paths.txt
