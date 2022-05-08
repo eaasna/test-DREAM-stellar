@@ -1,0 +1,2 @@
+0.18	21680	0	valik build 64/bin_paths.txt --threads 16 --window 15 --kmer 13 --output /dev/shm/64/valik.index --size 5M
+0.27	29460	0	valik build 128/bin_paths.txt --threads 16 --window 15 --kmer 13 --output /dev/shm/128/valik.index --size 5M

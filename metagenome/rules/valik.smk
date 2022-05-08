@@ -1,33 +1,33 @@
-import math
-def get_error_count(wildcards):
-	if (wildcards.er == "0"):
-		e = 0
-	e = int(math.floor(float(wildcards.er) * pattern))
-	return e
-
 rule valik_build:
 	input:
-		fasta = expand("rep{{rep}}/bins/bin_{bin}.fasta", bin = bin_list),
-		meta = "rep{rep}/bin_paths.txt"
+		fasta = expand("{{b}}/bins/bin_{bin}.fasta", bin = bin_list),
+		meta = "{b}/bin_paths.txt"
 	output: 
-		ibf = temp("/dev/shm/rep{rep}/valik.index")
+		ibf = temp("/dev/shm/{b}/valik.index")
 	threads: 16
 	benchmark:
-		"benchmarks/rep{rep}/valik/build.txt"
+		"benchmarks/{b}/valik/build.txt"
 	shell:
-		"valik build {input.meta} --threads {threads} --window {w} --kmer {k} --output {output.ibf} --size {size}"
+		"""
+		( /usr/bin/time -a -o valik_build.time -f "%e\t%M\t%x\t%C" valik build {input.meta} --threads {threads} --window {w} --kmer {k} --output {output.ibf} --size {size} )
+		"""
 
 rule valik_search:
 	input:
-		ibf = "/dev/shm/rep{rep}/valik.index",
-		query = "rep{rep}/queries/e{er}.fastq"
+		ibf = "/dev/shm/{b}/valik.index",
+		query = "{b}/queries/e{er}.fastq",
+		bin_queries = "{b}/e{er}_bin_query_paths.txt"
 	output:
-		"rep{rep}/search/e{er}.out"
+		read_bins = "{b}/search/e{er}.out",
+		bin_reads = temp(expand("{{b}}/queries/bin_{bin}_e{{er}}.fasta", bin = bin_list))
 	threads: 16
 	params:
-		e = get_error_count
+		e = get_search_error_count
 	benchmark:
-		"benchmarks/rep{rep}/valik/search_e{er}.txt"
+		"benchmarks/{b}/valik/search_e{er}.txt"
 	shell:
-		"valik search --index {input.ibf} --query {input.query} --error {params.e} --pattern {pattern} --overlap {overlap} --threads {threads} --output {output} --tau {tau} --p_max {pmax}"
+		"""
+		mkdir -p /dev/shm/{wildcards.b}/queries
+		( /usr/bin/time -a -o valik_search.time -f "%e\t%M\t%x\t%C" valik search --time --index {input.ibf} --bin-query {input.bin_queries} --query {input.query} --error {params.e} --pattern {pattern} --overlap {overlap} --threads {threads} --output {output.read_bins} )
+		"""
 		

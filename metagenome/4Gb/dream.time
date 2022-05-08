@@ -1,0 +1,3 @@
+Command exited with non-zero status 1
+958.07	72432628	1	snakemake --cores 16 --snakefile Snakefile_dream --configfile 4Gb/config.yaml --config error_rate=0.05 ibf_bins=64 --
+769.82	36778352	0	snakemake --cores 16 --snakefile Snakefile_dream --configfile 4Gb/config.yaml --config error_rate=0.05 ibf_bins=1024 --

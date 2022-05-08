@@ -1,2 +1,0 @@
-42.16	132372	0	snakemake --cores 16 --use-conda --snakefile Snakefile_dream --configfile 10Mb/config.yaml --config error_rate=0
-31.46	132188	0	snakemake --cores 16 --use-conda --snakefile Snakefile_dream --configfile 10Mb/config.yaml --config error_rate=0 --forceall

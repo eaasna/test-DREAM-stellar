@@ -16,6 +16,8 @@ pattern_overlap: 10
 thresh_tau: 0.75
 thresh_pmax: 0.75
 
+
+# TODO: different number of matches for DREAM-Stellar (per bin) and Stellar (per ref)
 #-------- Stellar parameters --------
 num_matches: 2048000
 sort_threshold: 2048001

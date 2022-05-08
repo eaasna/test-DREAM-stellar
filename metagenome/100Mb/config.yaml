@@ -2,7 +2,7 @@ workdir: "100Mb/"
 
 #--------- Simulation parameters --------
 reference_length: 100000000
-match_count: 5120000 # per query file and error rate
+match_count: 512000 # per query file and error rate
 haplotypes: 8
 match_length: 150
 
@@ -13,10 +13,8 @@ minLen: 50
 #-------- Valik parameters --------
 window: 15
 kmer_length: 13
-ibf_size: "50M"
+ibf_size: "400M"
 pattern_overlap: 10
-thresh_tau: 0.75
-thresh_pmax: 0.5
 
 #-------- Evaluation parameters --------
 repeat: 1
