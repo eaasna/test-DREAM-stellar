@@ -11,7 +11,8 @@ rule valik_build:
 rule valik_search:
 	input:
 		ibf = "{size}/valik.index",
-		query = "queries/e{er}.fastq"
+		query = "queries/e{er}.fastq",
+		bin_queries = "e{er}_bin_query_paths.txt"
 	output:
 		"{size}/e{er}_o{o}.out"
 	threads: 16
@@ -19,6 +20,6 @@ rule valik_search:
 		e = get_search_error_count
 	shell:
 		"""
-		/usr/bin/time -a -o {wildcards.o}_valik.time -f "%e\t%M\t%x\t%C" valik search --index {input.ibf} --query {input.query} --error {params.e} --pattern {pattern} --overlap {wildcards.o} --threads {threads} --output {output}
+		/usr/bin/time -a -o {wildcards.o}_valik.time -f "%e\t%M\t%x\t%C" valik search --index {input.ibf} --query {input.query} --bin-query {input.bin_queries} --error {params.e} --pattern {pattern} --overlap {wildcards.o} --threads {threads} --output {output}
 		"""	
 

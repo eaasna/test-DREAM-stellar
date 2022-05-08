@@ -31,3 +31,5 @@ cat $read_dir/*.fastq > $read_dir/all
 mv $read_dir/all $read_dir/e$ERROR_RATE.fastq
 rm $read_dir/bin_*
 
+seq -f "queries/bin_%0${#BIN_NUMBER}g_e${ERROR_RATE}.fasta" 0 1 $((BIN_NUMBER-1)) > e$ERROR_RATE\_bin_query_paths.txt
+

@@ -1,1 +1,10 @@
-out/*
+*/*/*.fast*
+*/*M/*
+*/bins/*
+*/info/*
+*/matches/*
+*/dream_stellar/*
+*/stellar/*
+*/.snakemake/*
+*/bin_paths.txt
+scripts/ipynb_checkpoints/*
