@@ -1,9 +1,10 @@
 workdir: "4Gb/"
 
 #--------- Simulation parameters --------
-reference_length: 4000000000
-match_count: 1638400
-haplotypes: 1
+reference_length: 500000000
+match_count: 1703936
+  # match_count: 1638400
+haplotypes: 8
 match_length: 250
 
 #-------- Shared search parameters --------
@@ -13,8 +14,8 @@ match_length: 250
 minLen: 100
 
 #-------- Valik parameters --------
-window: 15
-kmer_length: 13
-ibf_size: "2G" # 1/4th of the reference size
+window: 17
+kmer_length: 15
+ibf_size: "500M" # 1/4th of the reference size
 pattern_overlap: 98
 

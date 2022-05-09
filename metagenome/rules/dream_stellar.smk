@@ -1,15 +1,26 @@
+rule make_parallel_command_list:
+	input:
+		ref_seg = expand("{{b}}/bins/bin_{bin}.fasta", bin = bin_list),
+		query = expand("/dev/shm/{{b}}/queries/bin_{bin}_e{er}.fasta", bin = bin_list, er= er_rate)
+	output:
+		"{b}/run_dream_stellar.txt"
+	threads: 1
+	shell:
+		"../scripts/make_parallel_list.sh {wildcards.b} > {output}"
+		
 rule dream_stellar_search:
 	input:
-		ref_seg = "{b}/bins/bin_{bin}.fasta",
-		query = "/dev/shm/{b}/queries/bin_{bin}_e{er}.fasta"
+		"{b}/run_dream_stellar.txt"
 	output:
-		"{b}/dream_stellar/bin_{bin}_e{er}.gff"
+		"dream_{b}_done"
 	params:
-		e = get_search_error_rate
-	conda:
-		"../envs/stellar.yaml"
+		e = 0.025
+	threads: 16
 	benchmark:
-		"benchmarks/{b}/dream_stellar/bin_{bin}_e{er}.txt"
+		"benchmarks/{b}/dream_stellar.txt"
 	shell:
-		"stellar --verbose {input.ref_seg} {input.query} -e {params.e} -l {pattern} -a dna -o {output}"
+		"""
+		( /usr/bin/time -a -o dream_{wildcards.b}_parallel.time -f "%e\t%M\t%x\t%C" parallel --jobs {threads} < {wildcards.b}/run_dream_stellar.txt ) 2> parallel.err
+		touch dream_{wildcards.b}_done
+		"""
 	

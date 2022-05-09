@@ -46,7 +46,7 @@ def get_search_error_rate(wildcards):
 
 rule make_all:
 	input:
-		expand("{b}/dream_stellar/bin_{bin}_e{er}.gff", b = bins, bin = bin_list, er = er_rate)
+		expand("dream_{b}_done", b = bins)
 	shell:
 		"echo 'Done'"
 
