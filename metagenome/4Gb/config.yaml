@@ -3,7 +3,7 @@ workdir: "4Gb/"
 #--------- Simulation parameters --------
 reference_length: 500000000
 match_count: 1703936
-  # match_count: 1638400
+  # match_count: 1638400  old isn't divisible by 16384*8
 haplotypes: 8
 match_length: 250
 
