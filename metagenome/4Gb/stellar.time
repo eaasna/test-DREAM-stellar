@@ -1,0 +1,4 @@
+3581.64	64377624	0	snakemake --cores 16 --snakefile Snakefile_stellar --configfile 4Gb/config.yaml --config error_rate=0.05 ibf_bins=64 --
+3601.03	64197628	0	snakemake --cores 16 --snakefile Snakefile_stellar --configfile 4Gb/config.yaml --config error_rate=0.05 ibf_bins=1024 --
+3373.75	65086564	0	snakemake --cores 16 --snakefile Snakefile_stellar --configfile 4Gb/config.yaml --config error_rate=0.05 ibf_bins=8192 --
+3520.75	65913976	0	snakemake --cores 16 --snakefile Snakefile_stellar --configfile 4Gb/config.yaml --config error_rate=0.05 ibf_bins=16384 --
