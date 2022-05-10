@@ -8,8 +8,7 @@ from Bio import SeqIO
 ref_file = snakemake.input.ref
 #seg_file = "../100kb/split/ref_seg_rep0.txt"
 seg_file = snakemake.input.seg_meta
-#rep = 0
-rep = snakemake.wildcards.rep
+bins = snakemake.config["ibf_bins"]
 
 #------------ OUTPUT ------------
 outfile_prefix = snakemake.params.out_prefix
@@ -23,7 +22,7 @@ reference_segments = list(SeqIO.parse(ref_file, "fasta"))
 with open(meta_outfile, 'w') as m:
     # assuming a single reference sequence
     for index, row in segments.iterrows():
-        bin_id = row["bin_id"]
+        bin_id = str(row["bin_id"]).zfill(len(str(bins)))
         ref_id = row["ref_id"]
         start = row["start"]
         length = row["length"]

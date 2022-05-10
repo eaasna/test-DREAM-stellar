@@ -2,23 +2,17 @@ workdir: "100kb/"
 
 #--------- Simulation parameters --------
 reference_length: 102400
-match_count: 200 # per query file and error rate
+match_length: 250
+match_count: 200 # per error rate
+error_rate: 0.05
 
 #-------- Shared search parameters --------
 ibf_bins: 64
-minLen: 50
+minLen: 100
 
 #-------- Valik parameters --------
 window: 15
 kmer_length: 13
 ibf_size: "2M"
-pattern_overlap: 49
-thresh_tau: 0.75
-thresh_pmax: 0.75
+pattern_overlap: 98
 
-#-------- Stellar parameters --------
-num_matches: 100
-sort_threshold: 101
-
-#-------- Evaluation parameters --------
-repeat: 2
