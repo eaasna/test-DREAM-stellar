@@ -1,0 +1,3 @@
+Command exited with non-zero status 1
+23862.43	60198932	1	snakemake --cores 16 --snakefile Snakefile_stellar --configfile 2Gb/config.yaml --config error_rate=0.05
+97876.49	60198664	0	snakemake --cores 16 --snakefile Snakefile_stellar --configfile 2Gb/config.yaml --config error_rate=0.05

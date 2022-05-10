@@ -1,0 +1,6 @@
+16.29	182920	0	snakemake --cores 16 --snakefile Snakefile_dream --configfile 10Mb//config.yaml  ## Scanning queries n times
+12.68	182732	0	snakemake --cores 16 --snakefile Snakefile_dream --configfile 10Mb/config.yaml	## Scanning queries once
+12.04	182908	0	snakemake --cores 16 --snakefile Snakefile_dream --configfile 10Mb//config.yaml ## Everything in storage
+12.14	182940	0	snakemake --cores 16 --snakefile Snakefile_dream --configfile 10Mb/config.yaml  ## Everything in /dev/shm
+11.16	96884	0	snakemake --cores 16 --snakefile Snakefile_dream --configfile 10Mb/config.yaml  ## Smaller IBF
+10.53	97100	0	snakemake --cores 16 --snakefile Snakefile_dream --configfile 10Mb/config.yaml

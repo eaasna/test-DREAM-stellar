@@ -1,0 +1,1 @@
+96017.53	21543272	0	snakemake --cores 16 --snakefile Snakefile_dream --configfile 2Gb/config.yaml --config error_rate=0.05
