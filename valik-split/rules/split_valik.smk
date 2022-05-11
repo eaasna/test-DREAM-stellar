@@ -29,7 +29,7 @@ rule valik_build:
 		fasta = expand("/dev/shm/seg/seg_{bin}.fasta", bin = bin_list),
 		meta = "split/bin_paths.txt"
 	output: 
-		ibf = "valik.index"
+		ibf = temp("/dev/shm/valik.index")
 	threads: 8
 	shell:
 		"""
@@ -46,7 +46,7 @@ rule bin_query_files:
 
 rule valik_search:
 	input:
-		ibf = "valik.index",
+		ibf = "/dev/shm/valik.index",
 		query = "queries/e{er}.fastq",
 		bin_queries = "e{er}_bin_query_paths.txt"
 	output:
