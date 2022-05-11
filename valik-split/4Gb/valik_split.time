@@ -1,1 +1,2 @@
 13.33	4201788	0	valik split ref.fasta --reference-output split/ref.txt --segment-output split/seg.txt --overlap 250 --bins 64
+13.38	4200996	0	valik split ref.fasta --reference-output split/ref.txt --segment-output split/seg.txt --overlap 250 --bins 64

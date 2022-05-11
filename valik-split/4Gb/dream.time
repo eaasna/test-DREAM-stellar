@@ -1,1 +1,2 @@
 464.23	19921344	0	snakemake --cores 16 --snakefile Snakefile_dream --configfile 4Gb/config.yaml
+434.60	19926152	0	snakemake --cores 16 --snakefile Snakefile_dream --configfile 4Gb/config.yaml

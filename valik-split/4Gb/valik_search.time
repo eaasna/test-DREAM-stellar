@@ -1,1 +1,2 @@
 60.30	19921344	0	valik search --index valik.index --bin-query e0.05_bin_query_paths.txt --query queries/e0.05.fastq --error 2 --pattern 100 --overlap 98 --threads 8 --output search/e0.05.out
+48.45	19926152	0	valik search --index /dev/shm/valik.index --bin-query e0.05_bin_query_paths.txt --query queries/e0.05.fastq --error 2 --pattern 100 --overlap 98 --threads 8 --output search/e0.05.out
