@@ -1,0 +1,1 @@
+244.47	40748780	0	valik search --time --index /dev/shm/1024/valik.index --bin-query 1024/e0.05_bin_query_paths.txt --query 1024/queries/e0.05.fastq --error 2 --pattern 100 --overlap 98 --threads 16 --output 1024/search/e0.05.out

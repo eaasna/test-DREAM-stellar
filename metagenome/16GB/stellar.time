@@ -1,0 +1,1 @@
+32001.50	291750336	0	snakemake --cores 16 --snakefile Snakefile_stellar --configfile 16GB/config.yaml --config error_rate=0.05 ibf_bins=1024 --
