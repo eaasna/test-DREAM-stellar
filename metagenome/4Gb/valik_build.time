@@ -1,4 +1,5 @@
+248.38	616672	0	valik build 8/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/8/valik.index --size 500M
 42.09	653712	0	valik build 64/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/64/valik.index --size 500M
-38.02	548804	0	valik build 1024/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/1024/valik.index --size 500M
+25.07	549104	0	valik build 1024/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/1024/valik.index --size 500M
 56.54	537048	0	valik build 8192/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/8192/valik.index --size 500M
 70.91	537912	0	valik build 16384/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/16384/valik.index --size 500M

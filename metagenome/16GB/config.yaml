@@ -4,22 +4,16 @@ workdir: "16GB/"
 reference_length: 2000000000
 match_count: 8192000 # per error rate
 haplotypes: 8
-match_length: 150
+match_length: 250
 
 #-------- Shared search parameters --------
 ibf_bins: 1024
-minLen: 80
-
-  # total size of reference bins: 16GB
-  # TODO: increase (w, k) parameters to reduce spurious matches
+minLen: 100
 
 #-------- Valik parameters --------
-window: 15
-kmer_length: 13
+window: 17
+kmer_length: 15
 ibf_size: "2G"
-pattern_overlap: 10
-thresh_tau: 0.75
-thresh_pmax: 0.5
-
-#-------- Evaluation parameters --------
-repeat: 1
+pattern_overlap: 98
+  #thresh_tau: 0.75
+  #thresh_pmax: 0.5
