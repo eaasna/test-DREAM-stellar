@@ -1,9 +1,20 @@
-rule gather_average_runtime:
+rule match_list:
 	input:
-		expand("{b}/dream_stellar/bin_{bin}_e{er}.gff", b = bins, bin = bin_list, er = er_rate),	
-		expand("{b}/stellar/bin_{bin}_e{er}.gff", b = bins, bin = bin_list, er = er_rate)
+		"{b}/stellar/e{er}.gff"	
 	output:
-		"table1.tsv"
+		"{b}/stellar/e{er}.txt"
 	script:
-		"../scripts/runtime_mean.py"
+		"""
+		cut -d ";" -f 1 {input} | awk "{{print \$1,\$9}}" > {output}
+		"""
+
+rule find_accuracy:
+	input:
+		stellar_matches = "{b}/stellar/e{er}.txt",
+		valik_matches = "{b}/search/e{er}.out"
+	output:
+		expand("{{b}}/e{{er}}_p{p}_search_accuracy.tsv", p = p_max)
+	script:
+		"../scripts/assess_accuracy.py"
+		
 	

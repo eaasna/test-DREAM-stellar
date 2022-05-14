@@ -1,1 +1,10 @@
+# p_max = 0.15
 1.71	102600	0	parallel --jobs 16
+
+# for p_max in [0.15, 0.25, 0.5, 0.75, 1.0]
+
+362.46	1409948	0	parallel --jobs 16
+401.20	1528512	0	parallel --jobs 16
+436.14	1845684	0	parallel --jobs 16
+433.98	1845264	0	parallel --jobs 16
+451.03	1842776	0	parallel --jobs 16
