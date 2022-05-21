@@ -5,8 +5,6 @@ rule valik_build:
 	output: 
 		ibf = temp("/dev/shm/{b}/valik.index")
 	threads: 16
-	benchmark:
-		"benchmarks/{b}/valik/build.txt"
 	shell:
 		"""
 		( /usr/bin/time -a -o valik_build.time -f "%e\t%M\t%x\t%C" valik build {input.meta} --threads {threads} --window {w} --kmer {k} --output {output.ibf} --size {size} )
@@ -23,11 +21,9 @@ rule valik_search:
 	threads: 16
 	params:
 		e = get_search_error_count
-	benchmark:
-		"benchmarks/{b}/valik/search_e{er}.txt"
 	shell:
 		"""
 		mkdir -p /dev/shm/{wildcards.b}/queries
-		( /usr/bin/time -a -o valik_search.time -f "%e\t%M\t%x\t%C" valik search --time --index {input.ibf} --bin-query {input.bin_queries} --query {input.query} --error {params.e} --pattern {pattern} --overlap {overlap} --threads {threads} --output {output.read_bins} )
+		( /usr/bin/time -a -o valik_search.time -f "%e\t%M\t%x\t%C" valik search --time --p_max {p_max} --index {input.ibf} --bin-query {input.bin_queries} --query {input.query} --error {params.e} --pattern {pattern} --overlap {overlap} --threads {threads} --output {output.read_bins} )
 		"""
 		

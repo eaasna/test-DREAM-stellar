@@ -1,0 +1,5 @@
+*/*.err
+*/*.fasta
+*/*.fastq
+*/*bin*.txt
+*/*run*.txt
