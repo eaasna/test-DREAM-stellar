@@ -1,0 +1,13 @@
+147.96	808308	0	valik search --index 60M/valik.index --query queries/e0.05.fastq --error 1 --pattern 50 --overlap 49 --threads 8 --output 60M/e0.05_o49.out
+154.45	762204	0	valik search --index 55M/valik.index --query queries/e0.05.fastq --error 1 --pattern 50 --overlap 49 --threads 8 --output 55M/e0.05_o49.out
+161.54	716836	0	valik search --index 50M/valik.index --query queries/e0.05.fastq --error 1 --pattern 50 --overlap 49 --threads 8 --output 50M/e0.05_o49.out
+169.50	669980	0	valik search --index 45M/valik.index --query queries/e0.05.fastq --error 1 --pattern 50 --overlap 49 --threads 8 --output 45M/e0.05_o49.out
+178.71	624552	0	valik search --index 40M/valik.index --query queries/e0.05.fastq --error 1 --pattern 50 --overlap 49 --threads 8 --output 40M/e0.05_o49.out
+192.70	577892	0	valik search --index 35M/valik.index --query queries/e0.05.fastq --error 1 --pattern 50 --overlap 49 --threads 8 --output 35M/e0.05_o49.out
+210.21	532284	0	valik search --index 30M/valik.index --query queries/e0.05.fastq --error 1 --pattern 50 --overlap 49 --threads 8 --output 30M/e0.05_o49.out
+233.73	486332	0	valik search --index 25M/valik.index --query queries/e0.05.fastq --error 1 --pattern 50 --overlap 49 --threads 8 --output 25M/e0.05_o49.out
+270.36	453428	0	valik search --index 20M/valik.index --query queries/e0.05.fastq --error 1 --pattern 50 --overlap 49 --threads 8 --output 20M/e0.05_o49.out
+361.07	1170788	0	valik search --index 15M/valik.index --query queries/e0.05.fastq --error 1 --pattern 50 --overlap 49 --threads 8 --output 15M/e0.05_o49.out
+831.78	1842032	0	valik search --index 10M/valik.index --query queries/e0.05.fastq --error 1 --pattern 50 --overlap 49 --threads 8 --output 10M/e0.05_o49.out
+976.67	1797268	0	valik search --index 5M/valik.index --query queries/e0.05.fastq --error 1 --pattern 50 --overlap 49 --threads 8 --output 5M/e0.05_o49.out
+994.73	1760544	0	valik search --index 1M/valik.index --query queries/e0.05.fastq --error 1 --pattern 50 --overlap 49 --threads 8 --output 1M/e0.05_o49.out

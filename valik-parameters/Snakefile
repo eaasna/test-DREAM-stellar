@@ -28,6 +28,7 @@ w = config["window"]
 k = config["kmer_length"]
 overlap = config["pattern_overlap"]
 
+import math
 # search with lesser error rate than the reads were simulated with
 def get_search_error_count(wildcards):
         if (float(wildcards.er) <= 0.025):

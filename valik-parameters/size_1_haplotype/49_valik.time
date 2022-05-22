@@ -1,0 +1,12 @@
+Command exited with non-zero status 255
+0.01	5972	255	valik search --index 35M/valik.index --query queries/e0.05.fastq --error 1 --pattern 50 --overlap 49 --threads 8 --output 35M/e0.05_o49.out
+103.36	671592	0	valik search --index 35M/valik.index --query queries/e0.05.fastq --bin-query e0.05_bin_query_paths.txt --error 1 --pattern 50 --overlap 49 --threads 8 --output 35M/e0.05_o49.out
+Command terminated by signal 2
+324.13	4224776	0	valik search --index 5M/valik.index --query queries/e0.05.fastq --bin-query e0.05_bin_query_paths.txt --error 1 --pattern 50 --overlap 49 --threads 8 --output 5M/e0.05_o49.out
+Command exited with non-zero status 255
+0.00	5832	255	valik search --index 5M/valik.index --query queries/e0.05.fastq --bin-query e0.05_bin_query_paths.txt --error 1 --pattern 50 --overlap 49 --threads 8 --output 5M/e0.05_o49.out
+Command terminated by signal 2
+302.26	897172	0	valik search --index 5M/valik.index --query queries/e0.05.fastq --error 1 --pattern 50 --overlap 49 --threads 8 --output 5M/e0.05_o49.out
+Command terminated by signal 2
+11.18	63488	0	valik search --index 5M/valik.index --query queries/e0.05.fastq --error 1 --pattern 50 --overlap 49 --threads 8 --output 5M/e0.05_o49.out
+614.84	1800336	0	valik search --index 5M/valik.index --query queries/e0.05.fastq --error 1 --pattern 50 --overlap 49 --threads 8 --output 5M/e0.05_o49.out

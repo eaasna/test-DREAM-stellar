@@ -1,0 +1,22 @@
+workdir: "size_1_haplotype_kmers/"
+
+#--------- Parameter to test --------
+size_list: ["1M", "5M", "10M", "15M", "20M", "25M", "30M", "35M", "40M", "45M", "50M", "55M", "60M"]
+# reference size is 83M
+
+#--------- Simulation parameters --------
+reference_length: 80000000
+match_count: 512000 # per error rate
+haplotypes: 1
+match_length: 150
+sim_er_rate: 0.05
+
+#-------- Shared search parameters --------
+ibf_bins: 64
+minLen: 50
+
+#-------- Valik parameters --------
+window: 13
+kmer_length: 13
+pattern_overlap: 49
+
