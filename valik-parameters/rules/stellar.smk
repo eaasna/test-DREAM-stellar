@@ -13,7 +13,10 @@ rule stellar:
 		query = "queries/e{sim_errors}.fasta"
 	output:
 		temp("stellar/bin_{bin}_e{sim_errors}.gff")
+<<<<<<< HEAD
 	threads: 4
+=======
+>>>>>>> 4151ee7067984be479aef200d1ec2ca8cbea6513
 	conda:
 		"../envs/stellar.yaml"
 	params:

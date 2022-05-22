@@ -14,7 +14,7 @@ rule valik_search:
 		query = "queries/e{sim_errors}.fastq"
 	output:
 		"{size}/e{sim_errors}_o{o}.out"
-	threads: 16
+	threads: 4
 	shell:
 		"""
 		/usr/bin/time -a -o {wildcards.o}_valik.time -f "%e\t%M\t%x\t%C" valik search --index {input.ibf} --query {input.query} --error {search_errors} --pattern {pattern} --overlap {wildcards.o} --threads {threads} --output {output}
