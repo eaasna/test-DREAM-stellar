@@ -1,2 +1,0 @@
-Command exited with non-zero status 1
-359.22	25238084	1	snakemake --cores 16 --snakefile Snakefile_stellar --configfile 100Mb/config.yaml

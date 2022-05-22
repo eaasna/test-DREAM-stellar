@@ -1,3 +1,5 @@
-scripts/Liivakast.ipynb
-*/rep*/*
+*/*.err
 */benchmarks/*
+*/.snakemake/*
+*/*/*.txt
+*/*/*.fasta

@@ -1,16 +1,23 @@
 #---------- INPUT ----------
-sim_er = snakemake.config["er_rate"]
+sim_er = snakemake.config["error_rate"]
+#sim_er = 0.05
 search_er = sim_er - 0.025
 
 bins = snakemake.config["ibf_bins"]
+#bins = 64
 bin_list = list(range(bins))
 bin_list = [str(bin).zfill(len(str(bins))) for bin in bin_list]
 
 stellar_path = snakemake.input.stellar_matches
+#stellar_path = "../4Gb/64/stellar/e0.05.txt"
 valik_path = snakemake.input.valik_matches
+#valik_path = "../4Gb/64/search/e0.05.out"
+
+pmax = snakemake.config["threshold_p"]
 
 #---------- OUTPUT ----------
 outfile = snakemake.output[0]
+#outfile = "../4Gb/64/search_accuracy.tsv"
 
 import pandas as pd
 import numpy as np
@@ -22,7 +29,7 @@ def get_stellar_df(stellar_path):
     stellar_df.columns = ["Stellar-BIN", "QID"]
     stellar_df["Stellar-BIN"] = pd.to_numeric(stellar_df["Stellar-BIN"].str.split("_").str[1])
     stellar_df = stellar_df[["QID", "Stellar-BIN"]].drop_duplicates()
-    return stellar_bin_df
+    return stellar_df
 
 def get_valik_df(valik_path):
     valik_df = pd.read_csv(valik_path, sep="\t", header=None)
@@ -37,10 +44,10 @@ def get_valik_df(valik_path):
     return valik_df
 
 import os.path
-stellar_df = get_stellar_df(workdir)
+stellar_df = get_stellar_df(stellar_path)
 valik_df = get_valik_df(valik_path)
 with open(outfile, 'a') as f:
-    f.write("IBF-size\tTP\tFP\tFN\tPrecision\tRecall\n")
+    f.write("p_max\tTP\tFP\tFN\tPrecision\tRecall\n")
 
     TP_df = pd.merge(valik_df, stellar_df,  how='inner', left_on=["QID","Valik-BIN"], right_on = ["QID","Stellar-BIN"])
     TP = len(TP_df["QID"])
@@ -55,7 +62,7 @@ with open(outfile, 'a') as f:
 
     recall = TP / (TP + FN)
 
-    f.write(size + "\t" + str(TP) + "\t" + str(FP) + "\t" + str(FN) + "\t" + str(precision) 
+    f.write(str(pmax) + "\t" + str(TP) + "\t" + str(FP) + "\t" + str(FN) + "\t" + str(precision) 
             + "\t" + str(recall) + "\n")
 
 f.close()

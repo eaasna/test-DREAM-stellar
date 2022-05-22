@@ -18,4 +18,3 @@ window: 17
 kmer_length: 15
 ibf_size: "500M" # 1/4th of the reference size
 pattern_overlap: 98
-

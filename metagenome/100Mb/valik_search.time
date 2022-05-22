@@ -1,2 +1,0 @@
-176.64	21352440	0	valik search --index /dev/shm/rep0/valik.index --bin-query rep0/e0.05_bin_query_paths.txt --query rep0/queries/e0.05.fastq --error 1 --pattern 50 --overlap 10 --threads 16 --output rep0/search/e0.05.out
-13.09	7279776	0	valik search --index /dev/shm/rep0/valik.index --bin-query rep0/e0.05_bin_query_paths.txt --query rep0/queries/e0.05.fastq --error 1 --pattern 50 --overlap 10 --threads 16 --output rep0/search/e0.05.out

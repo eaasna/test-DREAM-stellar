@@ -13,6 +13,7 @@ w = config["window"]
 k = config["kmer_length"]
 size = config["ibf_size"]
 overlap = config["pattern_overlap"]
+p_max = config["threshold_p"]
 
 #--------\ Shared functions --------
 import random
@@ -41,8 +42,6 @@ def get_search_error_rate(wildcards):
                 a = 1e-5          # but 1e-7 and 1e-6 lead to invalid pointer error
                 return f'{a:.5f}' # supress scientific notation 
         return 0.025
-
-#-------- Shared functions \--------
 
 rule make_all:
 	input:
