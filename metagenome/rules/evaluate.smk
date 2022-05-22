@@ -3,7 +3,7 @@ rule match_list:
 		"{b}/stellar/e{er}.gff"	
 	output:
 		"{b}/stellar/e{er}.txt"
-	script:
+	shell:
 		"""
 		cut -d ";" -f 1 {input} | awk "{{print \$1,\$9}}" > {output}
 		"""
