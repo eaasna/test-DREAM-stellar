@@ -9,7 +9,6 @@ reference_length: 80000000
 match_count: 512000 # per error rate
 haplotypes: 1
 match_length: 150
-sim_er_rate: 0.05
 
 #-------- Shared search parameters --------
 ibf_bins: 64

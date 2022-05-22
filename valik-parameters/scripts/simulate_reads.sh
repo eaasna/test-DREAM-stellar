@@ -9,9 +9,8 @@ HAPLOTYPE_COUNT=$2
 
 # local match parameters
 ERRORS=$3
-ERROR_RATE=$4
-READ_LENGTH=$5
-READ_COUNT=$6
+READ_LENGTH=$4
+READ_COUNT=$5
 
 bin_dir=bins
 info_dir=info
@@ -28,7 +27,7 @@ $BINARY_DIR/generate_reads \
     $(seq -f "bins/bin_%0${#BIN_NUMBER}g.fasta" 0 1 $((BIN_NUMBER-1))) 
 
 cat $read_dir/*.fastq > $read_dir/all
-mv $read_dir/all $read_dir/e$ERROR_RATE.fastq
+mv $read_dir/all $read_dir/e$ERRORS.fastq
 rm $read_dir/bin_*
 
 # seq -f "queries/bin_%0${#BIN_NUMBER}g_e${ERROR_RATE}.fasta" 0 1 $((BIN_NUMBER-1)) > e$ERROR_RATE\_bin_query_paths.txt
