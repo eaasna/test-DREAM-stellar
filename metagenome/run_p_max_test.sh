@@ -11,8 +11,8 @@ bins=64
 for p in 1.0
 do
 ( /usr/bin/time -a -o $size/p$p\_dream.time -f "%e\t%M\t%x\t%C" snakemake --forceall --cores 16 --snakefile Snakefile_dream --configfile $size/config.yaml --config threshold_p=$p error_rate=$er ibf_bins=$bins -- ) 2> $size/dream.err
+#snakemake --cores 1 --snakefile Snakefile_evaluate --configfile $size/config.yaml --config threshold_p=$p_max error_rate=$er ibf_bins=$bins --
 rm -r /dev/shm/$bins/queries
 done
 
-#snakemake --cores 1 --snakefile Snakefile_evaluate --configfile $size/config.yaml --config threshold_p=$p_max error_rate=$er ibf_bins=$bins --
 
