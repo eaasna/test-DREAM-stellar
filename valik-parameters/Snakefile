@@ -29,13 +29,12 @@ w = config["window"]
 k = config["kmer_length"]
 overlap = config["pattern_overlap"]
 
-search_errors = 2
+search_errors = 1
 search_error_rate = search_errors / pattern
 
 rule make_all:
 	input:
-		expand("{size}/e{sim_er}_o{o}.out", size = ibf_sizes, sim_er = sim_errors, o=overlap),
-		expand("matches/bin_{bin}_e{sim_er}.txt", bin = bin_list, sim_er = sim_errors)
+		"search_accuracy.tsv"
 	shell:
 		"echo 'Done'"
 
