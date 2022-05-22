@@ -8,7 +8,6 @@ reference_length: 10000000
 match_count: 512000 # per query file and error rate
 haplotypes: 8
 match_length: 150
-sim_er_rate: 0.05
 
 #-------- Shared search parameters --------
 size_list: ["10M"] # reference size is 83M

@@ -11,8 +11,6 @@ rule simulate_reads:
 	input:
 		ref = expand("bins/bin_{bin}.fasta", bin = bin_list)
 	output:
-		matches = "queries/e{er}.fastq"
-	params: 
-		errors = get_simulation_error_count
+		matches = "queries/e{sim_errors}.fastq"
 	shell:      
-		"../scripts/simulate_reads.sh {bins} {ht} {params.errors} {wildcards.er} {match_len} {matches}"
+		"../scripts/simulate_reads.sh {bins} {ht} {wildcards.sim_errors} {match_len} {matches}"

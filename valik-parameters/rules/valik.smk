@@ -11,14 +11,12 @@ rule valik_build:
 rule valik_search:
 	input:
 		ibf = "{size}/valik.index",
-		query = "queries/e{er}.fastq"
+		query = "queries/e{sim_errors}.fastq"
 	output:
-		"{size}/e{er}_o{o}.out"
+		"{size}/e{sim_errors}_o{o}.out"
 	threads: 16
-	params:
-		e = get_search_error_count
 	shell:
 		"""
-		/usr/bin/time -a -o {wildcards.o}_valik.time -f "%e\t%M\t%x\t%C" valik search --index {input.ibf} --query {input.query} --error {params.e} --pattern {pattern} --overlap {wildcards.o} --threads {threads} --output {output}
+		/usr/bin/time -a -o {wildcards.o}_valik.time -f "%e\t%M\t%x\t%C" valik search --index {input.ibf} --query {input.query} --error {search_errors} --pattern {pattern} --overlap {wildcards.o} --threads {threads} --output {output}
 		"""	
 
