@@ -23,3 +23,37 @@ Command terminated by signal 2
 13.48	1231580	0	valik search --index 10M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 8 --output 10M/e8_o49.out
 40.41	1800432	0	valik search --index 5M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 8 --output 5M/e8_o49.out
 42.87	1763652	0	valik search --index 1M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 8 --output 1M/e8_o49.out
+Command exited with non-zero status 255
+0.06	5004	255	valik search --index 55M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 55M/e8_o49.out
+Command exited with non-zero status 255
+0.07	4984	255	valik search --index 50M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 50M/e8_o49.out
+Command exited with non-zero status 255
+0.07	4916	255	valik search --index 45M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 45M/e8_o49.out
+Command exited with non-zero status 255
+0.06	4960	255	valik search --index 60M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 60M/e8_o49.out
+10.50	512092	0	valik search --index 50M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 50M/e8_o49.out
+11.12	537828	0	valik search --index 55M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 55M/e8_o49.out
+11.12	563352	0	valik search --index 60M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 60M/e8_o49.out
+11.90	486808	0	valik search --index 45M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 45M/e8_o49.out
+7.91	460896	0	valik search --index 40M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 40M/e8_o49.out
+8.35	435432	0	valik search --index 35M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 35M/e8_o49.out
+9.50	409604	0	valik search --index 30M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 30M/e8_o49.out
+9.55	384056	0	valik search --index 25M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 25M/e8_o49.out
+10.54	360628	0	valik search --index 20M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 20M/e8_o49.out
+12.82	436176	0	valik search --index 15M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 15M/e8_o49.out
+24.26	1183096	0	valik search --index 10M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 10M/e8_o49.out
+78.21	1778904	0	valik search --index 5M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 5M/e8_o49.out
+84.34	1746268	0	valik search --index 1M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 1M/e8_o49.out
+10.38	563312	0	valik search --index 60M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 60M/e8_o49.out
+10.59	514116	0	valik search --index 50M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 50M/e8_o49.out
+10.85	537812	0	valik search --index 55M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 55M/e8_o49.out
+11.03	486628	0	valik search --index 45M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 45M/e8_o49.out
+8.13	461008	0	valik search --index 40M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 40M/e8_o49.out
+8.70	435408	0	valik search --index 35M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 35M/e8_o49.out
+9.17	411948	0	valik search --index 30M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 30M/e8_o49.out
+9.90	384276	0	valik search --index 25M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 25M/e8_o49.out
+11.01	358768	0	valik search --index 20M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 20M/e8_o49.out
+12.66	435044	0	valik search --index 15M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 15M/e8_o49.out
+23.96	1190768	0	valik search --index 10M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 10M/e8_o49.out
+79.99	1779304	0	valik search --index 5M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 5M/e8_o49.out
+82.63	1752840	0	valik search --index 1M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 49 --threads 4 --output 1M/e8_o49.out

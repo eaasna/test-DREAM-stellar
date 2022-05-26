@@ -6,7 +6,9 @@ rule valik_build:
 		ibf = temp("{size}/valik.index")
 	threads: 16
 	shell:
-		"valik build {input.meta} --threads {threads} --window {w} --kmer {k} --output {output.ibf} --size {wildcards.size}"
+		"""
+		/usr/bin/time -a -o build.time -f "%e\t%M\t%x\t%C" valik build {input.meta} --threads {threads} --window {w} --kmer {k} --output {output.ibf} --size {wildcards.size}
+		"""
 
 rule valik_search:
 	input:
