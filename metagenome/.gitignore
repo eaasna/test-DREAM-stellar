@@ -3,3 +3,4 @@
 */.snakemake/*
 */*/*.txt
 */*/*.fasta
+*data/*
