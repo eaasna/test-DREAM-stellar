@@ -6,7 +6,7 @@ rule valik_split_ref:
 		seg_meta = "split/seg.txt"
 	shell:
 		"""
-		( /usr/bin/time -a -o valik_split.time -f "%e\t%M\t%x\t%C" valik split {input} --reference-output {output.ref_meta} --segment-output {output.seg_meta} --overlap {max_len} --bins {bins})
+		( /usr/bin/time -a -o valik_split.time -f "%e\t%M\t%x\t%C" valik split {input} --ref-meta {output.ref_meta} --seg-meta {output.seg_meta} --overlap {max_len} --bins {bins})
 		"""
 
 rule valik_build:
@@ -19,7 +19,7 @@ rule valik_build:
 	threads: 8
 	shell:
 		"""
-		( /usr/bin/time -a -o valik_build.time -f "%e\t%M\t%x\t%C" valik build {input.fasta} --seg-path {input.seg_meta} --ref-meta {input.ref_meta} --from-segments --window {w} --kmer {k} --output {output.ibf} --size {size})
+		( /usr/bin/time -a -o valik_build.time -f "%e\t%M\t%x\t%C" valik build {input.fasta} --seg-meta {input.seg_meta} --ref-meta {input.ref_meta} --from-segments --window {w} --kmer {k} --output {output.ibf} --size {size})
 		"""
 
 rule valik_search:
@@ -34,7 +34,7 @@ rule valik_search:
 		e = get_search_error_count
 	shell:
 		"""
-		( /usr/bin/time -a -o valik_search.time -f "%e\t%M\t%x\t%C" valik search --cart_max_capacity 1000 --index {input.ibf} --seg-path {input.seg_meta} --query {input.query} --error {params.e} --pattern {pattern} --overlap {overlap} --threads {threads} --output {output.read_bins})
+		( /usr/bin/time -a -o valik_search.time -f "%e\t%M\t%x\t%C" valik search --cart_max_capacity 1000 --index {input.ibf} --seg-meta {input.seg_meta} --query {input.query} --error {params.e} --pattern {pattern} --overlap {overlap} --threads {threads} --output {output.read_bins})
 		"""
 		
 rule valik_consolidate:
@@ -49,5 +49,5 @@ rule valik_consolidate:
 		e = get_search_error_count
 	shell:
 		"""
-		( /usr/bin/time -a -o valik_consolidate.time -f "%e\t%M\t%x\t%C" valik consolidate --input {input.alignment} --meta-path {input.ref_meta} --output {output})
+		( /usr/bin/time -a -o valik_consolidate.time -f "%e\t%M\t%x\t%C" valik consolidate --input {input.alignment} --ref-meta {input.ref_meta} --output {output})
 		"""
