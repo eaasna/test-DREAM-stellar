@@ -16,3 +16,6 @@ kmer_length: 13
 ibf_size: "2M"
 pattern_overlap: 98
 
+cart_max_capacity: 100
+max_queued_carts: 4
+
