@@ -14,6 +14,8 @@ k = config["kmer_length"]
 size = config["ibf_size"]
 overlap = config["pattern_overlap"]
 max_len = config["match_length"]
+cart_capacity = config["cart_max_capacity"]
+queued_carts = config["max_queued_carts"]
 
 #--------\ Shared functions --------
 import random
