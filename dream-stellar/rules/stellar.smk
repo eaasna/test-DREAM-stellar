@@ -16,9 +16,5 @@ rule stellar_search:
 		e = get_search_error_rate
 	shell:
 		"""
-		( /usr/bin/time -a -o stellar.time -f "%e\t%M\t%x\t%C" /home/evelin/DREAM-Stellar/stellar/build/bin/stellar --verbose {input.ref} {input.query} -e {params.e} -l {pattern}  -o {output})
+		( /usr/bin/time -a -o stellar.time -f "%e\t%M\t%x\t%C" ../../../bin/miniconda3/envs/snakemake/bin/stellar -a dna --verbose {input.ref} {input.query} -e {params.e} -l {pattern}  -o {output})
 		"""
-	
-	#	"""
-	#	( /usr/bin/time -a -o stellar.time -f "%e\t%M\t%x\t%C" stellar --verbose {input.ref} {input.query} --sequenceOfInterest 0 --segmentBegin 0 --segmentEnd 10000 -e {params.e} -l {pattern} -a dna -o {output})
-#		"""
