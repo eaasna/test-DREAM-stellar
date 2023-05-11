@@ -12,5 +12,5 @@ rule simulate_reads:
 	output:
 		matches = "queries/e{er_rate}.fastq"
 	shell:      
-		"../scripts/simulate_local_matches.sh {wildcards.er_rate} {matches} {match_len}"
+		"../scripts/simulate_local_matches.sh {wildcards.er_rate} {matches} {match_len} {ref_len}"
 
