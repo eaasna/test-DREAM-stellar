@@ -1,10 +1,13 @@
 scripts/Liivakast.ipynb
 */benchmarks/*
-10*/*
 .snakemake/*
 scripts/.ipynb_checkpoints/*
 */*.err
 */*.fasta
 */*.fastq
-*/*bin*.txt
-*/*run*.txt
+
+*/search/*
+*/split/*
+*/queries/*
+*/stellar/*
+*/*.time

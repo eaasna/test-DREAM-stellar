@@ -1,7 +1,7 @@
 workdir: "human/"
 
 #--------- Simulation parameters --------
-reference_length: 3000000000
+reference_length: 3088269832
 match_length: 250
   #match_count: 1703936 # per error rate
 match_count: 170393 # per error rate
@@ -16,5 +16,5 @@ window: 17
 kmer_length: 15
 ibf_size: "1500m"
 pattern_overlap: 98
-cart_max_capacity: 65
+cart_max_capacity: 1300
 max_queued_carts: 640
