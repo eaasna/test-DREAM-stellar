@@ -25,7 +25,7 @@ rule valik_build:
 		seg_meta = "split/seg.txt"
 	output: 
 		ibf = temp("/dev/shm/valik.index")
-	threads: 16
+	threads: 8
 	shell:
 		"""
 		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-build\t{threads}" valik build {input.fasta} --seg-meta {input.seg_meta} --ref-meta {input.ref_meta} --from-segments --window {w} --kmer {k} --output {output.ibf} --size {size} --threads {threads})
@@ -39,7 +39,7 @@ rule valik_distributed_search:
 		seg_meta = "split/seg.txt"
 	output:
 		read_bins = "search/distributed_e{er}.gff"
-	threads: 8
+	threads: search_threads
 	params:
 		e = get_search_error_count
 	shell:
@@ -70,7 +70,7 @@ rule valik_local_search:
 		seg_meta = "split/seg.txt"
 	output:
 		read_bins = "search/local_e{er}.gff"
-	threads: 16
+	threads: search_threads
 	params:
 		e = get_search_error_count
 	shell:

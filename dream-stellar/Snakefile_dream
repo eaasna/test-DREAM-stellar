@@ -1,6 +1,9 @@
 workdir: config["workdir"]
 
 #-------- Shared search parameters --------
+search_threads = 8
+
+#-------- Shared search parameters --------
 bins = config["ibf_bins"]
 bin_list = list(range(int(bins)))
 bin_list = [str(bin).zfill(len(str(bins))) for bin in bin_list]
