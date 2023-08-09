@@ -26,5 +26,5 @@ rule stellar_search:
 		e = get_search_error_rate
 	shell:
 		"""
-		( /usr/bin/time -a -o stellar.time -f "%e\t%M\t%x\t%stellar-search" ../../../bin/miniconda3/envs/snakemake/bin/stellar -a dna --verbose {input.ref} {input.query} -e {params.e} -l {pattern}  -o {output})
+		( /usr/bin/time -a -o stellar.time -f "%e\t%M\t%x\tstellar-search" ../../../bin/miniconda3/envs/snakemake/bin/stellar -a dna --verbose {input.ref} {input.query} -e {params.e} -l {pattern}  -o {output})
 		"""

@@ -11,3 +11,4 @@ scripts/.ipynb_checkpoints/*
 */queries/*
 */stellar/*
 */*.time
+*.gff*
