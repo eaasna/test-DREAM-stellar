@@ -15,7 +15,7 @@ ibf_bins: 64
 minLen: 50
 
 #-------- Valik parameters --------
-window: 15
-kmer_length: 13
+window: 17
+kmer_length: 15
 pattern_overlap: 49
 
