@@ -1,0 +1,8 @@
+*.fasta
+*.fastq
+*.gff
+*.txt
+*/ground_truth/*
+*/evaluation/*
+*/.snakemake/*
+*/.ipynb_checkpoints/*
