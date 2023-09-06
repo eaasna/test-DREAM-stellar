@@ -30,7 +30,7 @@ done
 echo "Simulating reference of length $REF_LENGTH with seed $REF_SEED"
 mason_genome -l $REF_LENGTH -o ${3} -s $REF_SEED
 
-
-sv_rate=0.0001
-echo "Simulating a related genome"
-mason_variator -s $REF_SEED --in-reference ${3} --out-vcf query.vcf --out-fasta ${4} --snp-rate 0.001 --small-indel-rate $sv_rate --sv-indel-rate $sv_rate --sv-inversion-rate $sv_rate --sv-translocation-rate $sv_rate --sv-duplication-rate $sv_rate
+touch ${4}
+#sv_rate=0.0001
+#echo "Simulating a related genome"
+#mason_variator -s $REF_SEED --in-reference ${3} --out-vcf query.vcf --out-fasta ${4} --snp-rate 0.001 --small-indel-rate $sv_rate --sv-indel-rate $sv_rate --sv-inversion-rate $sv_rate --sv-translocation-rate $sv_rate --sv-duplication-rate $sv_rate

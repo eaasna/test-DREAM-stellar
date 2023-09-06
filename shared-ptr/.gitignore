@@ -1,0 +1,10 @@
+.snakemake/*
+*/*.fasta
+*/*.fai
+*/*.vcf
+
+*/search/*
+*/split/*
+*/queries/*
+*/*.time
+*.gff*

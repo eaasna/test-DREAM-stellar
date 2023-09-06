@@ -2,10 +2,13 @@ workdir: config["workdir"]
 
 #-------- Simulation parameters --------
 ref_len = config["reference_length"]
+match_len = config["match_length"]
+matches = config["match_count"]
+er_rate = config["error_rate"]
 
 #-------- Shared search parameters --------
 search_threads = 8
-query_seg_count = config["query_seg_count"]
+#query_seg_count = config["query_seg_count"]
 bins = config["ibf_bins"]
 bin_list = list(range(int(bins)))
 bin_list = [str(bin).zfill(len(str(bins))) for bin in bin_list]
@@ -26,38 +29,42 @@ queued_carts = config["max_queued_carts"]
 import random
 import math
 
+
+#--------\ Executables --------
+VALIK_SPLIT="/group/ag_abi/evelina/valik/build_split/bin/valik"
+VALIK="/group/ag_abi/evelina/valik/build/bin/valik"
+
 # simulation needs unique seeds otherwise the same sequence is simulated
 def get_seed(wildcards):
         return random.randint(0, 1e6)
 
 # search with no more than 0.025 error rate because of k-mer lemma limitations
 def get_search_error_count(wildcards):
-        if (float(wildcards.er) <= 0.025):
+        if (float(wildcards.er) <= 0.02):
                 return 0
-        e = int(round(0.025 * pattern))
+        e = int(round(0.02 * pattern))
         return e
 
 def get_search_error_rate(wildcards):
 # stellar does not allow 0 error rate
-        if (float(wildcards.er) <= 0.025):
+        if (float(wildcards.er) <= 0.02):
                 # minimum allowed error rate should be 1e-7
                 a = 1e-5          # but 1e-7 and 1e-6 lead to invalid pointer error
                 return f'{a:.5f}' # supress scientific notation 
-        return 0.025
+        return 0.02
 
 #-------- Shared functions \--------
 
 rule make_all:
 	input:
-		expand("search/consolidated_distributed_e{er}.gff", er = er_rate),
-		expand("search/consolidated_local_e{er}.gff", er = er_rate),
+		expand("search/consolidated_e{er}.gff", er = er_rate),
+		expand("search/consolidated_shared_ptr_e{er}.gff", er = er_rate),
 		expand("search/stellar_e{er}.gff", er = er_rate)
 	shell:
 		"echo 'Done'"
 
 include: "rules/simulate.smk"
 include: "rules/valik_preprocess.smk"
-include: "rules/dream_distributed.smk"
-include: "rules/dream_local.smk"
+include: "rules/dream.smk"
+include: "rules/dream_shared_ptr.smk"
 include: "rules/stellar.smk"
-

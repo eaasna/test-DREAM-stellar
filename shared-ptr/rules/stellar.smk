@@ -6,10 +6,17 @@ f.write("#### LOG ####\n")
 f.write("Time\tMemory\tExitcode\tCommand\tThreads\n")
 f.close()
 
+rule convert_query:
+	input:
+		query = "queries/e{er}.fastq"
+	output:
+		query = "queries/e{er}.fasta"
+	shell:
+		"sed -n '1~4s/^@/>/p;2~4p' {input} > {output}"
 rule stellar_search:
 	input:
 		ref = "ref.fasta",
-		query = "query.fasta"
+		query = "queries/e{er}.fasta"
 	output:
 		"search/stellar_e{er}.gff"
 	params:

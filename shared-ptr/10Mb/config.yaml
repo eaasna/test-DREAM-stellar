@@ -1,0 +1,23 @@
+workdir: "10Mb/"
+
+#--------- Simulation parameters --------
+reference_length: 10485760
+match_count: 5240
+match_length: 250
+error_rate: 0.05
+
+#-------- Shared search parameters --------
+ibf_bins: 64
+  #query_seg_count: 1024
+minLen: 100
+
+#-------- Valik parameters --------
+window: 15
+kmer_length: 15
+ibf_size: "4M"
+pattern_overlap: 98
+segment_overlap: 250
+
+cart_max_capacity: 100
+max_queued_carts: 32
+

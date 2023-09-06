@@ -6,8 +6,9 @@ ERROR_RATE=$1
 MATCH_COUNT=$2
 MIN_LEN=$3
 MAX_LEN=$3
+REF_LEN=$4
 
-echo "Sampling $MATCH_COUNT local matches between $MIN_LEN and $MAX_LEN bp with an error rate of $ERROR_RATE"
+echo "Sampling $MATCH_COUNT local matches between $MIN_LEN and $MAX_LEN bp with an error rate of $ERROR_RATE for each sequence in the reference file"
 
 match_dir=queries_e$ERROR_RATE
 mkdir -p $match_dir
@@ -17,6 +18,7 @@ $BINARY_DIR/generate_local_matches \
 	--num-matches $MATCH_COUNT \
 	--min-match-length $MIN_LEN \
 	--max-match-length $MAX_LEN \
+	--ref-len $REF_LEN \
 	ref.fasta
 
 mv $match_dir/ref.fastq queries/e$ERROR_RATE.fastq

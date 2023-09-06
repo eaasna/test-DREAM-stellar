@@ -14,7 +14,7 @@ minLen: 100
 #-------- Valik parameters --------
 window: 17
 kmer_length: 15
-ibf_size: "1000m"
+ibf_size: "1500m"
 pattern_overlap: 98
 cart_max_capacity: 80000
 max_queued_carts: 20
