@@ -52,8 +52,8 @@ def get_search_error_rate(wildcards):
 
 rule make_all:
 	input:
-		expand("search/consolidated_distributed_e{er}.gff", er = er_rate),
-		expand("search/consolidated_local_e{er}.gff", er = er_rate)
+		expand("search/distributed_e{er}.gff", er = er_rate),
+		expand("search/local_e{er}.gff", er = er_rate)
 	shell:
 		"echo 'Done'"
 

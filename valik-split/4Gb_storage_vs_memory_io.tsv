@@ -1,3 +1,0 @@
-	Mode	Total DREAM (mm:ss)	Split (mm:ss)	Segment I/O (mm:ss)	IBF construct (mm:ss)	IBF search (mm:ss)	Distributed Stellar (mm:ss)	Snakemake overhead (mm:ss)
-0	DREAM (64 bins storage)	07:44	00:13	00:31	01:05	01:00	03:45	01:08
-1	DREAM (64 bins memory)	07:14	00:13	00:31	00:50	00:48	03:42	01:08

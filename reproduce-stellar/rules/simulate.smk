@@ -1,8 +1,3 @@
-import random
-# simulation needs unique seeds otherwise the same sequence is simulated
-def get_seed(wildcards):
-        return random.randint(0, 1e6)
-
 rule simulate_sequences:
 	output:
 		ref = "ref_rep{rep}.fasta",
@@ -19,7 +14,7 @@ rule simulate_matches:
 	output:
 		matches = "local_matches/rep{rep}_e{er}.fastq"
 	shell:      
-		"../scripts/simulate_local_matches.sh {wildcards.rep} {wildcards.er} {matches} {min_len} {max_len}"
+		"../scripts/simulate_local_matches.sh {wildcards.rep} {wildcards.er} {matches} {min_len} {max_len} {ref_len}"
 
 rule insert_matches:
 	input:

@@ -1,13 +1,23 @@
 workdir: "1Mb/"
 
-# simulation parameters
+#------ Simulation parameters ------
 reference_length: 1048576 # should ref_len always == query_len?
 query_length: 1048576 
 match_count: 524 # (1048576 / 2000) = 524 matches per query file
 
-# stellar parameters
+#------ Valik parameters ------
+ibf_bins: 64
+window: 15
+kmer_length: 15
+ibf_size: "500k"
+query_seg_count: 8
+cart_max_capacity: 10
+max_queued_carts: 32
+
+#------ Stellar parameters ------
 num_matches: 700
 sort_threshold: 701
 
-# evaluation parameters
+#------ Evaluation parameters ------
 repeat: 1
+

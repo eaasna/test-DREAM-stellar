@@ -1,4 +1,0 @@
-channels:
-  - bioconda/label/cf201901
-dependencies:
-  - stellar =1.4.9
