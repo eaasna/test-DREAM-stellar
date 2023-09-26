@@ -7,3 +7,5 @@
 */evaluation/*
 */.snakemake/*
 */.ipynb_checkpoints/*
+*/*.index
+*/*.gff
