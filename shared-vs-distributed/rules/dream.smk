@@ -14,7 +14,7 @@ rule valik_split_ref:
 		seg_meta = "split/seg.txt"
 	shell:
 		"""
-		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-split\t{threads}" valik split {input} -o {output.seg_meta} --overlap {max_len} --seg-count {bins})
+		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-split\t{threads}" valik split {input} -o {output.seg_meta} --overlap {max_len} -n {bins})
 		"""
 
 rule valik_build:
