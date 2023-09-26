@@ -1,0 +1,11 @@
+scripts/Liivakast.ipynb
+*/benchmarks/*
+100kb/*
+10Mb/*
+.snakemake/*
+scripts/.ipynb_checkpoints/*
+*/*.err
+*/*.fasta
+*/*.fastq
+*/*bin*.txt
+*/*run*.txt

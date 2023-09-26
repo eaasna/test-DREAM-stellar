@@ -1,0 +1,2 @@
+64.81	348808	0	valik search --index 10M/valik.index --query queries/e0.05.fastq --error 1 --pattern 50 --overlap 10 --threads 8 --output 10M/e0.05_o10.out
+3.64	309432	0	valik search --index 10M/valik.index --query queries/e8.fastq --error 1 --pattern 50 --overlap 10 --threads 4 --output 10M/e8_o10.out
