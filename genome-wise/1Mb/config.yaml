@@ -2,6 +2,7 @@ workdir: "1Mb/"
 
 #------ Simulation parameters ------
 reference_length: 1048576 # ref len == query len
+nr_matches: 1000
 
 #------ Valik parameters ------
 ibf_bins: 64

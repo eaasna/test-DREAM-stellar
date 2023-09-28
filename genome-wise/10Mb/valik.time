@@ -253,3 +253,70 @@ Time	Memory	Exitcode	Command	Threads
 14.29	7316916	0	valik-search	16
 0.42	12876	0	valik-build	16
 14.66	7293112	0	valik-search	16
+#### PARAMS ####
+workdir	10Mb/
+reference_length	10485760
+nr_matches	5240
+ibf_bins	64
+window	15
+kmer_length	15
+ibf_size	5M
+query_seg_count	64
+cart_max_capacity	50
+max_queued_carts	100
+num_matches	7000
+sort_threshold	7001
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.99	9140	0	valik-split-ref	1
+1.00	9208	0	valik-split-ref	1
+0.99	9144	0	valik-split-query	1
+#### PARAMS ####
+workdir	10Mb/
+reference_length	10485760
+nr_matches	5240
+ibf_bins	64
+window	15
+kmer_length	15
+ibf_size	5M
+query_seg_count	64
+cart_max_capacity	50
+max_queued_carts	100
+num_matches	7000
+sort_threshold	7001
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.98	9080	0	valik-split-ref	1
+1.00	9132	0	valik-split-ref	1
+0.98	8968	0	valik-split-query	1
+0.98	9332	0	valik-split-query	1
+10.17	14476	0	valik-build	8
+133.77	4387616	0	valik-search	8
+11.35	14336	0	valik-build	8
+135.72	4412252	0	valik-search	8
+#### PARAMS ####
+workdir	10Mb/
+reference_length	10485760
+nr_matches	5240
+ibf_bins	64
+window	15
+kmer_length	15
+ibf_size	5M
+query_seg_count	64
+cart_max_capacity	10
+max_queued_carts	10
+num_matches	7000
+sort_threshold	7001
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.99	8972	0	valik-split-ref	1
+0.99	9060	0	valik-split-ref	1
+1.03	9196	0	valik-split-query	1
+1.05	9116	0	valik-split-query	1
+10.84	14276	0	valik-build	8
+130.21	1196956	0	valik-search	8
+11.30	14272	0	valik-build	8
+134.84	1200032	0	valik-search	8

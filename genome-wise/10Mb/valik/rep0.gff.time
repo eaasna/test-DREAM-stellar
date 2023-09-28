@@ -6,3 +6,7 @@ Ref I/O	IBF I/O	Reads I/O	Search	Min cart time	Avg cart time	Max cart time	Nr ca
 0.00	0.00	0.00	5.31	0.00	0.00	0.00	128	0.06
 Ref I/O	IBF I/O	Reads I/O	Search	Min cart time	Avg cart time	Max cart time	Nr carts	Consolidation
 0.00	0.00	0.00	5.05	0.00	0.00	0.00	128	0.03
+Ref I/O	IBF I/O	Reads I/O	Search	Min cart time	Avg cart time	Max cart time	Nr carts	Consolidation
+0.00	0.00	0.00	45.30	0.00	0.00	0.00	128	0.12
+Ref I/O	IBF I/O	Reads I/O	Search	Min cart time	Avg cart time	Max cart time	Nr carts	Consolidation
+0.00	0.00	0.00	124.39	0.00	0.00	0.00	384	0.08

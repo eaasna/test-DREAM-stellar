@@ -11,6 +11,7 @@ min_len = 100
 
 #-------- Simulation parameters --------
 ref_len = config["reference_length"]
+match_count = config["nr_matches"]
 
 #-------- Valik parameters --------
 query_seg_count = config["query_seg_count"]
