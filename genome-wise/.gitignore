@@ -1,0 +1,6 @@
+*.gff
+*.out
+*.fasta
+*.fai
+*.vcf
+*/meta/*

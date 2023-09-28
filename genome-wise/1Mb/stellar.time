@@ -1,0 +1,33 @@
+#### PARAMS ####
+workdir	1Mb/
+reference_length	1048576
+ibf_bins	64
+window	15
+kmer_length	15
+ibf_size	500k
+query_seg_count	8
+cart_max_capacity	10
+max_queued_carts	32
+num_matches	700
+sort_threshold	701
+repeat	1
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.94	57252	0	stellar-search
+#### PARAMS ####
+workdir	1Mb/
+reference_length	1048576
+ibf_bins	64
+window	15
+kmer_length	15
+ibf_size	500k
+query_seg_count	8
+cart_max_capacity	10
+max_queued_carts	32
+num_matches	700
+sort_threshold	701
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.81	57056	0	stellar-search
+0.84	57816	0	stellar-search

@@ -1,0 +1,20 @@
+workdir: "10Mb/"
+
+#------ Simulation parameters ------
+reference_length: 10485760 # ref len == query len
+
+#------ Valik parameters ------
+ibf_bins: 64
+window: 15
+kmer_length: 15
+ibf_size: "5M"
+query_seg_count: 64
+cart_max_capacity: 50
+max_queued_carts: 100
+
+#------ Stellar parameters ------
+num_matches: 7000
+sort_threshold: 7001
+
+#------ Evalutaion parameters ------
+repeat: 2

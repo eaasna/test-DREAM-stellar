@@ -1,0 +1,49 @@
+#### PARAMS ####
+workdir	100Mb/
+reference_length	104857600
+ibf_bins	64
+window	15
+kmer_length	13
+ibf_size	50M
+query_seg_count	64
+cart_max_capacity	50
+max_queued_carts	100
+num_matches	7000
+sort_threshold	7001
+repeat	1
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	100Mb/
+reference_length	104857600
+ibf_bins	64
+window	15
+kmer_length	13
+ibf_size	50M
+query_seg_count	64
+cart_max_capacity	50
+max_queued_carts	100
+num_matches	7000
+sort_threshold	7001
+repeat	1
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	100Mb/
+reference_length	104857600
+ibf_bins	64
+window	15
+kmer_length	13
+ibf_size	50M
+query_seg_count	64
+cart_max_capacity	50
+max_queued_carts	100
+num_matches	7000
+sort_threshold	7001
+repeat	1
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+1.77	23628	0	valik-split-ref	1
+1.84	23552	0	valik-split-query	1
+5.27	74812	0	valik-build	16
+197.14	97615756	0	valik-search	16
