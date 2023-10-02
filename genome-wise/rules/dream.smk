@@ -23,7 +23,7 @@ rule valik_split_query:
 		query_meta = "meta/query_rep{rep}.txt",
 	shell:
 		"""
-		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-split-query\t{threads}" valik split {input} --out {output.query_meta} --overlap {min_len} -n {bins} )
+		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-split-query\t{threads}" valik split {input} --out {output.query_meta} --overlap {min_len} -n {query_seg_count} )
 		"""
 
 rule valik_build:

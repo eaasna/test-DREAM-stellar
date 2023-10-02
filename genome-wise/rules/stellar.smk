@@ -18,5 +18,5 @@ rule stellar:
 		"../envs/stellar.yaml"
 	shell:
 		"""
-		( /usr/bin/time -a -o stellar.time -f "%e\t%M\t%x\tstellar-search" stellar -a dna --numMatches {num_matches} --sortThresh {sort_thresh} --verbose {input.ref} {input.query} -e {params.e} -l {min_len} -o {output} )
+		( /usr/bin/time -a -o stellar.time -f "%e\t%M\t%x\tstellar-search" ../../../bin/miniconda3/envs/snakemake/bin/stellar -a dna --numMatches 65534 --sortThresh 65535 --verbose {input.ref} {input.query} -e {params.e} -l {min_len} -o {output} )
 		"""

@@ -2,20 +2,16 @@ workdir: "100Mb/"
 
 #------ Simulation parameters ------
 reference_length: 104857600 # ref len == query len
-match_count: 52400
+nr_matches: 52400
 
 #------ Valik parameters ------
-ibf_bins: 64
-window: 15
-kmer_length: 13
+ibf_bins: 1048
+window: 13
+kmer_length: 11
 ibf_size: "50M"
-query_seg_count: 64
+query_seg_count: 40000
 cart_max_capacity: 500
 max_queued_carts: 64
-
-#------ Stellar parameters ------
-num_matches: 7000
-sort_threshold: 7001
 
 #------ Evalutaion parameters ------
 repeat: 1

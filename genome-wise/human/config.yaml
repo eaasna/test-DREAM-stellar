@@ -2,19 +2,16 @@ workdir: "human/"
 
 #------ Simulation parameters ------
 reference_length: 3088269832 # ref len == query len
+nr_matches: 50000
 
 #------ Valik parameters ------
-ibf_bins: 64
-window: 15
-kmer_length: 15
-ibf_size: "5M"
-query_seg_count: 64
-cart_max_capacity: 50
+ibf_bins: 1024
+window: 13
+kmer_length: 11
+ibf_size: "1500"
+query_seg_count: 60000
+cart_max_capacity: 500
 max_queued_carts: 64
-
-#------ Stellar parameters ------
-num_matches: 7000
-sort_threshold: 7001
 
 #------ Evalutaion parameters ------
 repeat: 1

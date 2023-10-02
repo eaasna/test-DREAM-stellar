@@ -23,10 +23,6 @@ overlap = min_len - 2
 cart_capacity = config["cart_max_capacity"]
 queued_carts = config["max_queued_carts"]
 
-#-------- Stellar parameters --------
-num_matches = config["num_matches"]
-sort_thresh = config["sort_threshold"]
-
 #--------\ Shared functions --------
 import random
 import math
