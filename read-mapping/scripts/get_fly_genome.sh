@@ -1,7 +1,8 @@
 #!/bin/bash
 
-REF_IN="dmel-all-chromosome-r6.46.fasta"
-REF_OUT="dmel.fasta"
+REF_IN=$1
+REF_OUT=$2
+
 wget http://ftp.flybase.net/genomes/Drosophila_melanogaster/dmel_REFSEQ/fasta/$REF_IN.gz
 gunzip $REF_IN.gz
 

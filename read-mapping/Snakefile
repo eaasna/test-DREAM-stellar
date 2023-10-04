@@ -1,0 +1,53 @@
+n = config["repeat"]
+repetitions = list(range(n))
+
+workdir: config["workdir"]
+
+#-------- Local match definition --------
+min_len = 100
+
+def get_search_error_rate(wildcards):
+# stellar does not allow 0 error rate
+	if (float(wildcards.er) <= 0.05):
+		# minimum allowed error rate should be 1e-7
+		a = 1e-5          # but 1e-7 and 1e-6 lead to invalid pointer error
+		return f'{a:.5f}' # supress scientific notation 
+	return float(wildcards.er) - 0.05
+
+#-------- Simulation parameters --------
+match_count = config["nr_matches"]
+read_lengths = [150, 200, 250]
+error_rates = [0.05, 0.075, 0.1, 0.125, 0.15]
+
+#-------- Valik parameters --------
+bins = config["ibf_bins"]
+w = config["window"]
+k = config["kmer_length"]
+size = config["ibf_size"]
+overlap = min_len - 2
+cart_capacity = config["cart_max_capacity"]
+queued_carts = config["max_queued_carts"]
+
+#--------\ Shared functions --------
+import random
+import math
+
+# simulation needs unique seeds otherwise the same sequence is simulated
+def get_seed(wildcards):
+	return random.randint(0, 1e6)
+
+def get_simulation_error_count(wildcards):
+	error_count = round(int(wildcards.len) * float(wildcards.er))
+	return error_count
+#-------- Shared functions \--------
+
+rule make_all:
+	input:
+		expand("stellar/rep{rep}_e{er}_l{len}.gff", rep = repetitions, er = error_rates, len = read_lengths),	
+		expand("valik/rep{rep}_e{er}_l{len}.gff", rep = repetitions, er = error_rates, len = read_lengths)
+	shell:
+		"echo 'Done'"
+
+include: "rules/preprocess.smk"
+include: "rules/dream.smk"
+include: "rules/stellar.smk"

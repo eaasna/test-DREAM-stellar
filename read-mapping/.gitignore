@@ -1,4 +1,6 @@
 *.out
 *.ibf
 *.txt
-chr_IDs
+*.fasta
+*.fastq
+*.gff

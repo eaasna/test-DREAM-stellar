@@ -1,0 +1,302 @@
+#### PARAMS ####
+workdir	fly/
+nr_matches	10000
+ibf_bins	1024
+window	13
+kmer_length	11
+ibf_size	50M
+cart_max_capacity	500
+max_queued_carts	64
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	fly/
+nr_matches	10000
+ibf_bins	1024
+window	13
+kmer_length	11
+ibf_size	50M
+cart_max_capacity	500
+max_queued_carts	64
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	fly/
+nr_matches	10000
+ibf_bins	1024
+window	13
+kmer_length	11
+ibf_size	50M
+cart_max_capacity	500
+max_queued_carts	64
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	fly/
+nr_matches	10000
+ibf_bins	1024
+window	13
+kmer_length	11
+ibf_size	50M
+cart_max_capacity	500
+max_queued_carts	64
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	fly/
+nr_matches	10000
+ibf_bins	1024
+window	13
+kmer_length	11
+ibf_size	50M
+cart_max_capacity	500
+max_queued_carts	64
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	fly/
+nr_matches	10000
+ibf_bins	1024
+window	13
+kmer_length	11
+ibf_size	50M
+cart_max_capacity	500
+max_queued_carts	64
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	fly/
+nr_matches	10000
+ibf_bins	1024
+window	13
+kmer_length	11
+ibf_size	50M
+cart_max_capacity	500
+max_queued_carts	64
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	fly/
+nr_matches	25000
+ibf_bins	1024
+window	13
+kmer_length	11
+ibf_size	50M
+cart_max_capacity	500
+max_queued_carts	64
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	fly/
+nr_matches	25000
+ibf_bins	1024
+window	13
+kmer_length	11
+ibf_size	50M
+cart_max_capacity	500
+max_queued_carts	64
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	fly/
+nr_matches	25000
+ibf_bins	1024
+window	13
+kmer_length	11
+ibf_size	50M
+cart_max_capacity	500
+max_queued_carts	64
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	fly/
+nr_matches	25000
+ibf_bins	1024
+window	13
+kmer_length	11
+ibf_size	50M
+cart_max_capacity	500
+max_queued_carts	64
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	fly/
+nr_matches	25000
+ibf_bins	1024
+window	13
+kmer_length	11
+ibf_size	50M
+cart_max_capacity	500
+max_queued_carts	64
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	fly/
+nr_matches	25000
+ibf_bins	1024
+window	13
+kmer_length	11
+ibf_size	50M
+cart_max_capacity	500
+max_queued_carts	64
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	fly/
+nr_matches	25000
+ibf_bins	1024
+window	13
+kmer_length	11
+ibf_size	50M
+cart_max_capacity	500
+max_queued_carts	64
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	fly/
+nr_matches	25000
+ibf_bins	1024
+window	13
+kmer_length	11
+ibf_size	50M
+cart_max_capacity	500
+max_queued_carts	64
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	fly/
+nr_matches	25000
+ibf_bins	1024
+window	13
+kmer_length	11
+ibf_size	50M
+cart_max_capacity	500
+max_queued_carts	64
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	fly/
+nr_matches	25000
+ibf_bins	1024
+window	13
+kmer_length	11
+ibf_size	50M
+cart_max_capacity	500
+max_queued_carts	64
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	fly/
+nr_matches	25000
+ibf_bins	1024
+window	13
+kmer_length	11
+ibf_size	50M
+cart_max_capacity	500
+max_queued_carts	64
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	fly/
+nr_matches	25000
+ibf_bins	1024
+window	13
+kmer_length	11
+ibf_size	50M
+cart_max_capacity	500
+max_queued_carts	64
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+Command exited with non-zero status 1
+0.09	2148	1	stellar-search
+Command exited with non-zero status 1
+0.03	2192	1	stellar-search
+Command exited with non-zero status 1
+0.01	2188	1	stellar-search
+Command exited with non-zero status 1
+0.01	2188	1	stellar-search
+Command exited with non-zero status 1
+0.01	2188	1	stellar-search
+Command exited with non-zero status 1
+0.02	2192	1	stellar-search
+Command exited with non-zero status 1
+0.00	2192	1	stellar-search
+Command exited with non-zero status 1
+0.02	2188	1	stellar-search
+Command exited with non-zero status 1
+0.00	2188	1	stellar-search
+Command exited with non-zero status 1
+0.00	2184	1	stellar-search
+#### PARAMS ####
+workdir	fly/
+nr_matches	25000
+ibf_bins	1024
+window	13
+kmer_length	11
+ibf_size	50M
+cart_max_capacity	500
+max_queued_carts	64
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+Command exited with non-zero status 1
+0.01	2188	1	stellar-search
+Command exited with non-zero status 1
+0.01	2188	1	stellar-search
+Command exited with non-zero status 1
+0.02	2188	1	stellar-search
+Command exited with non-zero status 1
+0.01	2188	1	stellar-search
+Command exited with non-zero status 1
+0.02	2188	1	stellar-search
+Command exited with non-zero status 1
+0.02	2188	1	stellar-search
+Command exited with non-zero status 1
+0.03	2188	1	stellar-search
+Command exited with non-zero status 1
+0.01	2188	1	stellar-search
+Command exited with non-zero status 1
+0.01	2192	1	stellar-search
+Command exited with non-zero status 1
+0.01	2188	1	stellar-search
+Command exited with non-zero status 1
+0.00       2188      1      stellar-search
+Command exited with non-zero status 1
+0.01       2188      1      stellar-search
+0.39       10176      0      stellar-search
+#### PARAMS ####
+workdir	fly/
+nr_matches	25000
+ibf_bins	1024
+window	13
+kmer_length	11
+ibf_size	50M
+cart_max_capacity	500
+max_queued_carts	64
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+Command terminated by signal 11
+1.51	355928	0	stellar-search
+42.93	360124	0	stellar-search
+51.12	388000	0	stellar-search
+55.79	554576	0	stellar-search
