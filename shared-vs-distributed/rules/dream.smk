@@ -32,7 +32,7 @@ rule valik_build:
 rule valik_distributed_search:
 	input:
 		ibf = "/dev/shm/valik.index",
-		query = "queries/e{er}.fastq",
+		query = "queries/e{er}.fasta",
 		seg_meta = "split/seg.txt"
 	output:
 		read_bins = "search/distributed_e{er}.gff"
@@ -48,7 +48,7 @@ rule valik_local_search:
 	input:
 		dist_mutex = "search/consolidated_distributed_e{er}.gff",
 		ibf = "/dev/shm/valik.index",
-		query = "queries/e{er}.fastq",
+		query = "queries/e{er}.fasta",
 		seg_meta = "split/seg.txt"
 	output:
 		read_bins = "search/local_e{er}.gff"
