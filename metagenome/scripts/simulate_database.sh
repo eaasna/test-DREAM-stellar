@@ -1,7 +1,28 @@
 #!/usr/bin/env bash
 set -e
 
-BINARY_DIR="./../../../lib/raptor_data_simulation/build/bin"
+execs=(mason_genome generate_reads split_sequence mason_variator)
+for exec in "${execs[@]}"; do
+    if ! which ${exec} &>/dev/null; then
+        echo "${exec} is not available"
+        echo ""
+        echo "make sure \"${execs[@]}\" are reachable via the \${PATH} variable"
+        echo ""
+
+        # trying to do some guessing here:
+        paths+=(../../lib/raptor_data_simulation/build/bin)
+        paths+=(../../lib/raptor_data_simulation/build/src/mason2/src/mason2-build/bin)
+
+        p=""
+        for pp in ${paths[@]}; do
+            p=${p}$(realpath -m $pp):
+        done
+        echo "you could try "
+        echo "export PATH=${p}\${PATH}"
+
+        exit 127
+    fi
+done
 
 # reference parameters
 LENGTH=$1
@@ -23,11 +44,11 @@ bin_length=$((LENGTH / BIN_NUMBER))
 echo "Simulating $BIN_NUMBER bins with reference length of $LENGTH and bin_length of $bin_length"
 # Simulate reference
 echo "Simulating genome"
-$BINARY_DIR/mason_genome -l $LENGTH -o $bin_dir/ref.fasta -s $SEED
+mason_genome -l $LENGTH -o $bin_dir/ref.fasta -s $SEED
 
 # Evenly distribute it over bins
 echo "Splitting genome into bins"
-$BINARY_DIR/split_sequence --input $bin_dir/ref.fasta --length $bin_length --parts $BIN_NUMBER
+split_sequence --input $bin_dir/ref.fasta --length $bin_length --parts $BIN_NUMBER
 # We need the complete reference for Stellar input
 rm $bin_dir/ref.fasta
 # Rename the bins to .fa
@@ -36,7 +57,7 @@ for i in $bin_dir/*.fasta; do mv $i $bin_dir/$(basename $i .fasta).fa; done
 echo "Generating haplotypes"
 for i in $bin_dir/*.fa
 do
-   $BINARY_DIR/mason_variator \
+   mason_variator \
        -ir $i \
        -n $HAPLOTYPE_COUNT \
        -of $bin_dir/$(basename $i .fa).fasta \
@@ -49,3 +70,5 @@ cat $bin_dir/*.fasta > ref.fasta
 
 seq -f "$work_dir/bins/bin_%0${#BIN_NUMBER}g.fasta" 0 1 $((BIN_NUMBER-1)) > bin_paths.txt
 
+mkdir -p valik
+mkdir -p stellar

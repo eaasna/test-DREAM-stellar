@@ -1,1 +1,0 @@
-65.04	21826776	0	valik search --index /dev/shm/rep0/valik.index --bin-query rep0/bin_query_paths.txt --query rep0/queries/e0.05.fastq --error 2 --pattern 80 --overlap 10 --threads 16 --output rep0/search/e0.05.out --tau 0.75 --p_max 0.5

@@ -6,7 +6,7 @@ rule simulate_database:
 	params:
 		ref_seed = get_seed
 	shell:      
-		"../scripts/simulate_database.sh {ref_len} {params.ref_seed} {wildcards.b} {ht}"
+		"../scripts/simulate_database.sh {ref_len} {params.ref_seed} {wildcards.b} {haplotype_count}"
 
 rule simulate_reads:
 	input:
@@ -17,5 +17,5 @@ rule simulate_reads:
 	params: 
 		errors = get_simulation_error_count
 	shell:      
-		"../scripts/simulate_reads.sh {wildcards.b} {ht} {params.errors} {wildcards.er} {match_len} {matches}"
+		"../scripts/simulate_reads.sh {wildcards.b} {haplotype_count} {params.errors} {wildcards.er} {match_length} {matches}"
 

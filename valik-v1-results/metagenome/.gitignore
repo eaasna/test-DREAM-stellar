@@ -1,0 +1,6 @@
+*/*.err
+*/benchmarks/*
+*/.snakemake/*
+*/*/*.txt
+*/*/*.fasta
+*data/*

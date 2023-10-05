@@ -1,2 +1,0 @@
-70.13	9745024	0	snakemake --forceall --cores 16 --snakefile Snakefile_dream --configfile 4Gb_errors/config.yaml --config threshold_p=0.75 error_rate=0.05 ibf_bins=64 --
-68.78	9747700	0	snakemake --forceall --cores 16 --snakefile Snakefile_dream --configfile 4Gb_thresh/config.yaml --config threshold_p=0.75 error_rate=0.05 ibf_bins=64 --

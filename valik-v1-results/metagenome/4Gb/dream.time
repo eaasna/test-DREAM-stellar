@@ -1,0 +1,5 @@
+284.07	9823320	0	snakemake --cores 16 --snakefile Snakefile_dream --configfile 4Gb/config.yaml --config error_rate=0.05 ibf_bins=8 --
+66.40	9591384	0	snakemake --cores 16 --snakefile Snakefile_dream --configfile 4Gb/config.yaml --config error_rate=0.05 ibf_bins=64 --
+110.13	9791396	0	snakemake --cores 16 --snakefile Snakefile_dream --configfile 4Gb/config.yaml --config error_rate=0.05 ibf_bins=1024 --
+1270.96	9869520	0	snakemake --cores 16 --snakefile Snakefile_dream --configfile 4Gb/config.yaml --config error_rate=0.05 ibf_bins=8192 --
+1792.97	10010300	0	snakemake --cores 16 --snakefile Snakefile_dream --configfile 4Gb/config.yaml --config error_rate=0.05 ibf_bins=16384 --

@@ -1,1 +1,0 @@
-464.42	40748780	0	snakemake --cores 16 --snakefile Snakefile_dream --configfile 16GB/config.yaml --config error_rate=0.05 ibf_bins=1024 --

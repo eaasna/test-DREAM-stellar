@@ -1,0 +1,21 @@
+# p_max = 0.15
+248.38	616672	0	valik build 8/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/8/valik.index --size 500M
+42.09	653712	0	valik build 64/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/64/valik.index --size 500M
+25.07	549104	0	valik build 1024/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/1024/valik.index --size 500M
+56.54	537048	0	valik build 8192/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/8192/valik.index --size 500M
+70.91	537912	0	valik build 16384/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/16384/valik.index --size 500M
+
+# Varying p_max does not affect IBF construction time
+44.85	651760	0	valik build 64/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/64/valik.index --size 500M
+44.25	651584	0	valik build 64/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/64/valik.index --size 500M
+44.90	651808	0	valik build 64/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/64/valik.index --size 500M
+44.48	651784	0	valik build 64/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/64/valik.index --size 500M
+45.39	651756	0	valik build 64/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/64/valik.index --size 500M
+94.25	651572	0	valik build 64/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/64/valik.index --size 500M
+53.04	651660	0	valik build 64/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/64/valik.index --size 500M
+45.08	651720	0	valik build 64/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/64/valik.index --size 500M
+44.83	651648	0	valik build 64/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/64/valik.index --size 500M
+44.12	651612	0	valik build 64/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/64/valik.index --size 500M
+44.11	651844	0	valik build 64/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/64/valik.index --size 500M
+43.68	651744	0	valik build 64/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/64/valik.index --size 500M
+45.13	651612	0	valik build 64/bin_paths.txt --threads 16 --window 17 --kmer 15 --output /dev/shm/64/valik.index --size 500M

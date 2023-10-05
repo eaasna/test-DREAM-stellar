@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-BINARY_DIR="./../../lib/raptor_data_simulation/build/bin"
-
 # reference parameters
 BIN_NUMBER=$1
 HAPLOTYPE_COUNT=$2
@@ -21,7 +19,7 @@ echo "Generating $READ_COUNT reads of length $READ_LENGTH with $ERRORS errors"
 read_dir=$output_dir/queries
 mkdir -p $read_dir
 mkdir -p $read_dir\_$ERRORS
-$BINARY_DIR/generate_reads \
+generate_reads \
     --output $read_dir\_$ERRORS \
     --max_errors $ERRORS \
     --number_of_reads $READ_COUNT \

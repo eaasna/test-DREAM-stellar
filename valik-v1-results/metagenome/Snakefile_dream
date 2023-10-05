@@ -1,0 +1,45 @@
+workdir: config["workdir"]
+
+#-------- Shared search parameters --------
+bins = config["ibf_bins"]
+bin_list = list(range(int(bins)))
+bin_list = [str(bin).zfill(len(str(bins))) for bin in bin_list]
+
+pattern = config["minLen"]
+er_rate = config["error_rate"]
+
+#-------- Valik parameters --------
+w = config["window"]
+k = config["kmer_length"]
+size = config["ibf_size"]
+overlap = config["pattern_overlap"]
+p_max = config["threshold_p"]
+
+#--------\ Shared functions --------
+import random
+import math
+
+# simulation needs unique seeds otherwise the same sequence is simulated
+def get_seed(wildcards):
+        return random.randint(0, 1e6)
+
+# simulate reads with [0, 0.025, 0.05, 0.075, 0.1] error rates
+def get_simulation_error_count(wildcards):
+        return 13
+
+# search with no more than 0.025 error rate because of k-mer lemma limitations
+def get_search_error_count(wildcards):
+        return 3
+
+def get_search_error_rate(wildcards):
+        return 0.03
+
+rule make_all:
+	input:
+		expand("dream_{b}_done", b = bins)
+	shell:
+		"echo 'Done'"
+
+include: "rules/valik.smk"
+include: "rules/dream_stellar.smk"
+

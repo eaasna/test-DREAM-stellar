@@ -1,1 +1,0 @@
-98.13	1133264	0	valik build rep0/bin_paths.txt --threads 16 --window 15 --kmer 13 --output /dev/shm/rep0/valik.index --size 1G
