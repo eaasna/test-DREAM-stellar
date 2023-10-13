@@ -1,0 +1,58 @@
+#### PARAMS ####
+workdir	100Mb/
+reference_length	100000000
+match_count	512000
+ibf_bins	64
+minLen	100
+window	17
+kmer_length	15
+ibf_size	250M
+pattern_overlap	89
+max_queued_carts	64
+max_cart_capacity	6000
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+1.84	297688	0	valik-build	16
+8.07	452096	0	valik-search	16
+#### PARAMS ####
+workdir	100Mb/
+reference_length	100000000
+match_count	512000
+ibf_bins	64
+minLen	100
+ibf_size	25M
+pattern_overlap	89
+max_queued_carts	64
+max_cart_capacity	6000
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+2.04	68124	0	valik-build	16
+13.28	279984	0	valik-search	16
+#### PARAMS ####
+workdir	100Mb/
+reference_length	100000000
+match_count	512000
+ibf_bins	64
+minLen	100
+ibf_size	25M
+pattern_overlap	89
+max_queued_carts	64
+max_cart_capacity	6000
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+1.40	67384	0	valik-build	16
+9.13	243372	0	valik-search	16
+#### PARAMS ####
+workdir	100Mb/
+reference_length	100000000
+match_count	512000
+ibf_bins	64
+minLen	100
+ibf_size	25M
+pattern_overlap	89
+max_queued_carts	64
+max_cart_capacity	6000
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+1.36	67268	0	valik-build	16
+9.72	245184	0	valik-search	16

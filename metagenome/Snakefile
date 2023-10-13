@@ -11,12 +11,33 @@ match_length = 250
 matches = config["match_count"]
 error_rate = 0.05
 
+def get_simulation_error_count(wildcards):
+	error_count = round(match_length * float(wildcards.er))
+	return error_count
+
+def get_search_error_rate(wildcards):
+	if (float(error_rate) <= 0.05):
+		a = 1e-5
+		return f'{a:.5f}'
+	return float(wildcards.er) - 0.05
+
 #-------- Shared search parameters --------
-pattern = config["minLen"]
+min_len = config["minLen"]
 
 #-------- Valik parameters --------
-w = config["window"]
-k = config["kmer_length"]
+def get_max_w(max_error_rate):
+	error_count = round(max_error_rate * min_len)
+	for w in list(range(21, 3, -1)):
+		n = min_len - w + 1
+		if (n - w * error_count) > 3:
+			return w
+
+w = get_max_w(float(get_search_error_rate(error_rate)))
+if (w > 10):
+	k = w - 2
+
+print("Building IBF for (" + str(w) + "," + str(k) + ")-minimisers\n")
+
 size = config["ibf_size"]
 overlap = config["pattern_overlap"]
 cart_capacity = config["max_cart_capacity"]
@@ -30,15 +51,6 @@ import math
 def get_seed(wildcards):
         return random.randint(0, 1e6)
 
-def get_simulation_error_count(wildcards):
-	error_count = round(match_length * float(wildcards.er))
-	return error_count
-
-def get_search_error_rate(wildcards):
-	if (float(error_rate) <= 0.05):
-		a = 1e-5
-		return f'{a:.5f}'
-	return float(wildcards.er) - 0.05
 	
 rule make_all:
 	input:

@@ -29,6 +29,6 @@ rule valik_search:
 		e = get_search_error_rate
 	shell:
 		"""
-		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-search\t{threads}" valik search --time --index {input.ibf} --query {input.query} --error-rate {params.e} --pattern {pattern} --overlap {overlap} --threads {threads} --output {output} --cart_max_capacity {cart_capacity} --max_queued_carts {queued_carts} )
+		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-search\t{threads}" valik search --distribute --time --index {input.ibf} --query {input.query} --error-rate {params.e} --pattern {min_len} --overlap {overlap} --threads {threads} --output {output} --cart_max_capacity {cart_capacity} --max_queued_carts {queued_carts} )
 		"""
 

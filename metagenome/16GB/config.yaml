@@ -3,17 +3,15 @@ workdir: "16GB/"
 #--------- Simulation parameters --------
 reference_length: 2000000000
 match_count: 8192000 # per error rate
-haplotypes: 8
-match_length: 250
+ibf_bins: 1024
 
 #-------- Shared search parameters --------
-ibf_bins: 1024
 minLen: 100
 
 #-------- Valik parameters --------
-window: 17
-kmer_length: 15
 ibf_size: "2G"
 pattern_overlap: 98
   #thresh_tau: 0.75
   #thresh_pmax: 0.5
+max_queued_carts: 1024
+max_cart_capacity: 6000

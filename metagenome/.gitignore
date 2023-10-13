@@ -1,7 +1,8 @@
-*/*.err
-*/benchmarks/*
-*/.snakemake/*
+.snakemake/*
 */*/*.txt
 */*/*.fasta
-*data/*
-*.vcf
+*/*/bins/*
+*/*/info/*
+*/*/queries/*
+*/*/stellar/*
+*/*/valik/*
