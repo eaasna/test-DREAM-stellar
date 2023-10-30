@@ -462,3 +462,39 @@ Time	Memory	Exitcode	Command	Threads
 3.53	76080	0	valik-build	16
 1.11	24388	0	valik-split-query	1
 57.63	2584588	0	valik-search	16
+#### PARAMS ####
+workdir	100Mb/
+reference_length	104857600
+nr_matches	52400
+ibf_bins	1024
+window	13
+kmer_length	11
+ibf_size	50M
+query_seg_count	40000
+cart_max_capacity	500
+max_queued_carts	1024
+repeat	1
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+1.07	23668	0	valik-split-ref	1
+5.06	75472	0	valik-build	16
+1.14	23248	0	valik-split-query	1
+60.10	2362620	0	valik-search	16
+#### PARAMS ####
+workdir	100Mb/
+reference_length	104857600
+nr_matches	52400
+ibf_bins	64
+window	13
+kmer_length	11
+ibf_size	50M
+query_seg_count	4000
+cart_max_capacity	5000
+max_queued_carts	64
+repeat	1
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+1.08	23028	0	valik-split-ref	1
+4.78	74984	0	valik-build	16
+1.09	23704	0	valik-split-query	1
+174.00	103905228	0	valik-search	16

@@ -264,3 +264,154 @@ repeat	2
 Time	Memory	Exitcode	Command	Threads
 43.55	508020	0	stellar-search
 43.62	508048	0	stellar-search
+#### PARAMS ####
+workdir	10Mb/
+reference_length	10485760
+nr_matches	5240
+ibf_bins	64
+window	15
+kmer_length	15
+ibf_size	5M
+query_seg_count	64
+cart_max_capacity	10
+max_queued_carts	10
+num_matches	7000
+sort_threshold	7001
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	10Mb/
+reference_length	10485760
+nr_matches	5240
+ibf_bins	64
+window	15
+kmer_length	15
+ibf_size	5M
+query_seg_count	64
+cart_max_capacity	10
+max_queued_carts	10
+num_matches	7000
+sort_threshold	7001
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	10Mb/
+reference_length	10485760
+nr_matches	5240
+ibf_bins	64
+window	15
+kmer_length	15
+ibf_size	5M
+query_seg_count	64
+cart_max_capacity	10
+max_queued_carts	10
+num_matches	7000
+sort_threshold	7001
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+5.55	502336	0	stellar-search
+#### PARAMS ####
+workdir	10Mb/
+reference_length	10485760
+nr_matches	5240
+ibf_bins	64
+window	15
+kmer_length	15
+ibf_size	5M
+query_seg_count	64
+cart_max_capacity	10
+max_queued_carts	10
+num_matches	7000
+sort_threshold	7001
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+5.58	503808	0	stellar-search
+#### PARAMS ####
+workdir	10Mb/
+reference_length	10485760
+nr_matches	5240
+ibf_bins	64
+window	15
+kmer_length	15
+ibf_size	5M
+query_seg_count	64
+cart_max_capacity	10
+max_queued_carts	10
+num_matches	7000
+sort_threshold	7001
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+5.55	504288	0	stellar-search
+#### PARAMS ####
+workdir	10Mb/
+reference_length	10485760
+nr_matches	5240
+ibf_bins	64
+window	15
+kmer_length	15
+ibf_size	5M
+query_seg_count	64
+cart_max_capacity	10
+max_queued_carts	10
+num_matches	7000
+sort_threshold	7001
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+5.52	504552	0	stellar-search
+#### PARAMS ####
+workdir	10Mb/
+reference_length	10485760
+nr_matches	5240
+ibf_bins	64
+window	15
+kmer_length	15
+ibf_size	5M
+query_seg_count	64
+cart_max_capacity	10
+max_queued_carts	10
+num_matches	7000
+sort_threshold	7001
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	10Mb/
+reference_length	10485760
+nr_matches	5240
+ibf_bins	64
+window	15
+kmer_length	15
+ibf_size	5M
+query_seg_count	64
+cart_max_capacity	10
+max_queued_carts	10
+num_matches	7000
+sort_threshold	7001
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+5.57	503128	0	stellar-search
+#### PARAMS ####
+workdir	10Mb/
+reference_length	10485760
+nr_matches	5240
+ibf_bins	64
+window	15
+kmer_length	15
+ibf_size	5M
+query_seg_count	64
+cart_max_capacity	10
+max_queued_carts	10
+num_matches	7000
+sort_threshold	7001
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+5.59	503924	0	stellar-search
+5.75	503944	0	stellar-search

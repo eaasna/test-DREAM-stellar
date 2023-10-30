@@ -320,3 +320,174 @@ Time	Memory	Exitcode	Command	Threads
 130.21	1196956	0	valik-search	8
 11.30	14272	0	valik-build	8
 134.84	1200032	0	valik-search	8
+#### PARAMS ####
+workdir	10Mb/
+reference_length	10485760
+nr_matches	5240
+ibf_bins	64
+window	15
+kmer_length	15
+ibf_size	5M
+query_seg_count	64
+cart_max_capacity	10
+max_queued_carts	10
+num_matches	7000
+sort_threshold	7001
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	10Mb/
+reference_length	10485760
+nr_matches	5240
+ibf_bins	64
+window	15
+kmer_length	15
+ibf_size	5M
+query_seg_count	64
+cart_max_capacity	10
+max_queued_carts	10
+num_matches	7000
+sort_threshold	7001
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.17	7424	0	valik-split-ref	1
+0.18	7656	0	valik-split-ref	1
+#### PARAMS ####
+workdir	10Mb/
+reference_length	10485760
+nr_matches	5240
+ibf_bins	64
+window	15
+kmer_length	15
+ibf_size	5M
+query_seg_count	64
+cart_max_capacity	10
+max_queued_carts	10
+num_matches	7000
+sort_threshold	7001
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.13	7520	0	valik-split-ref	1
+0.20	7516	0	valik-split-ref	1
+0.13	7340	0	valik-split-query	1
+#### PARAMS ####
+workdir	10Mb/
+reference_length	10485760
+nr_matches	5240
+ibf_bins	64
+window	15
+kmer_length	15
+ibf_size	5M
+query_seg_count	64
+cart_max_capacity	10
+max_queued_carts	10
+num_matches	7000
+sort_threshold	7001
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.12	7452	0	valik-split-ref	1
+0.19	7664	0	valik-split-ref	1
+0.21	7488	0	valik-split-query	1
+#### PARAMS ####
+workdir	10Mb/
+reference_length	10485760
+nr_matches	5240
+ibf_bins	64
+window	15
+kmer_length	15
+ibf_size	5M
+query_seg_count	64
+cart_max_capacity	10
+max_queued_carts	10
+num_matches	7000
+sort_threshold	7001
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.12	7516	0	valik-split-ref	1
+0.22	7572	0	valik-split-ref	1
+0.14	7452	0	valik-split-query	1
+#### PARAMS ####
+workdir	10Mb/
+reference_length	10485760
+nr_matches	5240
+ibf_bins	64
+window	15
+kmer_length	15
+ibf_size	5M
+query_seg_count	64
+cart_max_capacity	10
+max_queued_carts	10
+num_matches	7000
+sort_threshold	7001
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.13	7652	0	valik-split-ref	1
+0.37	7524	0	valik-split-ref	1
+0.15	7484	0	valik-split-query	1
+#### PARAMS ####
+workdir	10Mb/
+reference_length	10485760
+nr_matches	5240
+ibf_bins	64
+window	15
+kmer_length	15
+ibf_size	5M
+query_seg_count	64
+cart_max_capacity	10
+max_queued_carts	10
+num_matches	7000
+sort_threshold	7001
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.12	7660	0	valik-split-ref	1
+0.35	7684	0	valik-split-ref	1
+#### PARAMS ####
+workdir	10Mb/
+reference_length	10485760
+nr_matches	5240
+ibf_bins	64
+window	15
+kmer_length	15
+ibf_size	5M
+query_seg_count	64
+cart_max_capacity	10
+max_queued_carts	10
+num_matches	7000
+sort_threshold	7001
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.13	7420	0	valik-split-ref	1
+0.31	7656	0	valik-split-ref	1
+0.15	7468	0	valik-split-query	1
+#### PARAMS ####
+workdir	10Mb/
+reference_length	10485760
+nr_matches	5240
+ibf_bins	64
+window	15
+kmer_length	15
+ibf_size	5M
+query_seg_count	64
+cart_max_capacity	10
+max_queued_carts	10
+num_matches	7000
+sort_threshold	7001
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.13	7512	0	valik-split-ref	1
+0.30	7516	0	valik-split-ref	1
+0.14	7576	0	valik-split-query	1
+0.15	7616	0	valik-split-query	1
+0.40	12808	0	valik-build	16
+13.41	2277944	0	valik-search	16
+0.33	12888	0	valik-build	16
+12.45	2283932	0	valik-search	16

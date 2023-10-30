@@ -5,13 +5,13 @@ reference_length: 104857600 # ref len == query len
 nr_matches: 52400
 
 #------ Valik parameters ------
-ibf_bins: 1048
+ibf_bins: 1024
 window: 13
 kmer_length: 11
 ibf_size: "50M"
 query_seg_count: 40000
-cart_max_capacity: 500
-max_queued_carts: 64
+cart_max_capacity: 5000
+max_queued_carts: 512
 
 #------ Evalutaion parameters ------
 repeat: 1

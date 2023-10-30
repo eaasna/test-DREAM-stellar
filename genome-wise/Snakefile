@@ -44,10 +44,12 @@ def get_search_error_rate(wildcards):
 rule make_all:
 	input:
 		expand("stellar/rep{rep}.gff", rep = repetitions),	
-		expand("valik/rep{rep}.gff", rep = repetitions)
+		expand("valik/rep{rep}.gff", rep = repetitions),
+		expand("blast/rep{rep}.tsv", rep = repetitions)
 	shell:
 		"echo 'Done'"
 
 include: "rules/simulate.smk"
 include: "rules/dream.smk"
 include: "rules/stellar.smk"
+include: "rules/blast.smk"

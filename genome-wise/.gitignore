@@ -1,6 +1,9 @@
 *.gff
 *.out
-*.fasta
+*.fasta*
 *.fai
 *.vcf
 */meta/*
+*/*.time
+*/*/*.time
+*/blast/*

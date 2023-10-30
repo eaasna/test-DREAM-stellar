@@ -386,3 +386,33 @@ repeat	1
 #### LOG ####
 Time	Memory	Exitcode	Command	Threads
 53.09	6491580	0	stellar-search
+#### PARAMS ####
+workdir	100Mb/
+reference_length	104857600
+nr_matches	52400
+ibf_bins	1024
+window	13
+kmer_length	11
+ibf_size	50M
+query_seg_count	40000
+cart_max_capacity	500
+max_queued_carts	1024
+repeat	1
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+54.71	6491036	0	stellar-search
+#### PARAMS ####
+workdir	100Mb/
+reference_length	104857600
+nr_matches	52400
+ibf_bins	64
+window	13
+kmer_length	11
+ibf_size	50M
+query_seg_count	4000
+cart_max_capacity	5000
+max_queued_carts	64
+repeat	1
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+56.87	6490612	0	stellar-search

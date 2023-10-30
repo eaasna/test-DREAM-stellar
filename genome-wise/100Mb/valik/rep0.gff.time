@@ -18,3 +18,7 @@ Ref I/O	IBF I/O		Search	Min cart time	Avg cart time	Max cart time	Nr carts	Conso
 0.00	0.03	62.23	0.00	0.00	0.00	1126	0.18
 Ref I/O	IBF I/O		Search	Min cart time	Avg cart time	Max cart time	Nr carts	Consolidation
 0.00	0.03	56.52	0.00	0.00	0.00	1056	0.19
+Ref I/O	IBF I/O		Search	Effective query count	Min cart time	Avg cart time	Max cart time	Consolidation
+0.00	0.03	58.82	563000	0.0000	0.0000	0.0000	0.1966
+Ref I/O	IBF I/O		Search	Effective query count	Min cart time	Avg cart time	Max cart time	Consolidation
+0.00	0.03	172.18	320000	0.0000	0.0000	0.0000	0.1922
