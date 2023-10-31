@@ -5,13 +5,20 @@ TRUTH=${2}
 MIN_OVERLAP=${3}
 MIN_LENGTH=${4}
 OUT=${5}
+OUTPUT_TYPE=${6}
 
 max_adjust=$(bc <<< "$MIN_LENGTH - $MIN_OVERLAP")
 
-#TODO: remove begins and ends that already matched
-awk '{print $4 }' $MATCHES | sort -g -k1 > $MATCHES.begin.tsv
-awk '{print $5 }' $MATCHES | sort -g -k1 > $MATCHES.end.tsv
+if [[ "$OUTPUT_TYPE" == "gff" ]]; then
 
+	awk '{print $4 }' $MATCHES | sort -g -k1 > $MATCHES.begin.tsv
+	awk '{print $5 }' $MATCHES | sort -g -k1 > $MATCHES.end.tsv
+else
+	awk '{print $2 }' $MATCHES | sort -g -k1 > $MATCHES.begin.tsv
+	awk '{print $3 }' $MATCHES | sort -g -k1 > $MATCHES.end.tsv
+fi
+
+#TODO: remove begins and ends that already matched
 total_match_count=$(wc -l "$TRUTH" | awk '{ print $1 }')
 grep -v -f $MATCHES.begin.tsv $TRUTH | grep -v -f $MATCHES.end.tsv > $MATCHES.still.searching
 

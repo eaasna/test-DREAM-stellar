@@ -7,7 +7,7 @@ min_len = 50
 max_len = 200
 
 # how much stellar match has to overlap the ground truth
-min_overlap = 40
+min_overlap = 10
 
 workdir: config["workdir"]
 
@@ -20,27 +20,30 @@ matches = config["match_count"]
 query_seg_count = config["query_seg_count"]
 bins = config["ibf_bins"]
 
-def get_max_w(max_error_rate):
-    error_count = round(max_error_rate * min_len)
-    for k in list(range(21, 3, -1)):
-        n = min_len - k + 1
-        if (n - k * error_count) > 2:
-            return k
+def get_max_w(wildcards):
+    min_shared_count = 4
+    if (float(wildcards.er) >= 0.075):
+        min_shared_count = 3
+    error_count = round(float(wildcards.er) * min_len)
+    for w in list(range(21, 3, -1)):
+        n = min_len - w + 1
+        if (n - w * error_count) > 3:
+            return w
 
-w = get_max_w(0.1)
-
-def get_k(w):
-	if (w > 10):
-		return w - 2
-	else: 
-		return w
-
-k = get_k(w)
+def get_k(wildcards):
+    w = get_max_w(wildcards)
+    print()
+    if (w > 10):
+        print("Building IBF for (" + str(w - 2) + "," + str(w) + ")-minimisers")
+        return (w - 2)
+    else:
+        print("Building IBF for (" + str(w) + "," + str(w) + ")-minimisers")
+        return w
 
 size = config["ibf_size"]
 overlap = min_len - 2
-cart_capacity = config["cart_max_capacity"]
-queued_carts = config["max_queued_carts"]
+max_capacity = config["cart_max_capacity"]
+max_carts = config["max_queued_carts"]
 
 #-------- Stellar parameters --------
 num_matches = config["num_matches"]
@@ -66,8 +69,9 @@ def get_search_error_rate(wildcards):
 
 rule make_all:
 	input:
-		"stellar_table1.tsv",
+		#"stellar_table1.tsv",
 		"valik_table1.tsv"
+		#"blast_table1.tsv"
 		#expand("stellar/rep{rep}_e{er}.gff", rep = repetitions, er = error_rates),
 		#expand("valik/rep{rep}_e{er}.gff", rep = repetitions, er = error_rates)
 	shell:
@@ -76,4 +80,5 @@ rule make_all:
 include: "rules/simulate.smk"
 include: "rules/dream.smk"
 include: "rules/stellar.smk"
+include: "rules/blast.smk"
 include: "rules/evaluate.smk"

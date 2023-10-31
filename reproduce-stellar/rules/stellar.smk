@@ -9,4 +9,4 @@ rule stellar:
         benchmark:
                 "benchmarks/stellar_rep{rep}_e{er}.txt"
         shell:
-                "../../../bin/miniconda3/envs/snakemake/bin/stellar -a dna --numMatches {num_matches} --sortThresh {sort_thresh} --verbose {input.ref} {input.query} -e {params.e} -l {min_len} -o {output}"
+                "../../../bin/miniconda3/envs/snakemake/bin/stellar -a dna --numMatches {num_matches}  {input.ref} {input.query} -e {params.e} -l {min_len} -o {output}"
