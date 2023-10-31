@@ -4,6 +4,7 @@
 *.gff.out
 *.txt
 */ground_truth/*
+*/*/*.time
 */evaluation/*
 */.snakemake/*
 */.ipynb_checkpoints/*

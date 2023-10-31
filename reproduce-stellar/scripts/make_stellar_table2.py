@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 # ------- INPUT --------
-ref_sizes = ["1kb", "10kb", "100kb", "1Mb", "10Mb"]
+ref_sizes = ["1Mb", "10Mb"]
 
 # ------- OUTPUT ------- 
 table2 = "table2.tsv"
