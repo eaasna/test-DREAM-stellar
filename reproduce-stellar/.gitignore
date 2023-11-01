@@ -1,4 +1,4 @@
-*.fasta
+*.fasta*
 *.fastq
 *.gff
 *.gff.out

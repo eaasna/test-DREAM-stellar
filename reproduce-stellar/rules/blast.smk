@@ -1,3 +1,11 @@
+f = open("blast.time", "a")
+f.write("#### PARAMS ####\n")
+for par in config:
+	f.write(par + '\t' + str(config[par]) + '\n')
+f.write("#### LOG ####\n")
+f.write("Time\tMemory\tExitcode\tCommand\tThreads\n")
+f.close()
+
 rule blast_index:
 	input:
 		"ref_rep{rep}.fasta"
@@ -7,7 +15,7 @@ rule blast_index:
 		"benchmarks/blast_index_rep{rep}.txt"
 	shell:
 		"""
-		makeblastdb -dbtype nucl -in {input}
+		( /usr/bin/time -a -o blast.time -f "%e\t%M\t%x\t%C\t{threads}"	makeblastdb -dbtype nucl -in {input})
 		"""
 
 rule blast_search:
@@ -22,7 +30,6 @@ rule blast_search:
 	shell:
 		"""
 		mkdir -p blast
-		blastn -db {input.ref} -query {input.query} -outfmt "6 sseqid sstart send pident sstrand evalue qseqid qstart qend" -out {output}
+		( /usr/bin/time -a -o blast.time -f "%e\t%M\t%x\t%C\t{threads}"	blastn -db {input.ref} -query {input.query} -outfmt "6 sseqid sstart send pident sstrand evalue qseqid qstart qend" -out {output})
 		"""
-		
 		
