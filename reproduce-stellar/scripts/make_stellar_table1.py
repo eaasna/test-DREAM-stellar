@@ -2,14 +2,17 @@ import pandas as pd
 
 
 # ------- INPUT --------
+#n = 2
+#prefix = "valik"
 n = snakemake.params.repeats
 prefix = snakemake.params.prefix
 
 # ------- OUTPUT ------- 
 table = snakemake.output[0]
+#table = "valik_table1_test.tsv"
 
 error_rate_list = snakemake.params.error_rates
-
+#error_rate_list = [0, 0.025, 0.05, 0.075, 0.1]
 import pandas as pd
 
 dfs = []

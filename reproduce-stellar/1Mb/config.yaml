@@ -7,10 +7,10 @@ match_count: 524 # (1048576 / 2000) = 524 matches per query file
 
 #------ Valik parameters ------
 ibf_bins: 64
-ibf_size: "500k"
-query_seg_count: 64
+ibf_size: "1M"
+query_seg_count: 128
 cart_max_capacity: 10
-max_queued_carts: 64
+max_queued_carts: 32
 
 #------ Stellar parameters ------
 num_matches: 700
