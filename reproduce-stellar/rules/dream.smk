@@ -6,24 +6,17 @@ f.write("#### LOG ####\n")
 f.write("Time\tMemory\tExitcode\tCommand\tThreads\n")
 f.close()
 
+#mutex = "stellar_table1.tsv",
 rule valik_split_ref:
 	input:
-		"ref_rep{rep}.fasta"
+		ref = "ref_rep{rep}.fasta"
 	output: 
 		ref_meta = "meta/ref_rep{rep}.txt"
+	params: 
+		max_er = max(error_rates)
 	shell:
 		"""
-		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\t%C\t{threads}" valik split {input} --out {output.ref_meta} --split-index --overlap {min_len} -n {bins})
-		"""
-
-rule valik_split_query:
-	input:
-		"query/rep{rep}_e{er}.fasta"
-	output: 
-		query_meta = "meta/query_rep{rep}_e{er}.txt",
-	shell:
-		"""
-		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\t%C\t{threads}" valik split {input} --out {output.query_meta} --overlap {min_len} -n {query_seg_count})
+		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tsplit-ref\t{threads}" valik split {input.ref} --verbose --out {output.ref_meta} --error-rate {params.max_er} --pattern {min_len} -n {bins})
 		"""
 
 rule valik_build:
@@ -31,21 +24,18 @@ rule valik_build:
 		ref = "ref_rep{rep}.fasta",
 		ref_meta = "meta/ref_rep{rep}.txt"
 	output: 
-		"rep{rep}_e{er}.index"
+		temp("/dev/shm/rep{rep}_e{er}.index")
 	threads: workflow.cores
-	params: 
-		w = get_max_w,
-		k = get_k
 	benchmark:
 		"benchmarks/valik_build_rep{rep}_e{er}.txt"
 	shell:
 		"""
-		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\t%C\t{threads}" valik build {input.ref} --threads {threads} --window {params.w} --kmer {params.k} --output {output} --size {size} --ref-meta {input.ref_meta})
+		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tbuild-ibf\t{threads}" valik build --threads {threads} --output {output} --size {size} --ref-meta {input.ref_meta})
 		"""
 
 rule valik_search:
 	input:
-		ibf = "rep{rep}_e{er}.index",
+		ibf = "/dev/shm/rep{rep}_e{er}.index",
 		query = "query/rep{rep}_e{er}.fasta",
 		query_meta = "meta/query_rep{rep}_e{er}.txt",
 		ref_meta = "meta/ref_rep{rep}.txt"
@@ -58,6 +48,6 @@ rule valik_search:
 		"benchmarks/valik_rep{rep}_e{er}.txt"
 	shell:
 		"""
-		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\t%C\t{threads}" valik search --numMatches {num_matches} --sortThresh {sort_thresh} --time --index {input.ibf} --ref-meta {input.ref_meta} --query-meta {input.query_meta} --query {input.query} --error-rate {params.e} --pattern {min_len} --overlap {overlap} --threads {threads} --output {output} --cart_max_capacity {max_capacity} --max_queued_carts {max_carts})
+		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-search\t{threads}\t{wildcards.er}" valik search --split-query --verbose --cache-thresholds --numMatches {num_matches} --sortThresh {sort_thresh} --time --index {input.ibf} --ref-meta {input.ref_meta} --query {input.query} --error-rate {params.e} --threads {threads} --output {output} --cart-max-capacity {max_capacity} --max-queued-carts {max_carts})
 		"""
 

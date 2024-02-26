@@ -12,10 +12,10 @@ rule blast_index:
 	output: 
 		"ref_rep{rep}.fasta.ndb"
 	benchmark:
-		"benchmarks/blast_index_rep{rep}.txt"
+		"benchmarks/blast_build_rep{rep}.txt"
 	shell:
 		"""
-		( /usr/bin/time -a -o blast.time -f "%e\t%M\t%x\t%C\t{threads}"	makeblastdb -dbtype nucl -in {input})
+		( /usr/bin/time -a -o blast.time -f "%e\t%M\t%x\tblast-db\t{threads}"	makeblastdb -dbtype nucl -in {input})
 		"""
 
 rule blast_search:
@@ -30,6 +30,6 @@ rule blast_search:
 	shell:
 		"""
 		mkdir -p blast
-		( /usr/bin/time -a -o blast.time -f "%e\t%M\t%x\t%C\t{threads}"	blastn -db {input.ref} -query {input.query} -outfmt "6 sseqid sstart send pident sstrand evalue qseqid qstart qend" -out {output})
+		( /usr/bin/time -a -o blast.time -f "%e\t%M\t%x\tblast-seach\t{threads}\t{wildcards.er}"	blastn -db {input.ref} -query {input.query} -outfmt "6 sseqid sstart send pident sstrand evalue qseqid qstart qend" -out {output})
 		"""
 		
