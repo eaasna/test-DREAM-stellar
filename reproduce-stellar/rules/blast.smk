@@ -30,6 +30,6 @@ rule blast_search:
 	shell:
 		"""
 		mkdir -p blast
-		( /usr/bin/time -a -o blast.time -f "%e\t%M\t%x\tblast-seach\t{threads}\t{wildcards.er}"	blastn -db {input.ref} -query {input.query} -outfmt "6 sseqid sstart send pident sstrand evalue qseqid qstart qend" -out {output})
+		( timeout 1h /usr/bin/time -a -o blast.time -f "%e\t%M\t%x\tblast-seach\t{threads}\t{wildcards.er}"	blastn -db {input.ref} -query {input.query} -outfmt "6 sseqid sstart send pident sstrand evalue qseqid qstart qend" -out {output} || touch {output} )
 		"""
 		

@@ -3,7 +3,6 @@ import numpy as np
 
 # ------- INPUT --------
 ref_sizes = ["100kb", "1Mb", "10Mb", "100Mb"]
-ref_sizes = ["100kb", "1Mb", "10Mb"]
 tools = ["stellar", "valik", "blast"]
 
 for prefix in tools: 

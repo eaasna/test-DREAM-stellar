@@ -31,8 +31,8 @@ for exec in "${execs[@]}"; do
 done
 
 echo "Simulating reference of length $REF_LENGTH with seed $REF_SEED"
-mason_genome -l $REF_LENGTH -o ref_rep$REP.fasta -s $REF_SEED 
+mason_genome -l $REF_LENGTH -o ref_rep$REP.fasta -s $REF_SEED &> /dev/null
 
 echo "Simulating query of length $QUERY_LENGTH with seed $QUERY_SEED"
-mason_genome -l $QUERY_LENGTH -o random_rep$REP.fasta -s $QUERY_SEED
+mason_genome -l $QUERY_LENGTH -o random_rep$REP.fasta -s $QUERY_SEED &> /dev/null
 
