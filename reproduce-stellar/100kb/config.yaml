@@ -7,9 +7,9 @@ match_count: 51 # (1024 / 2000) < 1 match per query file
 
 #------ DREAM parameters ------
 ibf_bins: 64
-query_seg_count: 64
-ibf_size: "100k"
-cart_max_capacity: 64
+query_seg_count: 200
+ibf_size: "500k"
+cart_max_capacity: 10
 max_queued_carts: 64
 
 #------ Stellar parameters ------
@@ -17,4 +17,4 @@ num_matches: 100
 sort_threshold: 101
 
 #------ Evaluation parameters ------
-repeat: 1
+repeat: 2

@@ -295,3 +295,383 @@ Time	Memory	Exitcode	Command	Threads
 0.73	143672	0	valik search --numMatches 700 --sortThresh 701 --time --index rep1_e0.index --ref-meta meta/ref_rep1.txt --query-meta meta/query_rep1_e0.txt --query query/rep1_e0.fasta --error-rate 0.00001 --pattern 50 --overlap 48 --threads 16 --output valik/rep1_e0.gff --cart_max_capacity 10 --max_queued_carts 32	16
 1.09	138512	0	valik search --numMatches 700 --sortThresh 701 --time --index rep1_e0.075.index --ref-meta meta/ref_rep1.txt --query-meta meta/query_rep1_e0.075.txt --query query/rep1_e0.075.fasta --error-rate 0.075 --pattern 50 --overlap 48 --threads 16 --output valik/rep1_e0.075.gff --cart_max_capacity 10 --max_queued_carts 32	16
 0.72	143856	0	valik search --numMatches 700 --sortThresh 701 --time --index rep0_e0.index --ref-meta meta/ref_rep0.txt --query-meta meta/query_rep0_e0.txt --query query/rep0_e0.fasta --error-rate 0.00001 --pattern 50 --overlap 48 --threads 16 --output valik/rep0_e0.gff --cart_max_capacity 10 --max_queued_carts 32	16
+#### PARAMS ####
+workdir	1Mb/
+reference_length	1048576
+query_length	1048576
+match_count	524
+ibf_bins	64
+ibf_size	1M
+query_seg_count	128
+cart_max_capacity	10
+max_queued_carts	32
+num_matches	700
+sort_threshold	701
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.04	7764	0	valik split ref_rep0.fasta --out meta/ref_rep0.txt --split-index --overlap 50 -n 64	1
+0.05	7796	0	valik split ref_rep1.fasta --out meta/ref_rep1.txt --split-index --overlap 50 -n 64	1
+0.05	7716	0	valik split query/rep0_e0.1.fasta --out meta/query_rep0_e0.1.txt --overlap 50 -n 128	1
+0.07	7720	0	valik split query/rep0_e0.05.fasta --out meta/query_rep0_e0.05.txt --overlap 50 -n 128	1
+0.03	7736	0	valik split query/rep1_e0.fasta --out meta/query_rep1_e0.txt --overlap 50 -n 128	1
+0.04	7780	0	valik split query/rep0_e0.fasta --out meta/query_rep0_e0.txt --overlap 50 -n 128	1
+0.03	7736	0	valik split query/rep0_e0.025.fasta --out meta/query_rep0_e0.025.txt --overlap 50 -n 128	1
+0.03	7748	0	valik split query/rep0_e0.075.fasta --out meta/query_rep0_e0.075.txt --overlap 50 -n 128	1
+0.04	7796	0	valik split query/rep1_e0.1.fasta --out meta/query_rep1_e0.1.txt --overlap 50 -n 128	1
+0.03	7584	0	valik split query/rep1_e0.05.fasta --out meta/query_rep1_e0.05.txt --overlap 50 -n 128	1
+0.03	7736	0	valik split query/rep1_e0.075.fasta --out meta/query_rep1_e0.075.txt --overlap 50 -n 128	1
+0.04	7584	0	valik split query/rep1_e0.025.fasta --out meta/query_rep1_e0.025.txt --overlap 50 -n 128	1
+0.13	8844	0	valik build ref_rep0.fasta --threads 16 --window 11 --kmer 9 --output rep0_e0.05.index --size 1M --ref-meta meta/ref_rep0.txt	16
+0.91	131820	0	valik search --numMatches 700 --sortThresh 701 --time --index rep0_e0.05.index --ref-meta meta/ref_rep0.txt --query-meta meta/query_rep0_e0.05.txt --query query/rep0_e0.05.fasta --error-rate 0.05 --pattern 50 --overlap 48 --threads 16 --output valik/rep0_e0.05.gff --cart_max_capacity 10 --max_queued_carts 32	16
+0.14	8780	0	valik build ref_rep0.fasta --threads 16 --window 7 --kmer 7 --output rep0_e0.1.index --size 1M --ref-meta meta/ref_rep0.txt	16
+0.12	8688	0	valik build ref_rep1.fasta --threads 16 --window 15 --kmer 13 --output rep1_e0.025.index --size 1M --ref-meta meta/ref_rep1.txt	16
+0.95	140824	0	valik search --numMatches 700 --sortThresh 701 --time --index rep1_e0.025.index --ref-meta meta/ref_rep1.txt --query-meta meta/query_rep1_e0.025.txt --query query/rep1_e0.025.fasta --error-rate 0.025 --pattern 50 --overlap 48 --threads 16 --output valik/rep1_e0.025.gff --cart_max_capacity 10 --max_queued_carts 32	16
+0.13	8760	0	valik build ref_rep1.fasta --threads 16 --window 9 --kmer 9 --output rep1_e0.075.index --size 1M --ref-meta meta/ref_rep1.txt	16
+2.57	92332	0	valik search --numMatches 700 --sortThresh 701 --time --index rep0_e0.1.index --ref-meta meta/ref_rep0.txt --query-meta meta/query_rep0_e0.1.txt --query query/rep0_e0.1.fasta --error-rate 0.1 --pattern 50 --overlap 48 --threads 16 --output valik/rep0_e0.1.gff --cart_max_capacity 10 --max_queued_carts 32	16
+0.12	8824	0	valik build ref_rep1.fasta --threads 16 --window 17 --kmer 15 --output rep1_e0.index --size 1M --ref-meta meta/ref_rep1.txt	16
+0.97	138516	0	valik search --numMatches 700 --sortThresh 701 --time --index rep1_e0.075.index --ref-meta meta/ref_rep1.txt --query-meta meta/query_rep1_e0.075.txt --query query/rep1_e0.075.fasta --error-rate 0.075 --pattern 50 --overlap 48 --threads 16 --output valik/rep1_e0.075.gff --cart_max_capacity 10 --max_queued_carts 32	16
+0.13	8896	0	valik build ref_rep0.fasta --threads 16 --window 17 --kmer 15 --output rep0_e0.index --size 1M --ref-meta meta/ref_rep0.txt	16
+0.12	8840	0	valik build ref_rep1.fasta --threads 16 --window 11 --kmer 9 --output rep1_e0.05.index --size 1M --ref-meta meta/ref_rep1.txt	16
+0.87	143732	0	valik search --numMatches 700 --sortThresh 701 --time --index rep0_e0.index --ref-meta meta/ref_rep0.txt --query-meta meta/query_rep0_e0.txt --query query/rep0_e0.fasta --error-rate 0.00001 --pattern 50 --overlap 48 --threads 16 --output valik/rep0_e0.gff --cart_max_capacity 10 --max_queued_carts 32	16
+0.13	8688	0	valik build ref_rep1.fasta --threads 16 --window 7 --kmer 7 --output rep1_e0.1.index --size 1M --ref-meta meta/ref_rep1.txt	16
+0.11	8888	0	valik build ref_rep0.fasta --threads 16 --window 9 --kmer 9 --output rep0_e0.075.index --size 1M --ref-meta meta/ref_rep0.txt	16
+1.06	140916	0	valik search --numMatches 700 --sortThresh 701 --time --index rep0_e0.075.index --ref-meta meta/ref_rep0.txt --query-meta meta/query_rep0_e0.075.txt --query query/rep0_e0.075.fasta --error-rate 0.075 --pattern 50 --overlap 48 --threads 16 --output valik/rep0_e0.075.gff --cart_max_capacity 10 --max_queued_carts 32	16
+1.02	144124	0	valik search --numMatches 700 --sortThresh 701 --time --index rep1_e0.index --ref-meta meta/ref_rep1.txt --query-meta meta/query_rep1_e0.txt --query query/rep1_e0.fasta --error-rate 0.00001 --pattern 50 --overlap 48 --threads 16 --output valik/rep1_e0.gff --cart_max_capacity 10 --max_queued_carts 32	16
+1.14	137164	0	valik search --numMatches 700 --sortThresh 701 --time --index rep1_e0.05.index --ref-meta meta/ref_rep1.txt --query-meta meta/query_rep1_e0.05.txt --query query/rep1_e0.05.fasta --error-rate 0.05 --pattern 50 --overlap 48 --threads 16 --output valik/rep1_e0.05.gff --cart_max_capacity 10 --max_queued_carts 32	16
+0.11	8824	0	valik build ref_rep0.fasta --threads 16 --window 15 --kmer 13 --output rep0_e0.025.index --size 1M --ref-meta meta/ref_rep0.txt	16
+2.48	87428	0	valik search --numMatches 700 --sortThresh 701 --time --index rep1_e0.1.index --ref-meta meta/ref_rep1.txt --query-meta meta/query_rep1_e0.1.txt --query query/rep1_e0.1.fasta --error-rate 0.1 --pattern 50 --overlap 48 --threads 16 --output valik/rep1_e0.1.gff --cart_max_capacity 10 --max_queued_carts 32	16
+1.31	144524	0	valik search --numMatches 700 --sortThresh 701 --time --index rep0_e0.025.index --ref-meta meta/ref_rep0.txt --query-meta meta/query_rep0_e0.025.txt --query query/rep0_e0.025.fasta --error-rate 0.025 --pattern 50 --overlap 48 --threads 16 --output valik/rep0_e0.025.gff --cart_max_capacity 10 --max_queued_carts 32	16
+#### PARAMS ####
+workdir	1Mb/
+reference_length	1048576
+query_length	1048576
+match_count	524
+ibf_bins	64
+ibf_size	1M
+query_seg_count	128
+cart_max_capacity	10
+max_queued_carts	32
+num_matches	700
+sort_threshold	701
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.03	7840	0	valik split ref_rep0.fasta --out meta/ref_rep0.txt --split-index --overlap 50 -n 64	1
+0.04	7720	0	valik split ref_rep1.fasta --out meta/ref_rep1.txt --split-index --overlap 50 -n 64	1
+0.03	7724	0	valik split query/rep0_e0.05.fasta --out meta/query_rep0_e0.05.txt --overlap 50 -n 128	1
+0.05	7672	0	valik split query/rep0_e0.025.fasta --out meta/query_rep0_e0.025.txt --overlap 50 -n 128	1
+0.04	7604	0	valik split query/rep0_e0.075.fasta --out meta/query_rep0_e0.075.txt --overlap 50 -n 128	1
+0.04	7632	0	valik split query/rep0_e0.fasta --out meta/query_rep0_e0.txt --overlap 50 -n 128	1
+0.05	7736	0	valik split query/rep0_e0.1.fasta --out meta/query_rep0_e0.1.txt --overlap 50 -n 128	1
+0.04	7728	0	valik split query/rep1_e0.075.fasta --out meta/query_rep1_e0.075.txt --overlap 50 -n 128	1
+0.04	7632	0	valik split query/rep1_e0.05.fasta --out meta/query_rep1_e0.05.txt --overlap 50 -n 128	1
+0.04	7708	0	valik split query/rep1_e0.1.fasta --out meta/query_rep1_e0.1.txt --overlap 50 -n 128	1
+0.04	7696	0	valik split query/rep1_e0.025.fasta --out meta/query_rep1_e0.025.txt --overlap 50 -n 128	1
+0.04	7776	0	valik split query/rep1_e0.fasta --out meta/query_rep1_e0.txt --overlap 50 -n 128	1
+0.13	8804	0	valik build ref_rep1.fasta --threads 16 --window 11 --kmer 9 --output rep1_e0.05.index --size 1M --ref-meta meta/ref_rep1.txt	16
+0.96	135832	0	valik search --numMatches 700 --sortThresh 701 --time --index rep1_e0.05.index --ref-meta meta/ref_rep1.txt --query-meta meta/query_rep1_e0.05.txt --query query/rep1_e0.05.fasta --error-rate 0.05 --pattern 50 --overlap 49 --threads 16 --output valik/rep1_e0.05.gff --cart_max_capacity 10 --max_queued_carts 32	16
+0.11	8944	0	valik build ref_rep0.fasta --threads 16 --window 15 --kmer 13 --output rep0_e0.025.index --size 1M --ref-meta meta/ref_rep0.txt	16
+1.07	139436	0	valik search --numMatches 700 --sortThresh 701 --time --index rep0_e0.025.index --ref-meta meta/ref_rep0.txt --query-meta meta/query_rep0_e0.025.txt --query query/rep0_e0.025.fasta --error-rate 0.025 --pattern 50 --overlap 49 --threads 16 --output valik/rep0_e0.025.gff --cart_max_capacity 10 --max_queued_carts 32	16
+0.12	8680	0	valik build ref_rep1.fasta --threads 16 --window 15 --kmer 13 --output rep1_e0.025.index --size 1M --ref-meta meta/ref_rep1.txt	16
+0.11	8924	0	valik build ref_rep1.fasta --threads 16 --window 7 --kmer 7 --output rep1_e0.1.index --size 1M --ref-meta meta/ref_rep1.txt	16
+2.88	87676	0	valik search --numMatches 700 --sortThresh 701 --time --index rep1_e0.1.index --ref-meta meta/ref_rep1.txt --query-meta meta/query_rep1_e0.1.txt --query query/rep1_e0.1.fasta --error-rate 0.1 --pattern 50 --overlap 49 --threads 16 --output valik/rep1_e0.1.gff --cart_max_capacity 10 --max_queued_carts 32	16
+0.13	8832	0	valik build ref_rep0.fasta --threads 16 --window 7 --kmer 7 --output rep0_e0.1.index --size 1M --ref-meta meta/ref_rep0.txt	16
+2.80	86660	0	valik search --numMatches 700 --sortThresh 701 --time --index rep0_e0.1.index --ref-meta meta/ref_rep0.txt --query-meta meta/query_rep0_e0.1.txt --query query/rep0_e0.1.fasta --error-rate 0.1 --pattern 50 --overlap 49 --threads 16 --output valik/rep0_e0.1.gff --cart_max_capacity 10 --max_queued_carts 32	16
+1.28	142092	0	valik search --numMatches 700 --sortThresh 701 --time --index rep1_e0.025.index --ref-meta meta/ref_rep1.txt --query-meta meta/query_rep1_e0.025.txt --query query/rep1_e0.025.fasta --error-rate 0.025 --pattern 50 --overlap 49 --threads 16 --output valik/rep1_e0.025.gff --cart_max_capacity 10 --max_queued_carts 32	16
+0.13	8872	0	valik build ref_rep0.fasta --threads 16 --window 11 --kmer 9 --output rep0_e0.05.index --size 1M --ref-meta meta/ref_rep0.txt	16
+0.91	135288	0	valik search --numMatches 700 --sortThresh 701 --time --index rep0_e0.05.index --ref-meta meta/ref_rep0.txt --query-meta meta/query_rep0_e0.05.txt --query query/rep0_e0.05.fasta --error-rate 0.05 --pattern 50 --overlap 49 --threads 16 --output valik/rep0_e0.05.gff --cart_max_capacity 10 --max_queued_carts 32	16
+0.11	8816	0	valik build ref_rep1.fasta --threads 16 --window 9 --kmer 9 --output rep1_e0.075.index --size 1M --ref-meta meta/ref_rep1.txt	16
+0.13	8932	0	valik build ref_rep0.fasta --threads 16 --window 9 --kmer 9 --output rep0_e0.075.index --size 1M --ref-meta meta/ref_rep0.txt	16
+1.25	138448	0	valik search --numMatches 700 --sortThresh 701 --time --index rep0_e0.075.index --ref-meta meta/ref_rep0.txt --query-meta meta/query_rep0_e0.075.txt --query query/rep0_e0.075.fasta --error-rate 0.075 --pattern 50 --overlap 49 --threads 16 --output valik/rep0_e0.075.gff --cart_max_capacity 10 --max_queued_carts 32	16
+0.11	8956	0	valik build ref_rep0.fasta --threads 16 --window 17 --kmer 15 --output rep0_e0.index --size 1M --ref-meta meta/ref_rep0.txt	16
+0.19	8816	0	valik build ref_rep1.fasta --threads 16 --window 17 --kmer 15 --output rep1_e0.index --size 1M --ref-meta meta/ref_rep1.txt	16
+0.93	145124	0	valik search --numMatches 700 --sortThresh 701 --time --index rep1_e0.index --ref-meta meta/ref_rep1.txt --query-meta meta/query_rep1_e0.txt --query query/rep1_e0.fasta --error-rate 0.00001 --pattern 50 --overlap 49 --threads 16 --output valik/rep1_e0.gff --cart_max_capacity 10 --max_queued_carts 32	16
+1.03	143836	0	valik search --numMatches 700 --sortThresh 701 --time --index rep1_e0.075.index --ref-meta meta/ref_rep1.txt --query-meta meta/query_rep1_e0.075.txt --query query/rep1_e0.075.fasta --error-rate 0.075 --pattern 50 --overlap 49 --threads 16 --output valik/rep1_e0.075.gff --cart_max_capacity 10 --max_queued_carts 32	16
+1.08	144428	0	valik search --numMatches 700 --sortThresh 701 --time --index rep0_e0.index --ref-meta meta/ref_rep0.txt --query-meta meta/query_rep0_e0.txt --query query/rep0_e0.fasta --error-rate 0.00001 --pattern 50 --overlap 49 --threads 16 --output valik/rep0_e0.gff --cart_max_capacity 10 --max_queued_carts 32	16
+#### PARAMS ####
+workdir	1Mb/
+reference_length	1048576
+query_length	1048576
+match_count	524
+ibf_bins	64
+ibf_size	1M
+query_seg_count	128
+cart_max_capacity	10
+max_queued_carts	32
+num_matches	700
+sort_threshold	701
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.13	7568	0	valik split query/rep0_e0.025.fasta --out meta/query_rep0_e0.025.txt --overlap 50 -n 128	1
+0.03	7492	0	valik split ref_rep0.fasta --out meta/ref_rep0.txt --split-index --overlap 50 -n 64	1
+0.12	8784	0	valik build ref_rep0.fasta --threads 1 --window 15 --kmer 13 --output rep0_e0.025.index --size 1M --ref-meta meta/ref_rep0.txt	1
+0.03	7508	0	valik split ref_rep1.fasta --out meta/ref_rep1.txt --split-index --overlap 50 -n 64	1
+Command terminated by signal 2
+343.83	16164	0	valik search --verbose --numMatches 700 --sortThresh 701 --time --index rep0_e0.025.index --ref-meta meta/ref_rep0.txt --query-meta meta/query_rep0_e0.025.txt --query query/rep0_e0.025.fasta --error-rate 0.025 --pattern 50 --overlap 49 --threads 1 --output valik/rep0_e0.025.gff --cart_max_capacity 10 --max_queued_carts 32	1
+#### PARAMS ####
+workdir	1Mb/
+reference_length	1048576
+query_length	1048576
+match_count	524
+ibf_bins	64
+ibf_size	1M
+query_seg_count	1024
+cart_max_capacity	10
+max_queued_carts	640
+num_matches	700
+sort_threshold	701
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.04	7704	0	valik split ref_rep0.fasta --out meta/ref_rep0.txt --split-index --overlap 50 -n 64	1
+0.07	7704	0	valik split query/rep0_e0.05.fasta --out meta/query_rep0_e0.05.txt --overlap 50 -n 1024	1
+0.06	7708	0	valik split ref_rep1.fasta --out meta/ref_rep1.txt --split-index --overlap 50 -n 64	1
+0.07	7524	0	valik split query/rep0_e0.1.fasta --out meta/query_rep0_e0.1.txt --overlap 50 -n 1024	1
+0.05	7676	0	valik split query/rep1_e0.fasta --out meta/query_rep1_e0.txt --overlap 50 -n 1024	1
+0.05	7676	0	valik split query/rep0_e0.075.fasta --out meta/query_rep0_e0.075.txt --overlap 50 -n 1024	1
+0.05	7700	0	valik split query/rep0_e0.fasta --out meta/query_rep0_e0.txt --overlap 50 -n 1024	1
+0.09	7700	0	valik split query/rep0_e0.025.fasta --out meta/query_rep0_e0.025.txt --overlap 50 -n 1024	1
+0.08	7492	0	valik split query/rep1_e0.1.fasta --out meta/query_rep1_e0.1.txt --overlap 50 -n 1024	1
+0.08	7576	0	valik split query/rep1_e0.05.fasta --out meta/query_rep1_e0.05.txt --overlap 50 -n 1024	1
+0.05	7664	0	valik split query/rep1_e0.075.fasta --out meta/query_rep1_e0.075.txt --overlap 50 -n 1024	1
+0.08	7544	0	valik split query/rep1_e0.025.fasta --out meta/query_rep1_e0.025.txt --overlap 50 -n 1024	1
+0.11	8832	0	valik build ref_rep0.fasta --threads 16 --window 11 --kmer 9 --output rep0_e0.05.index --size 1M --ref-meta meta/ref_rep0.txt	16
+1.24	88528	0	valik search --cache-thresholds --numMatches 700 --sortThresh 701 --time --index rep0_e0.05.index --ref-meta meta/ref_rep0.txt --query-meta meta/query_rep0_e0.05.txt --query query/rep0_e0.05.fasta --error-rate 0.05 --pattern 50 --overlap 49 --threads 16 --output valik/rep0_e0.05.gff --cart_max_capacity 10 --max_queued_carts 640	16
+0.13	8912	0	valik build ref_rep0.fasta --threads 16 --window 7 --kmer 7 --output rep0_e0.1.index --size 1M --ref-meta meta/ref_rep0.txt	16
+0.13	8652	0	valik build ref_rep1.fasta --threads 16 --window 14 --kmer 12 --output rep1_e0.025.index --size 1M --ref-meta meta/ref_rep1.txt	16
+0.32	36176	0	valik search --cache-thresholds --numMatches 700 --sortThresh 701 --time --index rep1_e0.025.index --ref-meta meta/ref_rep1.txt --query-meta meta/query_rep1_e0.025.txt --query query/rep1_e0.025.fasta --error-rate 0.025 --pattern 50 --overlap 49 --threads 16 --output valik/rep1_e0.025.gff --cart_max_capacity 10 --max_queued_carts 640	16
+0.25	8628	0	valik build ref_rep1.fasta --threads 16 --window 9 --kmer 9 --output rep1_e0.075.index --size 1M --ref-meta meta/ref_rep1.txt	16
+3.44	93724	0	valik search --cache-thresholds --numMatches 700 --sortThresh 701 --time --index rep0_e0.1.index --ref-meta meta/ref_rep0.txt --query-meta meta/query_rep0_e0.1.txt --query query/rep0_e0.1.fasta --error-rate 0.1 --pattern 50 --overlap 49 --threads 16 --output valik/rep0_e0.1.gff --cart_max_capacity 10 --max_queued_carts 640	16
+0.16	8904	0	valik build ref_rep1.fasta --threads 16 --window 17 --kmer 15 --output rep1_e0.index --size 1M --ref-meta meta/ref_rep1.txt	16
+1.28	89416	0	valik search --cache-thresholds --numMatches 700 --sortThresh 701 --time --index rep1_e0.075.index --ref-meta meta/ref_rep1.txt --query-meta meta/query_rep1_e0.075.txt --query query/rep1_e0.075.fasta --error-rate 0.075 --pattern 50 --overlap 49 --threads 16 --output valik/rep1_e0.075.gff --cart_max_capacity 10 --max_queued_carts 640	16
+0.12	8816	0	valik build ref_rep0.fasta --threads 16 --window 17 --kmer 15 --output rep0_e0.index --size 1M --ref-meta meta/ref_rep0.txt	16
+0.13	8836	0	valik build ref_rep1.fasta --threads 16 --window 11 --kmer 9 --output rep1_e0.05.index --size 1M --ref-meta meta/ref_rep1.txt	16
+1.17	66708	0	valik search --cache-thresholds --numMatches 700 --sortThresh 701 --time --index rep0_e0.index --ref-meta meta/ref_rep0.txt --query-meta meta/query_rep0_e0.txt --query query/rep0_e0.fasta --error-rate 0.00001 --pattern 50 --overlap 49 --threads 16 --output valik/rep0_e0.gff --cart_max_capacity 10 --max_queued_carts 640	16
+0.12	8916	0	valik build ref_rep1.fasta --threads 16 --window 7 --kmer 7 --output rep1_e0.1.index --size 1M --ref-meta meta/ref_rep1.txt	16
+0.13	8832	0	valik build ref_rep0.fasta --threads 16 --window 9 --kmer 9 --output rep0_e0.075.index --size 1M --ref-meta meta/ref_rep0.txt	16
+1.37	91468	0	valik search --cache-thresholds --numMatches 700 --sortThresh 701 --time --index rep0_e0.075.index --ref-meta meta/ref_rep0.txt --query-meta meta/query_rep0_e0.075.txt --query query/rep0_e0.075.fasta --error-rate 0.075 --pattern 50 --overlap 49 --threads 16 --output valik/rep0_e0.075.gff --cart_max_capacity 10 --max_queued_carts 640	16
+0.96	67820	0	valik search --cache-thresholds --numMatches 700 --sortThresh 701 --time --index rep1_e0.index --ref-meta meta/ref_rep1.txt --query-meta meta/query_rep1_e0.txt --query query/rep1_e0.fasta --error-rate 0.00001 --pattern 50 --overlap 49 --threads 16 --output valik/rep1_e0.gff --cart_max_capacity 10 --max_queued_carts 640	16
+1.08	89220	0	valik search --cache-thresholds --numMatches 700 --sortThresh 701 --time --index rep1_e0.05.index --ref-meta meta/ref_rep1.txt --query-meta meta/query_rep1_e0.05.txt --query query/rep1_e0.05.fasta --error-rate 0.05 --pattern 50 --overlap 49 --threads 16 --output valik/rep1_e0.05.gff --cart_max_capacity 10 --max_queued_carts 640	16
+0.12	8912	0	valik build ref_rep0.fasta --threads 16 --window 14 --kmer 12 --output rep0_e0.025.index --size 1M --ref-meta meta/ref_rep0.txt	16
+3.64	93640	0	valik search --cache-thresholds --numMatches 700 --sortThresh 701 --time --index rep1_e0.1.index --ref-meta meta/ref_rep1.txt --query-meta meta/query_rep1_e0.1.txt --query query/rep1_e0.1.fasta --error-rate 0.1 --pattern 50 --overlap 49 --threads 16 --output valik/rep1_e0.1.gff --cart_max_capacity 10 --max_queued_carts 640	16
+0.31	36880	0	valik search --cache-thresholds --numMatches 700 --sortThresh 701 --time --index rep0_e0.025.index --ref-meta meta/ref_rep0.txt --query-meta meta/query_rep0_e0.025.txt --query query/rep0_e0.025.fasta --error-rate 0.025 --pattern 50 --overlap 49 --threads 16 --output valik/rep0_e0.025.gff --cart_max_capacity 10 --max_queued_carts 640	16
+#### PARAMS ####
+workdir	1Mb/
+reference_length	1048576
+query_length	1048576
+match_count	524
+ibf_bins	64
+ibf_size	4M
+query_seg_count	2100
+cart_max_capacity	50
+max_queued_carts	2100
+num_matches	700
+sort_threshold	701
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.04	7616	0	split-ref	1
+0.05	7680	0	split-ref	1
+0.09	7668	0	split-query	1
+0.05	7668	0	split-query	1
+0.05	7728	0	split-query	1
+0.05	7656	0	split-query	1
+0.06	7612	0	split-query	1
+0.06	7744	0	split-query	1
+0.04	7660	0	split-query	1
+0.03	7556	0	split-query	1
+0.16	11908	0	build-ibf	16
+1.30	65620	0	valik-search	16	0
+0.16	11700	0	build-ibf	16
+0.15	11684	0	build-ibf	16
+0.34	51220	0	valik-search	16	0.025
+5.47	76900	0	valik-search	16	0.075
+0.17	11704	0	build-ibf	16
+5.52	77252	0	valik-search	16	0.075
+0.16	11908	0	build-ibf	16
+0.30	36908	0	valik-search	16	0.05
+0.15	11884	0	build-ibf	16
+0.15	11752	0	build-ibf	16
+0.30	51752	0	valik-search	16	0.025
+2.14	63624	0	valik-search	16	0
+0.15	11860	0	build-ibf	16
+0.30	37476	0	valik-search	16	0.05
+#### PARAMS ####
+workdir	1Mb/
+reference_length	1048576
+query_length	1048576
+match_count	524
+ibf_bins	64
+ibf_size	10M
+query_seg_count	2100
+cart_max_capacity	50
+max_queued_carts	2100
+num_matches	700
+sort_threshold	701
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.04	7540	0	split-ref	1
+0.05	7616	0	split-ref	1
+0.07	7520	0	split-query	1
+0.04	7672	0	split-query	1
+0.24	17876	0	build-ibf	16
+0.37	35348	0	valik-search	16	0.025
+0.24	17876	0	build-ibf	16
+0.37	35872	0	valik-search	16	0.025
+#### PARAMS ####
+workdir	1Mb/
+reference_length	1048576
+query_length	1048576
+match_count	524
+ibf_bins	64
+ibf_size	5M
+query_seg_count	2100
+cart_max_capacity	50
+max_queued_carts	2100
+num_matches	700
+sort_threshold	701
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.04	7668	0	split-ref	1
+0.03	7500	0	split-ref	1
+0.07	7696	0	split-query	1
+0.09	7668	0	split-query	1
+0.06	7700	0	split-query	1
+0.05	7516	0	split-query	1
+0.08	12996	0	build-ibf	16
+0.25	38040	0	valik-search	16	0.05
+0.08	12872	0	build-ibf	16
+0.26	29860	0	valik-search	16	0.025
+0.07	12868	0	build-ibf	16
+0.25	30760	0	valik-search	16	0.025
+0.07	12684	0	build-ibf	16
+0.30	37896	0	valik-search	16	0.05
+#### PARAMS ####
+workdir	1Mb/
+reference_length	1048576
+query_length	1048576
+match_count	524
+ibf_bins	64
+ibf_size	5M
+query_seg_count	2100
+cart_max_capacity	50
+max_queued_carts	2100
+num_matches	700
+sort_threshold	701
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.04	7672	0	split-ref	1
+0.05	7572	0	split-ref	1
+0.08	7572	0	split-query	1
+0.05	7704	0	split-query	1
+0.05	7516	0	split-query	1
+0.06	7516	0	split-query	1
+0.09	12872	0	build-ibf	16
+0.28	30532	0	valik-search	16	0.025
+0.08	12716	0	build-ibf	16
+0.27	38360	0	valik-search	16	0.05
+0.08	12812	0	build-ibf	16
+0.25	30200	0	valik-search	16	0.025
+0.08	12992	0	build-ibf	16
+0.28	37704	0	valik-search	16	0.05
+#### PARAMS ####
+workdir	1Mb/
+reference_length	1048576
+query_length	1048576
+match_count	524
+ibf_bins	64
+ibf_size	5M
+query_seg_count	2100
+cart_max_capacity	50
+max_queued_carts	2100
+num_matches	700
+sort_threshold	701
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	1Mb/
+reference_length	1048576
+query_length	1048576
+match_count	524
+ibf_bins	64
+ibf_size	5M
+query_seg_count	2100
+cart_max_capacity	50
+max_queued_carts	2100
+num_matches	700
+sort_threshold	701
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	1Mb/
+reference_length	1048576
+query_length	1048576
+match_count	524
+ibf_bins	64
+ibf_size	5M
+query_seg_count	2100
+cart_max_capacity	50
+max_queued_carts	2100
+num_matches	700
+sort_threshold	701
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	1Mb/
+reference_length	1048576
+query_length	1048576
+match_count	524
+ibf_bins	64
+ibf_size	5M
+query_seg_count	2100
+cart_max_capacity	50
+max_queued_carts	2100
+num_matches	700
+sort_threshold	701
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.43	7520	0	split-ref	1
+0.05	7856	0	split-ref	1
+#### PARAMS ####
+workdir	1Mb/
+reference_length	1048576
+query_length	1048576
+match_count	524
+ibf_bins	64
+ibf_size	5M
+query_seg_count	2100
+cart_max_capacity	50
+max_queued_carts	2100
+num_matches	700
+sort_threshold	701
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.04	7752	0	split-ref	1
+0.05	7960	0	split-ref	1
+#### PARAMS ####
+workdir	1Mb/
+reference_length	1048576
+query_length	1048576
+match_count	524
+ibf_bins	64
+ibf_size	5M
+query_seg_count	2100
+cart_max_capacity	50
+max_queued_carts	2100
+num_matches	700
+sort_threshold	701
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.03	7944	0	split-ref	1
+0.03	7992	0	split-ref	1
