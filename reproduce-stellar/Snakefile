@@ -1,7 +1,8 @@
 n = config["repeat"]
 repetitions = list(range(n))
 print("Number of repetitions " + str(len(repetitions)))
-error_rates = [0.05]
+#error_rates = [0, 0.025, 0.05, 0.075, 0.1]
+error_rates = [0.1]
 
 # local match lengths 
 min_len = 50
@@ -18,27 +19,7 @@ query_len = config["query_length"]
 matches = config["match_count"]
 
 #-------- Valik parameters --------
-query_seg_count = config["query_seg_count"]
 bins = config["ibf_bins"]
-
-def get_max_w(wildcards):
-    min_shared_count = 4
-    if (float(wildcards.er) >= 0.05):
-        return 13
-    error_count = math.ceil(float(wildcards.er) * min_len)
-    for w in list(range(19, 3, -1)):
-        n = min_len - w + 1
-        if (n - w * error_count) >= min_shared_count:
-            return w
-
-def get_k(wildcards):
-    w = get_max_w(wildcards)
-    if (w > 19):
-        print("Build IBF for (" + str(w) + "," + str(w - 2) + ")-minimisers")
-        return (w - 2)
-    else:
-        print("Build IBF for (" + str(w) + "," + str(w) + ")-minimisers")
-        return w
 
 size = config["ibf_size"]
 overlap = min_len - 1
@@ -57,23 +38,15 @@ import math
 def get_seed(wildcards):
         return random.randint(0, 1e6)
 
-def get_search_error_rate(wildcards):
-# stellar does not allow 0 error rate
-	if (float(wildcards.er) < 0.000001):
-               # minimum allowed error rate should be 1e-7
-               a = 1e-5          # but 1e-7 and 1e-6 lead to invalid pointer error
-               return f'{a:.5f}' # supress scientific notation 
-	return float(wildcards.er)
-
 #-------- Shared functions \--------
 
 rule make_all:
 	input:
 		#expand("/dev/shm/rep{rep}_e{er}.index", rep = repetitions, er = error_rates)
+		#expand("valik_rep{rep}_e{er}.gff", rep = repetitions, er = error_rates)
 		#"stellar_table1.tsv",
 		"valik_table1.tsv"
 		#"blast_table1.tsv"
-		#expand("meta/query_rep{rep}_e{er}.txt", rep = repetitions, er = error_rates)
 	shell:
 		"echo 'Done'"
 

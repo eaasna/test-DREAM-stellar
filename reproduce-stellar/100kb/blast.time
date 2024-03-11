@@ -82,3 +82,428 @@ Time	Memory	Exitcode	Command	Threads
 0.21	55984	0	blastn -db ref_rep0.fasta -query query/rep0_e0.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep0_e0.tsv	1
 0.10	56108	0	blastn -db ref_rep0.fasta -query query/rep0_e0.025.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep0_e0.025.tsv	1
 0.10	55956	0	blastn -db ref_rep0.fasta -query query/rep0_e0.05.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep0_e0.05.tsv	1
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	64
+ibf_size	100k
+cart_max_capacity	64
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	1
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.94	32052	0	makeblastdb -dbtype nucl -in ref_rep0.fasta	1
+0.87	53384	0	blastn -db ref_rep0.fasta -query query/rep0_e0.1.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep0_e0.1.tsv	1
+0.89	53832	0	blastn -db ref_rep0.fasta -query query/rep0_e0.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep0_e0.tsv	1
+0.84	53864	0	blastn -db ref_rep0.fasta -query query/rep0_e0.025.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep0_e0.025.tsv	1
+0.93	53836	0	blastn -db ref_rep0.fasta -query query/rep0_e0.075.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep0_e0.075.tsv	1
+0.82	53552	0	blastn -db ref_rep0.fasta -query query/rep0_e0.05.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep0_e0.05.tsv	1
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	64
+ibf_size	100k
+cart_max_capacity	64
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	1
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	64
+ibf_size	100k
+cart_max_capacity	64
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	1
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	64
+ibf_size	100k
+cart_max_capacity	64
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	1
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	64
+ibf_size	100k
+cart_max_capacity	64
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	1
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	64
+ibf_size	100k
+cart_max_capacity	64
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	1
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	64
+ibf_size	100k
+cart_max_capacity	64
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	1
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	64
+ibf_size	100k
+cart_max_capacity	64
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	1
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	64
+ibf_size	100k
+cart_max_capacity	64
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	1
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	64
+ibf_size	100k
+cart_max_capacity	64
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	1
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	64
+ibf_size	100k
+cart_max_capacity	64
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	1
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	64
+ibf_size	50k
+cart_max_capacity	64
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+1.02	32092	0	makeblastdb -dbtype nucl -in ref_rep0.fasta	1
+0.91	32116	0	makeblastdb -dbtype nucl -in ref_rep1.fasta	1
+0.70	53804	0	blastn -db ref_rep0.fasta -query query/rep0_e0.05.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep0_e0.05.tsv	1
+0.72	53872	0	blastn -db ref_rep1.fasta -query query/rep1_e0.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep1_e0.tsv	1
+0.70	54276	0	blastn -db ref_rep1.fasta -query query/rep1_e0.075.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep1_e0.075.tsv	1
+0.92	53952	0	blastn -db ref_rep0.fasta -query query/rep0_e0.025.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep0_e0.025.tsv	1
+0.86	53384	0	blastn -db ref_rep0.fasta -query query/rep0_e0.1.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep0_e0.1.tsv	1
+1.05	53508	0	blastn -db ref_rep1.fasta -query query/rep1_e0.05.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep1_e0.05.tsv	1
+0.72	53824	0	blastn -db ref_rep1.fasta -query query/rep1_e0.025.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep1_e0.025.tsv	1
+0.74	53416	0	blastn -db ref_rep0.fasta -query query/rep0_e0.075.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep0_e0.075.tsv	1
+2.31	53856	0	blastn -db ref_rep0.fasta -query query/rep0_e0.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep0_e0.tsv	1
+0.79	54292	0	blastn -db ref_rep1.fasta -query query/rep1_e0.1.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep1_e0.1.tsv	1
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	64
+ibf_size	50k
+cart_max_capacity	64
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+1.15	32152	0	makeblastdb -dbtype nucl -in ref_rep0.fasta	1
+0.92	31920	0	makeblastdb -dbtype nucl -in ref_rep1.fasta	1
+0.73	53972	0	blastn -db ref_rep1.fasta -query query/rep1_e0.05.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep1_e0.05.tsv	1
+0.73	53072	0	blastn -db ref_rep1.fasta -query query/rep1_e0.075.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep1_e0.075.tsv	1
+0.70	53660	0	blastn -db ref_rep0.fasta -query query/rep0_e0.1.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep0_e0.1.tsv	1
+0.83	52784	0	blastn -db ref_rep0.fasta -query query/rep0_e0.025.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep0_e0.025.tsv	1
+0.74	53628	0	blastn -db ref_rep0.fasta -query query/rep0_e0.05.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep0_e0.05.tsv	1
+0.82	53912	0	blastn -db ref_rep0.fasta -query query/rep0_e0.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep0_e0.tsv	1
+0.87	53460	0	blastn -db ref_rep1.fasta -query query/rep1_e0.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep1_e0.tsv	1
+0.72	54160	0	blastn -db ref_rep1.fasta -query query/rep1_e0.1.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep1_e0.1.tsv	1
+0.73	53680	0	blastn -db ref_rep0.fasta -query query/rep0_e0.075.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep0_e0.075.tsv	1
+0.72	54048	0	blastn -db ref_rep1.fasta -query query/rep1_e0.025.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep1_e0.025.tsv	1
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	200
+ibf_size	350k
+cart_max_capacity	10
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+1.21	31664	0	blast-db	1
+0.91	32356	0	blast-db	1
+0.96	53060	0	blast-seach	1	0.025
+0.91	53428	0	blast-seach	1	0.075
+0.93	53256	0	blast-seach	1	0.025
+0.89	53344	0	blast-seach	1	0
+0.93	53548	0	blast-seach	1	0
+0.91	53804	0	blast-seach	1	0.05
+1.20	53344	0	blast-seach	1	0.075
+0.74	53984	0	blast-seach	1	0.05
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	200
+ibf_size	1M
+cart_max_capacity	10
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.87	31972	0	blast-db	1
+0.88	32152	0	blast-db	1
+0.78	54072	0	blast-seach	1	0.025
+0.75	54272	0	blast-seach	1	0.025
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	200
+ibf_size	500k
+cart_max_capacity	10
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	200
+ibf_size	500k
+cart_max_capacity	10
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	200
+ibf_size	500k
+cart_max_capacity	10
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.93	32016	0	blast-db	1
+0.98	32036	0	blast-db	1
+0.87	54004	0	blast-seach	1	0.05
+0.84	54016	0	blast-seach	1	0.025
+0.72	53884	0	blast-seach	1	0.05
+0.71	53532	0	blast-seach	1	0.025
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	200
+ibf_size	500k
+cart_max_capacity	10
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	200
+ibf_size	500k
+cart_max_capacity	10
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	200
+ibf_size	500k
+cart_max_capacity	10
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	200
+ibf_size	500k
+cart_max_capacity	10
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	200
+ibf_size	500k
+cart_max_capacity	10
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	200
+ibf_size	500k
+cart_max_capacity	10
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+#### PARAMS ####
+workdir	100kb/
+reference_length	102400
+query_length	102400
+match_count	51
+ibf_bins	64
+query_seg_count	200
+ibf_size	500k
+cart_max_capacity	10
+max_queued_carts	64
+num_matches	100
+sort_threshold	101
+repeat	2
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
