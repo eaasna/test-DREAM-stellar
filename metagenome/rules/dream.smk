@@ -6,29 +6,41 @@ f.write("#### LOG ####\n")
 f.write("Time\tMemory\tExitcode\tCommand\tThreads\n")
 f.close()
 
-rule valik_build:
-	input:
+rule valik_split:
+	input: 
 		fasta = expand("{{b}}/bins/bin_{bin}.fasta", bin = bin_list),
 		bin_list = "{b}/bin_paths.txt"
-	output: 
-		temp("/dev/shm/{b}.index.ibf")
-	threads: 16
+	output:
+		"{b}/bin_paths.bin"
+	params:
+		max_er = max(error_rates)
 	shell:
 		"""
-		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-build\t{threads}" valik build {input.bin_list} --threads {threads} --window {w} --kmer {k} --output {output} --size {size} )
+		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-split" valik split {input.bin_list} --metagenome --verbose --out {output} --error-rate {params.max_er} --pattern {min_len} )"""
+	
+rule valik_build:
+	input:
+		meta = "{b}/bin_paths.bin"
+	output: 
+		temp("/dev/shm/{b}.index.ibf")
+	threads: workflow.cores
+	shell:
+		"""
+		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-build\t{threads}" valik build --ref-meta {input.meta} --threads {threads} --output {output} --size {size} )
 		"""
 
 rule valik_search:
 	input:
 		ibf = "/dev/shm/{b}.index.ibf",
 		query = "{b}/queries/e{er}.fastq",
+		meta = "{b}/bin_paths.bin"
 	output:
 		"{b}/valik/e{er}.gff"
-	threads: 16
+	threads: workflow.cores
 	params:
 		e = get_search_error_rate
 	shell:
 		"""
-		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-search\t{threads}" valik search --distribute --time --index {input.ibf} --query {input.query} --error-rate {params.e} --pattern {min_len} --overlap {overlap} --threads {threads} --output {output} --cart_max_capacity {cart_capacity} --max_queued_carts {queued_carts} )
+		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-search\t{threads}" valik search --distribute --time --index {input.ibf} --query {input.query} --error-rate {params.e} --threads {threads} --output {output} --ref-meta {input.meta} )
 		"""
 
