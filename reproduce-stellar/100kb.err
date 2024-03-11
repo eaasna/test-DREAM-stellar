@@ -1,0 +1,757 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 16
+Rules claiming more threads will be scaled down.
+Job stats:
+job                   count
+------------------  -------
+blast_accuracy            5
+blast_index               1
+blast_search              5
+blast_table1              1
+dream_accuracy            5
+make_all                  1
+simulate_matches          5
+simulate_sequences        1
+stellar                   5
+stellar_accuracy          5
+stellar_table1            1
+valik_build               5
+valik_search              5
+valik_split_query         5
+valik_split_ref           1
+valik_table1              1
+total                    52
+
+Select jobs to execute...
+
+[Wed Nov  1 12:40:34 2023]
+rule simulate_sequences:
+    output: ref_rep0.fasta, random_rep0.fasta
+    jobid: 3
+    reason: Forced execution
+    wildcards: rep=0
+    resources: tmpdir=/tmp
+
+contig 1 ... DONE
+
+Done.
+contig 1 ... DONE
+
+Done.
+[Wed Nov  1 12:40:36 2023]
+Finished job 3.
+1 of 52 steps (2%) done
+Select jobs to execute...
+
+[Wed Nov  1 12:40:36 2023]
+rule simulate_matches:
+    input: ref_rep0.fasta, random_rep0.fasta
+    output: query/rep0_e0.05.fasta, local_matches/rep0_e0.05.fasta, ground_truth/rep0_e0.05.tsv
+    jobid: 8
+    reason: Input files updated by another job: ref_rep0.fasta, random_rep0.fasta
+    wildcards: rep=0, er=0.05
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:36 2023]
+rule blast_index:
+    input: ref_rep0.fasta
+    output: ref_rep0.fasta.ndb
+    jobid: 42
+    benchmark: benchmarks/blast_index_rep0.txt
+    reason: Input files updated by another job: ref_rep0.fasta
+    wildcards: rep=0
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:36 2023]
+rule simulate_matches:
+    input: ref_rep0.fasta, random_rep0.fasta
+    output: query/rep0_e0.025.fasta, local_matches/rep0_e0.025.fasta, ground_truth/rep0_e0.025.tsv
+    jobid: 6
+    reason: Input files updated by another job: ref_rep0.fasta, random_rep0.fasta
+    wildcards: rep=0, er=0.025
+    resources: tmpdir=/tmp
+
+Simulating 51 matches from sequence 1
+
+[Wed Nov  1 12:40:36 2023]
+rule simulate_matches:
+    input: ref_rep0.fasta, random_rep0.fasta
+    output: query/rep0_e0.fasta, local_matches/rep0_e0.fasta, ground_truth/rep0_e0.tsv
+    jobid: 4
+    reason: Input files updated by another job: ref_rep0.fasta, random_rep0.fasta
+    wildcards: rep=0, er=0
+    resources: tmpdir=/tmp
+
+Simulating 51 matches from sequence 1
+
+[Wed Nov  1 12:40:36 2023]
+rule simulate_matches:
+    input: ref_rep0.fasta, random_rep0.fasta
+    output: query/rep0_e0.075.fasta, local_matches/rep0_e0.075.fasta, ground_truth/rep0_e0.075.tsv
+    jobid: 10
+    reason: Input files updated by another job: ref_rep0.fasta, random_rep0.fasta
+    wildcards: rep=0, er=0.075
+    resources: tmpdir=/tmp
+
+Simulating 51 matches from sequence 1
+
+[Wed Nov  1 12:40:36 2023]
+rule simulate_matches:
+    input: ref_rep0.fasta, random_rep0.fasta
+    output: query/rep0_e0.1.fasta, local_matches/rep0_e0.1.fasta, ground_truth/rep0_e0.1.tsv
+    jobid: 12
+    reason: Input files updated by another job: ref_rep0.fasta, random_rep0.fasta
+    wildcards: rep=0, er=0.1
+    resources: tmpdir=/tmp
+
+Simulating 51 matches from sequence 1
+
+[Wed Nov  1 12:40:36 2023]
+rule valik_split_ref:
+    input: ref_rep0.fasta
+    output: meta/ref_rep0.txt
+    jobid: 21
+    reason: Input files updated by another job: ref_rep0.fasta
+    wildcards: rep=0
+    resources: tmpdir=/tmp
+
+Simulating 51 matches from sequence 1
+[Wed Nov  1 12:40:36 2023]
+Finished job 8.
+2 of 52 steps (4%) done
+[Wed Nov  1 12:40:36 2023]
+Finished job 6.
+3 of 52 steps (6%) done
+Select jobs to execute...
+
+[Wed Nov  1 12:40:36 2023]
+rule valik_split_query:
+    input: query/rep0_e0.05.fasta
+    output: meta/query_rep0_e0.05.txt
+    jobid: 28
+    reason: Input files updated by another job: query/rep0_e0.05.fasta
+    wildcards: rep=0, er=0.05
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:36 2023]
+rule stellar:
+    input: ref_rep0.fasta, query/rep0_e0.025.fasta
+    output: stellar/rep0_e0.025.gff
+    jobid: 5
+    benchmark: benchmarks/stellar_rep0_e0.025.txt
+    reason: Input files updated by another job: ref_rep0.fasta, query/rep0_e0.025.fasta
+    wildcards: rep=0, er=0.025
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:36 2023]
+rule valik_split_query:
+    input: query/rep0_e0.025.fasta
+    output: meta/query_rep0_e0.025.txt
+    jobid: 25
+    reason: Input files updated by another job: query/rep0_e0.025.fasta
+    wildcards: rep=0, er=0.025
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:36 2023]
+rule stellar:
+    input: ref_rep0.fasta, query/rep0_e0.05.fasta
+    output: stellar/rep0_e0.05.gff
+    jobid: 7
+    benchmark: benchmarks/stellar_rep0_e0.05.txt
+    reason: Input files updated by another job: query/rep0_e0.05.fasta, ref_rep0.fasta
+    wildcards: rep=0, er=0.05
+    resources: tmpdir=/tmp
+
+[Wed Nov  1 12:40:36 2023]
+Finished job 4.
+4 of 52 steps (8%) done
+[Wed Nov  1 12:40:36 2023]
+Finished job 10.
+5 of 52 steps (10%) done
+[Wed Nov  1 12:40:36 2023]
+Finished job 21.
+6 of 52 steps (12%) done
+[Wed Nov  1 12:40:36 2023]
+Finished job 12.
+7 of 52 steps (13%) done
+Removing temporary output random_rep0.fasta.
+[Wed Nov  1 12:40:36 2023]
+Finished job 42.
+8 of 52 steps (15%) done
+[Wed Nov  1 12:40:36 2023]
+Finished job 28.
+9 of 52 steps (17%) done
+Select jobs to execute...
+
+[Wed Nov  1 12:40:36 2023]
+rule stellar:
+    input: ref_rep0.fasta, query/rep0_e0.fasta
+    output: stellar/rep0_e0.gff
+    jobid: 2
+    benchmark: benchmarks/stellar_rep0_e0.txt
+    reason: Input files updated by another job: ref_rep0.fasta, query/rep0_e0.fasta
+    wildcards: rep=0, er=0
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:36 2023]
+rule blast_search:
+    input: ref_rep0.fasta, ref_rep0.fasta.ndb, query/rep0_e0.075.fasta
+    output: blast/rep0_e0.075.tsv
+    jobid: 45
+    benchmark: benchmarks/blast_rep0_e0.075.txt
+    reason: Input files updated by another job: query/rep0_e0.075.fasta, ref_rep0.fasta.ndb, ref_rep0.fasta
+    wildcards: rep=0, er=0.075
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:36 2023]
+rule blast_search:
+    input: ref_rep0.fasta, ref_rep0.fasta.ndb, query/rep0_e0.fasta
+    output: blast/rep0_e0.tsv
+    jobid: 41
+    benchmark: benchmarks/blast_rep0_e0.txt
+    reason: Input files updated by another job: ref_rep0.fasta.ndb, ref_rep0.fasta, query/rep0_e0.fasta
+    wildcards: rep=0, er=0
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:36 2023]
+rule blast_search:
+    input: ref_rep0.fasta, ref_rep0.fasta.ndb, query/rep0_e0.1.fasta
+    output: blast/rep0_e0.1.tsv
+    jobid: 46
+    benchmark: benchmarks/blast_rep0_e0.1.txt
+    reason: Input files updated by another job: ref_rep0.fasta.ndb, query/rep0_e0.1.fasta, ref_rep0.fasta
+    wildcards: rep=0, er=0.1
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:36 2023]
+rule valik_split_query:
+    input: query/rep0_e0.1.fasta
+    output: meta/query_rep0_e0.1.txt
+    jobid: 34
+    reason: Input files updated by another job: query/rep0_e0.1.fasta
+    wildcards: rep=0, er=0.1
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:36 2023]
+rule valik_split_query:
+    input: query/rep0_e0.fasta
+    output: meta/query_rep0_e0.txt
+    jobid: 22
+    reason: Input files updated by another job: query/rep0_e0.fasta
+    wildcards: rep=0, er=0
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:36 2023]
+rule stellar:
+    input: ref_rep0.fasta, query/rep0_e0.1.fasta
+    output: stellar/rep0_e0.1.gff
+    jobid: 11
+    benchmark: benchmarks/stellar_rep0_e0.1.txt
+    reason: Input files updated by another job: query/rep0_e0.1.fasta, ref_rep0.fasta
+    wildcards: rep=0, er=0.1
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:36 2023]
+rule valik_split_query:
+    input: query/rep0_e0.075.fasta
+    output: meta/query_rep0_e0.075.txt
+    jobid: 31
+    reason: Input files updated by another job: query/rep0_e0.075.fasta
+    wildcards: rep=0, er=0.075
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:36 2023]
+rule stellar:
+    input: ref_rep0.fasta, query/rep0_e0.075.fasta
+    output: stellar/rep0_e0.075.gff
+    jobid: 9
+    benchmark: benchmarks/stellar_rep0_e0.075.txt
+    reason: Input files updated by another job: query/rep0_e0.075.fasta, ref_rep0.fasta
+    wildcards: rep=0, er=0.075
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:36 2023]
+rule blast_search:
+    input: ref_rep0.fasta, ref_rep0.fasta.ndb, query/rep0_e0.025.fasta
+    output: blast/rep0_e0.025.tsv
+    jobid: 43
+    benchmark: benchmarks/blast_rep0_e0.025.txt
+    reason: Input files updated by another job: ref_rep0.fasta.ndb, ref_rep0.fasta, query/rep0_e0.025.fasta
+    wildcards: rep=0, er=0.025
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:37 2023]
+rule blast_search:
+    input: ref_rep0.fasta, ref_rep0.fasta.ndb, query/rep0_e0.05.fasta
+    output: blast/rep0_e0.05.tsv
+    jobid: 44
+    benchmark: benchmarks/blast_rep0_e0.05.txt
+    reason: Input files updated by another job: ref_rep0.fasta.ndb, query/rep0_e0.05.fasta, ref_rep0.fasta
+    wildcards: rep=0, er=0.05
+    resources: tmpdir=/tmp
+
+[Wed Nov  1 12:40:37 2023]
+Finished job 25.
+10 of 52 steps (19%) done
+[Wed Nov  1 12:40:37 2023]
+Finished job 5.
+11 of 52 steps (21%) done
+[Wed Nov  1 12:40:37 2023]
+Finished job 7.
+12 of 52 steps (23%) done
+[Wed Nov  1 12:40:37 2023]
+Finished job 34.
+13 of 52 steps (25%) done
+[Wed Nov  1 12:40:37 2023]
+Finished job 22.
+14 of 52 steps (27%) done
+[Wed Nov  1 12:40:37 2023]
+Finished job 2.
+15 of 52 steps (29%) done
+[Wed Nov  1 12:40:37 2023]
+Finished job 31.
+16 of 52 steps (31%) done
+Select jobs to execute...
+
+[Wed Nov  1 12:40:37 2023]
+rule stellar_accuracy:
+    input: stellar/rep0_e0.05.gff, ground_truth/rep0_e0.05.tsv
+    output: evaluation/stellar_rep0_e0.05.tsv
+    jobid: 15
+    reason: Input files updated by another job: stellar/rep0_e0.05.gff, ground_truth/rep0_e0.05.tsv
+    wildcards: rep=0, er=0.05
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:37 2023]
+rule stellar_accuracy:
+    input: stellar/rep0_e0.gff, ground_truth/rep0_e0.tsv
+    output: evaluation/stellar_rep0_e0.tsv
+    jobid: 13
+    reason: Input files updated by another job: stellar/rep0_e0.gff, ground_truth/rep0_e0.tsv
+    wildcards: rep=0, er=0
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:37 2023]
+rule stellar_accuracy:
+    input: stellar/rep0_e0.025.gff, ground_truth/rep0_e0.025.tsv
+    output: evaluation/stellar_rep0_e0.025.tsv
+    jobid: 14
+    reason: Input files updated by another job: ground_truth/rep0_e0.025.tsv, stellar/rep0_e0.025.gff
+    wildcards: rep=0, er=0.025
+    resources: tmpdir=/tmp
+
+[Wed Nov  1 12:40:37 2023]
+Finished job 9.
+17 of 52 steps (33%) done
+[Wed Nov  1 12:40:37 2023]
+Finished job 46.
+18 of 52 steps (35%) done
+[Wed Nov  1 12:40:37 2023]
+Finished job 45.
+19 of 52 steps (37%) done
+[Wed Nov  1 12:40:37 2023]
+Finished job 41.
+20 of 52 steps (38%) done
+[Wed Nov  1 12:40:37 2023]
+Finished job 43.
+21 of 52 steps (40%) done
+[Wed Nov  1 12:40:37 2023]
+Finished job 44.
+22 of 52 steps (42%) done
+Select jobs to execute...
+
+[Wed Nov  1 12:40:37 2023]
+rule blast_accuracy:
+    input: blast/rep0_e0.05.tsv, ground_truth/rep0_e0.05.tsv
+    output: evaluation/blast_rep0_e0.05.tsv
+    jobid: 49
+    reason: Input files updated by another job: blast/rep0_e0.05.tsv, ground_truth/rep0_e0.05.tsv
+    wildcards: rep=0, er=0.05
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:37 2023]
+rule blast_accuracy:
+    input: blast/rep0_e0.1.tsv, ground_truth/rep0_e0.1.tsv
+    output: evaluation/blast_rep0_e0.1.tsv
+    jobid: 51
+    reason: Input files updated by another job: ground_truth/rep0_e0.1.tsv, blast/rep0_e0.1.tsv
+    wildcards: rep=0, er=0.1
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:37 2023]
+rule blast_accuracy:
+    input: blast/rep0_e0.tsv, ground_truth/rep0_e0.tsv
+    output: evaluation/blast_rep0_e0.tsv
+    jobid: 47
+    reason: Input files updated by another job: blast/rep0_e0.tsv, ground_truth/rep0_e0.tsv
+    wildcards: rep=0, er=0
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:37 2023]
+rule blast_accuracy:
+    input: blast/rep0_e0.025.tsv, ground_truth/rep0_e0.025.tsv
+    output: evaluation/blast_rep0_e0.025.tsv
+    jobid: 48
+    reason: Input files updated by another job: ground_truth/rep0_e0.025.tsv, blast/rep0_e0.025.tsv
+    wildcards: rep=0, er=0.025
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:37 2023]
+rule stellar_accuracy:
+    input: stellar/rep0_e0.075.gff, ground_truth/rep0_e0.075.tsv
+    output: evaluation/stellar_rep0_e0.075.tsv
+    jobid: 16
+    reason: Input files updated by another job: ground_truth/rep0_e0.075.tsv, stellar/rep0_e0.075.gff
+    wildcards: rep=0, er=0.075
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:37 2023]
+rule blast_accuracy:
+    input: blast/rep0_e0.075.tsv, ground_truth/rep0_e0.075.tsv
+    output: evaluation/blast_rep0_e0.075.tsv
+    jobid: 50
+    reason: Input files updated by another job: ground_truth/rep0_e0.075.tsv, blast/rep0_e0.075.tsv
+    wildcards: rep=0, er=0.075
+    resources: tmpdir=/tmp
+
+[Wed Nov  1 12:40:37 2023]
+Finished job 11.
+23 of 52 steps (44%) done
+Select jobs to execute...
+
+[Wed Nov  1 12:40:37 2023]
+rule stellar_accuracy:
+    input: stellar/rep0_e0.1.gff, ground_truth/rep0_e0.1.tsv
+    output: evaluation/stellar_rep0_e0.1.tsv
+    jobid: 17
+    reason: Input files updated by another job: ground_truth/rep0_e0.1.tsv, stellar/rep0_e0.1.gff
+    wildcards: rep=0, er=0.1
+    resources: tmpdir=/tmp
+
+[Wed Nov  1 12:40:37 2023]
+Finished job 13.
+24 of 52 steps (46%) done
+Select jobs to execute...
+[Wed Nov  1 12:40:38 2023]
+Finished job 47.
+25 of 52 steps (48%) done
+[Wed Nov  1 12:40:38 2023]
+Finished job 14.
+26 of 52 steps (50%) done
+[Wed Nov  1 12:40:38 2023]
+Finished job 48.
+27 of 52 steps (52%) done
+[Wed Nov  1 12:40:46 2023]
+Finished job 17.
+28 of 52 steps (54%) done
+[Wed Nov  1 12:40:47 2023]
+Finished job 15.
+29 of 52 steps (56%) done
+[Wed Nov  1 12:40:48 2023]
+Finished job 49.
+30 of 52 steps (58%) done
+[Wed Nov  1 12:40:48 2023]
+Finished job 51.
+31 of 52 steps (60%) done
+[Wed Nov  1 12:40:48 2023]
+Finished job 16.
+32 of 52 steps (62%) done
+[Wed Nov  1 12:40:48 2023]
+Finished job 50.
+33 of 52 steps (63%) done
+
+[Wed Nov  1 12:40:48 2023]
+rule valik_build:
+    input: ref_rep0.fasta, meta/ref_rep0.txt
+    output: rep0_e0.075.index
+    jobid: 30
+    benchmark: benchmarks/valik_build_rep0_e0.075.txt
+    reason: Input files updated by another job: meta/ref_rep0.txt, ref_rep0.fasta
+    wildcards: rep=0, er=0.075
+    threads: 16
+    resources: tmpdir=/tmp
+
+Select jobs to execute...
+[Wed Nov  1 12:40:48 2023]
+Finished job 30.
+34 of 52 steps (65%) done
+
+[Wed Nov  1 12:40:48 2023]
+rule valik_search:
+    input: rep0_e0.075.index, query/rep0_e0.075.fasta, meta/query_rep0_e0.075.txt, meta/ref_rep0.txt
+    output: valik/rep0_e0.075.gff
+    jobid: 29
+    benchmark: benchmarks/valik_rep0_e0.075.txt
+    reason: Input files updated by another job: meta/ref_rep0.txt, query/rep0_e0.075.fasta, rep0_e0.075.index, meta/query_rep0_e0.075.txt
+    wildcards: rep=0, er=0.075
+    threads: 16
+    resources: tmpdir=/tmp
+
+[Wed Nov  1 12:40:48 2023]
+Finished job 29.
+35 of 52 steps (67%) done
+Select jobs to execute...
+
+[Wed Nov  1 12:40:48 2023]
+rule valik_build:
+    input: ref_rep0.fasta, meta/ref_rep0.txt
+    output: rep0_e0.index
+    jobid: 20
+    benchmark: benchmarks/valik_build_rep0_e0.txt
+    reason: Input files updated by another job: meta/ref_rep0.txt, ref_rep0.fasta
+    wildcards: rep=0, er=0
+    threads: 16
+    resources: tmpdir=/tmp
+
+[Wed Nov  1 12:40:48 2023]
+Finished job 20.
+36 of 52 steps (69%) done
+Select jobs to execute...
+
+[Wed Nov  1 12:40:48 2023]
+rule valik_search:
+    input: rep0_e0.index, query/rep0_e0.fasta, meta/query_rep0_e0.txt, meta/ref_rep0.txt
+    output: valik/rep0_e0.gff
+    jobid: 19
+    benchmark: benchmarks/valik_rep0_e0.txt
+    reason: Input files updated by another job: meta/ref_rep0.txt, rep0_e0.index, meta/query_rep0_e0.txt, query/rep0_e0.fasta
+    wildcards: rep=0, er=0
+    threads: 16
+    resources: tmpdir=/tmp
+
+[Wed Nov  1 12:40:49 2023]
+Finished job 19.
+37 of 52 steps (71%) done
+Select jobs to execute...
+
+[Wed Nov  1 12:40:49 2023]
+rule valik_build:
+    input: ref_rep0.fasta, meta/ref_rep0.txt
+    output: rep0_e0.05.index
+    jobid: 27
+    benchmark: benchmarks/valik_build_rep0_e0.05.txt
+    reason: Input files updated by another job: meta/ref_rep0.txt, ref_rep0.fasta
+    wildcards: rep=0, er=0.05
+    threads: 16
+    resources: tmpdir=/tmp
+
+[Wed Nov  1 12:40:49 2023]
+Finished job 27.
+38 of 52 steps (73%) done
+Select jobs to execute...
+
+[Wed Nov  1 12:40:49 2023]
+rule valik_build:
+    input: ref_rep0.fasta, meta/ref_rep0.txt
+    output: rep0_e0.1.index
+    jobid: 33
+    benchmark: benchmarks/valik_build_rep0_e0.1.txt
+    reason: Input files updated by another job: meta/ref_rep0.txt, ref_rep0.fasta
+    wildcards: rep=0, er=0.1
+    threads: 16
+    resources: tmpdir=/tmp
+
+[Wed Nov  1 12:40:49 2023]
+Finished job 33.
+39 of 52 steps (75%) done
+Select jobs to execute...
+
+[Wed Nov  1 12:40:49 2023]
+rule valik_build:
+    input: ref_rep0.fasta, meta/ref_rep0.txt
+    output: rep0_e0.025.index
+    jobid: 24
+    benchmark: benchmarks/valik_build_rep0_e0.025.txt
+    reason: Input files updated by another job: meta/ref_rep0.txt, ref_rep0.fasta
+    wildcards: rep=0, er=0.025
+    threads: 16
+    resources: tmpdir=/tmp
+
+[Wed Nov  1 12:40:49 2023]
+Finished job 24.
+40 of 52 steps (77%) done
+Select jobs to execute...
+
+[Wed Nov  1 12:40:49 2023]
+rule valik_search:
+    input: rep0_e0.05.index, query/rep0_e0.05.fasta, meta/query_rep0_e0.05.txt, meta/ref_rep0.txt
+    output: valik/rep0_e0.05.gff
+    jobid: 26
+    benchmark: benchmarks/valik_rep0_e0.05.txt
+    reason: Input files updated by another job: meta/ref_rep0.txt, meta/query_rep0_e0.05.txt, query/rep0_e0.05.fasta, rep0_e0.05.index
+    wildcards: rep=0, er=0.05
+    threads: 16
+    resources: tmpdir=/tmp
+
+[Wed Nov  1 12:40:50 2023]
+Finished job 26.
+41 of 52 steps (79%) done
+Select jobs to execute...
+
+[Wed Nov  1 12:40:50 2023]
+rule valik_search:
+    input: rep0_e0.025.index, query/rep0_e0.025.fasta, meta/query_rep0_e0.025.txt, meta/ref_rep0.txt
+    output: valik/rep0_e0.025.gff
+    jobid: 23
+    benchmark: benchmarks/valik_rep0_e0.025.txt
+    reason: Input files updated by another job: meta/ref_rep0.txt, rep0_e0.025.index, query/rep0_e0.025.fasta, meta/query_rep0_e0.025.txt
+    wildcards: rep=0, er=0.025
+    threads: 16
+    resources: tmpdir=/tmp
+
+[Wed Nov  1 12:40:50 2023]
+Finished job 23.
+42 of 52 steps (81%) done
+Select jobs to execute...
+
+[Wed Nov  1 12:40:50 2023]
+rule valik_search:
+    input: rep0_e0.1.index, query/rep0_e0.1.fasta, meta/query_rep0_e0.1.txt, meta/ref_rep0.txt
+    output: valik/rep0_e0.1.gff
+    jobid: 32
+    benchmark: benchmarks/valik_rep0_e0.1.txt
+    reason: Input files updated by another job: meta/ref_rep0.txt, query/rep0_e0.1.fasta, rep0_e0.1.index, meta/query_rep0_e0.1.txt
+    wildcards: rep=0, er=0.1
+    threads: 16
+    resources: tmpdir=/tmp
+
+[Wed Nov  1 12:40:50 2023]
+Finished job 32.
+43 of 52 steps (83%) done
+Select jobs to execute...
+
+[Wed Nov  1 12:40:50 2023]
+rule dream_accuracy:
+    input: valik/rep0_e0.1.gff, ground_truth/rep0_e0.1.tsv
+    output: evaluation/valik_rep0_e0.1.tsv
+    jobid: 39
+    reason: Input files updated by another job: ground_truth/rep0_e0.1.tsv, valik/rep0_e0.1.gff
+    wildcards: rep=0, er=0.1
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:50 2023]
+rule dream_accuracy:
+    input: valik/rep0_e0.gff, ground_truth/rep0_e0.tsv
+    output: evaluation/valik_rep0_e0.tsv
+    jobid: 35
+    reason: Input files updated by another job: valik/rep0_e0.gff, ground_truth/rep0_e0.tsv
+    wildcards: rep=0, er=0
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:50 2023]
+rule stellar_table1:
+    input: benchmarks/stellar_rep0_e0.txt, benchmarks/stellar_rep0_e0.025.txt, benchmarks/stellar_rep0_e0.05.txt, benchmarks/stellar_rep0_e0.075.txt, benchmarks/stellar_rep0_e0.1.txt, evaluation/stellar_rep0_e0.tsv, evaluation/stellar_rep0_e0.025.tsv, evaluation/stellar_rep0_e0.05.tsv, evaluation/stellar_rep0_e0.075.tsv, evaluation/stellar_rep0_e0.1.tsv
+    output: stellar_table1.tsv
+    jobid: 1
+    reason: Input files updated by another job: benchmarks/stellar_rep0_e0.075.txt, benchmarks/stellar_rep0_e0.025.txt, benchmarks/stellar_rep0_e0.05.txt, benchmarks/stellar_rep0_e0.1.txt, evaluation/stellar_rep0_e0.075.tsv, evaluation/stellar_rep0_e0.025.tsv, evaluation/stellar_rep0_e0.1.tsv, benchmarks/stellar_rep0_e0.txt, evaluation/stellar_rep0_e0.05.tsv, evaluation/stellar_rep0_e0.tsv
+    resources: tmpdir=/tmp
+
+[Wed Nov  1 12:40:50 2023]
+rule dream_accuracy:
+    input: valik/rep0_e0.025.gff, ground_truth/rep0_e0.025.tsv
+    output: evaluation/valik_rep0_e0.025.tsv
+    jobid: 36
+    reason: Input files updated by another job: ground_truth/rep0_e0.025.tsv, valik/rep0_e0.025.gff
+    wildcards: rep=0, er=0.025
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:50 2023]
+rule dream_accuracy:
+    input: valik/rep0_e0.075.gff, ground_truth/rep0_e0.075.tsv
+    output: evaluation/valik_rep0_e0.075.tsv
+    jobid: 38
+    reason: Input files updated by another job: ground_truth/rep0_e0.075.tsv, valik/rep0_e0.075.gff
+    wildcards: rep=0, er=0.075
+    resources: tmpdir=/tmp
+
+
+[Wed Nov  1 12:40:50 2023]
+rule blast_table1:
+    input: benchmarks/blast_rep0_e0.txt, benchmarks/blast_rep0_e0.025.txt, benchmarks/blast_rep0_e0.05.txt, benchmarks/blast_rep0_e0.075.txt, benchmarks/blast_rep0_e0.1.txt, evaluation/blast_rep0_e0.tsv, evaluation/blast_rep0_e0.025.tsv, evaluation/blast_rep0_e0.05.tsv, evaluation/blast_rep0_e0.075.tsv, evaluation/blast_rep0_e0.1.tsv
+    output: blast_table1.tsv
+    jobid: 40
+    reason: Input files updated by another job: evaluation/blast_rep0_e0.tsv, benchmarks/blast_rep0_e0.1.txt, benchmarks/blast_rep0_e0.075.txt, evaluation/blast_rep0_e0.075.tsv, evaluation/blast_rep0_e0.1.tsv, benchmarks/blast_rep0_e0.05.txt, evaluation/blast_rep0_e0.025.tsv, benchmarks/blast_rep0_e0.025.txt, evaluation/blast_rep0_e0.05.tsv, benchmarks/blast_rep0_e0.txt
+    resources: tmpdir=/tmp
+
+[Wed Nov  1 12:40:50 2023]
+rule dream_accuracy:
+    input: valik/rep0_e0.05.gff, ground_truth/rep0_e0.05.tsv
+    output: evaluation/valik_rep0_e0.05.tsv
+    jobid: 37
+    reason: Input files updated by another job: valik/rep0_e0.05.gff, ground_truth/rep0_e0.05.tsv
+    wildcards: rep=0, er=0.05
+    resources: tmpdir=/tmp
+
+[Wed Nov  1 12:40:51 2023]
+Finished job 35.
+44 of 52 steps (85%) done
+[Wed Nov  1 12:40:51 2023]
+Finished job 36.
+45 of 52 steps (87%) done
+[Wed Nov  1 12:40:53 2023]
+Finished job 40.
+46 of 52 steps (88%) done
+[Wed Nov  1 12:40:53 2023]
+Finished job 1.
+47 of 52 steps (90%) done
+[Wed Nov  1 12:40:56 2023]
+Finished job 39.
+48 of 52 steps (92%) done
+[Wed Nov  1 12:40:57 2023]
+Finished job 38.
+49 of 52 steps (94%) done
+[Wed Nov  1 12:40:57 2023]
+Finished job 37.
+50 of 52 steps (96%) done
+Select jobs to execute...
+
+[Wed Nov  1 12:40:57 2023]
+rule valik_table1:
+    input: benchmarks/valik_rep0_e0.txt, benchmarks/valik_rep0_e0.025.txt, benchmarks/valik_rep0_e0.05.txt, benchmarks/valik_rep0_e0.075.txt, benchmarks/valik_rep0_e0.1.txt, evaluation/valik_rep0_e0.tsv, evaluation/valik_rep0_e0.025.tsv, evaluation/valik_rep0_e0.05.tsv, evaluation/valik_rep0_e0.075.tsv, evaluation/valik_rep0_e0.1.tsv
+    output: valik_table1.tsv
+    jobid: 18
+    reason: Input files updated by another job: benchmarks/valik_rep0_e0.05.txt, benchmarks/valik_rep0_e0.1.txt, evaluation/valik_rep0_e0.tsv, evaluation/valik_rep0_e0.1.tsv, benchmarks/valik_rep0_e0.025.txt, evaluation/valik_rep0_e0.025.tsv, evaluation/valik_rep0_e0.075.tsv, benchmarks/valik_rep0_e0.txt, evaluation/valik_rep0_e0.05.tsv, benchmarks/valik_rep0_e0.075.txt
+    resources: tmpdir=/tmp
+
+[Wed Nov  1 12:40:59 2023]
+Finished job 18.
+51 of 52 steps (98%) done
+Select jobs to execute...
+
+[Wed Nov  1 12:40:59 2023]
+rule make_all:
+    input: stellar_table1.tsv, valik_table1.tsv, blast_table1.tsv
+    jobid: 0
+    reason: Input files updated by another job: stellar_table1.tsv, blast_table1.tsv, valik_table1.tsv
+    resources: tmpdir=/tmp
+
+[Wed Nov  1 12:40:59 2023]
+Finished job 0.
+52 of 52 steps (100%) done
+Complete log: ../.snakemake/log/2023-11-01T124032.773738.snakemake.log

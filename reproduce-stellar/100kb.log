@@ -1,0 +1,249 @@
+Simulating reference of length 102400 with seed 560644
+MASON GENOME SIMULATOR
+======================
+
+__OPTIONS____________________________________________________________________
+
+VERBOSITY  	1
+
+SEED       	560644
+
+OUTPUT FILE	ref_rep0.fasta
+CONTIG LENS	102400
+
+__SIMULATING GENOME__________________________________________________________
+
+Simulating query of length 102400 with seed 513339
+MASON GENOME SIMULATOR
+======================
+
+__OPTIONS____________________________________________________________________
+
+VERBOSITY  	1
+
+SEED       	513339
+
+OUTPUT FILE	random_rep0.fasta
+CONTIG LENS	102400
+
+__SIMULATING GENOME__________________________________________________________
+
+Sampling 51 local matches between 50 and 200 bp with an error rate of 0.05
+Sampling 51 local matches between 50 and 200 bp with an error rate of 0.025
+
+
+Building a new DB, current time: 11/01/2023 12:40:36
+New DB name:   /group/ag_abi/evelina/DREAM-stellar-benchmark/reproduce-stellar/100kb/ref_rep0.fasta
+New DB title:  ref_rep0.fasta
+Sequence type: Nucleotide
+Deleted existing Nucleotide BLAST database named /group/ag_abi/evelina/DREAM-stellar-benchmark/reproduce-stellar/100kb/ref_rep0.fasta
+Keep MBits: T
+Maximum file size: 1000000000B
+Sampling 51 local matches between 50 and 200 bp with an error rate of 0
+Adding sequences from FASTA; added 1 sequences in 0.001472 seconds.
+Sampling 51 local matches between 50 and 200 bp with an error rate of 0.075
+Sampling 51 local matches between 50 and 200 bp with an error rate of 0.1
+
+
+I/O options:
+  database file   : ref_rep0.fasta
+  query file      : query/rep0_e0.025.fasta
+  alphabet        : dna
+  output file     : stellar/rep0_e0.025.gff
+  output format   : gff
+
+User specified parameters:
+  minimal match length             : 50
+  maximal error rate (epsilon)     : 0.025
+  maximal x-drop                   : 5
+  search forward strand            : yes
+  search reverse complement        : yes
+
+  verification strategy            : exact
+  maximal number of matches        : 100
+  duplicate removal every          : 101
+
+Calculated parameters:
+  k-mer length : 25
+  s^min        : 25
+  threshold    : 1
+  distance cut : 50
+  delta        : 16
+  overlap      : 1
+
+Loaded 1 query sequence.
+Loaded 1 database sequence.
+
+Constructing index...
+I/O options:
+  database file   : ref_rep0.fasta
+  query file      : query/rep0_e0.05.fasta
+  alphabet        : dna
+  output file     : stellar/rep0_e0.05.gff
+  output format   : gff
+
+User specified parameters:
+  minimal match length             : 50
+  maximal error rate (epsilon)     : 0.05
+  maximal x-drop                   : 5
+  search forward strand            : yes
+  search reverse complement        : yes
+
+  verification strategy            : exact
+  maximal number of matches        : 100
+  duplicate removal every          : 101
+
+Calculated parameters:
+  k-mer length : 15
+  s^min        : 15
+  threshold    : 1
+  distance cut : 45
+  delta        : 16
+  overlap      : 2
+
+Loaded 1 query sequence.
+Loaded 1 database sequence.
+
+Constructing index...
+
+Aligning all query sequences to database sequence...
+  1
+Aligning all query sequences to database sequence...
+  1
+  1, complement
+
+
+  1, complement
+
+# Eps-matches     : 50
+# Eps-matches     : 51
+I/O options:
+  database file   : ref_rep0.fasta
+  query file      : query/rep0_e0.fasta
+  alphabet        : dna
+  output file     : stellar/rep0_e0.gff
+  output format   : gff
+
+User specified parameters:
+  minimal match length             : 50
+  maximal error rate (epsilon)     : 1e-05
+  maximal x-drop                   : 5
+  search forward strand            : yes
+  search reverse complement        : yes
+
+  verification strategy            : exact
+  maximal number of matches        : 100
+  duplicate removal every          : 101
+
+Calculated parameters:
+  k-mer length : 32
+  s^min        : 50
+  threshold    : 19
+  distance cut : 50
+  delta        : 16
+  overlap      : 0
+
+Loaded 1 query sequence.
+Loaded 1 database sequence.
+
+Constructing index...
+
+Aligning all query sequences to database sequence...
+  1
+  1, complement
+
+I/O options:
+  database file   : ref_rep0.fasta
+  query file      : query/rep0_e0.1.fasta
+  alphabet        : dna
+  output file     : stellar/rep0_e0.1.gff
+  output format   : gff
+
+User specified parameters:
+  minimal match length             : 50
+  maximal error rate (epsilon)     : 0.1
+  maximal x-drop                   : 5
+  search forward strand            : yes
+  search reverse complement        : yes
+
+  verification strategy            : exact
+  maximal number of matches        : 100
+  duplicate removal every          : 101
+
+Calculated parameters:
+  k-mer length : 8
+  s^min        : 8
+  threshold    : 3
+  distance cut : 50
+  delta        : 16
+  overlap      : 5
+
+Loaded 1 query sequence.
+# Eps-matches     : 51
+Loaded 1 database sequence.
+
+Constructing index...
+
+Aligning all query sequences to database sequence...
+  1I/O options:
+  database file   : ref_rep0.fasta
+  query file      : query/rep0_e0.075.fasta
+  alphabet        : dna
+  output file     : stellar/rep0_e0.075.gff
+  output format   : gff
+
+User specified parameters:
+  minimal match length             : 50
+  maximal error rate (epsilon)     : 0.075
+  maximal x-drop                   : 5
+  search forward strand            : yes
+  search reverse complement        : yes
+
+  verification strategy            : exact
+  maximal number of matches        : 100
+  duplicate removal every          : 101
+
+Calculated parameters:
+  k-mer length : 10
+  s^min        : 10
+  threshold    : 5
+  distance cut : 64
+  delta        : 16
+  overlap      : 5
+
+Loaded 1 query sequence.
+Loaded 1 database sequence.
+
+Constructing index...
+
+Aligning all query sequences to database sequence...
+  1
+  1, complement
+
+# Eps-matches     : 47
+
+  1, complement
+
+# Eps-matches     : 51
+Launching stellar search on a shared memory machine...
+Loaded 1 database sequence.
+Launching stellar search on a shared memory machine...
+Loaded 1 database sequence.
+Launching stellar search on a shared memory machine...
+Loaded 1 database sequence.
+Launching stellar search on a shared memory machine...
+Loaded 1 database sequence.
+Launching stellar search on a shared memory machine...
+Loaded 1 database sequence.
+Done
+Number of repetitions 1
+Build IBF for (17,15)-minimisers
+Build IBF for (15,13)-minimisers
+Build IBF for (11,9)-minimisers
+Build IBF for (9,9)-minimisers
+Build IBF for (7,7)-minimisers
+Build IBF for (9,9)-minimisers
+Build IBF for (17,15)-minimisers
+Build IBF for (11,9)-minimisers
+Build IBF for (7,7)-minimisers
+Build IBF for (15,13)-minimisers

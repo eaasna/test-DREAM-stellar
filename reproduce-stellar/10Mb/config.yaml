@@ -16,4 +16,4 @@ num_matches: 7000
 sort_threshold: 7001
 
 #------ Evalutaion parameters ------
-repeat: 1
+repeat: 2

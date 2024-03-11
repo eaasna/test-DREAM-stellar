@@ -1,5 +1,0 @@
-	ref_size	time_mean (sec)	time_std_dev	missed (%)
-0	100kb	0.25	0.0	0.01
-1	1Mb	0.42	0.0	0.025
-2	10Mb	2.41	0.0	0.01
-3	100Mb	20.13	0.0	0.01

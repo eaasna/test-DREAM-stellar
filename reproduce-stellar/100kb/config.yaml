@@ -17,4 +17,4 @@ num_matches: 100
 sort_threshold: 101
 
 #------ Evaluation parameters ------
-repeat: 2
+repeat: 1
