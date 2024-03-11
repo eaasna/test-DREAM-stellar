@@ -1,0 +1,38 @@
+Command terminated by signal 2
+621.60	24986144	0	valik-search	8
+#### PARAMS ####
+workdir	100Mb/
+reference_length	104857600
+query_length	104857600
+match_count	52429
+ibf_bins	1024
+query_seg_count	1024
+ibf_size	50M
+cart_max_capacity	100
+max_queued_carts	1024
+num_matches	53000
+sort_threshold	53001
+repeat	1
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+0.39	139184	0	valik split ref_rep0.fasta --out meta/ref_rep0.txt --split-index --overlap 50 -n 1024	1
+1.16	139304	0	valik split query/rep0_e0.fasta --out meta/query_rep0_e0.txt --overlap 50 -n 1024	1
+2.92	139212	0	valik split query/rep0_e0.1.fasta --out meta/query_rep0_e0.1.txt --overlap 50 -n 1024	1
+2.98	138956	0	valik split query/rep0_e0.025.fasta --out meta/query_rep0_e0.025.txt --overlap 50 -n 1024	1
+2.92	138672	0	valik split query/rep0_e0.05.fasta --out meta/query_rep0_e0.05.txt --overlap 50 -n 1024	1
+2.80	138456	0	valik split query/rep0_e0.075.fasta --out meta/query_rep0_e0.075.txt --overlap 50 -n 1024	1
+#### PARAMS ####
+workdir	100Mb/
+reference_length	104857600
+query_length	104857600
+match_count	52429
+ibf_bins	1024
+query_seg_count	1024
+ibf_size	50M
+cart_max_capacity	100
+max_queued_carts	1024
+num_matches	53000
+sort_threshold	53001
+repeat	1
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads

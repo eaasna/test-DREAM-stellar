@@ -15,8 +15,8 @@ truth_file = snakemake.input.truth
 evaluation_file = snakemake.output[0]
 
 # ------- preprocess ground truth -------
-truth_df = pd.read_csv(truth_file, sep='\t')
-truth_df['QEND'] =  truth_df.apply(lambda row: row.position + row.length, axis=1)
+truth_df = pd.read_csv(truth_file, sep='\t', index_col=False)
+truth_df['QEND'] = truth_df.apply(lambda row: row.position + row.length, axis=1)
 truth_df.rename(columns = {'position':'QBEGIN'}, inplace = True)
 total_match_count = len(truth_df["id"]) 
 
@@ -40,9 +40,7 @@ if (os.stat(stellar_out_file).st_size != 0):
     stellar_df["QEND"] = stellar_df.apply(lambda row: row.QEND - 1, axis=1)
 
     sorted_stellar = stellar_df.sort_values('QBEGIN')
-    sorted_stellar["length"] = sorted_stellar.apply(lambda row: row.DEND - row.DBEGIN, axis=1)
-
-
+    #sorted_stellar["length"] = sorted_stellar.apply(lambda row: row.DEND - row.DBEGIN, axis=1)
 
     # ------- evaluate results -------
     true_match_count = 0

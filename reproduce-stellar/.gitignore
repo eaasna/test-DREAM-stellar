@@ -1,11 +1,15 @@
-*.fasta
+*.fasta*
 *.fastq
 *.gff
 *.gff.out
 *.txt
 */ground_truth/*
+*/*/*.time
 */evaluation/*
 */.snakemake/*
 */.ipynb_checkpoints/*
 */*.index
 */*.gff
+*/stellar/*
+*/blast/*
+*/valik/*

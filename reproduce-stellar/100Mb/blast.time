@@ -1,0 +1,36 @@
+#### PARAMS ####
+workdir	100Mb/
+reference_length	104857600
+query_length	104857600
+match_count	52429
+ibf_bins	1024
+query_seg_count	1024
+ibf_size	50M
+cart_max_capacity	100
+max_queued_carts	1024
+num_matches	53000
+sort_threshold	53001
+repeat	1
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads
+1.93	174512	0	makeblastdb -dbtype nucl -in ref_rep0.fasta	1
+34.43	664652	0	blastn -db ref_rep0.fasta -query query/rep0_e0.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep0_e0.tsv	1
+34.21	657356	0	blastn -db ref_rep0.fasta -query query/rep0_e0.1.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep0_e0.1.tsv	1
+35.72	660564	0	blastn -db ref_rep0.fasta -query query/rep0_e0.075.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep0_e0.075.tsv	1
+34.74	663824	0	blastn -db ref_rep0.fasta -query query/rep0_e0.05.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep0_e0.05.tsv	1
+35.32	664572	0	blastn -db ref_rep0.fasta -query query/rep0_e0.025.fasta -outfmt 6 sseqid sstart send pident sstrand evalue qseqid qstart qend -out blast/rep0_e0.025.tsv	1
+#### PARAMS ####
+workdir	100Mb/
+reference_length	104857600
+query_length	104857600
+match_count	52429
+ibf_bins	1024
+query_seg_count	1024
+ibf_size	50M
+cart_max_capacity	100
+max_queued_carts	1024
+num_matches	53000
+sort_threshold	53001
+repeat	1
+#### LOG ####
+Time	Memory	Exitcode	Command	Threads

@@ -1,0 +1,20 @@
+workdir: "100Mb/"
+
+#------ Simulation parameters ------
+reference_length: 104857600 # should ref_len always == query_len?
+query_length: 104857600
+match_count: 52429 # (1024 / 2000) < 1 match per query file
+
+#------ DREAM parameters ------
+ibf_bins: 1024
+query_seg_count: 1024
+ibf_size: "50M"
+cart_max_capacity: 100
+max_queued_carts: 1024
+
+#------ Stellar parameters ------
+num_matches: 53000
+sort_threshold: 53001
+
+#------ Evaluation parameters ------
+repeat: 1

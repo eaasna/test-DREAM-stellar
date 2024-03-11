@@ -1,12 +1,11 @@
 rule stellar:
         input:
                 ref = "ref_rep{rep}.fasta",
-                query = "query/with_insertions_rep{rep}_e{er}.fasta"
+                query = "query/rep{rep}_e{er}.fasta",
+		mutex = "blast_table1.tsv"
         output: 
                 "stellar/rep{rep}_e{er}.gff"
-        params:
-                e = get_search_error_rate
         benchmark:
                 "benchmarks/stellar_rep{rep}_e{er}.txt"
         shell:
-                "../../../bin/miniconda3/envs/snakemake/bin/stellar -a dna --numMatches 1000 --sortThresh 1000 --verbose {input.ref} {input.query} -e {params.e} -l {min_len} -o {output}"
+                """( timeout 1h /usr/bin/time -a -o stellar.time -f "%e\t%M\t%x\tstellar-search\t{wildcards.er}" ../../../stellar3/build/bin/stellar -a dna --numMatches {num_matches}  --sortThresh {sort_thresh} {input.ref} {input.query} -e {wildcards.er} -l {min_len} -o {output} || touch {output} )"""

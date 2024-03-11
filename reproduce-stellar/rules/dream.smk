@@ -1,42 +1,50 @@
+f = open("valik.time", "a")
+f.write("#### PARAMS ####\n")
+for par in config:
+	f.write(par + '\t' + str(config[par]) + '\n')
+f.write("#### LOG ####\n")
+f.write("Time\tMemory\tExitcode\tCommand\tThreads\n")
+f.close()
+
 rule valik_split_ref:
 	input:
-		"ref_rep{rep}.fasta"
+		mutex = "stellar_table1.tsv",
+		ref = "ref_rep{rep}.fasta"
 	output: 
-		ref_meta = "meta/ref_rep{rep}.txt"
+		ref_meta = "meta/ref_rep{rep}.bin"
+	params: 
+		max_er = max(error_rates)
 	shell:
-		"valik split {input} --out {output.ref_meta} --split-index --overlap {min_len} -n {bins}"
-
-rule valik_split_query:
-	input:
-		"query/with_insertions_rep{rep}_e{er}.fasta"
-	output: 
-		query_meta = "meta/query_rep{rep}_e{er}.txt",
-	shell:
-		"valik split {input} --out {output.query_meta} --overlap {min_len} -n {bins}"
+		"""
+		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tsplit-ref\t{threads}" valik split {input.ref} --verbose --out {output.ref_meta} --error-rate {params.max_er} --pattern {min_len} -n {bins})
+		"""
 
 rule valik_build:
 	input:
 		ref = "ref_rep{rep}.fasta",
-		ref_meta = "meta/ref_rep{rep}.txt"
+		ref_meta = "meta/ref_rep{rep}.bin"
 	output: 
-		"rep{rep}.index"
-	threads: 8
+		temp("/dev/shm/rep{rep}.index")
+	threads: workflow.cores
+	benchmark:
+		"benchmarks/valik_build_rep{rep}.txt"
 	shell:
-		"valik build {input.ref} --threads {threads} --window {w} --kmer {k} --output {output} --size {size} --ref-meta {input.ref_meta}"
+		"""
+		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tbuild-ibf\t{threads}" valik build --threads {threads} --output {output} --size {size} --ref-meta {input.ref_meta})
+		"""
 
 rule valik_search:
 	input:
-		ibf = "rep{rep}.index",
-		query = "query/with_insertions_rep{rep}_e{er}.fasta",
-		query_meta = "meta/query_rep{rep}_e{er}.txt",
-		ref_meta = "meta/ref_rep{rep}.txt"
+		ibf = "/dev/shm/rep{rep}.index",
+		query = "query/rep{rep}_e{er}.fasta",
+		ref_meta = "meta/ref_rep{rep}.bin"
 	output:
 		"valik/rep{rep}_e{er}.gff"
-	threads: 8
-	params:
-		e = get_search_error_rate
+	threads: workflow.cores
 	benchmark: 
 		"benchmarks/valik_rep{rep}_e{er}.txt"
 	shell:
-		"valik search --index {input.ibf} --ref-meta {input.ref_meta} --query-meta {input.query_meta} --query {input.query} --error-rate {params.e} --pattern {min_len} --overlap {overlap} --threads {threads} --output {output}"
+		"""
+		( timeout 1h /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-search\t{threads}\t{wildcards.er}" valik search --split-query --verbose --cache-thresholds --numMatches {num_matches} --sortThresh {sort_thresh} --time --index {input.ibf} --ref-meta {input.ref_meta} --query {input.query} --error-rate {wildcards.er} --threads {threads} --output {output} --cart-max-capacity {max_capacity} --max-queued-carts {max_carts} || touch {output} )
+		"""
 
