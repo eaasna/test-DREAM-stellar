@@ -1,12 +1,4 @@
 .snakemake/*
-*/*/*.txt
-*/*/*.gff
-*/*/*.fasta
-*/*/bins/*
-*/*/info/*
-*/*/queries/*
-*/*/stellar/*
-*/*/valik/*
-*/*.time
+*/*
 *.out
 *.err
