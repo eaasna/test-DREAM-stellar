@@ -1,8 +1,4 @@
 .snakemake/*
-*/*/*.txt
-*/*/*.fasta
-*/*/bins/*
-*/*/info/*
-*/*/queries/*
-*/*/stellar/*
-*/*/valik/*
+*/*
+*.out
+*.err
