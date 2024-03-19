@@ -2,7 +2,8 @@ n = config["repeat"]
 repetitions = list(range(n))
 print("Number of repetitions " + str(len(repetitions)))
 #error_rates = [0, 0.025, 0.05, 0.075, 0.1]
-error_rates = [0.1]
+#error_rates = [0, 0.025, 0.05, 0.075]
+error_rates = [0]
 
 # local match lengths 
 min_len = 50
@@ -43,9 +44,9 @@ def get_seed(wildcards):
 rule make_all:
 	input:
 		#expand("/dev/shm/rep{rep}_e{er}.index", rep = repetitions, er = error_rates)
-		#expand("valik_rep{rep}_e{er}.gff", rep = repetitions, er = error_rates)
+		expand("valik/rep{rep}_e{er}.gff", rep = repetitions, er = error_rates)
 		#"stellar_table1.tsv",
-		"valik_table1.tsv"
+		#"valik_table1.tsv",
 		#"blast_table1.tsv"
 	shell:
 		"echo 'Done'"

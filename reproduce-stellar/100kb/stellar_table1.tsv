@@ -1,3 +1,2 @@
-	error_rate	time (sec)	missed (%)
-0	0.025	0.154	0.0
-1	0.05	0.154	0.02
+	error_rate	search time (sec)	missed (%)
+0	0.0	6.66	0.02
