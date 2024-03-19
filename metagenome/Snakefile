@@ -23,9 +23,7 @@ def get_search_error_rate(wildcards):
 
 #-------- Shared search parameters --------
 min_len = config["minLen"]
-
 size = config["ibf_size"]
-overlap = config["pattern_overlap"]
 cart_capacity = config["max_cart_capacity"]
 queued_carts = config["max_queued_carts"]
 
@@ -39,12 +37,13 @@ def get_seed(wildcards):
 	
 rule make_all:
 	input:
-		expand("{b}/valik/e{er}.gff", b = bins, er = error_rates)
-		#expand("{b}/stellar/e{er}.gff", b = bins, er = error_rates)
+		expand("{b}/valik/e{er}.gff", b = bins, er = error_rates),
+		expand("{b}/stellar/e{er}.gff", b = bins, er = error_rates),
+		expand("{b}/blast/e{er}.tsv", b = bins, er = error_rates)
 	shell:
 		"echo 'Done'"
 
 include: "rules/simulate.smk"
 include: "rules/dream.smk"
 include: "rules/stellar.smk"
-
+include: "rules/blast.smk"

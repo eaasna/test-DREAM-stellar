@@ -24,6 +24,8 @@ rule valik_build:
 	output: 
 		temp("/dev/shm/{b}.index.ibf")
 	threads: workflow.cores
+	benchmark:
+		"benchmarks/valik_build_b{b}.txt"
 	shell:
 		"""
 		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-build\t{threads}" valik build --ref-meta {input.meta} --threads {threads} --output {output} --size {size} )
@@ -37,10 +39,12 @@ rule valik_search:
 	output:
 		"{b}/valik/e{er}.gff"
 	threads: workflow.cores
+	benchmark: 
+		"benchmarks/valik_e{er}_b{b}.txt"
 	params:
 		e = get_search_error_rate
 	shell:
 		"""
-		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-search\t{threads}" valik search --distribute --time --index {input.ibf} --query {input.query} --error-rate {params.e} --threads {threads} --output {output} --ref-meta {input.meta} )
+		( timeout 1h /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-search\t{threads}" valik search --distribute --time --index {input.ibf} --query {input.query} --error-rate {params.e} --threads {threads} --output {output} --ref-meta {input.meta} || touch {output} )
 		"""
 
