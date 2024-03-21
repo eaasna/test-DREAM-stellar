@@ -13,7 +13,8 @@ rule simulate_reads:
 		ref = expand("{{b}}/bins/bin_{bin}.fasta", bin = bin_list)
 	output:
 		matches = "{b}/queries/e{er}.fastq",
-		bin_query_paths = "{b}/e{er}_bin_query_paths.txt"
+		bin_query_paths = "{b}/e{er}_bin_query_paths.txt",
+		truth = "{b}/ground_truth/e{er}.tsv"
 	params: 
 		errors = get_simulation_error_count
 	shell:      
