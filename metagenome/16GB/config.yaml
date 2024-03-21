@@ -1,16 +1,11 @@
 workdir: "16GB/"
 
 #--------- Simulation parameters --------
-reference_length: 2000000000
+reference_length: 17179869184
 match_count: 8192000 # per error rate
-ibf_bins: 1024
-
-#-------- Shared search parameters --------
-minLen: 100
+ibf_bins: 16384
 
 #-------- Valik parameters --------
 ibf_size: "2G"
-  #thresh_tau: 0.75
-  #thresh_pmax: 0.5
-max_queued_carts: 1024
+max_queued_carts: 16384
 max_cart_capacity: 6000

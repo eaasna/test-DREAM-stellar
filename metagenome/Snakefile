@@ -17,18 +17,17 @@ def get_simulation_error_count(wildcards):
 
 def get_search_error_rate(wildcards):
 	if (float(wildcards.er) <= 0.05):
-		a = 1e-5
-		return f'{a:.5f}'
+		return 0
 	return float(wildcards.er) - 0.05
 
 #-------- Shared search parameters --------
-min_len = config["minLen"]
+min_len = 100
 size = config["ibf_size"]
 cart_capacity = config["max_cart_capacity"]
 queued_carts = config["max_queued_carts"]
 
-#-------- Shared search parameters --------
-n = 1
+#-------- Evaluation parameters --------
+n = config["repeat"]
 min_overlap = 10
 
 #--------\ Shared functions --------

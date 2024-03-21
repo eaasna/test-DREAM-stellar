@@ -1,12 +1,9 @@
 workdir: "100Mb/"
 
 #--------- Simulation parameters --------
-reference_length: 100000000
+reference_length: 104857600
 match_count: 512000 # per query file and error rate
 ibf_bins: 64
-
-#-------- Shared search parameters --------
-minLen: 100
 
 #-------- Valik parameters --------
 ibf_size: "25M"

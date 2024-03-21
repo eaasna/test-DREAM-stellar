@@ -5,9 +5,6 @@ reference_length: 10485760
 match_count: 5120 # per query file and error rate
 ibf_bins: 64
 
-#-------- Shared search parameters --------
-minLen: 100
-
 #-------- Valik parameters --------
 ibf_size: "5M"
 max_cart_capacity: 100

@@ -18,6 +18,6 @@ rule stellar_search:
 		"benchmarks/stellar_e{er}_b{b}.txt"
 	shell:
 		"""
-		( timeout 1h /usr/bin/time -a -o stellar.time -f "%e\t%M\t%x\tstellar" stellar --verbose {input.ref} {input.query} -e {params.e} -l {min_len} -a dna -o {output} || touch {output} )
+		( timeout 1h /usr/bin/time -a -o stellar.time -f "%e\t%M\t%x\tstellar" ../../../stellar3/build/bin/stellar --verbose {input.ref} {input.query} -e {params.e} -l {min_len} -a dna -o {output} || touch {output} )
 		"""
 	
