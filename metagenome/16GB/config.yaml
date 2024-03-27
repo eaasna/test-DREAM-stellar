@@ -6,6 +6,5 @@ match_count: 8192000 # per error rate
 ibf_bins: 16384
 
 #-------- Valik parameters --------
-ibf_size: "2G"
 max_queued_carts: 16384
 max_cart_capacity: 6000

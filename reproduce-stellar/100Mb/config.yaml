@@ -7,7 +7,6 @@ match_count: 52429 # (1024 / 2000) < 1 match per query file
 
 #------ DREAM parameters ------
 ibf_bins: 2048
-ibf_size: "1G"
 cart_max_capacity: 5000
 max_queued_carts: 4096
 

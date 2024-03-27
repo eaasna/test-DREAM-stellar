@@ -6,6 +6,5 @@ match_count: 512000 # per query file and error rate
 ibf_bins: 64
 
 #-------- Valik parameters --------
-ibf_size: "25M"
 max_queued_carts: 64
 max_cart_capacity: 6000

@@ -8,7 +8,6 @@ match_count: 1703936
 ibf_bins: 64
 
 #-------- Valik parameters --------
-ibf_size: "500M" # 1/4th of the reference size
 max_queued_carts: 64
 max_cart_capacity: 6000
 

@@ -26,7 +26,7 @@ for rep in range(n):
         search_time_list.append(round(search_benchmark['s'].iloc[0], 3))
 
         if (prefix != "stellar"):
-            build_benchmark_file = "benchmarks/" + prefix + "_build_rep" + str(rep) + "_e" + str(er) + ".txt"
+            build_benchmark_file = "benchmarks/" + prefix + "_build_rep" + str(rep) + ".txt"
             if (prefix == "blast"): 
                 build_benchmark_file = "benchmarks/" + prefix + "_build_rep" + str(rep) + ".txt"
             print(build_benchmark_file)
