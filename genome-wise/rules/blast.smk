@@ -5,9 +5,9 @@ f.close()
 
 rule blast_index:
 	input:
-		"genomeA_rep{rep}.fasta"
+		"/buffer/ag_abi/evelina/human_dna4.fa"
 	output: 
-		"genomeA_rep{rep}.fasta.ndb"
+		"/buffer/ag_abi/evelina/human_dna4.fa.ndb"
 	shell:
 		"""
 		( /usr/bin/time -a -o blast.time -f "%e\t%M\t%x\tblast-index" makeblastdb -dbtype nucl -in {input})
@@ -15,11 +15,13 @@ rule blast_index:
 
 rule blast_search:
 	input:
-		ref = "genomeA_rep{rep}.fasta",
-		db = "genomeA_rep{rep}.fasta.ndb",
-		query = "genomeB_rep{rep}.fasta"
+		ref = "/buffer/ag_abi/evelina/human_dna4.fa",
+		db = "/buffer/ag_abi/evelina/human_dna4.fa.ndb",
+		query = "/buffer/ag_abi/evelina/mouse/dna4.fa"
 	output:
-		"blast/rep{rep}.tsv"
+		"blast.tsv"
+	benchmark:
+		"benchmarks/blast.txt"
 	shell:
 		"""
 		mkdir -p blast

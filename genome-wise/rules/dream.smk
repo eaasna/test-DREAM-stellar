@@ -3,54 +3,50 @@ f.write("#### PARAMS ####\n")
 for par in config:
 	f.write(par + '\t' + str(config[par]) + '\n')
 f.write("#### LOG ####\n")
-f.write("Time\tMemory\tExitcode\tCommand\tThreads\n")
+f.write("Time\tMemory\tExitcode\tCommand\tThreads\tParams\n")
 f.close()
 
 rule valik_split_ref:
 	input:
-		"genomeA_rep{rep}.fasta"
+		"/buffer/ag_abi/evelina/human_dna4.fa"
 	output: 
-		ref_meta = "meta/ref_rep{rep}.txt"
+		ref_meta = "meta/ref.bin"
+	params: 
+		max_er = max(error_rates) 
 	shell:
 		"""
-		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-split-ref\t{threads}" valik split {input} --out {output.ref_meta} --split-index --overlap {min_len} -n {bins} )
-		"""
-
-rule valik_split_query:
-	input:
-		"genomeB_rep{rep}.fasta"
-	output: 
-		query_meta = "meta/query_rep{rep}.txt",
-	shell:
-		"""
-		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-split-query\t{threads}" valik split {input} --out {output.query_meta} --overlap {min_len} -n {query_seg_count} )
+		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-split-ref\t{threads}\tbins={bins}\tmin_len={min_len}\tmax_er={params.max_er}" valik split {input} --verbose --out {output.ref_meta} --error-rate {params.max_er}  --pattern {min_len} -n {bins} )
 		"""
 
 rule valik_build:
 	input:
-		ref = "genomeA_rep{rep}.fasta",
-		ref_meta = "meta/ref_rep{rep}.txt"
+		ref = "/buffer/ag_abi/evelina/human_dna4.fa",
+		ref_meta = "meta/ref.bin"
 	output: 
-		temp("/dev/shm/rep{rep}.index")
-	threads: 16
+		temp("/dev/shm/human.index")
+	threads: workflow.cores
+	benchmark:
+		"benchmarks/valik_build.txt"
 	shell:
 		"""
-		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-build\t{threads}" valik build {input.ref} --threads {threads} --window {w} --kmer {k} --output {output} --size {size} --ref-meta {input.ref_meta} )
+		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-build\t{threads}" valik build {input.ref} --threads {threads} --output {output} --fpr {fpr} --ref-meta {input.ref_meta} )
+		truncate -s -1 valik.time
+		echo -n "\tibf_size=" >> valik.time
+		ls -lh {output} | awk "{{OFS="\\t"}};{{print \$5}}" >> valik.time
 		"""
 
 rule valik_search:
 	input:
-		ibf = "/dev/shm/rep{rep}.index",
-		query = "genomeB_rep{rep}.fasta",
-		query_meta = "meta/query_rep{rep}.txt",
-		ref_meta = "meta/ref_rep{rep}.txt"
+		ibf = "/dev/shm/human.index",
+		query = "/buffer/ag_abi/evelina/mouse/dna4.fa",
+		ref_meta = "meta/ref.bin"
 	output:
-		"valik/rep{rep}.gff"
-	threads: 16
-	params:
-		e = get_search_error_rate
+		"valik_e{er}.gff"
+	threads: workflow.cores
+	benchmark:
+		"benchmarks/valik_e{er}.txt"
 	shell:
 		"""
-		( /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-search\t{threads}" valik search --time --index {input.ibf} --ref-meta {input.ref_meta} --query-meta {input.query_meta} --query {input.query} --error-rate {params.e} --pattern {min_len} --overlap {overlap} --threads {threads} --output {output} --cart_max_capacity {cart_capacity} --max_queued_carts {queued_carts} )
+		( timeout 1h /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-search\t{threads}\ter={wildcards.er}" valik search --split-query --verbose --cache-thresholds --numMatches {num_matches} --sortThresh {sort_thresh} --time --index {input.ibf} --ref-meta {input.ref_meta} --query {input.query} --error-rate {wildcards.er} --threads {threads} --output {output} --cart_max_capacity {max_capacity} --max_queued_carts {max_carts} || touch {output} )
 		"""
 

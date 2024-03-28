@@ -1,0 +1,5 @@
+#-------- Valik parameters --------
+ibf_bins: 1024
+max_queued_carts: 1024
+cart_max_capacity: 6000
+
