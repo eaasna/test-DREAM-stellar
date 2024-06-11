@@ -8,6 +8,8 @@ rule blast_index:
 		"/buffer/ag_abi/evelina/human_dna4.fa"
 	output: 
 		"/buffer/ag_abi/evelina/human_dna4.fa.ndb"
+	benchmark:
+		"benchmarks/blast_build.txt"
 	shell:
 		"""
 		( /usr/bin/time -a -o blast.time -f "%e\t%M\t%x\tblast-index" makeblastdb -dbtype nucl -in {input})
@@ -25,7 +27,7 @@ rule blast_search:
 	shell:
 		"""
 		mkdir -p blast
-		( /usr/bin/time -a -o blast.time -f "%e\t%M\t%x\tblast-search" blastn -db {input.ref} -query {input.query} -outfmt "6 sseqid sstart send pident sstrand evalue qseqid qstart qend" -out {output})
+		( timeout 6h /usr/bin/time -a -o blast.time -f "%e\t%M\t%x\tblast-search" blastn -db {input.ref} -query {input.query} -outfmt "6 sseqid sstart send pident sstrand evalue qseqid qstart qend" -out {output})
 		"""
 		
 		

@@ -1,6 +1,7 @@
 rule ref_to_dna4:
 	input:
-		"/buffer/ag_abi/evelina/hs37d5.fa"
+		#"/buffer/ag_abi/evelina/hs37d5.fa"
+		"/buffer/ag_abi/evelina/human_chr1.fa"
 	output:
 		"/buffer/ag_abi/evelina/human_dna4.fa"
 	shell:      
@@ -8,7 +9,8 @@ rule ref_to_dna4:
 
 rule query_to_dna4:
 	input:
-		"/buffer/ag_abi/evelina/mouse/GCF_000001635.27_GRCm39_genomic.fna"
+		#"/buffer/ag_abi/evelina/mouse/GCF_000001635.27_GRCm39_genomic.fna"
+		"/buffer/ag_abi/evelina/mouse/chr1.fa"
 	output:
 		"/buffer/ag_abi/evelina/mouse/dna4.fa"
 	shell:      

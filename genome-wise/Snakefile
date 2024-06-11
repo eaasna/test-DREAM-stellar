@@ -1,15 +1,18 @@
 #-------- Local match definition --------
-error_rates = [0, 0.025, 0.05]
-min_len = 100
+error_rates = [0.025]
+min_len = 150
 
 #-------- Valik parameters --------
-fpr = 0.01
-bins = config["ibf_bins"]
+fpr = 0.001
+bin_list = [1024]
 max_capacity = config["cart_max_capacity"]
 max_carts = config["max_queued_carts"]
 
-sort_thresh = 5000
-num_matches = 5001
+sort_thresh = 5001
+num_matches = 5000
+
+#-------- Evaluation parameters --------
+n = 1
 
 #--------\ Shared functions --------
 import random
@@ -19,9 +22,12 @@ import math
 
 rule make_all:
 	input:
-		expand("stellar_er{er}.gff", er = error_rates),	
-		expand("valik_er{er}.gff", er = error_rates),
-		"blast.tsv"
+		#expand("stellar_er{er}.gff", er = error_rates),	
+		#expand("valik_er{er}.gff", er = error_rates)
+		#"blast.tsv"
+		#"stellar_table1.tsv",
+		"blast_table1.tsv"
+		#expand("valik_table1_b{b}.tsv", b = bin_list)
 	shell:
 		"echo 'Done'"
 
@@ -29,3 +35,4 @@ include: "rules/prepare.smk"
 include: "rules/dream.smk"
 include: "rules/stellar.smk"
 include: "rules/blast.smk"
+include: "rules/evaluate.smk"
