@@ -3,4 +3,8 @@ KMC input files
 /buffer/ag_abi/evelina/fly/
 /home/evelina/DREAM-Stellar-benchmark/reproduce-stellar/140Mb/ref_rep0.fasta
 
-KMC count, dump and sort into table
+Gather output data from 
+kmer_dump.sh
+kmer_stats.sh
+occurrence_counts.sh 
+
