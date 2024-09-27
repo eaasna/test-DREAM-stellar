@@ -3,5 +3,5 @@
 *.out
 *.png
 *.gff
-.ipynb_checkpoints/*
+*/.ipynb_checkpoints/*
 *.stats
