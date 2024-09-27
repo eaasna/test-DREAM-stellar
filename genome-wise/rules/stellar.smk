@@ -8,8 +8,8 @@ f.close()
 
 rule stellar:
 	input:
-		ref = "/buffer/ag_abi/evelina/human_dna4.fa",
-		query = "/buffer/ag_abi/evelina/mouse/dna4.fa",
+		ref = "/buffer/ag_abi/evelina/human/ref.fa",
+		query = "/buffer/ag_abi/evelina/mouse/query.fa",
 	output: 
 		"stellar_e{er}.gff"
 	benchmark:
