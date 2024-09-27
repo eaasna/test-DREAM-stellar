@@ -17,5 +17,5 @@ rule stellar:
 		"benchmarks/stellar_rep{rep}_e{er}.txt"
 	shell:
 		"""
-		( timeout 1h /usr/bin/time -a -o stellar.time -f "%e\t%M\t%x\tstellar-search\ter={wildcards.er}" ../../../stellar3/build/bin/stellar -a dna --numMatches {num_matches}  --sortThresh {sort_thresh} {input.ref} {input.query} -e {wildcards.er} -l {min_len} -o {output} || touch {output} )
+		( timeout 12h /usr/bin/time -a -o stellar.time -f "%e\t%M\t%x\tstellar-search\ter={wildcards.er}" ../../../stellar3/build/bin/stellar --time -a dna --numMatches {num_matches}  --sortThresh {sort_thresh} {input.ref} {input.query} -e {wildcards.er} -l {min_len} -o {output} || touch {output} )
 		"""

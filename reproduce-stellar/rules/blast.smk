@@ -25,11 +25,13 @@ rule blast_search:
 		query = "query/rep{rep}_e{er}.fasta"
 	output:
 		"blast/rep{rep}_e{er}.tsv"
+	params:
+		er_perc = get_blast_er_perc
 	benchmark:
 		"benchmarks/blast_rep{rep}_e{er}.txt"
 	shell:
 		"""
 		mkdir -p blast
-		( timeout 1h /usr/bin/time -a -o blast.time -f "%e\t%M\t%x\tblast-seach\t{threads}\ter={wildcards.er}"	blastn -db {input.ref} -query {input.query} -outfmt "6 sseqid sstart send pident sstrand evalue qseqid qstart qend" -out {output} || touch {output} )
+		( timeout 3h /usr/bin/time -a -o blast.time -f "%e\t%M\t%x\tblast-seach\t{threads}\ter={wildcards.er}"	blastn -db {input.ref} -query {input.query} -word_size 10 -outfmt "6 sseqid sstart send pident sstrand evalue qseqid qstart qend" -out {output} || touch {output} )
 		"""
 		
