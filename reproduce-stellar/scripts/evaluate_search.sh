@@ -80,4 +80,5 @@ missed=$(bc <<< "scale=2; 1.0 - $true_match_count/$total_match_count")
 echo -e 'total_match_count\ttrue_match_count\tmissed' > $OUT
 echo -e "$total_match_count\t$true_match_count\t$missed" >> $OUT
 
-rm $MATCHES.begin.tsv $MATCHES.end.tsv $MATCHES.not.found $MATCHES.still.searching
+rm $MATCHES.begin.tsv $MATCHES.end.tsv $MATCHES.not.found 
+#$MATCHES.still.searching

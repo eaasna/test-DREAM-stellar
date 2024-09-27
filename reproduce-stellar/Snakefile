@@ -1,19 +1,22 @@
 n = config["repeat"]
 repetitions = list(range(n))
 print("Number of repetitions " + str(len(repetitions)))
-error_rates = [0, 0.025, 0.05, 0.075, 0.1]
+
+#error_rates = [0, 0.02, 0.025, 0.04, 0.05, 0.06, 0.075, 0.08, 0.1]
+#error_rates = [0.02, 0.04, 0.06, 0.08]
+error_rates = [0.02]
 
 # local match lengths 
 min_len = 50
 max_len = 200
 
 # ibf_fpr
-fpr = 0.01
+fpr = 0.0005
 
 # how much stellar match has to overlap the ground truth
 min_overlap = 10
 
-workdir: config["workdir"]
+workdir: "work/" + config["workdir"]
 
 #-------- Simulation parameters --------
 ref_len = config["reference_length"]
@@ -37,17 +40,24 @@ import math
 
 # simulation needs unique seeds otherwise the same sequence is simulated
 def get_seed(wildcards):
-        return random.randint(0, 1e6)
+        return random.randint(0, 1000000)
+
+# BLAST percent identity cutoff (integer)
+def get_blast_er_perc(wildcards):
+	return round(float(wildcards.er))
 
 #-------- Shared functions \--------
 
 rule make_all:
 	input:
-		#expand("/dev/shm/rep{rep}_e{er}.index", rep = repetitions, er = error_rates)
+		#expand("/dev/shm/rep{rep}.index", rep = repetitions, er = error_rates)
 		#expand("valik/rep{rep}_e{er}.gff", rep = repetitions, er = error_rates)
-		"stellar_table1.tsv",
-		"blast_table1.tsv",
-		"valik_table1.tsv"
+		#expand("evaluation/valik_rep{rep}_e{er}.tsv", rep = repetitions, er = error_rates),
+		#expand("evaluation/stellar_rep{rep}_e{er}.tsv", rep = repetitions, er = error_rates)
+		#"stellar_table1.tsv",
+		#"blast_table1.tsv"
+		#"valik_table1.tsv"
+		expand("ref_rep{rep}.fasta", rep = repetitions)
 	shell:
 		"echo 'Done'"
 
