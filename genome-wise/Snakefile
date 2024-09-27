@@ -27,8 +27,8 @@ rule make_all:
 		#expand("stellar_er{er}.gff", er = error_rates),	
 		#expand("valik_er{er}.gff", er = error_rates)
 		#"blast.tsv"
-		#"stellar_table1.tsv",
-		#"blast_table1.tsv"
+		"stellar_table1.tsv",
+		"blast_table1.tsv",
 		expand("valik_table1_b{b}.tsv", b = bin_list)
 	shell:
 		"echo 'Done'"

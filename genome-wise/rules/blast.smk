@@ -6,7 +6,7 @@ f.close()
 rule blast_index:
 	input:
 		"/buffer/ag_abi/evelina/human/ref.fa"
-	output: 
+	output:
 		"/buffer/ag_abi/evelina/human/ref.fa.ndb"
 	benchmark:
 		"benchmarks/blast_build.txt"
