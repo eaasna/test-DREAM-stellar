@@ -8,13 +8,13 @@ f.close()
 
 rule stellar:
 	input:
-		ref = "/buffer/ag_abi/evelina/human_dna4.fa",
-		query = "/buffer/ag_abi/evelina/mouse/dna4.fa",
+		ref = "/buffer/ag_abi/evelina/human/ref.fa",
+		query = "/buffer/ag_abi/evelina/mouse/query.fa",
 	output: 
-		"stellar_er{er}.gff"
+		"stellar_e{er}.gff"
 	benchmark:
-		"benchmarks/stellar_er{er}.txt"
+		"benchmarks/stellar_e{er}.txt"
 	shell:
 		"""
-		( /usr/bin/time -a -o stellar.time -f "%e\t%M\t%x\tstellar-search\ter={wildcards.er}" ../../../stellar3/bin/stellar -a dna --numMatches {num_matches} --sortThresh {sort_thresh} {input.ref} {input.query} -e {wildcards.er} -l {min_len} -o {output} || touch {output} )
+		( timeout 6h /usr/bin/time -a -o stellar.time -f "%e\t%M\t%x\tstellar-search\ter={wildcards.er}" ../../stellar3/build/bin/stellar -a dna --numMatches {num_matches} --sortThresh {sort_thresh} {input.ref} {input.query} -e {wildcards.er} -l {min_len} -o {output} || touch {output} )
 		"""
