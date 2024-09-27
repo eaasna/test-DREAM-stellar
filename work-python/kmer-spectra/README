@@ -1,0 +1,10 @@
+KMC input files
+
+/buffer/ag_abi/evelina/fly/
+/home/evelina/DREAM-Stellar-benchmark/reproduce-stellar/140Mb/ref_rep0.fasta
+
+Gather output data from 
+kmer_dump.sh
+kmer_stats.sh
+occurrence_counts.sh 
+

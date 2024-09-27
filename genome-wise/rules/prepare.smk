@@ -1,9 +1,9 @@
 rule ref_to_dna4:
 	input:
-		#"/buffer/ag_abi/evelina/hs37d5.fa"
-		"/buffer/ag_abi/evelina/human_chr1.fa"
+		"/buffer/ag_abi/evelina/fly/dmel-all-chromosome-r6.59.fasta"
 	output:
-		"/buffer/ag_abi/evelina/human_dna4.fa"
+		"/buffer/ag_abi/evelina/fly/dna4.fa"
+		#"/buffer/ag_abi/evelina/dna4.fa"
 	shell:      
 		"st_dna5todna4 {input} > {output}"
 

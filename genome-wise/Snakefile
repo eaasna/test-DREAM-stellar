@@ -1,3 +1,5 @@
+workdir : "work"
+
 #-------- Local match definition --------
 error_rates = [0.025]
 min_len = 150
@@ -25,13 +27,13 @@ rule make_all:
 		#expand("stellar_er{er}.gff", er = error_rates),	
 		#expand("valik_er{er}.gff", er = error_rates)
 		#"blast.tsv"
-		#"stellar_table1.tsv",
-		"blast_table1.tsv"
-		#expand("valik_table1_b{b}.tsv", b = bin_list)
+		"stellar_table1.tsv",
+		"blast_table1.tsv",
+		expand("valik_table1_b{b}.tsv", b = bin_list)
 	shell:
 		"echo 'Done'"
 
-include: "rules/prepare.smk"
+#include: "rules/prepare.smk"
 include: "rules/dream.smk"
 include: "rules/stellar.smk"
 include: "rules/blast.smk"

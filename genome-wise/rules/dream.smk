@@ -8,7 +8,7 @@ f.close()
 
 rule valik_split_ref:
 	input:
-		"/buffer/ag_abi/evelina/human_dna4.fa"
+		"/buffer/ag_abi/evelina/human/ref.fa"
 	output: 
 		ref_meta = "meta/ref_b{b}.bin"
 	params: 
@@ -20,7 +20,7 @@ rule valik_split_ref:
 
 rule valik_build:
 	input:
-		ref = "/buffer/ag_abi/evelina/human_dna4.fa",
+		ref = "/buffer/ag_abi/evelina/human/ref.fa",
 		ref_meta = "meta/ref_b{b}.bin"
 	output: 
 		temp("/dev/shm/human_b{b}.index")
@@ -38,7 +38,7 @@ rule valik_build:
 rule valik_search:
 	input:
 		ibf = "/dev/shm/human_b{b}.index",
-		query = "/buffer/ag_abi/evelina/mouse/dna4.fa",
+		query = "/buffer/ag_abi/evelina/mouse/query.fa",
 		ref_meta = "meta/ref_b{b}.bin"
 	output:
 		"valik_e{er}_b{b}.gff"
@@ -47,6 +47,6 @@ rule valik_search:
 		"benchmarks/valik_e{er}_b{b}.txt"
 	shell:
 		"""
-		( timeout 12h /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-search\t{threads}\tbins={wildcards.b}\ter={wildcards.er}" valik search --split-query --verbose --cache-thresholds --numMatches {num_matches} --sortThresh {sort_thresh} --time --index {input.ibf} --ref-meta {input.ref_meta} --query {input.query} --error-rate {wildcards.er} --threads {threads} --output {output} --cart-max-capacity {max_capacity} --max-queued-carts {max_carts} || touch {output} )
+		( timeout 12h /usr/bin/time -a -o valik.time -f "%e\t%M\t%x\tvalik-search\t{threads}\tbins={wildcards.b}\ter={wildcards.er}" valik search --verbose --split-query --cache-thresholds --numMatches {num_matches} --sortThresh {sort_thresh} --time --index {input.ibf} --ref-meta {input.ref_meta} --query {input.query} --error-rate {wildcards.er} --threads {threads} --output {output} --cart-max-capacity {max_capacity} --max-queued-carts {max_carts} || touch {output} )
 		"""
 
