@@ -1,9 +1,4 @@
-*.gff
+work/*
 *.out
-*.fasta*
-*.fai
-*.vcf
-*/meta/*
-*/*.time
-*/*/*.time
-*/blast/*
+*.err
+*.time

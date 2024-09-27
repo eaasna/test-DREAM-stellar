@@ -5,9 +5,9 @@ f.close()
 
 rule blast_index:
 	input:
-		"/buffer/ag_abi/evelina/human_dna4.fa"
+		"/buffer/ag_abi/evelina/human/ref.fa"
 	output: 
-		"/buffer/ag_abi/evelina/human_dna4.fa.ndb"
+		"/buffer/ag_abi/evelina/human/ref.fa.ndb"
 	benchmark:
 		"benchmarks/blast_build.txt"
 	shell:
@@ -17,9 +17,9 @@ rule blast_index:
 
 rule blast_search:
 	input:
-		ref = "/buffer/ag_abi/evelina/human_dna4.fa",
-		db = "/buffer/ag_abi/evelina/human_dna4.fa.ndb",
-		query = "/buffer/ag_abi/evelina/mouse/dna4.fa"
+		ref = "/buffer/ag_abi/evelina/human/ref.fa",
+		db = "/buffer/ag_abi/evelina/human/ref.fa.ndb",
+		query = "/buffer/ag_abi/evelina/fly/query.fa"
 	output:
 		"blast.tsv"
 	benchmark:
