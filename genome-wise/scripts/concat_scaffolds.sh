@@ -24,3 +24,5 @@ rm tmp.fa
 #grep -A 1 -f long_ids.txt $ref_in > ref_concat.fa
 
 #cat short_sequences.fa >> ref_concat.fa
+
+#sed -i "s/-//g" ref_concat.fa

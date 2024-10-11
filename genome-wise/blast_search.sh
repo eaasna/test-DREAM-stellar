@@ -21,14 +21,14 @@ log="blast_manual.time"
 echo "Build index"
 #(/usr/bin/time -a -o $log -f "%e\t%M\t%x\tblast-index\t${evalue}" makeblastdb -dbtype nucl -in $ref)
 
-for evalue in 0.001 100
+for evalue in 0.01
 do
 	prefix="e${evalue}"
 	out="blast_${prefix}.txt"
 	rm $out
 		
 	echo "Search for local matches"
-	(/usr/bin/time -a -o $log -f "%e\t%M\t%x\tblast-search\t${evalue}" blastn -evalue $evalue -db $ref -query $query -outfmt "6 sseqid sstart send pident sstrand evalue qseqid qstart qend" -out $out)
+	(/usr/bin/time -a -o $log -f "%e\t%M\t%x\tblast-search\t${evalue}" blastn -min_raw_gapped_score 138 -evalue $evalue -db $ref -query $query -outfmt "6 sseqid sstart send pident sstrand evalue qseqid qstart qend" -out $out)
 
 	truncate -s -1 $log
 	wc -l $out | awk '{ print "\t" $1}' >> $log

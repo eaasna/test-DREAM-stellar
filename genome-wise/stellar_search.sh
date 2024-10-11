@@ -8,10 +8,8 @@ cd work
 
 #ref="/buffer/ag_abi/evelina/mouse/chr1.fa"
 #query="/buffer/ag_abi/evelina/fly/dna4.fa"
-ref="/buffer/ag_abi/evelina/mouse/ref.fa"
-query="/buffer/ag_abi/evelina/fly/query.fa"
-ref_meta="meta/mouse_ref_b${ibf_bins}.bin"
-index="/dev/shm/genome-wise/mouse_b${ibf_bins}_k${kmer_size}_l${min_len}.index"
+ref="/buffer/ag_abi/evelina/mouse/ref_concat.fa"
+query="/buffer/ag_abi/evelina/fly/query_concat.fa"
 
 min_len=150
 timeout="180m"
@@ -21,7 +19,6 @@ sortThresh=$(($numMatches + 1))
 log="stellar_manual.time"
 
 echo -e "time\tmem\terror-code\tcommand\tmin-len\ter\tmatches\trepeats" >> $log
-
 prefix="l${min_len}"
 out="stellar_${prefix}.gff"
 rm $out
@@ -33,5 +30,5 @@ truncate -s -1 $log
 wc -l $out | awk '{ print "\t" $1}' >> $log
 
 truncate -s -1 $log
-grep  wc -l stellar.disabled.fasta | awk '{ print "\t" $1}' >> $log
+grep  wc -l stellar.disabled.fasta | awk '{ print "\t" $1 "\n"}' >> $log
 
