@@ -104,19 +104,15 @@ function run_manual_search() {
 }
 
 
-for k in 19 
-	#21
+for k in 19 21
 do	
 	ref_meta=$(run_manual_split $k)
-	for cmin in 0 
-		#1
+	for cmin in 0 1
 	do
-		for cmax in 50 
-			#150 250
+		for cmax in 50 150 250
 		do
 			index=$(run_manual_build $ref_meta $k $cmin $cmax)
-			for seg_count in 10000 
-				#20000 30000
+			for seg_count in 10000 20000 30000
 			do
 				for t in 20 
 					#25 30

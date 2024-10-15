@@ -25,6 +25,11 @@ sortThresh=$(($numMatches + 1))
 kmer_cmin=0 # min k-mer count
 kmer_cmax=254
 
+threads=16
+
+cart_max_cap=15000
+max_queued_carts=1024
+
 mkdir -p /dev/shm/parameter-tuning
 ref_meta="meta/param_tuning_mouse_ref_b${ibf_bins}.bin"
 index="/dev/shm/parameter-tuning/mouse_b${ibf_bins}_l${min_len}.index"
@@ -32,6 +37,9 @@ index="/dev/shm/parameter-tuning/mouse_b${ibf_bins}_l${min_len}.index"
 split_log="split_valik.time"
 build_log="build_valik.time"
 search_log="search_valik.time"
+
+truth_file="stellar_l${min_len}.gff" 
+min_overlap=10
 
 for log_file in $split_log $build_log $search_log
 do
@@ -48,26 +56,17 @@ echo "Building IBF"
 truncate -s -1 $build_log
 ls -lh $index | awk '{ print "\t" $5}' >> $build_log
 
-echo -e "time\tmem\terror-code\tcommand\tbins\tcart-max-cap\tmin-len\ter\tcmin\tcmax\trepeat-mask\trepeats\tibf-size\tmatches\ttruth-set-matches\ttrue-matches\tmissed\tmin_overlap" >> $search_log
+echo -e "time\tmem\terror-code\tcommand\tbins\tcart-max-cap\tmax-queued\tmin-len\ter\tcmin\tcmax\trepeat-mask\trepeats\tibf-size\tmatches\ttruth-set-matches\ttrue-matches\tmissed\tmin_overlap" >> $search_log
 
-threads=16
-
-cart_max_cap=5000
-for param1 in 10
+for repeat_mask in "--keep-all-repeats" "--keep-all-repeats" "--keep-best-repeats" "\t"
 do
-for param2 in 10
-do
-	for repeat_mask in "--keep-all-repeats"
-		#"--keep-all-repeats" "--keep-best-repeats" ""
-	do
 	
 	echo "Search for local matches and $repeat_mask" 
 	prefix="test_b${ibf_bins}_l${min_len}_cmax${kmer_cmax}"
 	out="valik_${prefix}.gff"
 	#rm $out
 	
-	#TODO: manual seg_count and seg_count==cart_max_capac?
-	(timeout $timeout /usr/bin/time -a -o $search_log -f "%e\t%M\t%x\tcap$param1-queued$param2-search\t${ibf_bins}\t${cart_max_cap}\t${min_len}\t${er}\t$kmer_cmin\t${kmer_cmax}\t$repeat_mask" $valik search --time $repeat_mask --verbose --split-query --cache-thresholds --numMatches $numMatches --sortThresh $sortThresh --index $index --ref-meta $ref_meta --query $query --error-rate $er --threads $threads --output $out --cart-max-capacity $param1 --max-queued-carts $param2 || touch $out ) > ${timeout}_${prefix}.log 2> ${prefix}.err
+	(timeout $timeout /usr/bin/time -a -o $search_log -f "%e\t%M\t%x\tvalik-search\t${ibf_bins}\t${cart_max_cap}\t${max_queued_carts}\t${min_len}\t${er}\t$kmer_cmin\t${kmer_cmax}\t$repeat_mask" $valik search --time $repeat_mask --verbose --split-query --cache-thresholds --numMatches $numMatches --sortThresh $sortThresh --index $index --ref-meta $ref_meta --query $query --error-rate $er --threads $threads --output $out --cart-max-capacity $cart_max_cap --max-queued-carts $max_queued_carts || touch $out ) > ${timeout}_${prefix}.log 2> ${prefix}.err
 
 	truncate -s -1 $search_log
 	grep "Insufficient" ${prefix}.err | wc -l | awk '{ print "\t" $1 "\t"}' >> $search_log
@@ -78,17 +77,12 @@ do
 	wc -l $out | awk '{ print "\t" $1 "\t"}' >> $search_log
 
 	truncate -s -1 $search_log
-	truth_file="stellar_l150.gff" 
-	min_overlap=10
 	../scripts/search_accuracy.sh $truth_file $out $min_len $min_overlap tmp.log
 	tail -n 1 tmp.log >> $search_log
 	rm tmp.log
 
 	truncate -s -1 $search_log
 	echo -e "\t$min_overlap" >> $search_log
-	
-	done
-done
 done
 
 #rm $index
