@@ -1,20 +1,35 @@
-workdir : "work"
+prefix = config["prefix"]
+workdir : "work/" + prefix
+valik = config["valik_exec"]
 
-#-------- Local match definition --------
-error_rates = [0.025]
-min_len = 150
+#-------- split parameters --------
+fpr_list = config["ibf_fpr"]
+bin_list = config["ibf_bins"]
+min_lens = config["min_len"]
 
-#-------- Valik parameters --------
-fpr = 0.001
-bin_list = [1024]
-max_capacity = config["cart_max_capacity"]
-max_carts = config["max_queued_carts"]
+#-------- build parameters --------
+minimiser_flag = config["minimiser_flag"]
+cmin_list = config["kmer_cmin"]
+cmax_list = config["kmer_cmax"]
 
-sort_thresh = 5001
-num_matches = 5000
+#-------- build parameters --------
+search_threads = config["search_threads"]
+error_rates = config["error_rates"]
+max_er = max(error_rates)
+repeat_flag = config["repeat_flag"]
+bin_entropy_cutoffs = [1.0]
+if (repeat_flag == "--keep-best-repeats"):
+	bin_entropy_cutoffs = config["bin_entropy_cutoffs"]
+
+cart_max_capacity = config["cart_max_capacity"]
+max_queued_carts = config["max_queued_carts"]
+
+num_matches = 20000
+sort_thresh = num_matches + 1
 
 #-------- Evaluation parameters --------
 n = 1
+min_overlap = 100
 
 #--------\ Shared functions --------
 import random
@@ -25,16 +40,16 @@ import math
 rule make_all:
 	input:
 		#expand("stellar_er{er}.gff", er = error_rates),	
-		#expand("valik_er{er}.gff", er = error_rates)
+		expand("b{b}_fpr{fpr}_l{min_len}_cmin{cmin}_cmax{cmax}_e{er}_ent{bin_ent}_cap{max_cap}_carts{max_carts}.gff", b = bin_list, fpr = fpr_list, min_len = min_lens, cmin = cmin_list, cmax = cmax_list, er = error_rates, bin_ent = bin_entropy_cutoffs, max_cap = cart_max_capacity, max_carts = max_queued_carts)
 		#"blast.tsv"
-		"stellar_table1.tsv",
-		"blast_table1.tsv",
-		expand("valik_table1_b{b}.tsv", b = bin_list)
+		#"stellar_table1.tsv",
+		#"blast_table1.tsv",
+		#expand("valik_table1_b{b}.tsv", b = bin_list)
 	shell:
 		"echo 'Done'"
 
 #include: "rules/prepare.smk"
 include: "rules/dream.smk"
-include: "rules/stellar.smk"
-include: "rules/blast.smk"
-include: "rules/evaluate.smk"
+#include: "rules/stellar.smk"
+#include: "rules/blast.smk"
+#include: "rules/evaluate.smk"

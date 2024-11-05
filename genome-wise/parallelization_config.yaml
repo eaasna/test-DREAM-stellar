@@ -1,0 +1,32 @@
+#-------- workflow parameters --------
+prefix: "parallelization"
+valik_exec: "/group/ag_abi/evelina/valik2/build/bin/valik"
+
+#-------- input files --------
+ref: "/buffer/ag_abi/evelina/mouse/ref_concat.fa"
+query: "/buffer/ag_abi/evelina/fly/query_concat.fa"
+truth_file: "/group/ag_abi/evelina/DREAM-stellar-benchmark/genome-wise/work/blast/blast_e10_k28.txt"
+
+#-------- split parameters --------
+ibf_fpr: [0.005]
+ibf_bins: [1024]
+max_er: 0.0267
+min_len: 150
+
+#-------- build parameters --------
+minimiser_flag: "--fast"
+kmer_cmin: 0
+kmer_cmax: 254
+
+#-------- search parameters --------
+search_threads: [32]
+  #search_threads: [128, 64, 32, 16, 8, 4, 2, 1]
+  # error_rates: [0.0067, 0.013, 0.02, 0.0267, 0.033, 0.04, 0.0467, 0.053]
+error_rates: [0.0267]
+repeat_flag: "--keep-best-repeats"
+  #bin_entropy_cutoffs: [0.01, 0.1]
+bin_entropy_cutoffs: [0.1]
+max_queued_carts: 1024
+cart_max_capacity: 20000
+
+
