@@ -2,14 +2,19 @@ f = open("split_valik.time", "a")
 f.write("time\tmem\terror-code\tcommand\tbins\tfpr\tmax-er\tmin-len\n")
 f.close()
 
+
 rule valik_split_ref:
 	input:
 		config["ref"]
 	output: 
 		ref_meta = "meta/b{b}_fpr{fpr}_l{min_len}.bin"
+	params:
+		log = "split_valik.time"
 	shell:
 		"""
-		( /usr/bin/time -a -o split_valik.time -f "%e\t%M\t%x\tvalik-split\t{wildcards.b}\t{wildcards.fpr}\t{max_er}\t{wildcards.min_len}" {valik} split {input} --verbose --fpr {wildcards.fpr} --out {output.ref_meta} --error-rate {max_er}  --pattern {wildcards.min_len} -n {wildcards.b} )
+		( /usr/bin/time -a -o {params.log} -f "%e\t%M\t%x\tvalik-split\t{wildcards.b}\t{wildcards.fpr}\t{max_er}\t{wildcards.min_len}" \
+			{valik} split {input} --verbose --fpr {wildcards.fpr} --out {output.ref_meta} \
+				--error-rate {max_er}  --pattern {wildcards.min_len} -n {wildcards.b} &> {output}.err)
 		"""
 
 f = open("build_valik.time", "a")
@@ -23,17 +28,21 @@ rule valik_build:
 	output: 
 		temp("/dev/shm/{prefix}/b{b}_fpr{fpr}_l{min_len}_cmin{cmin}_cmax{cmax}.index")
 	params: 
-		is_minimiser = "yes" if minimiser_flag == '--fast' else "no"
+		log = "build_valik.time",
+		is_minimiser = "yes" if minimiser_flag == "--fast" else "no"
 	threads: workflow.cores
 	shell:
 		"""
-		( /usr/bin/time -a -o build_valik.time -f "%e\t%M\t%x\tvalik-build\t{wildcards.b}\t{wildcards.fpr}\t{max_er}\t{wildcards.min_len}\t{workflow.cores}\t{params.is_minimiser}\t{wildcards.cmin}\t{wildcards.cmax}" {valik} build {minimiser_flag} --threads {threads} --output {output} --ref-meta {input.ref_meta} --kmer-count-min {wildcards.cmin} --kmer-count-max {wildcards.cmax} )
-		truncate -s -1 build_valik.time
-		ls -lh {output} | awk '{{print "\t" $5}}' >> build_valik.time
+		( /usr/bin/time -a -o {params.log} -f "%e\t%M\t%x\tvalik-build\t{wildcards.b}\t{wildcards.fpr}\t{max_er}\t{wildcards.min_len}\t{workflow.cores}\t{params.is_minimiser}\t{wildcards.cmin}\t{wildcards.cmax}" \
+			{valik} build {minimiser_flag} --threads {threads} --output {output} \
+				--ref-meta {input.ref_meta} --kmer-count-min {wildcards.cmin} \
+				--kmer-count-max {wildcards.cmax} )
+		truncate -s -1 {params.log}
+		ls -lh {output} | awk '{{print "\t" $5}}' >> {params.log}
 		"""
 
 f = open("search_valik.time", "a")
-f.write("time\tmem\terror-code\tcommand\tbins\tfpr\tmax-er\tmin-len\tthreads\tminimiser\tcmin\tcmax\terror-rate\trepeat-flag\tbin-entropy-cutoff\tcart-max-cap\tmax-carts\trepeats\tmatches\ttruth-set-matches\ttrue-matches\tmissed\tmin-overlap\n")
+f.write("time\tmem\terror-code\tcommand\tbins\tfpr\tmax-er\tmin-len\tthreads\tminimiser\tcmin\tcmax\terror-rate\trepeat-flag\tbin-entropy-cutoff\tcart-max-cap\tmax-carts\trepeat-period\trepeat-length\trepeats\tmatches\ttruth-set-matches\ttrue-matches\tmissed\tmin-overlap\n")
 f.close()
 
 rule valik_search:
@@ -41,14 +50,13 @@ rule valik_search:
 		ibf = expand("/dev/shm/{pr}/b{{b}}_fpr{{fpr}}_l{{min_len}}_cmin{{cmin}}_cmax{{cmax}}.index", pr = prefix),
 		query = config["query"],
 		ref_meta = "meta/b{b}_fpr{fpr}_l{min_len}.bin",
-		truth_file = config["truth_file"]
+		truth_file = "../stellar/" + run_id + "_l{min_len}_e{er}_rp{rp}_rl{rl}.gff"
 	output:
-		"b{b}_fpr{fpr}_l{min_len}_cmin{cmin}_cmax{cmax}_e{er}_ent{bin_ent}_cap{max_cap}_carts{max_carts}.gff"
+		"b{b}_fpr{fpr}_l{min_len}_cmin{cmin}_cmax{cmax}_e{er}_ent{bin_ent}_cap{max_cap}_carts{max_carts}_t{t}_rp{rp}_rl{rl}.gff"
 	threads: workflow.cores
 	params:
-		log = "valik_search.time",
-		is_minimiser = "yes" if minimiser_flag == '--fast' else "no",
-		repeats = "best" if repeat_flag == '--keep-best-repeats' else "none"
+		log = "search_valik.time",
+		is_minimiser = "yes" if minimiser_flag == "--fast" else "no"
 	shell:
 		"""
 		/usr/bin/time -a -o {params.log} -f \
@@ -56,10 +64,10 @@ rule valik_search:
 			{valik} search --verbose {repeat_flag} --bin-entropy-cutoff {wildcards.bin_ent} \
 				--split-query --cache-thresholds --numMatches {num_matches} \
 				--sortThresh {sort_thresh} --time --index {input.ibf} --ref-meta {input.ref_meta} \
-				--query {input.query} --error-rate {wildcards.er} --threads {threads} \
+				--query {input.query} --error-rate {wildcards.er} --threads {wildcards.t} \
 				--output {output} --cart-max-capacity {wildcards.max_cap} \
-				--max-queued-carts {wildcards.max_carts} 2> {output}.err
-
+				--max-queued-carts {wildcards.max_carts} 2> {output}.err \
+				--repeatPeriod {wildcards.rp} --repeatLength {wildcards.rl}
 
 		truncate -s -1 {params.log}
 		grep "Insufficient" {output}.err | wc -l | awk '{{ print "\t" $1}}' >> {params.log}
@@ -68,7 +76,7 @@ rule valik_search:
 		wc -l {output} | awk '{{ print "\t" $1 "\t"}}' >> {params.log}
 
 		truncate -s -1 {params.log}
-		if [ -s {input.truth_file} ];  && [ -s {output} ]; then
+		if [ -s {input.truth_file}  -a  -s {output} ]; then
 			../../scripts/search_accuracy.sh {input.truth_file} {output} {wildcards.min_len} {min_overlap} {input.ref_meta} tmp.log
 			tail -n 1 tmp.log >> {params.log}
 			rm tmp.log

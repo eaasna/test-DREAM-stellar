@@ -1,20 +1,19 @@
-f = open("stellar.time", "a")
-f.write("#### PARAMS ####\n")
-for par in config:
-	f.write(par + '\t' + str(config[par]) + '\n')
-f.write("#### LOG ####\n")
-f.write("Time\tMemory\tExitcode\tCommand\tParams\n")
+stellar_log = "../stellar/stellar.time"
+f = open(stellar_log, "a")
+f.write("time\tmem\terror-code\tcommand\tmin-len\terror-rate\trepeat-period\trepeat-length\n")
 f.close()
 
 rule stellar:
 	input:
-		ref = "/buffer/ag_abi/evelina/human/ref.fa",
-		query = "/buffer/ag_abi/evelina/mouse/query.fa",
+		ref = config["ref"],
+		query = config["query"]
 	output: 
-		"stellar_e{er}.gff"
-	benchmark:
-		"benchmarks/stellar_e{er}.txt"
+		"../stellar/" + run_id + "_l{min_len}_e{er}_rp{rp}_rl{rl}.gff"
 	shell:
 		"""
-		( timeout 6h /usr/bin/time -a -o stellar.time -f "%e\t%M\t%x\tstellar-search\ter={wildcards.er}" ../../stellar3/build/bin/stellar -a dna --numMatches {num_matches} --sortThresh {sort_thresh} {input.ref} {input.query} -e {wildcards.er} -l {min_len} -o {output} || touch {output} )
+		/usr/bin/time -a -o {stellar_log} -f "%e\t%M\t%x\tstellar-search\t{wildcards.min_len}\t{wildcards.er}\t{wildcards.rp}\t{wildcards.rl}" \
+			../../stellar3/build/bin/stellar -a dna --numMatches {num_matches} \
+				--sortThresh {sort_thresh} {input.ref} {input.query} -e {wildcards.er} \
+				-l {wildcards.min_len} --repeatPeriod {wildcards.rp} \
+				--repeatLength {wildcards.rl} -o {output}
 		"""
