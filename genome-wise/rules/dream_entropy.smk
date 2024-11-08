@@ -104,11 +104,17 @@ rule valik_compare_stellar:
 		touch {output.dummy}
 		"""
 
+def blast_truth_file(wildcards):
+	errors = round(int(wildcards.min_len) * float(wildcards.er))
+	for k in range(51, 11, -1):
+		if ((int(wildcards.min_len) - k + 1 - errors * k ) > 2):
+			return "../blast/" + run_id + "_e" + str(comparison_evalue) + "_k" + str(k) + ".txt" 
+
 rule valik_compare_blast:
 	input:
-		truth = config["truth_file"],
 		ref_meta = "meta/b{b}_fpr{fpr}_l{min_len}.bin",
-		test = "b{b}_fpr{fpr}_l{min_len}_cmin{cmin}_cmax{cmax}_e{er}_ent{bin_ent}_cap{max_cap}_carts{max_carts}_t{t}_rp{rp}_rl{rl}.gff"
+		test = "b{b}_fpr{fpr}_l{min_len}_cmin{cmin}_cmax{cmax}_e{er}_ent{bin_ent}_cap{max_cap}_carts{max_carts}_t{t}_rp{rp}_rl{rl}.gff",
+		truth = blast_truth_file
 	output:
 		fn = "b{b}_fpr{fpr}_l{min_len}_cmin{cmin}_cmax{cmax}_e{er}_ent{bin_ent}_cap{max_cap}_carts{max_carts}_t{t}_rp{rp}_rl{rl}.missed.gff",
 		dummy = "b{b}_fpr{fpr}_l{min_len}_cmin{cmin}_cmax{cmax}_e{er}_ent{bin_ent}_cap{max_cap}_carts{max_carts}_t{t}_rp{rp}_rl{rl}.gff.blast.done" 

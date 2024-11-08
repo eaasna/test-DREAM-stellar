@@ -1,0 +1,25 @@
+prefix = config["prefix"]
+workdir : "work/" + prefix
+
+#-------- search parameters --------
+evalues = config["evalues"]
+blast_kmer_lengths = config["blast_kmer_lengths"]
+
+#-------- Evaluation parameters --------
+n = 1
+min_overlap = 100
+run_id = config["run_id"]
+
+#--------\ Shared functions --------
+import random
+import math
+
+#-------- Shared functions \--------
+
+rule make_all:
+	input:
+		expand("../blast/" + run_id + "_e{ev}_k{k}.txt", ev = evalues, k = blast_kmer_lengths)
+	shell:
+		"echo 'Done'"
+
+include: "rules/blast.smk"

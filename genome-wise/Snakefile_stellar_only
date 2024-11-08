@@ -1,0 +1,33 @@
+prefix = config["prefix"]
+workdir : "work/" + prefix
+stellar = "/group/ag_abi/evelina/stellar3/build/bin/stellar"
+
+#-------- split parameters --------
+min_lens = config["min_len"]
+
+#-------- search parameters --------
+error_rates = config["error_rates"]
+
+num_matches = 20000
+sort_thresh = num_matches + 1
+repeat_periods = config["repeat_periods"]
+repeat_lengths = config["repeat_lengths"]
+
+#-------- Evaluation parameters --------
+n = 1
+min_overlap = 100
+run_id = config["run_id"]
+
+#--------\ Shared functions --------
+import random
+import math
+
+#-------- Shared functions \--------
+
+rule make_all:
+	input:
+		expand("../stellar/" + run_id + "_l{min_len}_e{er}_rp{rp}_rl{rl}.gff", min_len = min_lens, er = error_rates, rp = repeat_periods, rl = repeat_lengths),	
+	shell:
+		"echo 'Done'"
+
+include: "rules/stellar.smk"

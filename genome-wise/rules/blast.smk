@@ -20,11 +20,12 @@ rule blast_search:
 		query = config["query"]
 	output:
 		"../blast/" + run_id + "_e{ev}_k{k}.txt"
+	threads: workflow.cores
 	shell:
 		"""
 		mkdir -p blast
-		/usr/bin/time -a -o {blast_log} -f "%e\t%M\t%x\tblast-search" \
-			blastn -db {input.ref} -query {input.query} \
+		/usr/bin/time -a -o {blast_log} -f "%e\t%M\t%x\tblast-search\t{threads}\t{wildcards.ev}\t{wildcards.k}" \
+			blastn -db {input.ref} -query {input.query} -num_threads {threads} \
 				-outfmt "6 sseqid sstart send pident sstrand evalue qseqid qstart qend" \
 				-word_size {wildcards.k} -evalue {wildcards.ev} -out {output}
 		"""

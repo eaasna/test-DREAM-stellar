@@ -1,0 +1,11 @@
+#-------- workflow parameters --------
+prefix: "blast"
+
+#-------- input files --------
+ref: "/buffer/ag_abi/evelina/mouse/ref_concat.fa"
+query: "/buffer/ag_abi/evelina/fly/query_concat.fa"
+run_id: "mouse_vs_fly"
+
+#-------- search parameters --------
+evalues: [10, 1, 0.1, 0.01]
+blast_kmer_lengths: [51, 49, 37, 29, 24, 21, 18, 16]
