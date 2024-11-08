@@ -1,6 +1,6 @@
 #-------- workflow parameters --------
-prefix: "parallelization"
-valik_exec: "/group/ag_abi/evelina/valik2/build/bin/valik"
+prefix: "bin_entropy"
+valik_exec: "/group/ag_abi/evelina/valik_entropy/build/bin/valik"
 
 #-------- input files --------
 ref: "/buffer/ag_abi/evelina/mouse/ref_concat.fa"
@@ -10,7 +10,7 @@ run_id: "mouse_vs_fly"
 #-------- split parameters --------
 ibf_fpr: [0.005]
 ibf_bins: [1024]
-max_er: 0.0267
+max_er: 0.033
 min_len: 150
 
 #-------- build parameters --------
@@ -25,7 +25,7 @@ search_threads: [32]
 error_rates: [0.0267]
 repeat_flag: "--keep-best-repeats"
   #bin_entropy_cutoffs: [0.01, 0.1]
-bin_entropy_cutoffs: [0.9]
+bin_entropy_cutoffs: [0.75, 0.5, 0.1, 0.01]
 max_queued_carts: 1024
 cart_max_capacity: 20000
 
@@ -34,3 +34,4 @@ repeat_lengths: [1000]
 
 evalues: [0.1]
 kmer_lengths: [16, 28]
+truth_file: "../stellar/mouse_vs_fly_l150_e0.033_rp1_rl1000.gff"

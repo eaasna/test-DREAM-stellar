@@ -1,8 +1,11 @@
 #-------- workflow parameters --------
-prefix: "parallelization"
+prefix: "filter_repeats"
 valik_exec: "/group/ag_abi/evelina/valik2/build/bin/valik"
 
 #-------- input files --------
+#ref: "/buffer/ag_abi/evelina/human/ref_concat.fa"
+#query: "/buffer/ag_abi/evelina/mouse/dna4.random.fa"
+#run_id: "human_vs_mouse"
 ref: "/buffer/ag_abi/evelina/mouse/ref_concat.fa"
 query: "/buffer/ag_abi/evelina/fly/query_concat.fa"
 run_id: "mouse_vs_fly"
@@ -25,12 +28,15 @@ search_threads: [32]
 error_rates: [0.0267]
 repeat_flag: "--keep-best-repeats"
   #bin_entropy_cutoffs: [0.01, 0.1]
-bin_entropy_cutoffs: [0.9]
+bin_entropy_cutoffs: [0.5]
 max_queued_carts: 1024
 cart_max_capacity: 20000
 
-repeat_periods: [1]
-repeat_lengths: [1000]
+repeat_periods: [1, 2, 4]
+  #repeat_periods: [2]
+repeat_lengths: [1000, 100, 50, 25]
+  #repeat_lengths: [100]
 
 evalues: [0.1]
 kmer_lengths: [16, 28]
+truth_file: "../blast/mouse_vs_fly_e1_k28.txt"

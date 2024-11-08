@@ -12,7 +12,7 @@ rule stellar:
 	shell:
 		"""
 		/usr/bin/time -a -o {stellar_log} -f "%e\t%M\t%x\tstellar-search\t{wildcards.min_len}\t{wildcards.er}\t{wildcards.rp}\t{wildcards.rl}" \
-			../../stellar3/build/bin/stellar -a dna --numMatches {num_matches} \
+			{stellar} -a dna --numMatches {num_matches} \
 				--sortThresh {sort_thresh} {input.ref} {input.query} -e {wildcards.er} \
 				-l {wildcards.min_len} --repeatPeriod {wildcards.rp} \
 				--repeatLength {wildcards.rl} -o {output}
