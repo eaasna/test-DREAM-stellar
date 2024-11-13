@@ -8,5 +8,5 @@ query: "/buffer/ag_abi/evelina/mouse/query_concat.fa"
 run_id: "human_vs_mouse"
 
 #-------- search parameters --------
-evalues: [1, 0.1, 0.01]
-blast_kmer_lengths: [51, 37, 24, 18]
+evalues: [0.001]
+blast_kmer_lengths: [51, 37, 24, 16]

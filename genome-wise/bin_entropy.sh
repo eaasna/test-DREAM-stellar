@@ -2,81 +2,116 @@
 
 set -e
 
-valik=/group/ag_abi/evelina/valik/build/bin/valik
+valik=/group/ag_abi/evelina/valik2/build/bin/valik
+stellar=/group/ag_abi/evelina/stellar3/build/bin/stellar
 
-cd work 
-mkdir -p /dev/shm/test-genome-wise
+prefix="human_bin_entropy"
+mkdir -p work/$prefix
+cd work/$prefix 
 
 #ref="/buffer/ag_abi/evelina/mouse/chr1.fa"
 #query="/buffer/ag_abi/evelina/fly/dna4.fa"
-ref="/buffer/ag_abi/evelina/mouse/ref_concat.fa"
-query="/buffer/ag_abi/evelina/fly/query_concat.fa"
+ref="/buffer/ag_abi/evelina/human/ref_concat.fa"
+query="/buffer/ag_abi/evelina/mouse/dna4.random.fa"
 #query="/buffer/ag_abi/evelina/fly/rDNA.fa"
 
-ibf_bins=1024
 min_len=150
-timeout="180m"
-query_seg_count=20000
-cart_max_cap=$query_seg_count
-er=0.025
+timeout="24h"
+max_er=0.0267
 threads=16
 numMatches=20000
 sortThresh=$(($numMatches + 1))
-kmer_size=19
-threshold=50
 
 kmer_cmin=0 # min k-mer count
 kmer_cmax=254
 
-ref_meta="meta/test_mouse_ref_b${ibf_bins}.bin"
-index="/dev/shm/test-genome-wise/mouse_b${ibf_bins}_k${kmer_size}_l${min_len}.index"
-
-split_log="split_valik_manual.time"
-build_log="build_valik_manual.time"
-search_log="search_valik_manual.time"
-
-#echo -e "time\tmem\terror-code\tcommand\tk\tmax-er\tmin-len\tbins" >> $split_log
-#echo "Splitting reference database"
-#/usr/bin/time -a -o $split_log -f "%e\t%M\t%x\tvalik-split\t${kmer_size}\t${er}\t${min_len}\t${ibf_bins}" $valik split $ref --without-parameter-tuning -k $kmer_size --verbose --fpr 0.01 --out $ref_meta --error-rate $er --pattern $min_len -n $ibf_bins
-	
-#echo -e "time\tmem\terror-code\tcommand\tbins\tk\tcmin\tcmax\tthreads\tibf-size" >> $search_log
-#echo "Building IBF"
-#/usr/bin/time -a -o $build_log -f "%e\t%M\t%x\tvalik-build\t${bins}\t${kmer_size}\t${kmer_cmin}\t${kmer_cmax}\t${threads}" $valik build --fast --without-parameter-tuning --verbose --kmer $kmer_size --threads $threads --output $index --ref-meta $ref_meta --kmer-count-min $kmer_cmin --kmer-count-max $kmer_cmax
-#truncate -s -1 $build_log
-#ls -lh $index | awk '{ print "\t" $5}' >> $build_log
-
-echo -e "time\tmem\terror-code\tcommand\tbins\tk\tquery-seg\tcart-max-cap\tmin-len\ter\tthresh\tcmin\tcmax\tbin-entropy-cutoff\tibf-size\tmatches\trepeats\ttruth-set-matches\ttrue-matches\tmissed" >> $search_log
-
+tau=0.9999
+p_max=0.15
 threads=16
-repeat_mask="--keep-best-repeats" 
-bin_entropy_cutoff="N/A"
-#--bin-entropy-cutoff $bin_entropy_cutoff 
-#for bin_entropy_cutoff in 0.1 0.2 0.3 0.4
-#do
-	echo "Search for local matches and $repeat_mask" 
-	prefix="test_b${ibf_bins}_k${kmer_size}_q${query_seg_count}_l${min_len}_t${threshold}_cmax${kmer_cmax}"
-	out="valik_${prefix}.gff"
-	rm $out
+cart_max_cap=15000
+
+repeat_mask="--keep-best-repeats"
+ibf_fpr=0.005
+
+min_overlap=100
+threads=32
+er=0.0267
+
+mkdir -p meta
+ref_meta="meta/human_ref_b${ibf_bins}.bin"
+mkdir -p /dev/shm/$prefix
+index="/dev/shm/$prefix/human_b${ibf_bins}_l${min_len}.index"
+
+split_log="split_valik.time"
+build_log="build_valik.time"
+search_log="search_valik.time"
+stellar_log="stellar.time"
+
+
+for log_file in $split_log $build_log $search_log
+do
+	echo "#human vs mouse" >> $log_file
+done
+
+echo -e "time\tmem\terror-code\tcommand\tmax-er\tmin-len\tbins\tibf-fpr" >> $split_log
+echo -e "time\tmem\terror-code\tcommand\tbins\tcmin\tcmax\tthreads\tibf-size\tibf-fpr" >> $build_log
+echo -e "time\tmem\terror-code\tcommand\tbins\tthreads\tcart-max-cap\tmax-queued\tmin-len\ter\tcmin\tcmax\trepeat-mask\tbin-entropy\tibf-fpr\tibf-size\trepeats\tmatches\ttruth-set-matches\ttrue-matches\tmissed\tmin_overlap" >> $search_log
+
+for ibf_bins in 8192 4096 2048 1024
+do
+max_queued_carts=$ibf_bins
+
+#################### SPLIT ####################
+echo "Splitting reference database"
+/usr/bin/time -a -o $split_log -f "%e\t%M\t%x\tvalik-split\t${max_er}\t${min_len}\t${ibf_bins}\t$ibf_fpr" $valik split $ref --verbose --fpr $ibf_fpr --out $ref_meta --error-rate $max_er --pattern $min_len -n $ibf_bins &> "b${ibf_bins}_fpr${ibf_fpr}_split.err"
+
+#################### BUILD ####################
+echo "Building IBF"
+/usr/bin/time -a -o $build_log -f "%e\t%M\t%x\tvalik-build\t${bins}\t${kmer_cmin}\t${kmer_cmax}\t${threads}\t$ibf_fpr" $valik build --verbose --fast --threads $threads --output $index --ref-meta $ref_meta --kmer-count-min $kmer_cmin --kmer-count-max $kmer_cmax
+truncate -s -1 $build_log
+ls -lh $index | awk '{ print "\t" $5}' >> $build_log
+
+#################### SEARCH ####################
+for bin_entropy in "0.1" "0.01"
+do
+	#truth_file="human_vs_mouse_stellar_l${min_len}_e${er}.gff" 
+	truth_file="../blast/human_vs_mouse_blast_e1_k28.txt"
 	
-	(timeout $timeout /usr/bin/time -a -o $search_log -f "%e\t%M\t%x\tvalik-search\t${ibf_bins}\t${kmer_size}\t${query_seg_count}\t${cart_max_cap}\t${min_len}\t${er}\t${threshold}\t${kmer_cmax}\t${bin_entropy_cutoff}" $valik search $repeat_mask --without-parameter-tuning --verbose --seg-count $query_seg_count --threshold $threshold --pattern $min_len --split-query --cache-thresholds --numMatches $numMatches --sortThresh $sortThresh --index $index --ref-meta $ref_meta --query $query --error-rate $er --threads $threads --output $out --cart-max-capacity $cart_max_cap --max-queued-carts $ibf_bins || touch $out ) > ${timeout}_${prefix}.log 2> ${prefix}.err
+	#(timeout $timeout /usr/bin/time -a -o $stellar_log -f "%e\t%M\t%x\tstellar\t${min_len}\t${er}" $stellar -a dna --numMatches $numMatches --sortThresh $sortThresh $ref $query -e $er -l $min_len -o $truth_file)
+
+	echo "Search for local matches and $repeat_mask" 
+	run_id="b${ibf_bins}_l${min_len}"
+	out="${run_id}.gff"
+
+	/usr/bin/time -a -o $search_log -f "%e\t%M\t%x\tvalik-search\t${ibf_bins}\t$threads\t${cart_max_cap}\t${max_queued_carts}\t${min_len}\t${er}\t$kmer_cmin\t${kmer_cmax}\t$repeat_mask\t$bin_entropy\t$ibf_fpr" $valik search $repeat_mask --bin-entropy-cutoff $bin_entropy --time --verbose --split-query --cache-thresholds --numMatches $numMatches --sortThresh $sortThresh --index $index --ref-meta $ref_meta --query $query --error-rate $er --threads $threads --output $out --cart-max-capacity $cart_max_cap --max-queued-carts $max_queued_carts > ${timeout}_${run_id}.log 2> ${run_id}.err
 
 	truncate -s -1 $search_log
 	ls -lh $index | awk '{ print "\t" $5}' >> $search_log
 
 	truncate -s -1 $search_log
-	wc -l $out | awk '{ print "\t" $1}' >> $search_log
+	grep "Insufficient" ${run_id}.err | wc -l | awk '{ print "\t" $1}' >> $search_log
+	
+	truncate -s -1 $search_log
+	wc -l $out | awk '{ print "\t" $1 "\t"}' >> $search_log
 
 	truncate -s -1 $search_log
-	grep "Insufficient" ${prefix}.err | wc -l | awk '{ print "\t" $1 "\t"}' >> $search_log
+#if [ -s $truth_file ];  && [ -s $out ]; then
+#	../../scripts/search_accuracy.sh $truth_file $out $min_len $min_overlap $ref_meta tmp.log
+#	tail -n 1 tmp.log >> $search_log
+#	rm tmp.log
+	#rm $out 
+#else
+	echo -e "N/A\tN/A\tN/A" >> $search_log
+#fi
 
 	truncate -s -1 $search_log
-	truth_file="stellar_l150.gff" 
-	../scripts/search_accuracy.sh $truth_file $out $min_len 10 tmp.log
-	tail -n 1 tmp.log >> $search_log
-	rm tmp.log
-#done
+	echo -e "\t$min_overlap" >> $search_log
 
-#rm $index
-#rm /dev/shm/test-genome-wise/*.minimiser
-#rm /dev/shm/test-genome-wise/*.header
+done
+done
+
+#rm $ref_meta	
+rm $index
+rm /dev/shm/$prefix/*.minimiser
+rm /dev/shm/$prefix/*.header
 

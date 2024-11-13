@@ -2,8 +2,8 @@
 prefix: "blast"
 
 #-------- input files --------
-ref: "/buffer/ag_abi/evelina/mouse/ref_concat.fa"
-query: "/buffer/ag_abi/evelina/fly/query_concat.fa"
+ref: "/srv/data/evelina/mouse/ref_concat.fa"
+query: "/srv/data/evelina/fly/query_concat.fa"
 run_id: "mouse_vs_fly"
 
 #-------- search parameters --------

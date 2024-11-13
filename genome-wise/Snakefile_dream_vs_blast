@@ -44,8 +44,9 @@ import math
 
 rule make_all:
 	input:
-		expand("k{k}_b{b}_fpr{fpr}_l{min_len}_cmin{cmin}_cmax{cmax}_e{er}_ent{bin_ent}_cap{max_cap}_carts{max_carts}_t{t}_rp{rp}_rl{rl}.gff.blast.done", k = dream_kmer_lengths, b = bin_list, fpr = fpr_list, min_len = min_lens, cmin = cmin_list, cmax = cmax_list, er = error_rates, bin_ent = bin_entropy_cutoffs, max_cap = cart_max_capacity, max_carts = max_queued_carts, t = search_threads, rp = repeat_periods, rl = repeat_lengths)
+		expand("k{k}_b{b}_fpr{fpr}_l{min_len}_cmin{cmin}_cmax{cmax}_e{er}_ent{bin_ent}_cap{max_cap}_carts{max_carts}_t{t}_rp{rp}_rl{rl}.gff", k = dream_kmer_lengths, b = bin_list, fpr = fpr_list, min_len = min_lens, cmin = cmin_list, cmax = cmax_list, er = error_rates, bin_ent = bin_entropy_cutoffs, max_cap = cart_max_capacity, max_carts = max_queued_carts, t = search_threads, rp = repeat_periods, rl = repeat_lengths)
 	shell:
 		"echo 'Done'"
 
 include: "rules/dream_long.smk"
+include: "rules/evaluate.smk"

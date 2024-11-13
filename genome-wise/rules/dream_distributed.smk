@@ -2,20 +2,37 @@ f = open("split_valik.time", "a")
 f.write("time\tmem\terror-code\tcommand\tbins\tfpr\tmax-er\tmin-len\tkmer-size\n")
 f.close()
 
-
-rule valik_split_ref:
+seg_file = str(os.path.dirname(os.path.realpath(config["ref"]))) + "/seg_files.txt"	
+rule valik_write_out_ref:
 	input:
 		config["ref"]
 	output: 
-		ref_meta = "meta/k{k}_b{b}_fpr{fpr}_l{min_len}.bin"
+		ref_meta = "meta/k{k}_b{b}_fpr{fpr}_l{min_len}_segments.bin"
 	params:
-		log = "split_valik.time"
+		log = "split_valik.time",	
+		filenames = {seg_file}
 	shell:
 		"""
 		( /usr/bin/time -a -o {params.log} -f "%e\t%M\t%x\tvalik-split\t{wildcards.b}\t{wildcards.fpr}\t{max_er}\t{wildcards.min_len}\t{wildcards.k}" \
 			{valik} split {input} --verbose -k {wildcards.k} --fpr {wildcards.fpr} \
 				--out {output.ref_meta} --error-rate {max_er}  \
-				--pattern {wildcards.min_len} -n {wildcards.b} &> {output}.split.err)
+				--pattern {wildcards.min_len} -n {wildcards.b} --write-out &> {output}.split.err)
+		"""
+
+rule valik_ref_metadata:
+	input:
+		ref_meta = "meta/k{k}_b{b}_fpr{fpr}_l{min_len}_segments.bin",
+	output: 
+		ref_meta = "meta/k{k}_b{b}_fpr{fpr}_l{min_len}.bin"
+	params:
+		log = "split_valik.time",
+		filenames = {seg_file}
+	shell:
+		"""
+		( /usr/bin/time -a -o {params.log} -f "%e\t%M\t%x\tvalik-split\t{wildcards.b}\t{wildcards.fpr}\t{max_er}\t{wildcards.min_len}\t{wildcards.k}" \
+			{valik} split {params.filenames} --metagenome --verbose -k {wildcards.k} --fpr {wildcards.fpr} \
+				--out {output.ref_meta} --error-rate {max_er}  \
+				--pattern {wildcards.min_len} -n {wildcards.b} --write-out &> {output}.split.err)
 		"""
 
 f = open("build_valik.time", "a")
@@ -65,9 +82,10 @@ rule valik_search:
 		(/usr/bin/time -a -o {params.log} -f \
 			"%e\t%M\t%x\tvalik-search\t{wildcards.b}\t{wildcards.fpr}\t{max_er}\t{wildcards.min_len}\t{wildcards.k}\t{threads}\t{params.is_minimiser}\t{wildcards.cmin}\t{wildcards.cmax}\t{wildcards.er}\t{repeat_flag}\t{wildcards.max_cap}\t{wildcards.max_carts}" \
 			{valik} search --verbose {repeat_flag} \
-				--split-query --cache-thresholds --numMatches {num_matches} \
-				--sortThresh {sort_thresh} --time --index {input.ibf} --ref-meta {input.ref_meta} \
-				--query {input.query} --error-rate {wildcards.er} --threads {wildcards.t} \
+				--split-query --cache-thresholds --numMatches {num_matches} --distribute \
+				--sortThresh {sort_thresh} --time --index {input.ibf} \
+				--ref-meta {input.ref_meta} --query {input.query} \
+				--error-rate {wildcards.er} --threads {wildcards.t} \
 				--output {output} --cart-max-capacity {wildcards.max_cap} \
 				--max-queued-carts {wildcards.max_carts} \
 				--repeatPeriod {wildcards.rp} --repeatLength {wildcards.rl} \

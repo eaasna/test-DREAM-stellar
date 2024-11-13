@@ -6,8 +6,8 @@ valik_exec: "/group/ag_abi/evelina/valik_entropy/build/bin/valik"
 #ref: "/buffer/ag_abi/evelina/human/ref_concat.fa"
 #query: "/buffer/ag_abi/evelina/mouse/query_concat.fa"
 #run_id: "human_vs_mouse"
-ref: "/buffer/ag_abi/evelina/mouse/ref_concat.fa"
-query: "/buffer/ag_abi/evelina/fly/query_concat.fa"
+ref: "/srv/data/evelina/mouse/ref_concat.fa"
+query: "/srv/data/evelina/fly/query_concat.fa"
 run_id: "mouse_vs_fly"
 
 #-------- split parameters --------

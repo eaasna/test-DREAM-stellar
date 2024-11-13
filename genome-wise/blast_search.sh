@@ -1,35 +1,38 @@
 #!/usr/bin/env bash
 
-set -x
+set -ex
 
-cd work 
+prefix=blast
+mkdir -p work/$prefix
+cd work/$prefix
 
 #ref="/buffer/ag_abi/evelina/mouse/chr1.fa"
 #query="/buffer/ag_abi/evelina/fly/dna4.fa"
-ref="/buffer/ag_abi/evelina/mouse/ref.fa"
-query="/buffer/ag_abi/evelina/fly/query.fa"
-ref_meta="meta/mouse_ref_b${ibf_bins}.bin"
-index="/dev/shm/genome-wise/mouse_b${ibf_bins}_k${kmer_size}_l${min_len}.index"
+ref="/buffer/ag_abi/evelina/human/ref_concat.fa"
+query="/buffer/ag_abi/evelina/mouse/dna4.random.fa"
 
-#printf -v evalue %.f 1e-65
-timeout="180m"
-numMatches=10000
-sortThresh=$(($numMatches + 1))
 log="blast_manual.time"
 
-#echo -e "time\tmem\terror-code\tcommand\te-value\tmatches" >> $log
+echo -e "time\tmem\terror-code\tcommand\te-value\tmatches" >> $log
 echo "Build index"
-#(/usr/bin/time -a -o $log -f "%e\t%M\t%x\tblast-index\t${evalue}" makeblastdb -dbtype nucl -in $ref)
+(/usr/bin/time -a -o $log -f "%e\t%M\t%x\tblast-index\t${evalue}" makeblastdb -dbtype nucl -in $ref)
 
-for evalue in 0.01
+
+echo -e "#human vs mouse" >> $log
+echo -e "time\tmem\terror-code\tcommand\te-value\tk\tmatches" >> $log
+
+for k in 16 18
 do
-	prefix="e${evalue}"
-	out="blast_${prefix}.txt"
-	rm $out
+for evalue in 0.1 0.01 0.001 
+do
+	run_id="e${evalue}_k${k}"
+	out="human_vs_mouse_${run_id}.txt"
+	#rm $out
 		
 	echo "Search for local matches"
-	(/usr/bin/time -a -o $log -f "%e\t%M\t%x\tblast-search\t${evalue}" blastn -min_raw_gapped_score 138 -evalue $evalue -db $ref -query $query -outfmt "6 sseqid sstart send pident sstrand evalue qseqid qstart qend" -out $out)
+	(/usr/bin/time -a -o $log -f "%e\t%M\t%x\tblast-search\t${evalue}\t${k}" blastn -evalue $evalue -word_size $k -db $ref -query $query -outfmt "6 sseqid sstart send pident sstrand evalue qseqid qstart qend" -out $out)
 
 	truncate -s -1 $log
 	wc -l $out | awk '{ print "\t" $1}' >> $log
+done
 done

@@ -18,7 +18,7 @@ function run_build () {
 	ibf_bins=$2
 	echo "$prefix ref index"
 	exec_mode=$3
-	
+	run_id=${prefix}_${exec_mode}
 	ref="/buffer/ag_abi/evelina/$prefix/ref_concat.fa"
 
 	mkdir -p /dev/shm/$prefix
@@ -34,7 +34,7 @@ function run_build () {
 	$valik split $ref --without-parameter-tuning -k $kmer_size --verbose --fpr $ibf_fpr --out $ref_meta --error-rate $er --pattern $min_len -n $ibf_bins
 	
 	echo "Building IBF"
-	/usr/bin/time -a -o $log -f "%e\t%M\t%x\t$exec_mode-build\t$prefix\t$ibf_bins\t$ibf_fpr\t$kmer_size\t$kmer_cmin\t$kmer_cmax\t$threads" $valik build --fast --without-parameter-tuning --verbose --kmer $kmer_size --threads $threads --output $index --ref-meta $ref_meta --kmer-count-min $kmer_cmin --kmer-count-max $kmer_cmax
+	/usr/bin/time -a -o $log -f "%e\t%M\t%x\t${exec_mode}-kmer-build\t$prefix\t$ibf_bins\t$ibf_fpr\t$kmer_size\t$kmer_cmin\t$kmer_cmax\t$threads" $valik build --without-parameter-tuning --verbose --kmer $kmer_size --threads $threads --output $index --ref-meta $ref_meta --kmer-count-min $kmer_cmin --kmer-count-max $kmer_cmax 2>> ${run_id}_build_manual.err
 
 	truncate -s -1 $log
 	ls -lh $index | awk '{print "\t" $5}' >> $log
@@ -42,9 +42,9 @@ function run_build () {
 
 echo -e "time\tmem\terror-code\tcommand\tref\tbins\tk\tcmin\tcmax\tthreads\tibf-size" >> $log
 
-valik=/group/ag_abi/evelina/valik/build/bin/valik
-run_build "human" 1024 "linear"
+valik=/group/ag_abi/evelina/valik/build2/bin/valik
+run_build "mouse" 1024 "deduplicated"
 
-valik=/group/ag_abi/evelina/valik2/build/bin/valik
-run_build "human" 1024 "parallel"
+valik=/group/ag_abi/evelina/valik2/build2/bin/valik
+run_build "mouse" 1024 "duplicate"
 

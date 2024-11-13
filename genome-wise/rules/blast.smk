@@ -1,6 +1,6 @@
 blast_log = "../blast/blast.time"
 f = open(blast_log, "a")
-f.write("time\tmem\terror-code\tcommand\tthreads\tevalue\tk\n")
+f.write("time\tmem\terror-code\tcommand\tthreads\tevalue\tk\tmatches\n")
 f.close()
 
 rule blast_index:
@@ -20,7 +20,7 @@ rule blast_search:
 		query = config["query"]
 	output:
 		"../blast/" + run_id + "_e{ev}_k{k}.txt"
-	threads: workflow.cores
+	threads: 8
 	shell:
 		"""
 		mkdir -p blast
@@ -28,5 +28,8 @@ rule blast_search:
 			blastn -db {input.ref} -query {input.query} -num_threads {threads} \
 				-outfmt "6 sseqid sstart send pident sstrand evalue qseqid qstart qend" \
 				-word_size {wildcards.k} -evalue {wildcards.ev} -out {output}
+
+		truncate -s -1 {blast_log}
+		wc -l {output} | awk '{{print "\t" $1}}' >> {blast_log}
 		"""
 		

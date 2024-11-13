@@ -3,14 +3,13 @@ prefix: "bin_entropy"
 valik_exec: "/group/ag_abi/evelina/valik_entropy/build/bin/valik"
 
 #-------- input files --------
-ref: "/buffer/ag_abi/evelina/mouse/ref_concat.fa"
-query: "/buffer/ag_abi/evelina/fly/query_concat.fa"
+ref: "/srv/data/evelina/mouse/ref_concat.fa"
+query: "/srv/data/evelina/fly/query_concat.fa"
 run_id: "mouse_vs_fly"
 
 #-------- split parameters --------
 ibf_fpr: [0.005]
 ibf_bins: [1024]
-max_er: 0.033
 min_len: 150
 
 #-------- build parameters --------
@@ -22,7 +21,7 @@ kmer_cmax: 254
 search_threads: [32]
 #search_threads: [128, 64, 32, 16, 8, 4, 2, 1]
   # error_rates: [0.0067, 0.013, 0.02, 0.0267, 0.033, 0.04, 0.0467, 0.053]
-error_rates: [0.033]
+error_rates: [0.04]
 repeat_flag: "--keep-best-repeats"
   #bin_entropy_cutoffs: [0.01, 0.1]
 bin_entropy_cutoffs: [0.75, 0.5, 0.1, 0.01]

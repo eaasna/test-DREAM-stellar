@@ -39,10 +39,13 @@ rule valik_build:
 				--kmer-count-max {wildcards.cmax} )
 		truncate -s -1 {params.log}
 		ls -lh {output} | awk '{{print "\t" $5}}' >> {params.log}
+
+		rm /dev/shm/{prefix}/ref_concat.*.minimiser
+		rm /dev/shm/{prefix}/ref_concat.*.header
 		"""
 
 f = open("search_valik.time", "a")
-f.write("time\tmem\terror-code\tcommand\tbins\tfpr\tmax-er\tmin-len\tthreads\tminimiser\tcmin\tcmax\terror-rate\trepeat-flag\tbin-entropy-cutoff\tcart-max-cap\tmax-carts\trepeat-period\trepeat-length\trepeats\tmatches\ttruth-set-matches\ttrue-matches\tmissed\tmin-overlap\ttruth-file\n")
+f.write("time\tmem\terror-code\tcommand\tbins\tfpr\tmax-er\tmin-len\tthreads\tminimiser\tcmin\tcmax\terror-rate\trepeat-flag\tbin-entropy-cutoff\tcart-max-cap\tmax-carts\trepeat-period\trepeat-length\trepeats\tmatches\n")
 f.close()
 
 rule valik_search:
@@ -70,69 +73,10 @@ rule valik_search:
 				&> {output}.search.err)
 
 		truncate -s -1 {params.log}
-		grep "Insufficient" {output}.err | wc -l | awk '{{ print "\t" $1}}' >> {params.log}
+		grep "Insufficient" {output}.search.err | wc -l | awk '{{ print "\t" $1}}' >> {params.log}
 	
 		truncate -s -1 {params.log}
 		wc -l {output} | awk '{{ print "\t" $1 "\t"}}' >> {params.log}
 
 		"""
 
-rule valik_compare_stellar:
-	input:
-		truth = "../stellar/" + run_id + "_l{min_len}_e{er}_rp{rp}_rl{rl}.gff",
-		ref_meta = "meta/b{b}_fpr{fpr}_l{min_len}.bin",
-		test = "b{b}_fpr{fpr}_l{min_len}_cmin{cmin}_cmax{cmax}_e{er}_ent{bin_ent}_cap{max_cap}_carts{max_carts}_t{t}_rp{rp}_rl{rl}.gff"
-	output:
-		fn = "b{b}_fpr{fpr}_l{min_len}_cmin{cmin}_cmax{cmax}_e{er}_ent{bin_ent}_cap{max_cap}_carts{max_carts}_t{t}_rp{rp}_rl{rl}.missed.gff",
-		dummy = "b{b}_fpr{fpr}_l{min_len}_cmin{cmin}_cmax{cmax}_e{er}_ent{bin_ent}_cap{max_cap}_carts{max_carts}_t{t}_rp{rp}_rl{rl}.gff.stellar.done" 
-	params:
-		log = "search_valik.time"
-	shell:
-		"""	
-		truncate -s -1 {params.log}
-		if [ -s {input.truth}  -a  -s {input.test} ]; then
-			../../scripts/search_accuracy.sh {input.truth} {input.test} {wildcards.min_len} {min_overlap} {input.ref_meta} tmp.log
-			tail -n 1 tmp.log >> {params.log}
-			rm tmp.log
-		else
-			echo -e "N/A\tN/A\tN/A" >> {params.log}
-		fi
-
-		truncate -s -1 {params.log}
-		echo -e "\t{min_overlap}\t{input.truth}" >> {params.log}
-		
-		touch {output.dummy}
-		"""
-
-def blast_truth_file(wildcards):
-	errors = round(int(wildcards.min_len) * float(wildcards.er))
-	for k in range(51, 11, -1):
-		if ((int(wildcards.min_len) - k + 1 - errors * k ) > 2):
-			return "../blast/" + run_id + "_e" + str(comparison_evalue) + "_k" + str(k) + ".txt" 
-
-rule valik_compare_blast:
-	input:
-		ref_meta = "meta/b{b}_fpr{fpr}_l{min_len}.bin",
-		test = "b{b}_fpr{fpr}_l{min_len}_cmin{cmin}_cmax{cmax}_e{er}_ent{bin_ent}_cap{max_cap}_carts{max_carts}_t{t}_rp{rp}_rl{rl}.gff",
-		truth = blast_truth_file
-	output:
-		fn = "b{b}_fpr{fpr}_l{min_len}_cmin{cmin}_cmax{cmax}_e{er}_ent{bin_ent}_cap{max_cap}_carts{max_carts}_t{t}_rp{rp}_rl{rl}.missed.gff",
-		dummy = "b{b}_fpr{fpr}_l{min_len}_cmin{cmin}_cmax{cmax}_e{er}_ent{bin_ent}_cap{max_cap}_carts{max_carts}_t{t}_rp{rp}_rl{rl}.gff.blast.done" 
-	params:
-		log = "search_valik.time"
-	shell:
-		"""	
-		truncate -s -1 {params.log}
-		if [ -s {input.truth}  -a  -s {input.test} ]; then
-			../../scripts/search_accuracy.sh {input.truth} {input.test} {wildcards.min_len} {min_overlap} {input.ref_meta} tmp.log
-			tail -n 1 tmp.log >> {params.log}
-			rm tmp.log
-		else
-			echo -e "N/A\tN/A\tN/A" >> {params.log}
-		fi
-
-		truncate -s -1 {params.log}
-		echo -e "\t{min_overlap}\t{input.truth}" >> {params.log}
-		
-		touch {output.dummy}
-		"""
