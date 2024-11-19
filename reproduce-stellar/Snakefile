@@ -4,14 +4,15 @@ print("Number of repetitions " + str(len(repetitions)))
 
 #error_rates = [0, 0.02, 0.025, 0.04, 0.05, 0.06, 0.075, 0.08, 0.1]
 #error_rates = [0.02, 0.04, 0.06, 0.08]
-error_rates = [0.02]
+#error_rates = [0.02]
+error_rates = [0.025, 0.05, 0.075, 0.1]
 
 # local match lengths 
-min_len = 50
+min_len = 100
 max_len = 200
 
 # ibf_fpr
-fpr = 0.0005
+fpr = 0.005
 
 # how much stellar match has to overlap the ground truth
 min_overlap = 10
@@ -34,6 +35,9 @@ max_carts = config["max_queued_carts"]
 num_matches = config["num_matches"]
 sort_thresh = config["sort_threshold"]
 
+#-------- Stellar parameters --------
+evalue = 0.01
+
 #--------\ Shared functions --------
 import random
 import math
@@ -41,10 +45,6 @@ import math
 # simulation needs unique seeds otherwise the same sequence is simulated
 def get_seed(wildcards):
         return random.randint(0, 1000000)
-
-# BLAST percent identity cutoff (integer)
-def get_blast_er_perc(wildcards):
-	return round(float(wildcards.er))
 
 #-------- Shared functions \--------
 
@@ -54,10 +54,10 @@ rule make_all:
 		#expand("valik/rep{rep}_e{er}.gff", rep = repetitions, er = error_rates)
 		#expand("evaluation/valik_rep{rep}_e{er}.tsv", rep = repetitions, er = error_rates),
 		#expand("evaluation/stellar_rep{rep}_e{er}.tsv", rep = repetitions, er = error_rates)
-		#"stellar_table1.tsv",
-		#"blast_table1.tsv"
-		#"valik_table1.tsv"
-		expand("ref_rep{rep}.fasta", rep = repetitions)
+		"stellar_table1.tsv",
+		"blast_table1.tsv",
+		"valik_table1.tsv"
+		#expand("ref_rep{rep}.fasta", rep = repetitions)
 	shell:
 		"echo 'Done'"
 

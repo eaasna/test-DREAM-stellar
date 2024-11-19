@@ -1,0 +1,23 @@
+prefix = config["prefix"]
+workdir : "work/" + prefix
+run_id = config["run_id"]
+
+#-------- index parameters --------
+index_every = config["index_every"]
+
+#-------- search parameters --------
+query_every = config["query_every"]
+seeding_schemes = config["seeding_schemes"]
+word_sizes = config["word_sizes"]
+
+#-------- Evaluation parameters --------
+n = 1
+min_overlap = 100
+
+rule make_all:
+	input:
+		expand("../" + prefix + "/" + run_id + "_w{w}_k{k}_l{l}_u{u}.maf", w = index_every, k = query_every, l = word_sizes, u = seeding_schemes)
+	shell:
+		"echo 'Done'"
+
+include: "rules/last.smk"

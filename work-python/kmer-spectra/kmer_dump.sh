@@ -3,8 +3,8 @@
 set -x
 
 DIR=$1
-INPUT=$2
-OUTPUT=$3
+INPUT=$2 # .fasta
+OUTPUT=$3 # kmer.dump
 k=21
 
 cd $DIR

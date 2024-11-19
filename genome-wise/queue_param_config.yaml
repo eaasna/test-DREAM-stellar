@@ -1,0 +1,33 @@
+#-------- workflow parameters --------
+prefix: "queue_param"
+valik_exec: "/group/ag_abi/evelina/valik_long/build/bin/valik"
+
+#-------- input files --------
+ref: "/srv/data/evelina/mouse/ref_concat.fa"
+query: "/srv/data/evelina/fly/query_concat.fa"
+
+#-------- split parameters --------
+ibf_fpr: [0.005]
+ibf_bins: [1024]
+max_er: 0.033
+min_len: 150
+
+#-------- build parameters --------
+minimiser_flag: "--fast"
+kmer_cmin: 0
+kmer_cmax: 254
+
+#-------- search parameters --------
+search_threads: [32]
+error_rates: [0.033]
+repeat_flag: "--keep-best-repeats"
+bin_entropy_cutoffs: [0.5]
+max_queued_carts: [1024, 256, 64]
+cart_max_capacity: [20000, 5000, 1000, 100]
+
+repeat_periods: [1]
+repeat_lengths: [1000]
+
+dream_kmer_lengths: [19]
+
+evalues: [0.1]
