@@ -5,7 +5,6 @@ valik_exec: "/group/ag_abi/evelina/valik_long/build/bin/valik"
 #-------- input files --------
 ref: "/srv/data/evelina/mouse/ref_concat.fa"
 query: "/srv/data/evelina/fly/query_concat.fa"
-run_id: "mouse_vs_fly"
 
 #-------- split parameters --------
 ibf_fpr: [0.005]

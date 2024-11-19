@@ -25,6 +25,8 @@ generate_local_matches \
 	--query random_rep${REP}.fasta \
 	ref_rep${REP}.fasta 1> match_positions.txt 2> /dev/null
 
-grep ">" local_matches/rep${REP}_e${ERROR_RATE}.fasta | cut -c 2- | awk -F, '{ print $1 " " $2 }' | sed 's/start_position=//g' | sed 's/length=//g' | awk '{print $2 "\t" $2+$3 }' > ground_truth/rep${REP}_e${ERROR_RATE}.tsv
-sort -g -k2 ground_truth/rep${REP}_e${ERROR_RATE}.tsv -o ground_truth/rep${REP}_e${ERROR_RATE}.tsv
+
+truth_file="ground_truth/rep${REP}_e${ERROR_RATE}.tsv"
+grep ">" local_matches/rep${REP}_e${ERROR_RATE}.fasta | cut -c 2- | awk -F, '{ print $1 " " $2 }' | sed 's/start_position=//g' | sed 's/length=//g' | awk '{print $2 "\t" $2+$3 }' > $truth_file
+sort -g -k2 $truth_file -o $truth_file
 

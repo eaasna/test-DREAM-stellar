@@ -4,6 +4,7 @@ workdir : "work/" + prefix
 #-------- search parameters --------
 evalues = config["evalues"]
 blast_kmer_lengths = config["blast_kmer_lengths"]
+min_len = config["min_len"]
 
 #-------- Evaluation parameters --------
 n = 1
@@ -16,9 +17,22 @@ import math
 
 #-------- Shared functions \--------
 
+def percid_from_k(wildcards):
+	kmer_min_seed_dict = {
+    		51:      0.0067,
+    		49:      0.0130,
+    		37:      0.0200,
+    		29:      0.0267,
+    		24:      0.0330,
+    		21:      0.0400,
+    		18:      0.0467,
+    		16:      0.0530
+	}
+	return 100 - kmer_min_seed_dict[int(wildcards.k)] * 100
+		 
 rule make_all:
 	input:
-		expand("../blast/" + run_id + "_e{ev}_k{k}.txt", ev = evalues, k = blast_kmer_lengths)
+		expand("../" + prefix + "/" + run_id + "_e{ev}_k{k}.txt", ev = evalues, k = blast_kmer_lengths)
 	shell:
 		"echo 'Done'"
 

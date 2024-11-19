@@ -16,7 +16,7 @@ rule stellar:
 			{stellar} -a dna --numMatches {num_matches} \
 				--sortThresh {sort_thresh} {input.ref} {input.query} -e {wildcards.er} \
 				-l {wildcards.min_len} --repeatPeriod {wildcards.rp} \
-				--repeatLength {wildcards.rl} -o {output} || touch {output})
+				--repeatLength {wildcards.rl} -o {output} 2> {output}.err || touch {output})
 
 		truncate -s -1 {stellar_log}
 		wc -l {output} | awk '{{print "\t" $1}}' >> {stellar_log}

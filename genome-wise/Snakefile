@@ -34,6 +34,12 @@ evalues = config["evalues"]
 comparison_evalue = min(evalues)
 
 kmer_lengths = config["kmer_lengths"]
+
+#-------- LAST parameters --------
+index_every = 2
+query_every = 2
+word_size = 18 # same as BLAST
+
 #-------- Evaluation parameters --------
 n = 1
 min_overlap = 100

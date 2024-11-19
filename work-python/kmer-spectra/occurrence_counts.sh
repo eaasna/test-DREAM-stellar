@@ -3,8 +3,8 @@
 set -x
 
 DIR=$1
-INPUT=$2
-OUTPUT=$3
+INPUT=$2 # kmer.dump
+OUTPUT=$3 # kmer.tsv
 
 cd $DIR
 

@@ -25,7 +25,7 @@ if (repeat_flag == "--keep-best-repeats"):
 cart_max_capacity = config["cart_max_capacity"]
 max_queued_carts = config["max_queued_carts"]
 
-num_matches = 2000
+num_matches = 6000
 sort_thresh = num_matches + 1
 repeat_periods = config["repeat_periods"]
 repeat_lengths = config["repeat_lengths"]

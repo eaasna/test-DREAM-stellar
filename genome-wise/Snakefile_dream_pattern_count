@@ -6,6 +6,7 @@ valik = config["valik_exec"]
 fpr_list = config["ibf_fpr"]
 bin_list = config["ibf_bins"]
 min_lens = config["min_len"]
+dream_kmer_lengths = config["dream_kmer_lengths"]
 
 #-------- build parameters --------
 minimiser_flag = config["minimiser_flag"]
@@ -13,6 +14,7 @@ cmin_list = config["kmer_cmin"]
 cmax_list = config["kmer_cmax"]
 
 #-------- search parameters --------
+search_threads = config["search_threads"]
 error_rates = config["error_rates"]
 max_er = max(error_rates)
 repeat_flag = config["repeat_flag"]
@@ -41,9 +43,9 @@ import math
 
 rule make_all:
 	input:
-		expand("b{b}_fpr{fpr}_l{min_len}_cmin{cmin}_cmax{cmax}_e{er}_ent{bin_ent}_cap{max_cap}_carts{max_carts}_t{t}_rp{rp}_rl{rl}.gff", b = bin_list, fpr = fpr_list, min_len = min_lens, cmin = cmin_list, cmax = cmax_list, er = error_rates, bin_ent = bin_entropy_cutoffs, max_cap = cart_max_capacity, max_carts = max_queued_carts, t = {workflow.cores}, rp = repeat_periods, rl = repeat_lengths)
+		expand("b{b}_fpr{fpr}_l{min_len}_cmin{cmin}_cmax{cmax}_e{er}_ent{bin_ent}_cap{max_cap}_carts{max_carts}_t{t}_rp{rp}_rl{rl}.gff", b = bin_list, fpr = fpr_list, min_len = min_lens, cmin = cmin_list, cmax = cmax_list, er = error_rates, bin_ent = bin_entropy_cutoffs, max_cap = cart_max_capacity, max_carts = max_queued_carts, t = search_threads, rp = repeat_periods, rl = repeat_lengths),
+		#expand("k{k}_b{b}_fpr{fpr}_l{min_len}_cmin{cmin}_cmax{cmax}_e{er}_ent{bin_ent}_cap{max_cap}_carts{max_carts}_t{t}_rp{rp}_rl{rl}.gff.blast.done", k = dream_kmer_lengths, b = bin_list, fpr = fpr_list, min_len = min_lens, cmin = cmin_list, cmax = cmax_list, er = error_rates, bin_ent = bin_entropy_cutoffs, max_cap = cart_max_capacity, max_carts = max_queued_carts, t = search_threads, rp = repeat_periods, rl = repeat_lengths),
 	shell:
 		"echo 'Done'"
 
-include: "rules/dream_entropy.smk"
-include: "rules/evaluate.smk"
+include: "rules/dream_pattern_count.smk"

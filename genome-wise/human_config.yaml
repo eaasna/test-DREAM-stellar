@@ -3,14 +3,17 @@ prefix: "human_vs_mouse"
 valik_exec: "/group/ag_abi/evelina/valik_long/build/bin/valik"
 
 #-------- input files --------
-ref: "/srv/data/evelina/human/ref_concat.fa"
-query: "/srv/data/evelina/mouse/query_concat.fa"
+#ref: "/srv/data/evelina/human/ref_concat.fa"
+#query: "/srv/data/evelina/mouse/query_concat.fa"
+
+  #ref: "/buffer/ag_abi/evelina/human/chr5.fa"
+ref: "/buffer/ag_abi/evelina/mouse/ref_concat.fa"
+query: "/buffer/ag_abi/evelina/human/ref_concat.fa"
 run_id: "human_vs_mouse"
 
 #-------- split parameters --------
 ibf_fpr: [0.005]
-  #ibf_bins: [1024, 2048, 4096, 8192]
-ibf_bins: [2048]
+ibf_bins: [1024, 2048, 4096, 8192]
 min_len: 150
 
 #-------- build parameters --------
@@ -19,16 +22,17 @@ kmer_cmin: 0
 kmer_cmax: 254
 
 #-------- search parameters --------
-search_threads: [16]
+search_threads: [32]
 error_rates: [0.013]
 repeat_flag: "--keep-best-repeats"
-bin_entropy_cutoffs: [0.001]
-max_queued_carts: [1024]
+bin_entropy_cutoffs: [0.01]
+max_queued_carts: [8192]
 cart_max_capacity: [6000]
 
 repeat_periods: [1]
 repeat_lengths: [1000]
 
-dream_kmer_lengths: [21]
+blast_kmer_lengths: [51, 49, 37, 29, 24, 21]
+dream_kmer_lengths: [19, 23]
 
-evalues: [0.1]
+evalues: [0.0001]

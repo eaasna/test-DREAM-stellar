@@ -4,10 +4,11 @@ rule stellar_accuracy:
 		truth = "ground_truth/rep{rep}_e{er}.tsv"
 	output:
 		"evaluation/stellar_rep{rep}_e{er}.tsv"
-	params:
-		min_overlap = min_overlap
 	shell:
-		"../scripts/evaluate_search.sh {input.search} {input.truth} {params.min_overlap} {min_len} {output} gff"
+		"""
+		echo -e "total_match_count\ttrue_match_count\tmissed" > {output}
+		wc -l {input.search} | awk '{{ print $1 "\t" $1 "\t0"}}' >> {output}
+		"""
 
 rule stellar_table1:
 	input:
@@ -24,14 +25,13 @@ rule stellar_table1:
 
 rule dream_accuracy:
 	input:
+		truth = "stellar/rep{rep}_e{er}.gff",
 		search = "valik/rep{rep}_e{er}.gff",
-		truth = "ground_truth/rep{rep}_e{er}.tsv"
+		ref_meta = "meta/ref_rep{rep}_e{er}.bin"
 	output:
 		"evaluation/valik_rep{rep}_e{er}.tsv"
-	params:
-		min_overlap = min_overlap
 	shell:
-		"../scripts/evaluate_search.sh {input.search} {input.truth} {params.min_overlap} {min_len} {output} gff"
+		"../../scripts/search_accuracy.sh {input.truth} {input.search} {min_len} {min_overlap} {input.ref_meta} {output}"
 
 rule valik_table1:
 	input:
@@ -48,14 +48,13 @@ rule valik_table1:
 
 rule blast_accuracy:
 	input:
-		search = "blast/rep{rep}_e{er}.tsv",
-		truth = "ground_truth/rep{rep}_e{er}.tsv"
+		search = "blast/rep{rep}_e{er}.txt",
+		truth = "stellar/rep{rep}_e{er}.gff",
+		ref_meta = "meta/ref_rep{rep}_e{er}.bin"
 	output:
 		"evaluation/blast_rep{rep}_e{er}.tsv"
-	params:
-		min_overlap = min_overlap
 	shell:
-		"../scripts/evaluate_search.sh {input.search} {input.truth} {params.min_overlap} {min_len} {output} tsv"
+		"../../scripts/search_accuracy.sh {input.truth} {input.search} {min_len} {min_overlap} {input.ref_meta} {output}"
 
 rule blast_table1:
 	input:

@@ -1,6 +1,7 @@
 #-------- workflow parameters --------
-prefix: "stellar"
+prefix: "stellar_dist"
 
+valik_exec: "/group/ag_abi/evelina/valik_stellar_dist/build/bin/valik"
 #-------- input files --------
 ref: "/srv/data/evelina/mouse/ref_concat.fa"
 query: "/srv/data/evelina/fly/query_concat.fa"
@@ -10,8 +11,8 @@ run_id: "mouse_vs_fly"
 min_len: 150
 
 #-------- search parameters --------
-error_rates: [0.013, 0.02, 0.033, 0.04]
-  #error_rates: [0.0067, 0.013, 0.02, 0.0267, 0.033, 0.04, 0.0467, 0.053]
+#error_rates: [0.0067, 0.013, 0.02, 0.0267, 0.033, 0.04, 0.0467, 0.053]
+error_rates: [0.02]
 
 repeat_periods: [1]
   #repeat_periods: [1, 2, 4]
