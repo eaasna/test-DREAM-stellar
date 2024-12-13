@@ -1,0 +1,23 @@
+prefix = config["prefix"]
+workdir : "work/" + prefix
+run_id = config["run_id"]
+
+#-------- search parameters --------
+seed = config["seed"]
+# search for gapped alignments
+gap_flag = "gapped" 
+# speed up search by not allowing transitions in seeds
+transition_flag = "notransition"
+
+#-------- Evaluation parameters --------
+n = 1
+min_overlap = 100
+
+rule make_all:
+	input:
+		expand(run_id + "_s{s}_" + gap_flag + "_" + transition_flag + ".maf", s = seed)
+	shell:
+		"echo 'Done'"
+
+include: "rules/lastz.smk"
+

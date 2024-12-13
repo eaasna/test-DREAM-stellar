@@ -49,9 +49,9 @@ f.close()
 
 rule valik_search:
 	input:
-		ibf = expand("/dev/shm/" + prefix + "/b{b}_fpr{fpr}_l{min_len}_e{er}_cmin{cmin}_cmax{cmax}.index"),
+		ibf = "/dev/shm/" + prefix + "/b{b}_fpr{fpr}_l{min_len}_e{er}_cmin{cmin}_cmax{cmax}.index",
 		query = config["query"],
-		ref_meta = "meta/b{b}_fpr{fpr}_l{min_len}.bin"
+		ref_meta = "meta/b{b}_fpr{fpr}_l{min_len}_e{er}.bin"
 	output:
 		"b{b}_fpr{fpr}_l{min_len}_cmin{cmin}_cmax{cmax}_e{er}_ent{bin_ent}_cap{max_cap}_carts{max_carts}_t{t}_rp{rp}_rl{rl}.gff"
 	threads: workflow.cores

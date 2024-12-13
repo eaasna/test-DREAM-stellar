@@ -1,0 +1,18 @@
+#-------- workflow parameters --------
+prefix: "last"
+
+#-------- input files --------
+ref: "/srv/data/evelina/mouse/ref_concat.fa"
+query: "/srv/data/evelina/fly/query_concat.fa"
+run_id: "mouse_vs_fly"
+
+#-------- index parameters --------
+#index_every: [2, 4]
+index_every: [33]
+
+#-------- search parameters --------
+query_every: [33]
+#seeding_schemes: ["YASS", "RY-16"] # default exact vs fast heuristic  
+seeding_schemes: ["YASS"] # default exact vs fast heuristic  
+  #word_sizes: [51, 49, 37, 29, 24, 21, 18, 16]
+word_sizes: [37]

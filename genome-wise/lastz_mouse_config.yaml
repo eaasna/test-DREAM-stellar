@@ -1,0 +1,11 @@
+#-------- workflow parameters --------
+prefix: "lastz"
+
+#-------- input files --------
+ref: "/srv/data/evelina/mouse/ref_concat.fa"
+query: "/srv/data/evelina/fly/query_concat.fa"
+run_id: "mouse_vs_fly"
+
+#-------- search parameters --------
+#seed: ["12of19", "14of22", "1110100110010101111"]
+seed: ["111101001100101011111"]

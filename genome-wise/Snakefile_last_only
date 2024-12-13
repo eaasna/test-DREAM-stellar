@@ -16,7 +16,7 @@ min_overlap = 100
 
 rule make_all:
 	input:
-		expand("../" + prefix + "/" + run_id + "_w{w}_k{k}_l{l}_u{u}.maf", w = index_every, k = query_every, l = word_sizes, u = seeding_schemes)
+		expand(run_id + "_w{w}_k{k}_l{l}.maf", w = index_every, k = query_every, l = word_sizes)
 	shell:
 		"echo 'Done'"
 

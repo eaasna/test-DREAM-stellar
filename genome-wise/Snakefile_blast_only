@@ -4,19 +4,33 @@ workdir : "work/" + prefix
 #-------- search parameters --------
 evalues = config["evalues"]
 blast_kmer_lengths = config["blast_kmer_lengths"]
-min_len = config["min_len"]
+
+# stellar ground truth parameters
+min_len = [50, 100]
+repeat_period = 1
+repeat_length = 1000
+#error_rates = [0.0001, 0.0267, 0.033, 0.04]
+errors = [1, 2, 3]
+blast_perc_ids = []
+for er in error_rates:
+	blast_perc_ids.append(round(100 - er * 100))
 
 #-------- Evaluation parameters --------
 n = 1
-min_overlap = 100
+min_overlap = 10
 run_id = config["run_id"]
 
 #--------\ Shared functions --------
 import random
 import math
+import os
+
+def dir_path(filename):
+	return os.path.split(filename)[0] + "/"
 
 #-------- Shared functions \--------
 
+# do not add a percid cutoff: BLAST might extend eps-matches until a lower percid
 def percid_from_k(wildcards):
 	kmer_min_seed_dict = {
     		51:      0.0067,
@@ -32,7 +46,8 @@ def percid_from_k(wildcards):
 		 
 rule make_all:
 	input:
-		expand("../" + prefix + "/" + run_id + "_e{ev}_k{k}.txt", ev = evalues, k = blast_kmer_lengths)
+		#expand(run_id + "_e{ev}_k{k}.txt", ev = evalues, k = blast_kmer_lengths)
+		"blast.kmer.accuracy"
 	shell:
 		"echo 'Done'"
 
