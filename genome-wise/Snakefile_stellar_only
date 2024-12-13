@@ -7,7 +7,7 @@ valik = config["valik_exec"]
 min_lens = config["min_len"]
 
 #-------- search parameters --------
-error_rates = config["error_rates"]
+errors = config["errors"]
 minimiser_flag = "N/A"
 num_matches = 20000
 sort_thresh = num_matches + 1
@@ -22,16 +22,20 @@ run_id = config["run_id"]
 #--------\ Shared functions --------
 import random
 import math
+import os
+
+def dir_path(filename):
+	return os.path.split(filename)[0] + "/"
 
 #-------- Shared functions \--------
 
 rule make_all:
 	input:
-		#expand("../stellar/" + run_id + "_l{min_len}_e{er}_rp{rp}_rl{rl}.gff", min_len = min_lens, er = error_rates, rp = repeat_periods, rl = repeat_lengths),	
-		expand("b{b}_fpr{fpr}_l{min_len}_e{er}_t{t}_rp{rp}_rl{rl}.gff", b = 1024, fpr = 0.005, min_len = min_lens, er = error_rates, t = {workflow.cores}, rp = repeat_periods, rl = repeat_lengths),	
+		expand(run_id + "_l{min_len}_e{er}_rp{rp}_rl{rl}.gff", min_len = min_lens, er = errors, rp = repeat_periods, rl = repeat_lengths),	
+		#expand("b{b}_fpr{fpr}_l{min_len}_e{er}_t{t}_rp{rp}_rl{rl}.gff", b = 1024, fpr = 0.005, min_len = min_lens, er = error_rates, t = {workflow.cores}, rp = repeat_periods, rl = repeat_lengths),	
 	shell:
 		"echo 'Done'"
 
-include: "rules/dream_entropy.smk"
+include: "rules/prepare.smk"
 include: "rules/stellar.smk"
-include: "rules/stellar_distributed.smk"
+#include: "rules/stellar_distributed.smk"
