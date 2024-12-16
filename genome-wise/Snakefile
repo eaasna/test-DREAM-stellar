@@ -1,16 +1,36 @@
 workdir : "work"
 stellar = "/group/ag_abi/evelina/stellar3/build/bin/stellar"
+valik = config["valik_exec"]
 
-stellar_out="stellar"
-blast_out="blast"
+stellar_out="stellar_masked"
+blast_out="blast_masked"
+dream_out="dream_masked"
+
+#-------- split parameters --------
+fpr_list = config["ibf_fpr"]
+bin_list = config["ibf_bins"]
+min_lens = config["min_len"]
+
+#-------- build parameters --------
+minimiser_flag = config["minimiser_flag"]
+cmin_list = config["kmer_cmin"]
+cmax_list = config["kmer_cmax"]
 
 #-------- search parameters --------
-min_lens = config["min_len"]
 errors = config["errors"]
+repeat_flag = config["repeat_flag"]
+bin_entropy_cutoffs = [1.0]
+if (repeat_flag == "--keep-best-repeats"):
+	bin_entropy_cutoffs = config["bin_entropy_cutoffs"]
+
+cart_max_capacity = config["cart_max_capacity"]
+max_queued_carts = config["max_queued_carts"]
+
 num_matches = 20000
 sort_thresh = num_matches + 1
 repeat_periods = config["repeat_periods"]
 repeat_lengths = config["repeat_lengths"]
+search_threads = workflow.cores
 
 #-------- BLAST parameters --------
 evalues = config["evalues"]
@@ -20,6 +40,7 @@ blast_kmer_lengths = config["blast_kmer_lengths"]
 n = 1
 min_overlap = 10
 run_id = config["run_id"]
+comparison_evalue = 0.1
 
 #--------\ Shared functions --------
 import random
@@ -29,14 +50,21 @@ import os
 def dir_path(filename):
 	return os.path.split(filename)[0] + "/"
 
+def get_error_rate(wildcards):
+	return int(wildcards.er) / int(wildcards.min_len)
+
 #-------- Shared functions \--------
 rule make_all:
 	input:
-		"blast.kmer.accuracy"
+		"blast.stellar.accuracy",
+#		"valik.stellar.accuracy",
+#		"valik.blast.accuracy"
 	shell:
 		"echo 'Done'"
 
 include: "rules/prepare.smk"
 include: "rules/stellar.smk"
-#include: "rules/stellar_distributed.smk"
+include: "rules/dream.smk"
+#include: "rules/compare.smk"
 include: "rules/blast.smk"
+
