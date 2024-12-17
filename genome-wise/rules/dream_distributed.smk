@@ -92,7 +92,8 @@ rule valik_search:
 				&> {output}.search.err)
 
 		truncate -s -1 {params.log}
-		grep "Insufficient" {output}.search.err | wc -l | awk '{{ print "\t" $1}}' >> {params.log}
+		# grep fails in bash strict mode if no matches found
+		{{ grep "Insufficient" {output}.search.err || test $? = 1;}} | wc -l | awk '{{ print "\t" $1}}' >> {params.log}
 	
 		truncate -s -1 {params.log}
 		wc -l {output} | awk '{{ print "\t" $1 "\t"}}' >> {params.log}
