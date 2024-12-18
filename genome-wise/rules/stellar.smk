@@ -3,8 +3,6 @@ f = open(stellar_log, "a")
 f.write("time\tmem\terror-code\tcommand\tmin-len\terror-rate\trepeat-period\trepeat-length\tmatches\n")
 f.close()
 
-def get_error_rate(wildcards):
-	return int(wildcards.er) / int(wildcards.min_len)
 rule stellar:
 	input:
 		ref = dir_path(config["ref"]) + "dna4.fasta",

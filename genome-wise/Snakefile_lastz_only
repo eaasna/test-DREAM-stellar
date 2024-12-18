@@ -7,11 +7,15 @@ seed = config["seed"]
 # search for gapped alignments
 gap_flag = "gapped" 
 # speed up search by not allowing transitions in seeds
-transition_flag = "notransition"
+transition_flag = "transition"
 
 #-------- Evaluation parameters --------
 n = 1
 min_overlap = 100
+
+import os
+def dir_path(filename):
+	return os.path.split(filename)[0] + "/" 
 
 rule make_all:
 	input:
