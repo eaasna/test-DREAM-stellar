@@ -21,7 +21,7 @@ kmer_cmin: 0
 kmer_cmax: 254
 
 #-------- search parameters --------
-errors: [2, 3]
+errors: [1, 2, 3, 4, 5, 6]
 repeat_flag: "--keep-best-repeats"
 repeat_periods: [1]
   #repeat_periods: [1, 2, 4, 8]
