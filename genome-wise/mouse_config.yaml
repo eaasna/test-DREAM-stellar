@@ -1,6 +1,10 @@
 #-------- workflow parameters --------
 valik_exec: "/group/ag_abi/evelina/valik/build/bin/valik"
 
+stellar_out: "stellar_masked"
+blast_out: "blast_masked"
+dream_out: "dream_masked_k18"
+
 #-------- input files --------
 ref: "/srv/data/evelina/mouse/ref_concat.fa"
 query: "/srv/data/evelina/fly/query_concat.fa"
@@ -9,7 +13,7 @@ run_id: "mouse_vs_fly"
 #-------- split parameters --------
 ibf_fpr: [0.005]
 ibf_bins: [1024]
-min_len: [100]
+min_len: [50]
 
 #-------- build parameters --------
 minimiser_flag: "--fast"
@@ -23,7 +27,7 @@ repeat_periods: [1]
   #repeat_periods: [1, 2, 4, 8]
 repeat_lengths: [1000]
   #repeat_lengths: [1000, 100, 50, 25]
-bin_entropy_cutoffs: [0.5]
+bin_entropy_cutoffs: [0.25, 0.5, 0.75, 0.99]
 max_queued_carts: 1024
 cart_max_capacity: 2000
 
