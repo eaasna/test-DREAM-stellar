@@ -14,7 +14,7 @@ def db_name(wildcards):
 #	MegaBLAST indexes every 5th position
 rule last_index:
 	input:
-		config["ref"]
+		dir_path(config["ref"]) + "dna4.fasta"
 	output:
 		run_id + "_w{w}.suf"
 	threads: workflow.cores
@@ -35,9 +35,9 @@ rule last_index:
 #	RY16: reduce run time and memory use by only seeking seeds at 1/16 of positions
 rule last_search:
 	input:
-		ref = config["ref"],
+		ref = dir_path(config["ref"]) + "dna4.fasta",
 		db = run_id + "_w{w}.suf",
-		query = config["query"]
+		query = dir_path(config["query"]) + "dna4.fasta"
 	output:
 		run_id + "_w{w}_k{k}_l{l}.maf"
 	threads: workflow.cores

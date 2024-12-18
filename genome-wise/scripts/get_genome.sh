@@ -3,7 +3,7 @@
 set -ex 
 
 if [[ "$#" -ne 3 ]]; then
-	echo "Usage: bash get_human_genome.sh <data_dir> <short_ids> <species:{human, mouse, fly}>"
+	echo "Usage: bash get_genome.sh <data_dir> <short_ids> <species:{human, mouse, fly}>"
 	exit
 fi	
 
@@ -30,13 +30,13 @@ else
 	exit 1
 fi
 
-#wget $ftp_dir/$ftp_filename.fna.gz -P $data_dir
+wget $ftp_dir/$ftp_filename.fna.gz -P $data_dir
 
-#gzip -d $data_dir/$ftp_filename.fna.gz
+gzip -d $data_dir/$ftp_filename.fna.gz
 
-#convert to single line fasta
-#awk '{if(NR==1) {print $0} else {if($0 ~ /^>/) {print "\n"$0} else {printf $0}}}' $data_dir/$ftp_filename.fna > $data_dir/$release.fa
-#rm $data_dir/$ftp_filename.fna
+convert to single line fasta
+awk '{if(NR==1) {print $0} else {if($0 ~ /^>/) {print "\n"$0} else {printf $0}}}' $data_dir/$ftp_filename.fna > $data_dir/$release.fa
+rm $data_dir/$ftp_filename.fna
 
 ./concat_scaffolds.sh $data_dir $short_ids "$release.fa" "$outfile"
 rm $data_dir/$release.fa

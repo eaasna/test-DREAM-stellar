@@ -36,14 +36,16 @@ rule blast_search:
 
 rule blast_compare_stellar:
 	input:
-		ref_meta = "error_rates/meta/b1024_fpr0.005_l150.bin",
+		ref_meta = dream_out + "/meta/b"+ str(bin_list[0]) + "_fpr" + str(fpr_list[0]) + "_l" + str(min_lens[0]) + "_e" + str(errors[0]) + ".bin",
 		test_files = expand(blast_out + "/" + run_id + "_e{ev}_k{k}.bed", ev = evalues, k = blast_kmer_lengths),
 		truth_files = expand(stellar_out + "/" + run_id + "_l{l}_e{er}_rp{rp}_rl{rl}.gff", l = min_lens, er = errors, rp = repeat_periods, rl = repeat_lengths) 
 	output:
-		"blast.kmer.accuracy"
+		"blast.stellar.accuracy"
 	threads: workflow.cores
 	params:
-		min_len = min(min_lens)
+		min_len = min(min_lens),
+		min_overlap = 50
+		#min_overlap = round(min(min_lens) / 2)
 	shell:
 		"""
 		echo -e "test-file\tmatches\ttruth-set-matches\ttrue-matches\tmissed\tmin-overlap\ttruth-file" > {output}
@@ -56,12 +58,12 @@ rule blast_compare_stellar:
 			echo -e "$test\t$match_count\t" >> {output}
 			
 			truncate -s -1 {output}
-			../../scripts/search_accuracy.sh $truth $test {params.min_len} {min_overlap} {input.ref_meta} tmp.log
+			../scripts/search_accuracy.sh $truth $test {params.min_len} {params.min_overlap} {input.ref_meta} tmp.log
 			tail -n 1 tmp.log >> {output}
 			rm tmp.log
 	
 			truncate -s -1 {output}
-			echo -e "\t{min_overlap}\t$truth" >> {output}
+			echo -e "\t{params.min_overlap}\t$truth" >> {output}
 			done
 		done
 		"""

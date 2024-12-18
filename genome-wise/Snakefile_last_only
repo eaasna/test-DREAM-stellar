@@ -14,6 +14,10 @@ word_sizes = config["word_sizes"]
 n = 1
 min_overlap = 100
 
+import os
+def dir_path(filename):
+	return os.path.split(filename)[0] + "/"
+
 rule make_all:
 	input:
 		expand(run_id + "_w{w}_k{k}_l{l}.maf", w = index_every, k = query_every, l = word_sizes)
