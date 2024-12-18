@@ -2,9 +2,9 @@ workdir : "work"
 stellar = "/group/ag_abi/evelina/stellar3/build/bin/stellar"
 valik = config["valik_exec"]
 
-stellar_out="stellar_masked"
-blast_out="blast_masked"
-dream_out="dream_masked"
+stellar_out=config["stellar_out"]
+blast_out=config["blast_out"]
+dream_out=config["dream_out"]
 
 #-------- split parameters --------
 fpr_list = config["ibf_fpr"]
@@ -58,7 +58,7 @@ rule make_all:
 	input:
 #		"blast.stellar.accuracy",
 		"valik.stellar.accuracy",
-		"valik.blast.accuracy"
+#		"valik.blast.accuracy"
 	shell:
 		"echo 'Done'"
 

@@ -13,9 +13,10 @@ rule valik_split_ref:
 	shell:
 		"""
 		( /usr/bin/time -a -o {params.log} -f "%e\t%M\t%x\tvalik-split\t{wildcards.b}\t{wildcards.fpr}\t{params.er_rate}\t{wildcards.min_len}" \
-			{valik} split {input} --verbose --fpr {wildcards.fpr} --out {output.ref_meta} \
+			{valik} split {input} --verbose --fpr {wildcards.fpr} --out {output.ref_meta} --kmer 18 \
 				--error-rate {params.er_rate}  --pattern {wildcards.min_len} -n {wildcards.b} &> {output}.split.err)
 		"""
+			#{valik} split {input} --verbose --fpr {wildcards.fpr} --out {output.ref_meta} \
 
 f = open(dream_out + "/build_valik.time", "a")
 f.write("time\tmem\terror-code\tcommand\tbins\tfpr\tmax-er\tmin-len\tthreads\tminimiser\tcmin\tcmax\tibf-size\n")
