@@ -1,38 +1,41 @@
 #-------- workflow parameters --------
 valik_exec: "/group/ag_abi/evelina/valik/build/bin/valik"
-
+workdir: "human"
 stellar_out: "stellar_masked"
 blast_out: "blast_masked"
-dream_out: "dream_masked_k18"
+dream_out: "dream_masked"
 
 #-------- input files --------
-ref: "/srv/data/evelina/mouse/ref_concat.fa"
-query: "/srv/data/evelina/fly/query_concat.fa"
-run_id: "mouse_vs_fly"
+ref: "/srv/data/evelina/human/ref_concat.fa"
+query: "/srv/data/evelina/mouse_query/ref_concat.fa"
+run_id: "human_vs_mouse"
 
 #-------- split parameters --------
 ibf_fpr: [0.005]
-ibf_bins: [1024]
-min_len: [50]
+ibf_bins: [2048]
+min_len: [100]
+min_overlap: 50
+valik_kmer_lengths: [19]
+valik_thresh: ["NA"]
 
 #-------- build parameters --------
 minimiser_flag: "--fast"
 kmer_cmin: 0
-kmer_cmax: 254
+kmer_cmax: [150]
 
 #-------- search parameters --------
-errors: [1, 2, 3, 4, 5, 6]
+errors: [1]
 repeat_flag: "--keep-best-repeats"
 repeat_periods: [1]
   #repeat_periods: [1, 2, 4, 8]
 repeat_lengths: [1000]
   #repeat_lengths: [1000, 100, 50, 25]
-bin_entropy_cutoffs: [0.25, 0.5, 0.75, 0.99]
-max_queued_carts: 1024
+  #bin_entropy_cutoffs: [0.25, 0.5, 0.75, 0.99]
+bin_entropy_cutoffs: [0.25]
+max_queued_carts: 2048
 cart_max_capacity: 2000
 
 #-------- search parameters --------
-evalues: [0.0000001]
-#evalues: [10]
-blast_kmer_lengths: [51, 49, 45, 37, 33, 29, 24, 21, 18, 16]
-  #blast_kmer_lengths: [24]
+evalues: [1e-27]
+blast_kmer_lengths: [28, 24, 19]
+#blast_kmer_lengths: [51, 49, 45, 37, 33, 32, 29, 24, 21, 18, 16]

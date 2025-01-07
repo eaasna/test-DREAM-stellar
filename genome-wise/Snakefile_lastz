@@ -80,13 +80,13 @@ wildcard_constraints:
 
 rule make_all:
 	input:
-		blast_out + "/blast.stellar.accuracy",
+#		blast_out + "/blast.stellar.accuracy",
 #		blast_out + "/blast.valik.accuracy",
 #		dream_out + "/valik.stellar.accuracy",
 #		dream_out + "/valik.blast.accuracy",
 #		dream_out + "/valik.stellar.accuracy.k",
 #		dream_out + "/valik.blast.accuracy.k"
-#		lastz_out + "/lastz.stellar.accuracy"
+		lastz_out + "/lastz.stellar.accuracy"
 	shell:
 		"echo 'Done'"
 
@@ -96,4 +96,3 @@ include: "rules/dream.smk"
 include: "rules/blast.smk"
 include: "rules/lastz.smk"
 include: "rules/accuracy.smk"
-

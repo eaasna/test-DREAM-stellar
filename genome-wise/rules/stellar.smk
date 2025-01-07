@@ -5,8 +5,8 @@ f.close()
 
 rule stellar:
 	input:
-		ref = dir_path(config["ref"]) + "dna4.fasta",
-		query = dir_path(config["query"]) + "dna4.fasta"
+		ref = ancient(dir_path(config["ref"]) + "dna4.fasta"),
+		query = ancient(dir_path(config["query"]) + "dna4.fasta")
 	output: 
 		stellar_out + "/" + run_id + "_l{min_len}_e{er}_rp{rp}_rl{rl}.gff"
 	threads: 1

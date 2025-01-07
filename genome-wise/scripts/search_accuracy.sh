@@ -20,7 +20,7 @@ $evaluate --truth $TRUTH --test $MATCHES --min-len $MIN_LENGTH --overlap $MIN_OV
 total_match_count=$(wc -l "$TRUTH" | awk '{ print $1 }')
 true_match_count=$(grep "True positives" $eval_log | awk '{print $3}')
 missed_match_count=$(grep "False negatives" $eval_log | awk '{print $3}')
-missed=$(bc <<< "scale=2; 1.0 - $true_match_count/$total_match_count")
+missed=$(bc <<< "scale=3; $missed_match_count/$total_match_count")
 echo -e 'total_match_count\ttrue_match_count\tmissed' >> $OUT
 echo -e "$total_match_count\t$true_match_count\t$missed" >> $OUT
 
