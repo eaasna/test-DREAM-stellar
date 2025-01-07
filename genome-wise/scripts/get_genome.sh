@@ -34,7 +34,7 @@ wget $ftp_dir/$ftp_filename.fna.gz -P $data_dir
 
 gzip -d $data_dir/$ftp_filename.fna.gz
 
-convert to single line fasta
+#convert to single line fasta
 awk '{if(NR==1) {print $0} else {if($0 ~ /^>/) {print "\n"$0} else {printf $0}}}' $data_dir/$ftp_filename.fna > $data_dir/$release.fa
 rm $data_dir/$ftp_filename.fna
 
