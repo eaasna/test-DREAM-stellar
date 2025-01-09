@@ -19,6 +19,7 @@ cmax_list = config["kmer_cmax"]
 
 #-------- search parameters --------
 valik_kmer_lengths = config["valik_kmer_lengths"]
+valik_shapes = config["valik_shapes"]
 valik_thresh = config["valik_thresh"]
 errors = config["errors"]
 repeat_flag = config["repeat_flag"]
@@ -86,8 +87,9 @@ rule make_all:
 #		dream_out + "/valik.stellar.accuracy",
 #		dream_out + "/valik.blast.accuracy",
 #		dream_out + "/valik.stellar.accuracy.k",
+		dream_out + "/valik.stellar.accuracy.s"
 #		dream_out + "/valik.blast.accuracy.k"
-		lastz_out + "/lastz.stellar.accuracy"
+#		lastz_out + "/lastz.stellar.accuracy"
 	shell:
 		"echo 'Done'"
 

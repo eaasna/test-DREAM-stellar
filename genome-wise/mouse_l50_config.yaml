@@ -3,8 +3,8 @@ valik_exec: "/group/ag_abi/evelina/valik/build/bin/valik"
 workdir: "work"
 stellar_out: "stellar_masked"
 blast_out: "blast_masked"
-dream_out: "dream_masked_k_t"
-lastz_out: "lastz"
+dream_out: "dream_masked_s"
+lastz_out: "lastz_step3"
 
 #-------- input files --------
 ref: "/srv/data/evelina/mouse/ref_concat.fa"
