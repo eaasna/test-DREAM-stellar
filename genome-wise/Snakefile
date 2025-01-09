@@ -19,6 +19,7 @@ cmax_list = config["kmer_cmax"]
 
 #-------- search parameters --------
 valik_kmer_lengths = config["valik_kmer_lengths"]
+valik_shapes = config["valik_shapes"]
 valik_thresh = config["valik_thresh"]
 errors = config["errors"]
 repeat_flag = config["repeat_flag"]
@@ -51,7 +52,8 @@ def percid_from_k(wildcards):
 #-------- LASTZ parameters --------
 lastz_seeds = config["lastz_seed"]
 gap_flag = "gapped"
-transition_flag = "transition"
+transition_flag = config["seed_transition"]
+step_length = config["step_length"]
 
 #-------- Evaluation parameters --------
 n = 1
@@ -85,6 +87,7 @@ rule make_all:
 #		dream_out + "/valik.stellar.accuracy",
 #		dream_out + "/valik.blast.accuracy",
 #		dream_out + "/valik.stellar.accuracy.k",
+		dream_out + "/valik.stellar.accuracy.s"
 #		dream_out + "/valik.blast.accuracy.k"
 #		lastz_out + "/lastz.stellar.accuracy"
 	shell:
