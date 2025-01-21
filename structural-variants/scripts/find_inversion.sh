@@ -33,64 +33,60 @@ do
 			grep $id forward_matches.gff | awk -v chr_id="$chr" ' $1==chr_id ' > curr_forward.gff
 			grep $id reverse_matches.gff | awk -v chr_id="$chr" ' $1==chr_id ' > curr_reverse.gff
 			
-			#forward_alignments=$(wc -l curr_forward.gff | awk '{print $1}')
-			#reverse_alignments=$(wc -l curr_reverse.gff | awk '{print $1}')
-			
-			start_table="$ind.dstart.forward.tsv"
-			awk '{print $4}' curr_forward.gff | cut -c1-3 | sort | uniq -c > $start_table
-			forward_same_ref_region=$(awk '$1>1 {print}' $start_table | wc -l | awk '{print $1}')
-			rm $start_table
+			forward_alignments=$(wc -l curr_forward.gff | awk '{print $1}')
+			reverse_alignments=$(wc -l curr_reverse.gff | awk '{print $1}')
 
-			start_table="$ind.dstart.reverse.tsv"
-			awk '{print $4}' curr_reverse.gff | cut -c1-3 | sort | uniq -c > $start_table
-			reverse_same_ref_region=$(awk '$1>1 {print}' $start_table | wc -l | awk '{print $1}')
-			rm $start_table
+			# pick out reference regions that have multiple query matches			
+			forward_ref_region="$ind.dstart.forward.region"
+			awk '{print $4}' curr_forward.gff | cut -c1-3 | sort | uniq -c | awk '$1>1 {print $2}' > $forward_ref_region			
+			forward_in_ref_region=$(wc -l $forward_ref_region | awk '{print $1}')
+
+			reverse_ref_region="$ind.dstart.reverse.region"
+			awk '{print $4}' curr_reverse.gff | cut -c1-3 | sort | uniq -c | awk '$1>1 {print $2}' > $reverse_ref_region
+			reverse_in_ref_region=$(wc -l $reverse_ref_region | awk '{print $1}')
 			
 			# same_ref_region=$((forward_same_ref_region+reverse_same_ref_region))
 			# find read that matches on forward and reverse strand of the same chr
-			if [ $forward_same_ref_region -ge 1 ] && [ $reverse_same_ref_region -ge 1 ]; then
+			if [ $forward_in_ref_region -ge 1 ] && [ $reverse_in_ref_region -ge 1 ]; then
 				grep $id $matches | awk -v chr_id="$chr" ' $1==chr_id '  > potential_inversions/${chr}_${ind}.gff
 		
-				start_table="$ind.qstart.tsv"
-				end_table="$ind.qend.tsv"	
-				awk '{print $9}' potential_inversions/${chr}_$ind.gff | awk -F';' '{print $2}' | sed 's/seq2Range=//g' | awk -F',' '{print $1}' | sort | uniq -c > $start_table
-				awk '{print $9}' potential_inversions/${chr}_$ind.gff | awk -F';' '{print $2}' | sed 's/seq2Range=//g' | awk -F',' '{print $2}' | sort | uniq -c > $end_table
-				
-				unique_starts=$(awk '$1<2 {print}' $start_table | wc -l | awk '{print $1}')
-				unique_ends=$(awk '$1<2 {print}' $end_table | wc -l | awk '{print $1}')
-				if [ $unique_starts -ge 2 ] && [ $unique_ends -ge 2 ]; then
-					
-					max_start=$(tail -n 1 $start_table | awk '{print $2}')
-					min_start=$(head -n 1 $start_table | awk '{print $2}')
-					max_end=$(tail -n 1 $end_table | awk '{print $2}')
-					min_end=$(head -n 1 $end_table | awk '{print $2}')
-					start_range=$(($max_start-$min_start))
-					end_range=$(($max_end-$min_end))
-					
-					#echo "$unique_starts"
-					#echo "$unique_ends"
-					#echo -e "max start\t$max_start"
-					#echo -e "min start\t$min_start"
-					#echo -e "max end\t$max_end"
-					#echo -e "min end\t$min_end"
-					#echo -e "start range\t$start_range"
-					#echo -e "end range\t$end_range"
-					#exit 1
-					if [ $start_range -ge 100 ] && [ $end_range -ge 100 ]; then
+				forward_query_table="$ind.qstart.forward.tsv"
+				reverse_query_table="$ind.qstart.reverse.tsv"	
 
-						echo -e "\tForward\t$forward_alignments"
-						echo -e "\tReverse\t$reverse_alignments"
-						echo "Potential inversions for read $id on $chr"
-						found_inversion=1
-					fi
+				grep -f $forward_ref_region potential_inversions/${chr}_$ind.gff | awk '$7 == "+" {print $9}' | awk -F';' '{print $2}' | sed 's/seq2Range=//g' | awk -F',' '{print $1}' | sort -n | uniq -c > $forward_query_table
+				grep -f $reverse_ref_region potential_inversions/${chr}_$ind.gff | awk '$7 == "-" {print $9}' | awk -F';' '{print $2}' | sed 's/seq2Range=//g' | awk -F',' '{print $1}' | sort -n | uniq -c > $reverse_query_table
+				max_forward=$(tail -n 1 $forward_query_table | awk '{print $2}')
+				min_forward=$(head -n 1 $forward_query_table | awk '{print $2}')
+				max_reverse=$(tail -n 1 $reverse_query_table | awk '{print $2}')
+				min_reverse=$(head -n 1 $reverse_query_table | awk '{print $2}')
+				forward_range=$(($max_forward-$min_forward))
+				reverse_range=$(($max_reverse-$min_reverse))
+				if [ $forward_range -le -1 ]; then	
+					echo -e "max forward\t$max_forward"
+					echo -e "min forward\t$min_forward"
+					echo -e "max reverse\t$max_reverse"
+					echo -e "min reverse\t$min_reverse"
+					echo -e "Forward range\t$forward_range"
+					echo -e "Reverse range\t$reverse_range"
+					echo -e "Error range should not be negative"
+					exit 1
+				fi		
+				#exit 1
+				if [ $forward_range -ge 20 ] && [ $reverse_range -ge 20 ]; then
+					echo -e "\tForward\t$forward_alignments"
+					echo -e "\tReverse\t$reverse_alignments"
+					echo "Potential inversions for read $id on $chr"
+					found_inversion=1
 				fi
-				rm $start_table
-				rm $end_table
+				rm $forward_query_table
+				rm $reverse_query_table
 				
 				if [ $found_inversion -eq 0 ]; then
 					rm potential_inversions/${chr}_$ind.gff
 				fi
 			fi
+			rm $forward_ref_region
+			rm $reverse_ref_region
 		fi
 	done < chr_hits
 	rm $ind.gff
