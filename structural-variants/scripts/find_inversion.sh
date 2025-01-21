@@ -30,11 +30,25 @@ do
 		found_inversion=0
 		if [ "$chr" != "Concatenated" ]; then
 			#echo -e "chr\t$chr"
-			forward_alignments=$(grep $id forward_matches.gff | awk -v chr_id="$chr" ' $1==chr_id ' | wc -l | awk '{print $1}')
-			reverse_alignments=$(grep $id reverse_matches.gff | awk -v chr_id="$chr" ' $1==chr_id ' | wc -l | awk '{print $1}')
-		
+			grep $id forward_matches.gff | awk -v chr_id="$chr" ' $1==chr_id ' > curr_forward.gff
+			grep $id reverse_matches.gff | awk -v chr_id="$chr" ' $1==chr_id ' > curr_reverse.gff
+			
+			#forward_alignments=$(wc -l curr_forward.gff | awk '{print $1}')
+			#reverse_alignments=$(wc -l curr_reverse.gff | awk '{print $1}')
+			
+			start_table="$ind.dstart.forward.tsv"
+			awk '{print $4}' curr_forward.gff | cut -c1-3 | sort | uniq -c > $start_table
+			forward_same_ref_region=$(awk '$1>1 {print}' $start_table | wc -l | awk '{print $1}')
+			rm $start_table
+
+			start_table="$ind.dstart.reverse.tsv"
+			awk '{print $4}' curr_reverse.gff | cut -c1-3 | sort | uniq -c > $start_table
+			reverse_same_ref_region=$(awk '$1>1 {print}' $start_table | wc -l | awk '{print $1}')
+			rm $start_table
+			
+			# same_ref_region=$((forward_same_ref_region+reverse_same_ref_region))
 			# find read that matches on forward and reverse strand of the same chr
-			if [ $forward_alignments -ge 1 ] && [ $reverse_alignments -ge 1 ]; then
+			if [ $forward_same_ref_region -ge 1 ] && [ $reverse_same_ref_region -ge 1 ]; then
 				grep $id $matches | awk -v chr_id="$chr" ' $1==chr_id '  > potential_inversions/${chr}_${ind}.gff
 		
 				start_table="$ind.qstart.tsv"
