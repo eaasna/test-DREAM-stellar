@@ -65,7 +65,7 @@ rule valik_search:
 		er_rate = get_error_rate
 	shell:
 		"""
-		(/usr/bin/time -a -o {params.log} -f \
+		(timeout 24h /usr/bin/time -a -o {params.log} -f \
 			"%e\t%M\t%x\tvalik-search\t{wildcards.b}\t{wildcards.fpr}\t{params.er_rate}\t{wildcards.min_len}\t{threads}\t{params.is_minimiser}\t{wildcards.cmin}\t{wildcards.cmax}\t{wildcards.er}\t{repeat_flag}\t{wildcards.bin_ent}\t{wildcards.max_cap}\t{wildcards.max_carts}\t{wildcards.rp}\t{wildcards.rl}" \
 			{valik} search --verbose {repeat_flag} --bin-entropy-cutoff {wildcards.bin_ent} \
 			 	--split-query --cache-thresholds --numMatches {num_matches} \

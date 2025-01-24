@@ -11,6 +11,7 @@ dream_out=config["dream_out"]
 fpr_list = config["ibf_fpr"]
 bin_list = config["ibf_bins"]
 min_lens = config["min_len"]
+valik_shapes = config["valik_shapes"]
 
 #-------- build parameters --------
 minimiser_flag = config["minimiser_flag"]
@@ -53,6 +54,7 @@ lastz_seeds = config["lastz_seed"]
 gap_flag = "gapped"
 transition_flag = config["seed_transition"]
 step_length = config["step_length"]
+hsp = config["hsp_thresh"]
 
 #-------- Evaluation parameters --------
 n = 1
@@ -87,7 +89,8 @@ rule make_all:
 #		dream_out + "/valik.blast.accuracy",
 #		dream_out + "/valik.stellar.accuracy.k",
 #		dream_out + "/valik.blast.accuracy.k"
-		lastz_out + "/lastz.stellar.accuracy"
+#		lastz_out + "/lastz.stellar.accuracy"
+		expand(lastz_out + "/" + run_id + "_s{s}_" + gap_flag + "_" + transition_flag + "_" + str(step_length) + ".gff", s = lastz_seeds)
 	shell:
 		"echo 'Done'"
 

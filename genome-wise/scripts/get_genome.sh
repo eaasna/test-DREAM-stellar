@@ -1,16 +1,16 @@
 #!/bin/bash
 
-set -ex 
+set -e 
 
-if [[ "$#" -ne 3 ]]; then
-	echo "Usage: bash get_genome.sh <data_dir> <short_ids> <species:{human, mouse, fly}>"
+if [[ "$#" -ne 2 ]]; then
+	echo "Usage: bash get_genome.sh <data_dir> <species:{human, mouse, fly}>"
 	exit
 fi	
 
 data_dir=$1
-short_ids=$2
-species=$3
+species=$2
 
+ref_len_cutoff=10000
 outfile="ref_concat.fa"
 if [[ "$species" == "human" ]] then
 	ftp_dir="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.26_GRCh38/GRCh38_major_release_seqs_for_alignment_pipelines"
@@ -25,19 +25,20 @@ elif [[ "$species" == "fly" ]] then
 	release="6_plus_ISO1_MT"
 	ftp_filename="GCF_000001215.4_Release_6_plus_ISO1_MT_genomic"
 	outfile="query_concat.fa"
+	ref_len_cutoff=500
 else
 	echo "species must be one of {human, mouse, fly}"
 	exit 1
 fi
 
+# download ref
 wget $ftp_dir/$ftp_filename.fna.gz -P $data_dir
 
 gzip -d $data_dir/$ftp_filename.fna.gz
 
-#convert to single line fasta
-awk '{if(NR==1) {print $0} else {if($0 ~ /^>/) {print "\n"$0} else {printf $0}}}' $data_dir/$ftp_filename.fna > $data_dir/$release.fa
-rm $data_dir/$ftp_filename.fna
+#short_ids="short_ids.txt"
+#echo "Find short ids"
+#./find_short_ids.sh $data_dir $ftp_filename.fna $ref_len_cutoff $short_ids
+#cat $data_dir/$short_ids
 
-./concat_scaffolds.sh $data_dir $short_ids "$release.fa" "$outfile"
-rm $data_dir/$release.fa
-
+#./concat_scaffolds.sh $data_dir $short_ids $ftp_filename.fna $outfile

@@ -1,5 +1,3 @@
-script_dir="/group/ag_abi/evelina/DREAM-stellar-benchmark/genome-wise/scripts"
-
 rule valik_compare_blast:
 	input:
 		ref_meta = dream_out + "/meta/b" + str(bin_list[0]) + "_fpr" + str(fpr_list[0]) + "_l" + str(min_lens[0]) + "_e" + str(errors[0]) + ".bin",
@@ -330,3 +328,36 @@ rule lastz_compare_stellar:
 		done
 		"""
 
+rule last_compare_stellar:
+	input:
+		ref_meta = dream_out + "/meta/b" + str(bin_list[0]) + "_fpr" + str(fpr_list[0]) + "_l" + str(min_lens[0]) + "_e" + str(errors[0]) + ".bin",
+		test_files = expand(last_out + "/" + run_id + "_w{w}_k{k}_l{l}.bed", w = last_w, k = last_k, l = last_l),
+		truth_files = expand(stellar_out + "/" + run_id + "_l{min_len}_e{er}_rp" + str(repeat_periods[0]) + "_rl" + str(repeat_lengths[0]) + ".gff", min_len = min_lens, er = errors)
+	output:
+		last_out + "/last.stellar.accuracy"
+	threads:
+		workflow.cores
+	params:
+		min_len = min(min_lens),
+		min_overlap = min_overlap
+	shell:
+		"""
+		echo -e "test-file\tmatches\ttruth-set-matches\ttrue-matches\tmissed\tmin-overlap\ttruth-file" > {output}
+		
+		for test in {input.test_files}
+		do
+			for truth in {input.truth_files}
+			do
+				match_count=`wc -l $test | awk '{{print $1}}'`
+				echo -e "$test\t$match_count\t" >> {output}
+			
+				truncate -s -1 {output}
+				{script_dir}/search_accuracy.sh $truth $test {params.min_len} {params.min_overlap} {input.ref_meta} tmp.log
+				tail -n 1 tmp.log >> {output}
+				rm tmp.log
+	
+				truncate -s -1 {output}
+				echo -e "\t{params.min_overlap}\t$truth" >> {output}
+			done
+		done
+		"""

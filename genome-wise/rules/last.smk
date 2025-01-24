@@ -1,4 +1,4 @@
-last_log = "../" + prefix + "/last.time"
+last_log = last_out + "/last.time"
 f = open(last_log, "a")
 f.write("time\tmem\terror-code\tcommand\tthreads\tindex-every\tquery-every\tword-size\tseeding\tmatches\n")
 f.close()
@@ -16,7 +16,7 @@ rule last_index:
 	input:
 		dir_path(config["ref"]) + "dna4.fasta"
 	output:
-		run_id + "_w{w}.suf"
+		last_out + "/" + run_id + "_w{w}.suf"
 	threads: workflow.cores
 	params:
 		db = db_name
@@ -36,19 +36,31 @@ rule last_index:
 rule last_search:
 	input:
 		ref = dir_path(config["ref"]) + "dna4.fasta",
-		db = run_id + "_w{w}.suf",
+		db = last_out + "/" + run_id + "_w{w}.suf",
 		query = dir_path(config["query"]) + "dna4.fasta"
 	output:
-		run_id + "_w{w}_k{k}_l{l}.maf"
+		last_out + "/" + run_id + "_w{w}_k{k}_l{l}.maf"
 	threads: workflow.cores
 	params:
 		db = db_name
 	shell:
 		"""
-		/usr/bin/time -a -o {last_log} -f "%e\t%M\t%x\t%C\t{threads}\t{wildcards.w}\t{wildcards.k}\t{wildcards.l}" \
-			lastal -P{threads} -k{wildcards.k} -l{wildcards.l} {params.db} > {output}
+		(timeout 24h /usr/bin/time -a -o {last_log} -f "%e\t%M\t%x\t%C\t{threads}\t{wildcards.w}\t{wildcards.k}\t{wildcards.l}" \
+			lastal -P{threads} -k{wildcards.k} -l{wildcards.l} {params.db} {query} > {output})
 
 		truncate -s -1 {last_log}
 		grep -v [#] {output} | wc -l | awk '{{print "\t" $1}}' >> {last_log}
 		"""
 		
+rule last_convert:
+	input:
+		last_out + "/" + run_id + "_w{w}_k{k}_l{l}.maf"
+	output:
+		last_out + "/" + run_id + "_w{w}_k{k}_l{l}.bed"
+	threads: 1
+	shell:
+		"""
+		grep -v "#" {input} | \
+			awk '{{print $2 "\t" $9 "\t" $10 "\t" $3 "\tplus\t" $11 "\t" $1 "\t" $7 "\t" $8}}' \
+			> {output}
+		"""

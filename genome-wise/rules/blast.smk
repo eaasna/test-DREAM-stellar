@@ -26,11 +26,11 @@ rule blast_search:
 	shell:
 		"""
 		mkdir -p blast
-		/usr/bin/time -a -o {blast_log} -f "%e\t%M\t%x\tblast-search\t{threads}\t{wildcards.ev}\t{wildcards.k}" \
-			blastn -db {input.ref} -query {input.query} -num_threads {threads} \
+		(timeout 24h /usr/bin/time -a -o {blast_log} -f "%e\t%M\t%x\tblast-search\t{threads}\t{wildcards.ev}\t{wildcards.k}" \
+			 blastn -db {input.ref} -query {input.query} -num_threads {threads} \
 				-outfmt "6 sseqid sstart send pident sstrand evalue qseqid qstart qend" \
 				-word_size {wildcards.k} -evalue {wildcards.ev}  \
-				-dust "no" -soft_masking "no" -out {output}
+				-dust "no" -soft_masking "no" -out {output})
 		truncate -s -1 {blast_log}
 		wc -l {output} | awk '{{print "\t" $1}}' >> {blast_log}
 		"""

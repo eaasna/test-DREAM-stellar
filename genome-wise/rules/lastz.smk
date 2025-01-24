@@ -14,8 +14,8 @@ rule lastz_search:
 		flags = "--" + gap_flag + " --" + transition_flag 
 	shell:
 		"""
-		/usr/bin/time -a -o {lastz_log} -f "%e\t%M\t%x\t%C\t1\t{wildcards.s}\t{gap_flag}\t{transition_flag}\t{step_length}" lastz_32 {input.ref}[multiple] {input.query} {params.flags} \
-				--seed={wildcards.s} --step={step_length} --progress=1 --format=maf > {output}
+		(timeout 24h /usr/bin/time -a -o {lastz_log} -f "%e\t%M\t%x\t%C\t1\t{wildcards.s}\t{gap_flag}\t{transition_flag}\t{step_length}" lastz_32 {input.ref}[multiple] {input.query} {params.flags} --hspthresh={hsp} \
+				--seed={wildcards.s} --step={step_length} --progress=1 --format=maf > {output})
 
 		truncate -s -1 {lastz_log}
 		grep ^s {output} | wc -l | awk '{{print "\t" $1 / 2}}' >> {lastz_log}
