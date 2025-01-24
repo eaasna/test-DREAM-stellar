@@ -5,6 +5,7 @@ stellar_out: "stellar_masked"
 blast_out: "blast_masked"
 dream_out: "dream_masked_k"
 lastz_out: "lastz"
+last_out: "last"
 
 #-------- input files --------
 ref: "/srv/data/evelina/mouse/ref_concat.fa"

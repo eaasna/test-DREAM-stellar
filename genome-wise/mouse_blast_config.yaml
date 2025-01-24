@@ -1,7 +1,7 @@
 #-------- BLAST parameters --------
 
   # default
-#evalues: [10]
+evalues: [10]
 # blast_kmer_lengths: [28]
 
   # l = 100
@@ -9,6 +9,6 @@
   #blast_kmer_lengths: [51, 49, 45, 37, 33, 32, 29, 24, 21, 18, 16]
 
   # l = 50
-evalues: [1e-7, 1e-8, 1e-10]
-blast_kmer_lengths: [28, 24, 16, 12]
+#evalues: [1e-7, 1e-8, 1e-10]
+blast_kmer_lengths: [28, 24, 16]
 

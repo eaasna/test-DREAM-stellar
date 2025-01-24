@@ -2,7 +2,7 @@
 ibf_fpr: [0.005]
 ibf_bins: [1024]
 valik_kmer_lengths: [16]
-valik_shapes: ["1111110110110111111", "1110110110110110111"]
+valik_shapes: ["1110110110110110111"]
 
 #-------- DREAM build parameters --------
 minimiser_flag: "--fast"
@@ -14,7 +14,7 @@ repeat_flag: "--keep-all-repeats"
 repeat_periods: [1]
 repeat_lengths: [1000]
 bin_entropy_cutoffs: [1.0]
-valik_thresh: [4, 5]
+valik_thresh: [11]
 
 max_queued_carts: 1024
 cart_max_capacity: 2000
