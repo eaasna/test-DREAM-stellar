@@ -71,7 +71,7 @@ do
 					echo -e "Error range should not be negative"
 					exit 1
 				fi		
-				#exit 1
+				# require multiple adjacent local matches in the same reference region
 				if [ $forward_range -ge 20 ] && [ $reverse_range -ge 20 ]; then
 					echo -e "\tForward\t$forward_alignments"
 					echo -e "\tReverse\t$reverse_alignments"

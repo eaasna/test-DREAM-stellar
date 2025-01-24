@@ -19,10 +19,10 @@ done
 
 work_dir="/buffer/ag_abi/evelina/1000genomes/hifi/ftp.sra.ebi.ac.uk/vol1/run"
 ref_dir="/srv/data/evelina/human"
-ref="$ref_dir/dna4.fasta"
+ref="$ref_dir/unmasked_dna4.fa"
 
-minlen=50
-er=0.02
+minlen=100
+er=0.033
 s="1111110110110111111"
 numMatches=200
 sortThresh=$((numMatches+1))
@@ -38,7 +38,7 @@ if [ ! -f $index ]; then
 	valik build --fast --threads 8 --output $index --ref-meta $meta
 fi
 
-for sample in $work_dir/*/*/dna4.fa; do
+for sample in $work_dir/*/*/unmapped.fa; do
 	read_count=$(grep ">" $sample | wc -l | awk '{ print $1 }')
 	seg_count=$((read_count*5))
 	echo "$read_count"
@@ -54,7 +54,7 @@ for sample in $work_dir/*/*/dna4.fa; do
 				--query $sample --error-rate $er --threads 16 \
 				--output $matches --cart-max-capacity 100 \
 				--numMatches $numMatches --sortThresh $sortThresh \
-				--without-parameter-tuning --threshold 25 \
+				--without-parameter-tuning --threshold 31 \
 				--seg-count $seg_count --max-queued-carts 1024 \
 				--pattern $minlen \
 				--verbose &> $matches.search.err )
