@@ -3,17 +3,17 @@ valik_exec: "/group/ag_abi/evelina/valik/build/bin/valik"
 workdir: "work"
 stellar_out: "stellar_masked"
 blast_out: "blast_masked"
-dream_out: "dream_masked"
+dream_out: "dream_masked_s"
 lastz_out: "lastz_step3"
-last_out: "last"
 
 #-------- input files --------
 ref: "/srv/data/evelina/mouse/ref_concat.fa"
 query: "/srv/data/evelina/fly/query_concat.fa"
 run_id: "mouse_vs_fly"
 
+# The e-value for these matches is very low
 #-------- Stellar search parameters --------
-errors: [2]
-min_len: [50]
-min_overlap: [25]
+errors: [1]
+min_len: [30]
+min_overlap: [15]
 

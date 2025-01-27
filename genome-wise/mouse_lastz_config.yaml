@@ -1,10 +1,6 @@
-#-------- input files --------
-ref: "/srv/data/evelina/mouse/ref_concat.fa"
-query: "/srv/data/evelina/fly/query_concat.fa"
-run_id: "mouse_vs_fly"
-
 #-------- LASTZ parameters --------
 #seed: ["12of19", "14of22", "1110100110010101111"]
 lastz_seed: ["14of22", "111101001100101011111"]
 seed_transition: "notransition"
 step_length: 3
+hsp_thresh: 3000

@@ -1,14 +1,16 @@
+import os 
+simulation_script_dir=os.getcwd() + "/scripts"
+script_dir=os.getcwd() + "/../scripts"
+print(script_dir)
+
 n = config["repeat"]
 repetitions = list(range(n))
 print("Number of repetitions " + str(len(repetitions)))
 
-#error_rates = [0, 0.02, 0.025, 0.04, 0.05, 0.06, 0.075, 0.08, 0.1]
-#error_rates = [0.02, 0.04, 0.06, 0.08]
-#error_rates = [0.02]
-error_rates = [0.025, 0.05, 0.075, 0.1]
+error_rates = [0, 0.02, 0.04, 0.06, 0.08, 0.1]
 
 # local match lengths 
-min_len = 100
+min_len = 50
 max_len = 200
 
 # ibf_fpr
@@ -30,13 +32,40 @@ bins = config["ibf_bins"]
 overlap = min_len - 1
 max_capacity = config["cart_max_capacity"]
 max_carts = config["max_queued_carts"]
+shape = "111101101101111"
+shape_weight = shape.count("1")
+shape_size = len(shape)
+
+def get_threshold(wildcards):
+	errors = round(float(wildcards.er) * min_len)
+	threshold = min_len - shape_size + 1 - (errors * shape_size)
+	if (threshold < -30):
+		threshold = 4	
+	if (threshold < 3):
+		threshold = max(min_len - shape_weight + 1 - (errors * shape_weight), 5)
+	print("Threshold " + str(threshold) + " for " + str(errors) + " errors")
+	return threshold
 
 #-------- Stellar parameters --------
 num_matches = config["num_matches"]
 sort_thresh = config["sort_threshold"]
 
-#-------- Stellar parameters --------
-evalue = 0.01
+#-------- BLAST parameters --------
+default_evalue = 10
+default_k = 28
+
+def get_blast_word_size(wildcards):
+	errors = int(round(float(wildcards.er) * min_len)) 
+	print(errors)
+	for k in range(49, 6, -1):
+		if ((min_len - k + 1 - errors * k) > 1):
+			print("Max word size " + str(k) + " for max error rate " + wildcards.er)
+			return k
+
+#-------- LAST parameters --------
+last_w = 1
+last_l = 1
+last_k = 1
 
 #--------\ Shared functions --------
 import random
@@ -56,7 +85,11 @@ rule make_all:
 		#expand("evaluation/stellar_rep{rep}_e{er}.tsv", rep = repetitions, er = error_rates)
 		"stellar_table1.tsv",
 		"blast_table1.tsv",
-		"valik_table1.tsv"
+		"blast_default_table1.tsv",
+		"valik_table1.tsv",
+		"last_table1.tsv",
+		"lastz_table1.tsv"
+		#expand("last/rep{rep}_e{er}.bed", rep = repetitions, er = error_rates)
 		#expand("ref_rep{rep}.fasta", rep = repetitions)
 	shell:
 		"echo 'Done'"
@@ -65,4 +98,6 @@ include: "rules/simulate.smk"
 include: "rules/dream.smk"
 include: "rules/stellar.smk"
 include: "rules/blast.smk"
+include: "rules/last.smk"
+include: "rules/lastz.smk"
 include: "rules/evaluate.smk"

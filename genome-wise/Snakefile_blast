@@ -54,6 +54,7 @@ lastz_seeds = config["lastz_seed"]
 gap_flag = "gapped"
 transition_flag = config["seed_transition"]
 step_length = config["step_length"]
+hsp = config["hsp_thresh"]
 
 #-------- Evaluation parameters --------
 n = 1
@@ -70,7 +71,7 @@ def dir_path(filename):
 	return os.path.split(filename)[0] + "/"
 
 def get_error_rate(wildcards):
-	return round(int(wildcards.er) / int(wildcards.min_len), 3)
+	return int(wildcards.er) / int(wildcards.min_len)
 
 
 #-------- Shared functions \--------
@@ -78,7 +79,7 @@ def get_error_rate(wildcards):
 wildcard_constraints:
 	k="[0-9][0-9]",
 	er="[0-9]",
-	cmax="[0-9]+"
+	cmax="[0-9]+",
 
 rule make_all:
 	input:
@@ -87,14 +88,18 @@ rule make_all:
 #		dream_out + "/valik.stellar.accuracy",
 #		dream_out + "/valik.blast.accuracy",
 #		dream_out + "/valik.stellar.accuracy.k",
-		dream_out + "/valik.stellar.accuracy.s"
+#		dream_out + "/valik.stellar.accuracy.s"
 #		dream_out + "/valik.blast.accuracy.k"
 #		lastz_out + "/lastz.stellar.accuracy"
+#		expand(dream_out + "/b{b}_fpr{fpr}_l{min_len}_cmin{cmin}_cmax{cmax}_e{er}_ent{bin_ent}_cap{max_cap}_carts{max_carts}_t{t}_rp{rp}_rl{rl}.gff", b = bin_list, fpr = fpr_list, min_len = min_lens, cmin = cmin_list, cmax = cmax_list, er = errors, bin_ent = bin_entropy_cutoffs, max_cap = cart_max_capacity, max_carts = max_queued_carts, t = search_threads, rp = repeat_periods, rl = repeat_lengths),
+#		expand(dream_out + "/b{b}_fpr{fpr}_l{min_len}_cmin{cmin}_cmax{cmax}_e{er}_s{s}_thresh{thresh}_ent{bin_ent}_cap{max_cap}_carts{max_carts}_t{t}.gff", b = bin_list, fpr = fpr_list, min_len = min_lens, cmin = cmin_list, cmax = cmax_list, er = errors, s = valik_shapes, thresh = valik_thresh, bin_ent = bin_entropy_cutoffs, max_cap = cart_max_capacity, max_carts = max_queued_carts, t = search_threads)
+#		expand(dream_out + "/meta/b{b}_fpr{fpr}_l{min_len}_e{er}.bin", b = bin_list, fpr = fpr_list, min_len = min_lens, er = errors),
+		expand(blast_out + "/" + run_id + "_e{ev}_k{k}.bed", ev = evalues, k = blast_kmer_lengths)
 	shell:
 		"echo 'Done'"
 
 include: "rules/prepare.smk"
-include: "rules/stellar.smk"
+include: "rules/stellar_distributed.smk"
 include: "rules/dream.smk"
 include: "rules/blast.smk"
 include: "rules/lastz.smk"

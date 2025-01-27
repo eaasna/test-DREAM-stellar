@@ -11,7 +11,8 @@ in=$1
 min_len=$2
 out="${in%.bed}_sorted_l$min_len.bed"
 
-LC_ALL=C sort -gk 6 $in | awk -v 'l="$min_len"' '($3 - $2 > l) || ($3 - $2 < -l)' > $out
+# does this work with minus strand
+awk -v 'l="$min_len"' '($3 - $2 >= l) || ($3 - $2 <= -l)' | LC_ALL=C sort -gk 6 $in > $out
 
 for n in 100 500 1000 1500
 do
