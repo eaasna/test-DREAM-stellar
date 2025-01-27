@@ -117,7 +117,7 @@ rule last_table1:
 
 rule lastz_accuracy:
 	input:
-		search = "lastz/rep{rep}_e{er}.gff",
+		search = "lastz/rep{rep}_e{er}.bed",
 		truth = "stellar/rep{rep}_e{er}.gff",
 		ref_meta = "meta/ref_rep{rep}_e{er}.bin"
 	output:

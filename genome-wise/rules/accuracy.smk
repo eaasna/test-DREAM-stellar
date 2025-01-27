@@ -297,7 +297,7 @@ rule blast_compare_valik:
 rule lastz_compare_stellar:
 	input:
 		ref_meta = dream_out + "/meta/b" + str(bin_list[0]) + "_fpr" + str(fpr_list[0]) + "_l" + str(min_lens[0]) + "_e" + str(errors[0]) + ".bin",
-		test_files = expand(lastz_out + "/" + run_id + "_s{s}_" + gap_flag + "_" + transition_flag + "_" + str(step_length) + ".gff", s = lastz_seeds),
+		test_files = expand(lastz_out + "/" + run_id + "_s{s}_" + gap_flag + "_" + transition_flag + "_" + str(step_length) + ".bed", s = lastz_seeds),
 		truth_files = expand(stellar_out + "/" + run_id + "_l{min_len}_e{er}_rp" + str(repeat_periods[0]) + "_rl" + str(repeat_lengths[0]) + ".gff", min_len = min_lens, er = errors)
 	output:
 		lastz_out + "/lastz.stellar.accuracy"
@@ -331,7 +331,7 @@ rule lastz_compare_stellar:
 rule last_compare_stellar:
 	input:
 		ref_meta = dream_out + "/meta/b" + str(bin_list[0]) + "_fpr" + str(fpr_list[0]) + "_l" + str(min_lens[0]) + "_e" + str(errors[0]) + ".bin",
-		test_files = expand(last_out + "/" + run_id + "_w{w}_k{k}_l{l}.bed", w = last_w, k = last_k, l = last_l),
+		test_files = expand(last_out + "/" + run_id + "_w{last_w}_k{last_k}_l{last_l}.bed", last_w = last_index_every, last_k = last_query_every, last_l = last_init),
 		truth_files = expand(stellar_out + "/" + run_id + "_l{min_len}_e{er}_rp" + str(repeat_periods[0]) + "_rl" + str(repeat_lengths[0]) + ".gff", min_len = min_lens, er = errors)
 	output:
 		last_out + "/last.stellar.accuracy"
